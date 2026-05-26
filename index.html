@@ -1,0 +1,3141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海南省"审管法信"一体联动平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'PingFangSC', 'Microsoft YaHei', sans-serif;
+            background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+            min-height: 100vh;
+            color: #fff;
+            overflow: hidden;
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.8), 0 0 20px rgba(0, 200, 255, 0.5), 0 0 30px rgba(0, 200, 255, 0.3);
+        }
+
+        .glow-border {
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.3), inset 0 0 15px rgba(0, 200, 255, 0.1);
+        }
+
+        .card {
+            background: rgba(13, 31, 60, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .more-btn {
+            font-size: 13px;
+            color: rgba(0, 212, 255, 0.8);
+            cursor: pointer;
+            padding: 3px 8px;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 3px;
+        }
+
+        .more-btn:hover {
+            background: rgba(0, 200, 255, 0.2);
+            color: #00d4ff;
+        }
+
+        /* 顶部导航 */
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: rgba(13, 31, 60, 0.9);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.3);
+            position: relative;
+        }
+
+        .header-left {
+            display: flex;
+            gap: 10px;
+        }
+
+        .nav-item {
+            padding: 6px 12px;
+            background: rgba(0, 200, 255, 0.1);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+
+        .header-title-wrapper {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(0, 200, 255, 0.3);
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        .header-title {
+            font-size: 24px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+
+        .header-right {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-btn {
+            padding: 6px 16px;
+            background: rgba(0, 30, 60, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 4px;
+            color: #00d4ff;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .header-btn:hover {
+            border-color: rgba(0, 200, 255, 0.6);
+            background: rgba(0, 200, 255, 0.15);
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+        }
+
+        .custom-select {
+            padding: 6px 24px 6px 12px;
+            background: rgba(0, 30, 60, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 4px;
+            color: #00d4ff;
+            font-size: 13px;
+            cursor: pointer;
+            appearance: none;
+            position: relative;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        .custom-select:hover {
+            border-color: rgba(0, 200, 255, 0.6);
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.3);
+        }
+
+        .custom-select:focus {
+            border-color: #00d4ff;
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.4);
+        }
+
+        .custom-select option {
+            background: #0a1f3c;
+            color: #fff;
+            padding: 8px;
+        }
+
+        .year-select {
+            min-width: 80px;
+        }
+
+        .area-select {
+            min-width: 120px;
+        }
+
+        .region-select {
+            min-width: 120px;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #00d4ff, #0088cc);
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 200, 255, 0.4);
+        }
+
+        /* 主内容区 */
+        .main-content {
+            display: flex;
+            height: calc(100vh - 70px);
+            padding: 15px;
+            gap: 15px;
+        }
+
+        /* 左侧面板 */
+        .left-panel {
+            width: 480px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 监管部门表格 */
+        .dept-type-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .dept-type-tab {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 2px 8px;
+            border-radius: 3px;
+            transition: all 0.3s;
+        }
+
+        .dept-type-tab.active {
+            color: #00d4ff;
+            background: rgba(0, 200, 255, 0.2);
+        }
+
+        .dept-type-tab:hover {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .dept-content-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dept-content {
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .dept-tab-arrow {
+            font-size: 20px;
+            color: rgba(0, 212, 255, 0.8);
+            cursor: pointer;
+            padding: 4px 8px;
+            border-radius: 4px;
+            background: rgba(0, 200, 255, 0.1);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            transition: all 0.3s;
+            flex-shrink: 0;
+        }
+
+        .dept-tab-arrow:hover {
+            background: rgba(0, 200, 255, 0.3);
+            color: #00d4ff;
+        }
+
+        .dept-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+
+        .dept-table th, .dept-table td {
+            padding: 6px 4px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.1);
+        }
+
+        .dept-table th {
+            background: rgba(0, 200, 255, 0.1);
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .dept-table tr:hover {
+            background: rgba(0, 200, 255, 0.1);
+        }
+
+        .dept-table tr:last-child td {
+            color: #ff6b6b;
+            font-weight: 600;
+        }
+
+        /* 监管事项 */
+        .item-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .item-tab {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 3px 10px;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .item-tab.active {
+            color: #00d4ff;
+            background: rgba(0, 200, 255, 0.2);
+        }
+
+        .item-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .item-table th,
+        .item-table td {
+            padding: 6px 8px;
+            text-align: left;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.1);
+        }
+
+        .item-table th {
+            color: rgba(0, 200, 255, 0.8);
+            font-weight: 600;
+        }
+
+        .item-table tbody tr:hover {
+            background: rgba(0, 200, 255, 0.1);
+        }
+
+        /* 监管对象 */
+        .reg-object {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .obj-header-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .obj-tab {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 2px 8px;
+            border-radius: 3px;
+        }
+
+        .obj-tab.active {
+            color: #00d4ff;
+            background: rgba(0, 200, 255, 0.2);
+        }
+
+        .obj-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .obj-table th {
+            text-align: left;
+            padding: 6px 8px;
+            color: rgba(255, 255, 255, 0.6);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+            font-weight: 500;
+        }
+
+        .obj-table td {
+            padding: 6px 8px;
+            color: rgba(255, 255, 255, 0.85);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.1);
+        }
+
+        .obj-table tbody tr:hover td {
+            background: rgba(0, 200, 255, 0.1);
+        }
+
+        .high-risk {
+            color: #ff6b6b;
+            font-weight: 500;
+        }
+
+        .medium-risk {
+            color: #ffd93d;
+            font-weight: 500;
+        }
+
+        .object-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .tab-item {
+            padding: 4px 10px;
+            font-size: 13px;
+            cursor: pointer;
+            border-radius: 3px;
+            background: rgba(0, 200, 255, 0.1);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .tab-item.active {
+            background: rgba(0, 200, 255, 0.3);
+            color: #00d4ff;
+        }
+
+        .object-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 10px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00d4ff;
+            text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 3px;
+        }
+
+        .chart-container {
+            flex: 1;
+            position: relative;
+        }
+
+        .line-chart {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 中间区域 */
+        .center-panel {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 统计卡片 */
+        .stats-cards {
+            display: flex;
+            gap: 12px;
+            height: 65px;
+        }
+
+        .stat-card-group {
+            display: flex;
+            gap: 8px;
+            flex: 1;
+        }
+
+        .stat-card {
+            flex: 1;
+            background: rgba(13, 31, 60, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 4px;
+            padding: 2px 6px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: auto;
+        }
+
+        .stat-card.large {
+            flex: 1.5;
+        }
+
+        .stat-card.large.has-sub {
+            flex: 2;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .stat-card.small {
+            flex: 0.8;
+        }
+
+        .card-main {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-right: 10px;
+            padding-top: 2px;
+            padding-bottom: 2px;
+            border-right: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .card-sub-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .card-sub-row {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .card-sub-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .card-sub-item-horizontal {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-sub-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 2px;
+        }
+
+        .card-sub-item-horizontal .card-sub-label {
+            font-size: 13px;
+            margin-top: 0;
+        }
+
+        .card-sub-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .stat-card-sub {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            flex: 1;
+        }
+
+        .stat-card-sub .stat-card {
+            padding: 4px 8px;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #00ff88, #00d4ff);
+        }
+
+        .card-value {
+            font-size: 20px;
+            font-weight: 700;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+            line-height: 1.2;
+        }
+
+        .stat-card.large .card-value {
+            font-size: 24px;
+        }
+
+        .stat-card-sub .card-value {
+            font-size: 16px;
+        }
+
+        .card-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.2;
+            margin-bottom: 0;
+        }
+
+        .card-subtitle {
+            font-size: 13px;
+            color: #00ff88;
+            margin-top: 3px;
+            line-height: 1.2;
+        }
+
+        /* 地图区域 */
+        .map-container {
+            flex: 1;
+            background: rgba(13, 31, 60, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 8px;
+            padding: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .map-tabs {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 10;
+            display: flex;
+            gap: 8px;
+        }
+
+        .map-tab {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 4px 12px;
+            border-radius: 4px;
+            background: rgba(0, 60, 120, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .map-tab.active {
+            color: #00d4ff;
+            background: rgba(0, 200, 255, 0.3);
+            border-color: rgba(0, 200, 255, 0.5);
+        }
+
+        #flowChartContent {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .map-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(0, 200, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .map-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('地图.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            opacity: 0.9;
+        }
+
+        .hainan-map {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .map-svg {
+            display: none;
+        }
+
+        .location-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: radial-gradient(circle, #00d4ff 0%, transparent 70%);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+            cursor: pointer;
+        }
+
+        .location-marker.clickable:hover {
+            transform: scale(1.2);
+        }
+
+        .alert-box {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 260px;
+            background: rgba(0, 30, 60, 0.95);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 8px;
+            display: none;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .alert-box.show {
+            display: block;
+        }
+
+        .alert-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+            background: rgba(0, 200, 255, 0.1);
+            border-radius: 8px 8px 0 0;
+        }
+
+        .alert-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .alert-close {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 18px;
+            border-radius: 4px;
+        }
+
+        .alert-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        .alert-content {
+            padding: 15px;
+        }
+
+        .alert-item {
+            margin-bottom: 10px;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        .alert-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .alert-label {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .alert-value {
+            color: #fff;
+        }
+
+        .alert-footer {
+            padding: 12px 15px;
+            border-top: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .alert-btn {
+            width: 100%;
+            padding: 8px;
+            background: linear-gradient(135deg, #0088cc, #00d4ff);
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .alert-btn:hover {
+            box-shadow: 0 0 15px rgba(0, 212, 255, 0.5);
+        }
+
+        /* 详情弹窗 */
+        .detail-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail-modal.show {
+            display: flex;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            max-height: 80vh;
+            background: rgba(0, 20, 40, 0.98);
+            border: 1px solid rgba(0, 200, 255, 0.4);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.3), inset 0 0 60px rgba(0, 200, 255, 0.05);
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #00d4ff, #00ff88, #00d4ff);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            background: rgba(0, 200, 255, 0.15);
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .modal-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00d4ff;
+            text-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        .modal-close {
+            width: 28px;
+            height: 28px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            font-size: 20px;
+            border-radius: 4px;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 200, 255, 0.3);
+        }
+
+        .modal-close:hover {
+            background: rgba(0, 200, 255, 0.2);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        .modal-body {
+            padding: 15px;
+            max-height: calc(80vh - 60px);
+            overflow-y: auto;
+            display: flex;
+            gap: 15px;
+        }
+
+        .modal-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .modal-right {
+            flex: 0.35;
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            padding-left: 15px;
+            border-left: 2px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .detail-box {
+            background: rgba(0, 30, 60, 0.6);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 6px;
+            padding: 12px;
+        }
+
+        .detail-row {
+            font-size: 13px;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .detail-label {
+            color: rgba(255, 255, 255, 0.5);
+            margin-right: 8px;
+        }
+
+        .detail-value {
+            color: #fff;
+        }
+
+        .detail-label-bold {
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 8px;
+            display: block;
+            font-size: 13px;
+        }
+
+        .detail-text {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+            white-space: pre-wrap;
+        }
+
+        /* 流程节点样式 */
+        .timeline-box {
+            position: relative;
+            background: rgba(0, 30, 60, 0.5);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 0;
+            transition: all 0.3s;
+        }
+
+        .timeline-box::before {
+            content: '';
+            position: absolute;
+            left: -17px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00d4ff;
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.8);
+            border: 2px solid rgba(0, 20, 40, 0.98);
+        }
+
+        .timeline-box:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            left: -13px;
+            top: calc(50% + 5px);
+            width: 2px;
+            height: calc(100% + 10px);
+            background: linear-gradient(to bottom, rgba(0, 200, 255, 0.6), rgba(0, 200, 255, 0.2));
+        }
+
+        .timeline-box.completed {
+            border-color: rgba(0, 255, 136, 0.4);
+            background: rgba(0, 50, 30, 0.5);
+        }
+
+        .timeline-box.completed::before {
+            background: #00ff88;
+            box-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        }
+
+        .timeline-box.current {
+            border-color: rgba(0, 200, 255, 0.6);
+            background: rgba(0, 40, 80, 0.7);
+            box-shadow: 0 0 15px rgba(0, 200, 255, 0.3);
+        }
+
+        .timeline-title {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+
+        .timeline-content {
+            font-size: 13px;
+            color: #00d4ff;
+            font-weight: 500;
+        }
+
+        .alert-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 200, 255, 0.4);
+        }
+
+        /* 建设背景弹窗样式 */
+        .modal-body-text {
+            padding: 20px;
+            max-height: calc(80vh - 60px);
+            overflow-y: auto;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .modal-body-text p {
+            margin-bottom: 15px;
+            text-indent: 2em;
+        }
+
+        /* 预警模型弹窗样式 */
+        .modal-body-rules {
+            padding: 20px;
+            max-height: calc(80vh - 60px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .rule-box {
+            background: rgba(0, 30, 60, 0.6);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 6px;
+            padding: 15px;
+        }
+
+        .rule-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 10px;
+        }
+
+        .rule-content {
+            font-size: 13px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* 图片弹窗样式 */
+        .modal-body-image {
+            padding: 20px;
+            max-height: calc(80vh - 60px);
+            overflow-y: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            max-height: calc(80vh - 100px);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+        }
+
+        /* 创新应用弹窗样式 */
+        .innovation-modal {
+            max-width: 80%;
+            max-height: 85vh;
+        }
+
+        .modal-body-innovation {
+            padding: 20px;
+            max-height: calc(85vh - 60px);
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .app-section {
+            background: rgba(0, 30, 60, 0.5);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 8px;
+            padding: 15px;
+        }
+
+        .section-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .app-grid {
+            display: grid;
+            gap: 10px;
+        }
+
+        .app-grid-1col {
+            grid-template-columns: 1fr;
+        }
+
+        .app-grid-2col {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .app-grid-4col {
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .app-grid-5col {
+            grid-template-columns: repeat(5, 1fr);
+        }
+
+        .app-grid-6col {
+            grid-template-columns: repeat(6, 1fr);
+        }
+
+        .app-row {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .app-section-lg {
+            flex: 2;
+        }
+
+        .app-section-xl {
+            flex: 3;
+        }
+
+        .app-section-sm {
+            flex: 1;
+        }
+
+        .app-section-full {
+            width: 100%;
+        }
+
+        .app-item {
+            padding: 10px 12px;
+            background: rgba(0, 200, 255, 0.1);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 4px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.85);
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .app-item:hover {
+            background: rgba(0, 200, 255, 0.2);
+            border-color: rgba(0, 200, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 200, 255, 0.3);
+        }
+
+        .location-marker::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00d4ff;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+        }
+
+        .tooltip {
+            position: absolute;
+            background: rgba(13, 31, 60, 0.95);
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 13px;
+            pointer-events: none;
+            z-index: 100;
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.3);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .tooltip.show {
+            opacity: 1;
+        }
+
+        .tooltip-title {
+            font-weight: 600;
+            color: #00d4ff;
+            margin-bottom: 8px;
+        }
+
+        .tooltip-btn {
+            background: linear-gradient(135deg, #00d4ff, #0088cc);
+            border: none;
+            border-radius: 4px;
+            padding: 5px 15px;
+            color: #fff;
+            font-size: 13px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        /* 闭环跟踪表格 */
+        .tracking-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+
+        .tracking-table th, .tracking-table td {
+            padding: 5px 6px;
+            text-align: center;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.1);
+            border-right: 1px solid rgba(0, 200, 255, 0.1);
+        }
+
+        .tracking-table th {
+            background: rgba(0, 200, 255, 0.1);
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .tracking-table th:last-child, .tracking-table td:last-child {
+            border-right: none;
+        }
+
+        .tracking-table tr:hover {
+            background: rgba(0, 200, 255, 0.05);
+        }
+
+        .clickable-company {
+            color: #00d4ff;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .clickable-company:hover {
+            color: #00ffff;
+            text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+        }
+
+        /* 企业详情弹窗样式 */
+        .company-detail-modal {
+            max-width: 90%;
+            max-height: 85vh;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .modal-body-company {
+            padding: 15px;
+            max-height: calc(85vh - 60px);
+            overflow-y: auto;
+        }
+
+        .company-grid {
+            display: flex;
+            gap: 15px;
+            width: 100%;
+        }
+
+        .company-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .company-col-left {
+            width: 220px;
+        }
+
+        .company-col-center {
+            flex: 1;
+        }
+
+        .company-col-right {
+            width: 320px;
+        }
+
+        .company-section {
+            background: rgba(0, 30, 60, 0.6);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 6px;
+            padding: 10px;
+        }
+
+        .company-section-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+        }
+
+        .info-row {
+            font-size: 13px;
+            margin-bottom: 6px;
+            color: #ccc;
+        }
+
+        .info-label {
+            color: #888;
+        }
+
+        .info-value {
+            color: #fff;
+        }
+
+        .credit-box {
+            background: rgba(0, 50, 100, 0.5);
+            border-radius: 4px;
+            padding: 8px;
+            margin-bottom: 8px;
+        }
+
+        .credit-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #00d4ff;
+            margin-bottom: 6px;
+        }
+
+        .credit-item {
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 3px;
+        }
+
+        .company-profile {
+            background: rgba(0, 40, 80, 0.7);
+        }
+
+        .company-name-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .company-icon {
+            font-size: 32px;
+        }
+
+        .company-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .stats-grid {
+            display: flex;
+            gap: 10px;
+        }
+
+        .stat-box {
+            flex: 1;
+            background: rgba(0, 60, 120, 0.6);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 4px;
+            padding: 10px 8px;
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00d4ff;
+        }
+
+        .stat-label {
+            font-size: 13px;
+            color: #888;
+            margin-top: 4px;
+        }
+
+        .detail-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+
+        .detail-table th, .detail-table td {
+            border: 1px solid rgba(0, 200, 255, 0.15);
+            padding: 6px 8px;
+            text-align: center;
+        }
+
+        .detail-table th {
+            background: rgba(0, 50, 100, 0.5);
+            color: #00d4ff;
+            font-weight: bold;
+        }
+
+        .detail-table td {
+            color: #ccc;
+        }
+
+        .license-box {
+            background: rgba(0, 50, 100, 0.5);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 8px;
+            text-align: center;
+            font-size: 13px;
+            color: #fff;
+        }
+
+        .warning-box {
+            background: rgba(0, 50, 100, 0.5);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 8px;
+        }
+
+        .warning-box.warning-active {
+            border-left: 3px solid #ff6b6b;
+        }
+
+        .warning-box.warning-resolved {
+            border-left: 3px solid #00ff88;
+        }
+
+        .warning-title {
+            font-size: 13px;
+            font-weight: bold;
+            color: #fff;
+            margin-bottom: 6px;
+        }
+
+        .warning-info {
+            font-size: 13px;
+            color: #ccc;
+            margin-bottom: 4px;
+        }
+
+        .warning-status {
+            float: right;
+            font-size: 13px;
+            padding: 2px 8px;
+            border-radius: 10px;
+            margin-top: 5px;
+        }
+
+        .warning-active-badge {
+            background: rgba(255, 107, 107, 0.3);
+            color: #ff6b6b;
+        }
+
+        .warning-resolved-badge {
+            background: rgba(0, 255, 136, 0.3);
+            color: #00ff88;
+        }
+
+        /* 右侧面板 */
+        .right-panel {
+            width: 490px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        /* 核心应用 */
+        .apps-scroll-container {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .apps-scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background: rgba(0, 200, 255, 0.3);
+            border: 1px solid rgba(0, 200, 255, 0.5);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            font-size: 13px;
+            color: #00d4ff;
+            transition: all 0.3s;
+        }
+
+        .apps-scroll-btn:hover {
+            background: rgba(0, 200, 255, 0.5);
+            box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+        }
+
+        .apps-scroll-btn.left {
+            left: 0;
+        }
+
+        .apps-scroll-btn.right {
+            right: 0;
+        }
+
+        .core-apps {
+            display: flex;
+            gap: 12px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 0 30px;
+        }
+
+        .core-apps::-webkit-scrollbar {
+            display: none;
+        }
+
+        .app-item {
+            flex: 0 0 calc(16.666% - 10px);
+            min-width: 70px;
+            padding: 6px 8px;
+            background: rgba(0, 200, 255, 0.1);
+            border: 1px solid rgba(0, 200, 255, 0.2);
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .app-item:hover {
+            background: rgba(0, 200, 255, 0.2);
+            box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
+        }
+
+        .app-icon {
+            display: none;
+        }
+
+        .app-label {
+            font-size: 13px;
+            line-height: 1.4;
+        }
+
+        /* 检查统计 */
+        .inspect-tabs {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .inspect-tab {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            padding: 3px 10px;
+            border-radius: 4px;
+        }
+
+        .inspect-tab.active {
+            color: #00d4ff;
+            background: rgba(0, 200, 255, 0.2);
+        }
+
+        .inspect-stats {
+            margin-top: 8px;
+        }
+
+        .big-stat {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 10px;
+            background: rgba(0, 200, 255, 0.1);
+            border-radius: 4px;
+            margin-bottom: 6px;
+        }
+
+        .big-stat-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #00d4ff;
+            text-shadow: 0 0 8px rgba(0, 200, 255, 0.6);
+        }
+
+        .big-stat-label {
+            font-size: 13px;
+        }
+
+        .big-stat-change {
+            font-size: 13px;
+        }
+
+        .big-stat-change.decrease {
+            color: #00ff88;
+        }
+
+        .big-stat-change.increase {
+            color: #ff6b6b;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 6px;
+        }
+
+        .company-profile .stats-grid {
+            display: flex;
+            gap: 8px;
+        }
+
+        .company-profile .stat-box {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .small-stat {
+            padding: 8px;
+            background: rgba(0, 200, 255, 0.05);
+            border-radius: 4px;
+            border-left: 2px solid #00d4ff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .small-stat-left {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .small-stat-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .small-stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 3px;
+        }
+
+        .small-stat-change {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .small-stat-change.decrease {
+            color: #00ff88;
+        }
+
+        .small-stat-change.increase {
+            color: #ff6b6b;
+        }
+
+        /* 预警信号 */
+        .warning-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .warning-stats {
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 12px;
+            background: rgba(0, 200, 255, 0.05);
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        .warning-stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .warning-stat-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2px;
+        }
+
+        .warning-stat-value {
+            font-size: 16px;
+            font-weight: 600;
+            color: #00d4ff;
+        }
+
+        .warning-stat-item.blue .warning-stat-value {
+            color: #00d4ff;
+        }
+
+        .warning-stat-item.yellow .warning-stat-value {
+            color: #ffd700;
+        }
+
+        .warning-stat-item.red .warning-stat-value {
+            color: #ff4444;
+        }
+
+        .warning-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .warning-tabs {
+            display: flex;
+            gap: 8px;
+        }
+
+        .warning-tab {
+            padding: 4px 10px;
+            font-size: 13px;
+            background: rgba(0, 200, 255, 0.1);
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .warning-tab.active {
+            background: rgba(0, 200, 255, 0.3);
+            color: #00d4ff;
+        }
+
+        .stacked-bar-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            max-height: 200px;
+            padding: 5px;
+        }
+
+        .stacked-bar-container::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .stacked-bar-container::-webkit-scrollbar-track {
+            background: rgba(0, 200, 255, 0.05);
+            border-radius: 2px;
+        }
+
+        .stacked-bar-container::-webkit-scrollbar-thumb {
+            background: rgba(0, 200, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        .stacked-bar-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            height: 24px;
+        }
+
+        .stacked-bar-label {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            width: 85px;
+            flex-shrink: 0;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .stacked-bar-track {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            height: 20px;
+            background: rgba(0, 200, 255, 0.05);
+            border-radius: 4px;
+            overflow: hidden;
+            border: 1px solid rgba(0, 200, 255, 0.1);
+        }
+
+        .stacked-bar-segment {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            transition: width 0.3s ease;
+        }
+
+        .stacked-bar-segment.blue {
+            background: linear-gradient(90deg, #0088cc, #00d4ff);
+        }
+
+        .stacked-bar-segment.orange {
+            background: linear-gradient(90deg, #cc6600, #ff8c00);
+        }
+
+        .stacked-bar-segment.yellow {
+            background: linear-gradient(90deg, #ccaa00, #ffd700);
+        }
+
+        .segment-value {
+            font-size: 13px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .stacked-bar-total {
+            width: 35px;
+            font-size: 13px;
+            font-weight: bold;
+            color: #00d4ff;
+            text-align: center;
+        }
+
+        /* 监管对象风险预警内容容器 */
+        .obj-content-wrapper {
+            display: flex;
+            gap: 10px;
+            height: 140px;
+        }
+
+        .obj-content-wrapper > div {
+            flex: 1;
+        }
+
+        /* 通用滚动条样式 */
+        .stacked-bar-container::-webkit-scrollbar,
+        #deptListContent::-webkit-scrollbar,
+        #highFreqContent::-webkit-scrollbar,
+        #uncoverContent::-webkit-scrollbar,
+        #objListContent::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .stacked-bar-container::-webkit-scrollbar-track,
+        #deptListContent::-webkit-scrollbar-track,
+        #highFreqContent::-webkit-scrollbar-track,
+        #uncoverContent::-webkit-scrollbar-track,
+        #objListContent::-webkit-scrollbar-track {
+            background: rgba(0, 200, 255, 0.05);
+            border-radius: 2px;
+        }
+
+        .stacked-bar-container::-webkit-scrollbar-thumb,
+        #deptListContent::-webkit-scrollbar-thumb,
+        #highFreqContent::-webkit-scrollbar-thumb,
+        #uncoverContent::-webkit-scrollbar-thumb,
+        #objListContent::-webkit-scrollbar-thumb {
+            background: rgba(0, 200, 255, 0.3);
+            border-radius: 2px;
+        }
+
+        /* 重点应用 */
+        .key-apps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 10px;
+            gap: 8px;
+        }
+
+        .key-app-btn {
+            width: calc(33.33% - 6px);
+            padding: 8px 6px;
+            background: rgba(0, 60, 120, 0.8);
+            border: 1px solid rgba(0, 200, 255, 0.3);
+            border-radius: 4px;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .key-app-btn:hover {
+            background: rgba(0, 200, 255, 0.3);
+            border-color: rgba(0, 200, 255, 0.6);
+            color: #00d4ff;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-left">
+            <div class="nav-item" onclick="showBackgroundModal()">建设背景</div>
+            <div class="nav-item" onclick="showPanoramaModal()">全景图</div>
+            <div class="nav-item" onclick="showArchitectureModal()">架构图</div>
+            <div class="nav-item" onclick="showModelModal()">预警模型</div>
+        </div>
+        <div class="header-title-wrapper">
+            <div class="header-title glow-text">海南省"审管法信"一体联动平台</div>
+        </div>
+        <div class="header-right">
+            <select class="custom-select year-select">
+                <option value="year">本年</option>
+                <option value="quarter">本季度</option>
+                <option value="month">本月</option>
+                <option value="week">本周</option>
+            </select>
+            <select class="custom-select area-select">
+                <option value="all">全部领域</option>
+                <option value="education">教育领域</option>
+                <option value="health">卫生领域</option>
+                <option value="market">市场监管</option>
+                <option value="safety">安全生产</option>
+                <option value="environment">环境保护</option>
+            </select>
+            <select class="custom-select region-select">
+                <option value="hainan">海南省</option>
+                <option value="provincial">省直部门</option>
+                <option value="haikou">海口市</option>
+                <option value="sanya">三亚市</option>
+                <option value="danzhou">儋州市</option>
+                <option value="wenchang">文昌市</option>
+                <option value="qionghai">琼海市</option>
+                <option value="wanning">万宁市</option>
+                <option value="lingao">临高县</option>
+                <option value="ledong">乐东县</option>
+            </select>
+        </div>
+    </header>
+
+    <!-- 主内容区 -->
+    <div class="main-content">
+        <!-- 左侧面板 -->
+        <div class="left-panel">
+            <!-- 监管部门 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">监管部门</span>
+                    <div class="dept-type-tabs">
+                        <div class="dept-type-tab active" onclick="switchDeptType('dept')">部门</div>
+                        <div class="dept-type-tab" onclick="switchDeptType('region')">区划</div>
+                    </div>
+                </div>
+                <div class="dept-content-wrapper">
+                    <div class="dept-tab-arrow" onclick="switchDeptTab('prev')">‹</div>
+                    <div class="dept-content">
+                        <div id="deptListContent" style="overflow: auto; max-height: 140px;">
+                            <table class="dept-table">
+                                <thead>
+                                    <tr>
+                                        <th>监管部门</th>
+                                        <th>审批人数</th>
+                                        <th>执法人数</th>
+                                        <th>检查任务总数</th>
+                                        <th>人均办案数</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>20</td><td>1000</td><td>50</td></tr>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>20</td><td>1000</td><td>50</td></tr>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>20</td><td>1000</td><td>50</td></tr>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>0</td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>0</td><td>1000</td><td>0</td></tr>
+                                    
+                                    <tr><td>海南省XX局</td><td>1000</td><td>0</td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>0</td><td>1000</td><td>0</td></tr>
+                                    
+                                    <tr><td>海南省XX局</td><td>1000</td><td>0</td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海南省XX局</td><td>1000</td><td>0</td><td>1000</td><td>0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="deptTrendContent" style="display: none; padding: 10px; height: 150px;">
+                            <svg viewBox="0 0 350 130" class="trend-chart" style="width: 100%; height: 100%;">
+                                <defs>
+                                    <linearGradient id="lineBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#0080ff;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="lineOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ff8c00;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ff6600;stop-opacity:1" />
+                                    </linearGradient>
+                                    <linearGradient id="lineYellow" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                                        <stop offset="100%" style="stop-color:#ffb700;stop-opacity:1" />
+                                    </linearGradient>
+                                </defs>
+                                <g class="grid-lines">
+                                    <line x1="30" y1="20" x2="320" y2="20" stroke="rgba(0,200,255,0.1)" stroke-width="1"/>
+                                    <line x1="30" y1="45" x2="320" y2="45" stroke="rgba(0,200,255,0.1)" stroke-width="1"/>
+                                    <line x1="30" y1="70" x2="320" y2="70" stroke="rgba(0,200,255,0.1)" stroke-width="1"/>
+                                    <line x1="30" y1="95" x2="320" y2="95" stroke="rgba(0,200,255,0.1)" stroke-width="1"/>
+                                    <line x1="30" y1="120" x2="320" y2="120" stroke="rgba(0,200,255,0.1)" stroke-width="1"/>
+                                    <line x1="30" y1="20" x2="30" y2="120" stroke="rgba(0,200,255,0.1)" stroke-width="1"/>
+                                </g>
+                                <g class="chart-lines">
+                                    <polyline points="30,100 70,80 110,90 150,60 190,75 230,50 270,65 310,40" fill="none" stroke="url(#lineBlue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="30,110 70,95 110,85 150,70 190,80 230,60 270,70 310,50" fill="none" stroke="url(#lineOrange)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <polyline points="30,90 70,75 110,80 150,55 190,65 230,45 270,55 310,35" fill="none" stroke="url(#lineYellow)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </g>
+                                <g class="chart-labels">
+                                    <text x="30" y="130" fill="rgba(255,255,255,0.6)" font-size="10">1月</text>
+                                    <text x="70" y="130" fill="rgba(255,255,255,0.6)" font-size="10">2月</text>
+                                    <text x="110" y="130" fill="rgba(255,255,255,0.6)" font-size="10">3月</text>
+                                    <text x="150" y="130" fill="rgba(255,255,255,0.6)" font-size="10">4月</text>
+                                    <text x="190" y="130" fill="rgba(255,255,255,0.6)" font-size="10">5月</text>
+                                    <text x="230" y="130" fill="rgba(255,255,255,0.6)" font-size="10">6月</text>
+                                    <text x="270" y="130" fill="rgba(255,255,255,0.6)" font-size="10">7月</text>
+                                    <text x="310" y="130" fill="rgba(255,255,255,0.6)" font-size="10">8月</text>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="dept-tab-arrow" onclick="switchDeptTab('next')">›</div>
+                </div>
+            </div>
+
+            <!-- 监管事项 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">监管事项</span>
+                    <div class="item-tabs">
+                        <div class="item-tab active" onclick="switchItemTab('high')">高频事项</div>
+                        <div class="item-tab" onclick="switchItemTab('uncover')">未覆盖事项</div>
+                    </div>
+                </div>
+                <div id="highFreqContent" style="overflow: auto; max-height: 145px;">
+                    <table class="item-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>事项名称</th>
+                                <th>检查次数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>食品经营许可检查</td><td>1250</td></tr>
+                            <tr><td>2</td><td>药品经营许可检查</td><td>980</td></tr>
+                            <tr><td>3</td><td>医疗器械经营检查</td><td>760</td></tr>
+                            <tr><td>4</td><td>特种设备安全检查</td><td>650</td></tr>
+                            <tr><td>5</td><td>安全生产检查</td><td>540</td></tr>
+                            <tr><td>6</td><td>消防安全检查</td><td>480</td></tr>
+                            <tr><td>7</td><td>环境保护检查</td><td>390</td></tr>
+                            <tr><td>8</td><td>劳动用工检查</td><td>320</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div id="uncoverContent" style="display: none; overflow: auto; max-height: 145px;">
+                    <table class="item-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>事项名称</th>
+                                <th>检查次数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>网络安全检查</td><td>0</td></tr>
+                            <tr><td>2</td><td>数据安全检查</td><td>0</td></tr>
+                            <tr><td>3</td><td>个人信息保护检查</td><td>0</td></tr>
+                            <tr><td>4</td><td>反不正当竞争检查</td><td>0</td></tr>
+                            <tr><td>5</td><td>价格监督检查</td><td>0</td></tr>
+                            <tr><td>6</td><td>广告监管检查</td><td>15</td></tr>
+                            <tr><td>7</td><td>知识产权检查</td><td>23</td></tr>
+                            <tr><td>8</td><td>电子商务检查</td><td>45</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 监管对象 -->
+            <div class="card reg-object">
+                <div class="card-header" style="justify-content: space-between; align-items: center;">
+                    <span class="card-title">监管对象</span>
+                    <div class="object-tabs">
+                        <div class="tab-item active">整体</div>
+                        <div class="tab-item">企业</div>
+                        <div class="tab-item">个体工商户</div>
+                        <div class="tab-item">其他组织</div>
+                    </div>
+                </div>
+                <div class="object-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">总数</div>
+                        <div class="stat-value">900000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">风险预警数</div>
+                        <div class="stat-value">999</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                        <span style="font-size: 13px; color: rgba(255,255,255,0.7);">监管对象风险预警</span>
+                        <div class="obj-header-tabs">
+                            <div class="obj-tab active" onclick="switchObjTab('list')">列表</div>
+                            <div class="obj-tab" onclick="switchObjTab('trend')">趋势</div>
+                        </div>
+                    </div>
+                    <div class="obj-content-wrapper">
+                        <div id="objListContent" style="height: 140px; overflow-y: auto;">
+                            <table class="obj-table">
+                                <thead>
+                                    <tr>
+                                        <th>对象名称</th>
+                                        <th>预警类别</th>
+                                        <th>预警等级</th>
+                                        <th>预警时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>XXXXXX</td><td>信用评分极低</td><td><span class="high-risk">高</span></td><td>2026-01-01</td></tr>
+                                    <tr><td>XXXXXX</td><td>已列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-01-01</td></tr>
+                                    <tr><td>XXXXXX</td><td>已列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-01-01</td></tr>
+                                    <tr><td>XXXXXX</td><td>多次处罚</td><td><span class="high-risk">高</span></td><td>2026-01-01</td></tr>
+                                    <tr><td>XXXXXX</td><td>责改逾期</td><td><span class="medium-risk">中</span></td><td>2026-01-01</td></tr>
+                                    <tr><td>XXXXXX</td><td>责改逾期</td><td><span class="medium-risk">中</span></td><td>2026-01-01</td></tr>
+                                    <tr><td>XXXXXX</td><td>信息不全</td><td><span class="medium-risk">中</span></td><td>2026-01-01</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="objTrendContent" style="display: none;">
+                            <div class="line-chart">
+                                <svg viewBox="0 0 250 120" style="width: 100%; height: 100%;">
+                                    <defs>
+                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#00d4ff"/>
+                                            <stop offset="100%" stop-color="#00ff88"/>
+                                        </linearGradient>
+                                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="rgba(0,212,255,0.3)"/>
+                                            <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M 10 90 Q 35 60 60 70 T 110 50 T 160 65 T 210 40 T 240 55" fill="none" stroke="url(#lineGradient)" stroke-width="2"/>
+                                    <path d="M 10 90 Q 35 60 60 70 T 110 50 T 160 65 T 210 40 T 240 55 L 240 110 L 10 110 Z" fill="url(#areaGradient)"/>
+                                    <text x="10" y="118" font-size="9" fill="rgba(255,255,255,0.6)">1月</text>
+                                    <text x="35" y="118" font-size="9" fill="rgba(255,255,255,0.6)">2月</text>
+                                    <text x="60" y="118" font-size="9" fill="rgba(255,255,255,0.6)">3月</text>
+                                    <text x="85" y="118" font-size="9" fill="rgba(255,255,255,0.6)">4月</text>
+                                    <text x="110" y="118" font-size="9" fill="rgba(255,255,255,0.6)">5月</text>
+                                    <text x="135" y="118" font-size="9" fill="rgba(255,255,255,0.6)">6月</text>
+                                    <text x="160" y="118" font-size="9" fill="rgba(255,255,255,0.6)">7月</text>
+                                    <text x="185" y="118" font-size="9" fill="rgba(255,255,255,0.6)">8月</text>
+                                    <text x="210" y="118" font-size="9" fill="rgba(255,255,255,0.6)">9月</text>
+                                    <text x="230" y="118" font-size="9" fill="rgba(255,255,255,0.6)">10月</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 中间区域 -->
+        <div class="center-panel">
+            <!-- 统计卡片 -->
+            <div class="stats-cards">
+                <div class="stat-card large has-sub">
+                    <div class="card-main">
+                        <div class="card-value">89.81 万</div>
+                        <div class="card-label">行政许可办件数</div>
+                    </div>
+                    <div class="card-sub-row">
+                        <div class="card-sub-item-horizontal">
+                            <div class="card-sub-label">告知承诺办件数量</div>
+                            <div class="card-sub-value">1.26 万</div>
+                        </div>
+                        <div class="card-sub-item-horizontal">
+                            <div class="card-sub-label">批后核查完成率</div>
+                            <div class="card-sub-value">99.00%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card large has-sub">
+                    <div class="card-main">
+                        <div class="card-value">22.18 万</div>
+                        <div class="card-label">行政检查任务数</div>
+                    </div>
+                    <div class="card-sub-row">
+                        <div class="card-sub-item-horizontal">
+                            <div class="card-sub-label">检查发现问题数</div>
+                            <div class="card-sub-value">1.11 万</div>
+                        </div>
+                        <div class="card-sub-item-horizontal">
+                            <div class="card-sub-label">检查发现问题比例</div>
+                            <div class="card-sub-value">3.28%</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="stat-card small">
+                    <div class="card-label">行政处罚案件</div>
+                    <div class="card-value">99.88 万</div>
+                </div>
+                <div class="stat-card small">
+                    <div class="card-label">信用数据归集</div>
+                    <div class="card-value">99.88 万</div>
+                </div>
+            </div>
+
+            <!-- 地图区域 -->
+            <div class="map-container">
+                <div class="map-tabs">
+                    <div class="map-tab active" onclick="switchMapTab('flow')">流程图</div>
+                    <div class="map-tab" onclick="switchMapTab('map')">地图</div>
+                </div>
+                <div id="flowChartContent">
+                    <img src="流程图.gif" style="width: 100%; height: 100%; object-fit: contain;" />
+                </div>
+                <div id="mapContent" style="display: none; width: 100%; height: 100%;">
+                    <div class="map-bg"></div>
+                    <div class="map-image"></div>
+                    <div class="hainan-map">
+                        <div class="location-marker clickable" style="top: 20%; left: 45%;" onclick="showAlertBox('儋州市教育局', '4', '2026-01-04 12:00:00')"></div>
+                        <div class="location-marker clickable" style="top: 35%; left: 55%; animation-delay: 0.3s;" onclick="showAlertBox('海口市市场监管局', '2', '2026-01-03 10:30:00')"></div>
+                        <div class="location-marker clickable" style="top: 45%; left: 48%; animation-delay: 0.6s;" onclick="showAlertBox('三亚市卫健委', '6', '2026-01-02 15:45:00')"></div>
+                        <div class="location-marker clickable" style="top: 55%; left: 35%; animation-delay: 0.9s;" onclick="showAlertBox('文昌市应急管理局', '3', '2026-01-01 09:00:00')"></div>
+                        <div class="location-marker clickable" style="top: 65%; left: 42%; animation-delay: 1.2s;" onclick="showAlertBox('万宁市生态环境局', '5', '2025-12-31 14:20:00')"></div>
+                        <div class="location-marker clickable" style="top: 75%; left: 50%; animation-delay: 1.5s;" onclick="showAlertBox('琼海市教育局', '1', '2025-12-30 11:15:00')"></div>
+                    </div>
+                    <div class="alert-box" id="alertBox">
+                        <div class="alert-header">
+                            <div class="alert-title">未亮码检查预警</div>
+                            <div class="alert-close" onclick="hideAlertBox()">×</div>
+                        </div>
+                        <div class="alert-content">
+                            <div class="alert-item"><span class="alert-label">监管部门：</span><span class="alert-value" id="alertDept">儋州市教育局</span></div>
+                            <div class="alert-item"><span class="alert-label">无理由未亮照次数：</span><span class="alert-value" id="alertCount">4</span></div>
+                            <div class="alert-item"><span class="alert-label">预警时间：</span><span class="alert-value" id="alertTime">2026-01-04 12:00:00</span></div>
+                        </div>
+                        <div class="alert-footer">
+                            <button class="alert-btn" onclick="showDetailModal()">查看详情</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 详情弹窗 -->
+            <div class="detail-modal" id="detailModal">
+                <div class="modal-overlay" onclick="hideDetailModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">xx局批后核查逾期未办高风险预警</div>
+                        <div class="modal-close" onclick="hideDetailModal()">×</div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-left">
+                            <div class="detail-box">
+                                <div class="detail-row"><span class="detail-label">预警时间：</span><span class="detail-value">XXXXXX</span></div>
+                                <div class="detail-row"><span class="detail-label">预警类型：</span><span class="detail-value">批后核查逾期未办</span></div>
+                                <div class="detail-row"><span class="detail-label">预警类型：</span><span class="detail-value">批后核查逾期未办</span></div>
+                                <div class="detail-row"><span class="detail-label">市场主体：</span><span class="detail-value">XXXXXX</span></div>
+                                <div class="detail-row"><span class="detail-label">审批日期：</span><span class="detail-value">XXXXXX</span></div>
+                                <div class="detail-row"><span class="detail-label">批后核查时限：</span><span class="detail-value">30个工作日</span></div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-label-bold">预警描述：</div>
+                                <div class="detail-text">
+                                    该市场主体于2026年04月01日取得XX行政许可，根据《XX省批后核查管理办法》规定，需在许可批准后30日内完成现场核查。截至2026年05月01日，责任科室未提交核查计划，系统自动判定为"逾期未办"。经核查，原因为经办人员岗位调整，工作交接遗漏，导致核查任务超期未启动。
+                                </div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-label-bold">预警原因：</div>
+                                <div class="detail-text">
+                                    批后核查任务超过规定时限未启动，且无正当理由的，触发高风险预警。
+                                </div>
+                            </div>
+                            <div class="detail-box">
+                                <div class="detail-label-bold">处理信息：</div>
+                                <div class="detail-text">
+                                    任务接收：2026年05月22日 15:20，处理人张三通过移动端接收预警工单。<br>
+                                    原因核查：15:30-16:00，联系原经办人李四，确认因岗位调整（李四调至XX科室）导致任务遗漏。<br>
+                                    <br>
+                                    <strong>整改措施：</strong><br>
+                                    16:10，重新指定核查责任人：王五（联系电话：138XXXXXXXXXX）；<br>
+                                    16:20，制定核查计划：2026年05月23日 09:00开展现场核查；<br>
+                                    16:30，向市场主体发送《核查告知书》，说明逾期原因及补查安排。<br>
+                                    <br>
+                                    结果反馈：17:00，在系统上传《整改说明》《核查计划表》《告知书送达回执》，申请解除预警
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-right">
+                            <div class="timeline-box completed">
+                                <div class="timeline-title">触发预警</div>
+                                <div class="timeline-content">2026-01-01 12:00:00</div>
+                            </div>
+                            <div class="timeline-box completed">
+                                <div class="timeline-title">推送至：xx局</div>
+                                <div class="timeline-content">2026-01-01 12:00:00</div>
+                            </div>
+                            <div class="timeline-box current">
+                                <div class="timeline-title">处理人：张三</div>
+                                <div class="timeline-content">2026-01-01 12:00:00</div>
+                            </div>
+                            <div class="timeline-box">
+                                <div class="timeline-title">解除预警</div>
+                                <div class="timeline-content">2026-01-01 12:00:00</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 建设背景弹窗 -->
+            <div class="detail-modal" id="backgroundModal">
+                <div class="modal-overlay" onclick="hideBackgroundModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">建设背景</div>
+                        <div class="modal-close" onclick="hideBackgroundModal()">×</div>
+                    </div>
+                    <div class="modal-body-text">
+                        <p>"审管法信"闭环管理体系是我省在全国率先探索的审批、监管、执法、信用四位一体协同便利化改革，通过数字化技术打通审批、监管、执法以及信用各环节相关信息系统，赋能"审批 - 监管 - 执法 - 信用"政府各部门行政管理环节一体联动的总体概念，目标是打破部门壁垒、数据互通共享、全流程闭环管理，推动"条块式"管理向"一体化联动"转变，优化营商环境、支撑自贸港封关运作。</p>
+                        <p>海南省"互联网 + 监管"系统是我省"审管法信"闭环管理体系核心枢纽和规范涉企检查的信息化载体，也是我省"打好营商环境整体提升攻坚战"的主要信息化抓手。海南省"互联网 + 监管"系统在事前审批环节与海易办系统联通，加强审批办件的共享应用，推行审批结果驱动事中事后监管；事中监管环节，海南省"互联网 + 监管"系统与部门自建监管系统互联互通，数字赋能跨部门综合监管；事后执法环节，联动省综合行政执法平台，加强行业监管和综合行政执法在线协同衔接；信用环节，嵌入审批、监管、执法各工作流程，一方面实现相关数据自动推送信用平台，纳入信用评价范围；另一方面将信用评价结果加强在审批、监管、执法各环节的应用，积极探索"信用+"场景。</p>
+                        <p>海南省"互联网 + 监管"系统最后一期于 2022 年获批，未将 2023 年以来国办及省委省政府监管工作部署要求纳入建设内容，包括国办《关于严格规范涉企行政检查的意见》（国办发〔2024〕54 号）、《关于深入推进跨部门综合监管的指导意见》（国办发〔2023〕1 号）、《关于清理规范涉企行政检查的通知》（国办督函〔2024〕69 号）以及 2024 年 9 月 27 日海南省第七届人大常委会通过的《海南自由贸易港极简审批条例》明确提出的"亮码检查"、"综合查一次"、极简审批、管法衔接等工作要求。在实际工作推进过程中，一线工作人员结合日常监管实践，普遍反映系统在部分功能方面尚存在提升空间。其中，围绕监管风险智能预警、监管任务实时提醒、检查计划协同撮合以及监管事项动态更新等方面的需求反馈较为集中和强烈。为进一步提升监管效能，优化工作流程，省"互联网 + 监管"系统的迭代升级工作已显得尤为迫切和必要。</p>
+                        <p>为贯彻落实《国务院办公厅关于严格规范涉企行政检查的意见》（国办发〔2024〕54 号）、《海南省人民政府办公厅关于印发海南省政府数字化转型总体方案（2022—2025）的通知》（琼府办〔2022〕33 号）等文件精神，明确"十四五"期间海南省政府数字化转型的目标、架构、任务和保障措施，海南省"互联网 + 监管"系统以原有的功能和模块为基础，融合海政通平台和海易办平台相关能力，在坚持"机制、平台、场景"三条主线基础上，进一步明确主攻方向，狠抓"四个一"，梳理整合一网监管已有公共服务支撑能力，优化提升一网监管支撑服务水平，强化事中事后监管，压实日常监管职责，积极构建"一枚印章管审批""一个系统管监管""一支队伍管执法"的橄榄型治理结构，有效解决以审代管、以罚代管、监管缺位等问题，实现避免重复检查、规范执法行为、提升执法效率、提高监管效能、减轻企业负担的目标。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预警模型弹窗 -->
+            <div class="detail-modal" id="modelModal">
+                <div class="modal-overlay" onclick="hideModelModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">预警模型</div>
+                        <div class="modal-close" onclick="hideModelModal()">×</div>
+                    </div>
+                    <div class="modal-body-rules">
+                        <div class="rule-box">
+                            <div class="rule-title">批后核查逾期未办预警规则：</div>
+                            <div class="rule-content">年度内，监测到某单位批后核查办件逾期累计达到 3 个，发出预警；预警后重新计算，再次监测到该单位批后核查办件逾期累计达到 3 个，发出预警。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">未亮码检查预警规则：</div>
+                            <div class="rule-content">监测到某单位无理由未亮码检查累计达到 2 次，发出预警；预警后重新计算，再次监测到该单位无理由未亮码检查，发出预警。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">频繁检查预警规则：</div>
+                            <div class="rule-content">监测到某市县出现辖区内同一企业在 60 个自然日内被检查 2 次的情况达到 3 次，发出预警；预警后重新计算，再次监测到该市县出现辖区内同一企业在 60 个自然日内被检查 2 次的情况，发出预警，有因检查不纳入监测范围。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">线下线索移送预警规则：</div>
+                            <div class="rule-content">年度内，监测到某单位线下移送涉嫌违法线索至综合行政执法部门达 3 次，发出预警，以综合行政执法部门将线下线索录入系统的时间为准；预警后重新计算，再次监测到该单位线下移送涉嫌违法线索，发出预警，预警后 3 日内，该单位线下推送给预警信息中相同综合行政执法部门的涉嫌违法线索不纳入计算范围。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">移送线索质量预警规则：</div>
+                            <div class="rule-content">年度内，监测到某单位线上移送的涉嫌违法线索被要求补充材料达 5 次，发出预警；预警后重新计算，再次监测到该单位线上移送的涉嫌违法线索被要求补充材料达 5 次，发出预警。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 全景图弹窗 -->
+            <div class="detail-modal" id="panoramaModal">
+                <div class="modal-overlay" onclick="hidePanoramaModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">全景图</div>
+                        <div class="modal-close" onclick="hidePanoramaModal()">×</div>
+                    </div>
+                    <div class="modal-body-image">
+                        <img src="全景图.png" alt="全景图" class="modal-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 架构图弹窗 -->
+            <div class="detail-modal" id="architectureModal">
+                <div class="modal-overlay" onclick="hideArchitectureModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">架构图</div>
+                        <div class="modal-close" onclick="hideArchitectureModal()">×</div>
+                    </div>
+                    <div class="modal-body-image">
+                        <img src="架构图.png" alt="架构图" class="modal-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 流程图弹窗 -->
+            <div class="detail-modal" id="flowchartModal">
+                <div class="modal-overlay" onclick="hideFlowchartModal()"></div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-title">流程图</div>
+                        <div class="modal-close" onclick="hideFlowchartModal()">×</div>
+                    </div>
+                    <div class="modal-body-image">
+                        <img src="流程图.png" alt="流程图" class="modal-image">
+                    </div>
+                </div>
+            </div>
+
+            <!-- 企业详情弹窗 -->
+            <div class="detail-modal" id="companyDetailModal" style="display: none;">
+                <div class="modal-overlay" onclick="hideCompanyDetail()"></div>
+                <div class="modal-content company-detail-modal">
+                    <div class="modal-header">
+                        <div class="modal-title">企业详情</div>
+                        <div class="modal-close" onclick="hideCompanyDetail()">×</div>
+                    </div>
+                    <div class="modal-body-company">
+                        <div class="company-grid">
+                            <!-- 左侧列 -->
+                            <div class="company-col company-col-left">
+                                <div class="company-section">
+                                    <div class="company-section-title">基础信息</div>
+                                    <div class="info-row"><span class="info-label">统一社会信用代码：</span><span class="info-value">XXXXXXXXXX</span></div>
+                                    <div class="info-row"><span class="info-label">经营地址：</span><span class="info-value">XXXXXX</span></div>
+                                    <div class="info-row"><span class="info-label">法人：</span><span class="info-value">XXX</span></div>
+                                    <div class="info-row"><span class="info-label">注册日期：</span><span class="info-value">XXXX</span></div>
+                                    <div class="info-row"><span class="info-label">经营范围：</span><span class="info-value">XXXXXXXX</span></div>
+                                </div>
+                                <div class="company-section">
+                                    <div class="company-section-title">信用信息</div>
+                                    <div class="credit-box">
+                                        <div class="credit-title">公共信用评级</div>
+                                        <div class="credit-item">信用等级：A</div>
+                                        <div class="credit-item">评价时间：XXX</div>
+                                        <div class="credit-item">评价单位：XXXX</div>
+                                    </div>
+                                    <div class="credit-box">
+                                        <div class="credit-title">市监领域信用评级</div>
+                                        <div class="credit-item">信用等级：A</div>
+                                        <div class="credit-item">评价时间：XXX</div>
+                                        <div class="credit-item">评价单位：XXXX</div>
+                                    </div>
+                                    <div class="credit-box">
+                                        <div class="credit-title">税务领域信用评级</div>
+                                        <div class="credit-item">信用等级：A</div>
+                                        <div class="credit-item">评价时间：XXX</div>
+                                        <div class="credit-item">评价单位：XXXX</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 中间列 -->
+                            <div class="company-col company-col-center">
+                                <div class="company-section company-profile">
+                                    <div class="company-section-title">企业画像</div>
+                                    <div class="company-name-row">
+                                        <div class="company-icon">🏢</div>
+                                        <div class="company-name">海南XXXXXXXX公司</div>
+                                    </div>
+                                    <div class="stats-grid">
+                                        <div class="stat-box"><div class="stat-value">9</div><div class="stat-label">许可审批次数</div></div>
+                                        <div class="stat-box"><div class="stat-value">9</div><div class="stat-label">被检查次数</div></div>
+                                        <div class="stat-box"><div class="stat-value">0</div><div class="stat-label">被处罚次数</div></div>
+                                        <div class="stat-box"><div class="stat-value">A</div><div class="stat-label">公共信用评级</div></div>
+                                        <div class="stat-box"><div class="stat-value">6</div><div class="stat-label">预警次数</div></div>
+                                    </div>
+                                </div>
+                                <div class="company-section">
+                                    <div class="company-section-title">审批信息</div>
+                                    <table class="detail-table">
+                                        <thead><tr><th>序号</th><th>审批部门</th><th>审批时间</th><th>审批事项</th></tr></thead>
+                                        <tbody><tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr></tbody>
+                                    </table>
+                                </div>
+                                <div class="company-section">
+                                    <div class="company-section-title">监管信息</div>
+                                    <table class="detail-table">
+                                        <thead><tr><th>序号</th><th>监管部门</th><th>检查时间</th><th>检查结果</th></tr></thead>
+                                        <tbody><tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr></tbody>
+                                    </table>
+                                </div>
+                                <div class="company-section">
+                                    <div class="company-section-title">执法信息</div>
+                                    <table class="detail-table">
+                                        <thead><tr><th>序号</th><th>执法部门</th><th>决定时间</th><th>处罚结果</th></tr></thead>
+                                        <tbody><tr><td>1</td><td></td><td></td><td></td></tr><tr><td>2</td><td></td><td></td><td></td></tr></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- 右侧列 -->
+                            <div class="company-col company-col-right">
+                                <div class="company-section">
+                                    <div class="company-section-title">证照信息</div>
+                                    <div class="license-box">食品经营许可证</div>
+                                    <div class="license-box">食品经营许可证</div>
+                                    <div class="license-box">食品经营许可证</div>
+                                    <div class="license-box">食品经营许可证</div>
+                                    <div class="license-box">食品经营许可证</div>
+                                </div>
+                                <div class="company-section">
+                                    <div class="company-section-title">风险预警</div>
+                                    <div class="warning-box warning-active">
+                                        <div class="warning-title">信用评价等级极低预警</div>
+                                        <div class="warning-info">预警时间：2026-01-01</div>
+                                        <div class="warning-info">预警等级：高</div>
+                                        <div class="warning-info">预警原因：XXXXXXXXXXXXXXX</div>
+                                        <div class="warning-status warning-active-badge">预警中</div>
+                                    </div>
+                                    <div class="warning-box warning-active">
+                                        <div class="warning-title">信用评价等级极低预警</div>
+                                        <div class="warning-info">预警时间：2026-01-01</div>
+                                        <div class="warning-info">预警等级：高</div>
+                                        <div class="warning-info">预警原因：XXXXXXXXXXXXXXX</div>
+                                        <div class="warning-status warning-active-badge">预警中</div>
+                                    </div>
+                                    <div class="warning-box warning-active">
+                                        <div class="warning-title">信用评价等级极低预警</div>
+                                        <div class="warning-info">预警时间：2026-01-01</div>
+                                        <div class="warning-info">预警等级：高</div>
+                                        <div class="warning-info">预警原因：XXXXXXXXXXXXXXX</div>
+                                        <div class="warning-status warning-active-badge">预警中</div>
+                                    </div>
+                                    <div class="warning-box warning-resolved">
+                                        <div class="warning-title">信用评价等级极低预警</div>
+                                        <div class="warning-info">预警时间：2026-01-01</div>
+                                        <div class="warning-info">预警等级：高</div>
+                                        <div class="warning-info">预警原因：XXXXXXXXXXXXXXX</div>
+                                        <div class="warning-info">解除预警时间：2026-01-01</div>
+                                        <div class="warning-status warning-resolved-badge">已解除</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 创新应用弹窗 -->
+            <div class="detail-modal" id="innovationModal">
+                <div class="modal-overlay" onclick="hideInnovationModal()"></div>
+                <div class="modal-content innovation-modal">
+                    <div class="modal-header">
+                        <div class="modal-title">创新应用</div>
+                        <div class="modal-close" onclick="hideInnovationModal()">×</div>
+                    </div>
+                    <div class="modal-body-innovation">
+                        <div class="app-row">
+                            <div class="app-section app-section-lg">
+                                <div class="section-title">审管联动应用</div>
+                                <div class="app-grid app-grid-2col">
+                                    <div class="app-item">极简审批</div>
+                                    <div class="app-item">"一件事"管理</div>
+                                    <div class="app-item">批后核查管理</div>
+                                    <div class="app-item">联合勘察管理</div>
+                                    <div class="app-item">审监信息资源目录</div>
+                                    <div class="app-item">先照后证协同联动</div>
+                                    <div class="app-item">告知承诺协同联动</div>
+                                    <div class="app-item">审监信息分析关联</div>
+                                </div>
+                            </div>
+                            <div class="app-section app-section-xl">
+                                <div class="section-title">行政监管应用</div>
+                                <div class="app-grid app-grid-4col">
+                                    <div class="app-item">线索管理</div>
+                                    <div class="app-item">亮码检查</div>
+                                    <div class="app-item">检查计划管理</div>
+                                    <div class="app-item">监督督办</div>
+                                    <div class="app-item">计划管理</div>
+                                    <div class="app-item">综合查一次</div>
+                                    <div class="app-item">检查方案管理</div>
+                                    <div class="app-item">监管执法应用管理</div>
+                                    <div class="app-item">方案管理</div>
+                                    <div class="app-item">预约式体检</div>
+                                    <div class="app-item">非现场监管</div>
+                                    <div class="app-item">投诉评价管理</div>
+                                    <div class="app-item">日常检查</div>
+                                    <div class="app-item">双随机一公开</div>
+                                    <div class="app-item">行政其他</div>
+                                    <div class="app-item">监管服务一件事</div>
+                                </div>
+                            </div>
+                            <div class="app-section app-section-sm">
+                                <div class="section-title">管法衔接应用</div>
+                                <div class="app-grid app-grid-1col">
+                                    <div class="app-item">移送任务处理</div>
+                                    <div class="app-item">跨部门移交审批</div>
+                                    <div class="app-item">移送任务查询</div>
+                                    <div class="app-item">管法衔接材料清单</div>
+                                </div>
+                            </div>
+                            <div class="app-section app-section-sm">
+                                <div class="section-title">信用+应用</div>
+                                <div class="app-grid app-grid-1col">
+                                    <div class="app-item">信用审批</div>
+                                    <div class="app-item">信用监管</div>
+                                    <div class="app-item">信用执法</div>
+                                    <div class="app-item">信用承诺践诺</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-row">
+                            <div class="app-section app-section-full">
+                                <div class="section-title">预警监测</div>
+                                <div class="app-grid app-grid-4col">
+                                    <div class="app-item">线索汇聚预警监测</div>
+                                    <div class="app-item">任务分发预警监测</div>
+                                    <div class="app-item">任务跟踪预警监测</div>
+                                    <div class="app-item">任务督办预警监测</div>
+                                    <div class="app-item">审管联动预警监测</div>
+                                    <div class="app-item">管法衔接预警监测</div>
+                                    <div class="app-item">"审管法信"监测预警视图</div>
+                                    <div class="app-item">预警监测指标与模型管理</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="app-row">
+                            <div class="app-section app-section-full">
+                                <div class="section-title">基础管理</div>
+                                <div class="app-grid app-grid-6col">
+                                    <div class="app-item">监管事项目录管理</div>
+                                    <div class="app-item">监管对象管理</div>
+                                    <div class="app-item">执法人员管理</div>
+                                    <div class="app-item">用户中心管理</div>
+                                    <div class="app-item">无感监测/领导视窗</div>
+                                    <div class="app-item">监管数据融合监控</div>
+                                    <div class="app-item">数据统计</div>
+                                    <div class="app-item">系统监控</div>
+                                    <div class="app-item">协同监管管理</div>
+                                    <div class="app-item">监管数据综合应用</div>
+                                    <div class="app-item">统一任务协同管理</div>
+                                    <div class="app-item">执法监管专题分析及可视化</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 审管法信闭环跟踪 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">审管法信闭环跟踪</span>
+                    <button class="btn" style="padding: 5px 12px; font-size: 13px;">查看更多</button>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="tracking-table">
+                        <thead>
+                            <tr>
+                                <th>任务来源</th>
+                                <th>任务类型</th>
+                                <th>检查对象</th>
+                                <th>监管部门</th>
+                                <th>检查时间</th>
+                                <th>检查人员</th>
+                                <th>检查结果</th>
+                                <th>涉嫌违法线索</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>XXXX</td><td>批后核查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海南XXXXXXXX公司</span></td><td>XX</td><td>2024-01-01</td><td>XX</td><td>XX</td><td>--</td></tr>
+                            <tr><td>XXXX</td><td>批后核查</td><td><span class="clickable-company" onclick="showCompanyDetail()">XXXX</span></td><td>XX</td><td>2024-01-01</td><td>XX</td><td>XX</td><td>--</td></tr>
+                            <tr><td>XXXX</td><td>日常检查</td><td><span class="clickable-company" onclick="showCompanyDetail()">XXXX</span></td><td>XX</td><td>2024-01-01</td><td>XX</td><td>XX</td><td>移送至xx执法局</td></tr>
+                            <tr><td>XXXX</td><td>日常检查</td><td><span class="clickable-company" onclick="showCompanyDetail()">XXXX</span></td><td>XX</td><td>2024-01-01</td><td>XX</td><td>XX</td><td>移送至xx执法局</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- 右侧面板 -->
+        <div class="right-panel">
+            <!-- 行政检查 -->
+            <div class="card">
+                <div class="card-header" style="justify-content: space-between; align-items: center;">
+                    <span class="card-title">行政检查</span>
+                    <div class="inspect-tabs">
+                        <div class="inspect-tab active" onclick="switchInspectTab('stats')">统计</div>
+                        <div class="inspect-tab" onclick="switchInspectTab('trend')">趋势</div>
+                    </div>
+                </div>
+
+                <!-- 统计/趋势 -->
+                <div>
+                    <div id="inspectStatsContent">
+                        <div class="big-stat">
+                            <div>
+                                <div class="big-stat-label">检查总数</div>
+                                <div class="big-stat-value">10000</div>
+                            </div>
+                            <div class="big-stat-change decrease">同比-20.98%</div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="small-stat">
+                                <div class="small-stat-left">
+                                    <div class="small-stat-value">10000</div>
+                                    <div class="small-stat-label">同比检查减少次数</div>
+                                </div>
+                                <div class="small-stat-change decrease">同比-2.87%</div>
+                            </div>
+                            <div class="small-stat">
+                                <div class="small-stat-left">
+                                    <div class="small-stat-value">50.00%</div>
+                                    <div class="small-stat-label">同比检查减少率</div>
+                                </div>
+                                <div class="small-stat-change decrease">同比-2.87%</div>
+                            </div>
+                            <div class="small-stat">
+                                <div class="small-stat-left">
+                                    <div class="small-stat-value">5000</div>
+                                    <div class="small-stat-label">未亮码检查次数</div>
+                                </div>
+                                <div class="small-stat-change decrease">同比-50.00%</div>
+                            </div>
+                            <div class="small-stat">
+                                <div class="small-stat-left">
+                                    <div class="small-stat-value">1.09%</div>
+                                    <div class="small-stat-label">未亮码率</div>
+                                </div>
+                                <div class="small-stat-change decrease">同比-50.00%</div>
+                            </div>
+                            <div class="small-stat">
+                                <div class="small-stat-left">
+                                    <div class="small-stat-value">5000</div>
+                                    <div class="small-stat-label">发现问题次数</div>
+                                </div>
+                                <div class="small-stat-change decrease">同比-19.69%</div>
+                            </div>
+                            <div class="small-stat">
+                                <div class="small-stat-left">
+                                    <div class="small-stat-value">14.07%</div>
+                                    <div class="small-stat-label">发现问题率</div>
+                                </div>
+                                <div class="small-stat-change increase">同比+9.90%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="inspectTrendContent" style="display: none; padding: 10px; height: 180px;">
+                        <svg viewBox="0 0 360 160" style="width: 100%; height: 100%;">
+                            <defs>
+                                <linearGradient id="lineBlue2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#0080ff;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="lineOrange2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ff8c00;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ff6600;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="lineYellow2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ffd700;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#ffb700;stop-opacity:1" />
+                                </linearGradient>
+                            </defs>
+                            <g class="grid-lines">
+                                <line x1="50" y1="20" x2="350" y2="20" stroke="rgba(0,200,255,0.2)" stroke-dasharray="4,4"/>
+                                <line x1="50" y1="50" x2="350" y2="50" stroke="rgba(0,200,255,0.2)" stroke-dasharray="4,4"/>
+                                <line x1="50" y1="80" x2="350" y2="80" stroke="rgba(0,200,255,0.2)" stroke-dasharray="4,4"/>
+                                <line x1="50" y1="110" x2="350" y2="110" stroke="rgba(0,200,255,0.2)" stroke-dasharray="4,4"/>
+                                <line x1="50" y1="140" x2="350" y2="140" stroke="rgba(0,200,255,0.2)" stroke-dasharray="4,4"/>
+                            </g>
+                            <g class="y-axis">
+                                <text x="35" y="23" fill="rgba(255,255,255,0.6)" font-size="9">6</text>
+                                <text x="35" y="53" fill="rgba(255,255,255,0.6)" font-size="9">4</text>
+                                <text x="35" y="83" fill="rgba(255,255,255,0.6)" font-size="9">2</text>
+                                <text x="35" y="113" fill="rgba(255,255,255,0.6)" font-size="9">0</text>
+                            </g>
+                            <g class="x-axis">
+                                <text x="90" y="155" fill="rgba(255,255,255,0.6)" font-size="10">1月</text>
+                                <text x="180" y="155" fill="rgba(255,255,255,0.6)" font-size="10">2月</text>
+                                <text x="270" y="155" fill="rgba(255,255,255,0.6)" font-size="10">3月</text>
+                                <text x="350" y="155" fill="rgba(255,255,255,0.6)" font-size="10">4月</text>
+                            </g>
+                            <g>
+                                <path d="M 90 50 L 180 70 L 270 55 L 350 40" fill="none" stroke="#00d4ff" stroke-width="2"/>
+                                <circle cx="90" cy="50" r="4" fill="#00d4ff"/>
+                                <circle cx="180" cy="70" r="4" fill="#00d4ff"/>
+                                <circle cx="270" cy="55" r="4" fill="#00d4ff"/>
+                                <circle cx="350" cy="40" r="4" fill="#00d4ff"/>
+                            </g>
+                            <g>
+                                <path d="M 90 85 L 180 40 L 270 105 L 350 80" fill="none" stroke="#ff8c00" stroke-width="2"/>
+                                <circle cx="90" cy="85" r="4" fill="#ff8c00"/>
+                                <circle cx="180" cy="40" r="4" fill="#ff8c00"/>
+                                <circle cx="270" cy="105" r="4" fill="#ff8c00"/>
+                                <circle cx="350" cy="80" r="4" fill="#ff8c00"/>
+                            </g>
+                            <g>
+                                <path d="M 90 105 L 180 105 L 270 75 L 350 30" fill="none" stroke="#ffd700" stroke-width="2"/>
+                                <circle cx="90" cy="105" r="4" fill="#ffd700"/>
+                                <circle cx="180" cy="105" r="4" fill="#ffd700"/>
+                                <circle cx="270" cy="75" r="4" fill="#ffd700"/>
+                                <circle cx="350" cy="30" r="4" fill="#ffd700"/>
+                            </g>
+                            <g class="legend">
+                                <rect x="90" y="5" width="12" height="5" fill="#00d4ff"/>
+                                <text x="105" y="10" fill="rgba(255,255,255,0.8)" font-size="9">检查减少率</text>
+                                <rect x="180" y="5" width="12" height="5" fill="#ff8c00"/>
+                                <text x="195" y="10" fill="rgba(255,255,255,0.8)" font-size="9">未亮照率</text>
+                                <rect x="260" y="5" width="12" height="5" fill="#ffd700"/>
+                                <text x="275" y="10" fill="rgba(255,255,255,0.8)" font-size="9">发现问题率</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 预警信号 -->
+            <div class="card warning-section">
+                <div class="card-header">
+                    <span class="card-title">预警信号</span>
+                    <span class="more-btn">查看更多</span>
+                </div>
+                <div class="warning-stats">
+                    <div class="warning-stat-item">
+                        <div class="warning-stat-label">预警总数</div>
+                        <div class="warning-stat-value">450</div>
+                    </div>
+                    <div class="warning-stat-item blue">
+                        <div class="warning-stat-label">蓝色预警</div>
+                        <div class="warning-stat-value">160</div>
+                    </div>
+                    <div class="warning-stat-item yellow">
+                        <div class="warning-stat-label">黄色预警</div>
+                        <div class="warning-stat-value">175</div>
+                    </div>
+                    <div class="warning-stat-item red">
+                        <div class="warning-stat-label">红色预警</div>
+                        <div class="warning-stat-value">115</div>
+                    </div>
+                </div>
+                <div class="stacked-bar-container" style="max-height: 125px;">
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">市场主体异常</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 35%;"><span class="segment-value">35</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 25%;"><span class="segment-value">25</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 28%;"><span class="segment-value">28</span></div>
+                        </div>
+                        <div class="stacked-bar-total">88</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">经营异常名录</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 25%;"><span class="segment-value">19</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 25%;"><span class="segment-value">19</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 33%;"><span class="segment-value">25</span></div>
+                        </div>
+                        <div class="stacked-bar-total">63</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">税务风险预警</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 30%;"><span class="segment-value">18</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 20%;"><span class="segment-value">12</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 20%;"><span class="segment-value">12</span></div>
+                        </div>
+                        <div class="stacked-bar-total">42</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">商标侵权风险</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 25%;"><span class="segment-value">21</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 30%;"><span class="segment-value">25</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 35%;"><span class="segment-value">29</span></div>
+                        </div>
+                        <div class="stacked-bar-total">75</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">虚假宣传风险</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 30%;"><span class="segment-value">13</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 20%;"><span class="segment-value">9</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 30%;"><span class="segment-value">13</span></div>
+                        </div>
+                        <div class="stacked-bar-total">35</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">未亮照经营</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 35%;"><span class="segment-value">33</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 35%;"><span class="segment-value">33</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 25%;"><span class="segment-value">24</span></div>
+                        </div>
+                        <div class="stacked-bar-total">90</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">无证经营风险</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 25%;"><span class="segment-value">18</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 30%;"><span class="segment-value">21</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 25%;"><span class="segment-value">18</span></div>
+                        </div>
+                        <div class="stacked-bar-total">57</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 重点应用 -->
+            <div class="card">
+                <div class="card-header">
+                    <span class="card-title">重点应用</span>
+                    <span class="more-btn" onclick="showInnovationModal()">查看更多</span>
+                </div>
+                <div class="key-apps">
+                    <button class="key-app-btn">综合查一次</button>
+                    <button class="key-app-btn">沙盒监管</button>
+                    <button class="key-app-btn">非现场监管</button>
+                    <button class="key-app-btn">监管服务一件事</button>
+                    <button class="key-app-btn">预约式体检</button>
+                    <button class="key-app-btn">“一件事”管理</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showTooltip(marker, title, content) {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.querySelector('.tooltip-title').textContent = title;
+            tooltip.querySelector('.tooltip-title + div').innerHTML = content.replace(/\n/g, '<br>');
+            
+            const rect = marker.getBoundingClientRect();
+            tooltip.style.left = rect.left + window.scrollX + 30 + 'px';
+            tooltip.style.top = rect.top + window.scrollY - 80 + 'px';
+            tooltip.classList.add('show');
+        }
+
+        function hideTooltip() {
+            const tooltip = document.getElementById('tooltip');
+            tooltip.classList.remove('show');
+        }
+
+        function showAlertBox(dept, count, time) {
+            const alertBox = document.getElementById('alertBox');
+            document.getElementById('alertDept').textContent = dept;
+            document.getElementById('alertCount').textContent = count;
+            document.getElementById('alertTime').textContent = time;
+            alertBox.classList.add('show');
+        }
+
+        function hideAlertBox() {
+            const alertBox = document.getElementById('alertBox');
+            alertBox.classList.remove('show');
+        }
+
+        function switchMapTab(tab) {
+            const tabs = document.querySelectorAll('.map-tab');
+            const flowContent = document.getElementById('flowChartContent');
+            const mapContent = document.getElementById('mapContent');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'flow') {
+                tabs[0].classList.add('active');
+                flowContent.style.display = 'flex';
+                mapContent.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                flowContent.style.display = 'none';
+                mapContent.style.display = 'block';
+            }
+        }
+
+        function switchItemTab(tab) {
+            const tabs = document.querySelectorAll('.item-tab');
+            const highContent = document.getElementById('highFreqContent');
+            const uncoverContent = document.getElementById('uncoverContent');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'high') {
+                tabs[0].classList.add('active');
+                highContent.style.display = 'block';
+                uncoverContent.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                highContent.style.display = 'none';
+                uncoverContent.style.display = 'block';
+            }
+        }
+
+        function switchDeptTab(tab) {
+            const listContent = document.getElementById('deptListContent');
+            const trendContent = document.getElementById('deptTrendContent');
+            const isListVisible = listContent.style.display !== 'none';
+            
+            let showList = false;
+            if (tab === 'prev' || tab === 'next') {
+                showList = !isListVisible;
+            } else if (tab === 'list') {
+                showList = true;
+            } else {
+                showList = false;
+            }
+            
+            if (showList) {
+                listContent.style.display = 'block';
+                trendContent.style.display = 'none';
+            } else {
+                listContent.style.display = 'none';
+                trendContent.style.display = 'block';
+            }
+        }
+
+        function switchDeptType(type) {
+            const tabs = document.querySelectorAll('.dept-type-tab');
+            const deptListContent = document.getElementById('deptListContent');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (type === 'dept') {
+                tabs[0].classList.add('active');
+            } else {
+                tabs[1].classList.add('active');
+            }
+        }
+
+        function switchObjTab(tab) {
+            const tabs = document.querySelectorAll('.obj-tab');
+            const trendContent = document.getElementById('objTrendContent');
+            const listContent = document.getElementById('objListContent');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'trend') {
+                tabs[0].classList.add('active');
+                trendContent.style.display = 'block';
+                listContent.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                trendContent.style.display = 'none';
+                listContent.style.display = 'block';
+            }
+        }
+
+        function switchInspectTab(tab) {
+            const tabs = document.querySelectorAll('.inspect-tab');
+            const statsContent = document.getElementById('inspectStatsContent');
+            const trendContent = document.getElementById('inspectTrendContent');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'stats') {
+                tabs[0].classList.add('active');
+                statsContent.style.display = 'block';
+                trendContent.style.display = 'none';
+            } else {
+                tabs[1].classList.add('active');
+                statsContent.style.display = 'none';
+                trendContent.style.display = 'block';
+            }
+        }
+
+        function showDetailModal() {
+            const detailModal = document.getElementById('detailModal');
+            detailModal.classList.add('show');
+        }
+
+        function hideDetailModal() {
+            const detailModal = document.getElementById('detailModal');
+            detailModal.classList.remove('show');
+        }
+
+        function showBackgroundModal() {
+            const backgroundModal = document.getElementById('backgroundModal');
+            backgroundModal.classList.add('show');
+        }
+
+        function hideBackgroundModal() {
+            const backgroundModal = document.getElementById('backgroundModal');
+            backgroundModal.classList.remove('show');
+        }
+
+        function showModelModal() {
+            const modelModal = document.getElementById('modelModal');
+            modelModal.classList.add('show');
+        }
+
+        function hideModelModal() {
+            const modelModal = document.getElementById('modelModal');
+            modelModal.classList.remove('show');
+        }
+
+        function showPanoramaModal() {
+            const panoramaModal = document.getElementById('panoramaModal');
+            panoramaModal.classList.add('show');
+        }
+
+        function hidePanoramaModal() {
+            const panoramaModal = document.getElementById('panoramaModal');
+            panoramaModal.classList.remove('show');
+        }
+
+        function showArchitectureModal() {
+            const architectureModal = document.getElementById('architectureModal');
+            architectureModal.classList.add('show');
+        }
+
+        function hideArchitectureModal() {
+            const architectureModal = document.getElementById('architectureModal');
+            architectureModal.classList.remove('show');
+        }
+
+        function showFlowchartModal() {
+            const flowchartModal = document.getElementById('flowchartModal');
+            flowchartModal.classList.add('show');
+        }
+
+        function hideFlowchartModal() {
+            const flowchartModal = document.getElementById('flowchartModal');
+            flowchartModal.classList.remove('show');
+        }
+
+        function showInnovationModal() {
+            const innovationModal = document.getElementById('innovationModal');
+            innovationModal.classList.add('show');
+        }
+
+        function hideInnovationModal() {
+            const innovationModal = document.getElementById('innovationModal');
+            innovationModal.classList.remove('show');
+        }
+
+        function showCompanyDetail() {
+            const companyModal = document.getElementById('companyDetailModal');
+            companyModal.style.display = 'block';
+        }
+
+        function hideCompanyDetail() {
+            const companyModal = document.getElementById('companyDetailModal');
+            companyModal.style.display = 'none';
+        }
+
+        function scrollApps(direction) {
+            const container = document.getElementById('coreApps');
+            const scrollAmount = 100;
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+    </script>
+</body>
+</html>
