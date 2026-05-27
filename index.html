@@ -634,6 +634,22 @@
             border-color: rgba(0, 200, 255, 0.5);
         }
 
+        .flow-hotspot {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 150, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.1);
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 10;
+        }
+
         #flowChartContent {
             width: 100%;
             height: 100%;
@@ -798,7 +814,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            z-index: 20000;
+            z-index: 30000;
             display: none;
             align-items: center;
             justify-content: center;
@@ -806,6 +822,7 @@
 
         .detail-modal.show {
             display: flex;
+            z-index: 30001;
         }
 
         .modal-overlay {
@@ -821,13 +838,15 @@
         .modal-content {
             position: relative;
             width: 90%;
-            max-width: 1000px;
-            max-height: 80vh;
+            max-width: 1100px;
             background: rgba(0, 20, 40, 0.98);
             border: 1px solid rgba(0, 200, 255, 0.4);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 0 30px rgba(0, 200, 255, 0.3), inset 0 0 60px rgba(0, 200, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            max-height: 90vh;
         }
 
         .modal-content::before {
@@ -878,38 +897,41 @@
 
         .modal-body {
             padding: 15px;
-            max-height: calc(80vh - 60px);
-            overflow-y: auto;
             display: flex;
             gap: 15px;
+            flex: 1;
+            overflow: hidden;
         }
 
         .modal-left {
-            flex: 1;
+            flex: 0.7;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
+            overflow: hidden;
         }
 
         .modal-right {
-            flex: 0.35;
+            flex: 0.3;
             display: flex;
             flex-direction: column;
-            gap: 0;
+            gap: 8px;
             padding-left: 15px;
             border-left: 2px solid rgba(0, 200, 255, 0.2);
+            overflow: hidden;
         }
 
         .detail-box {
             background: rgba(0, 30, 60, 0.6);
             border: 1px solid rgba(0, 200, 255, 0.2);
             border-radius: 6px;
-            padding: 12px;
+            padding: 10px;
+            flex-shrink: 0;
         }
 
         .detail-row {
-            font-size: 13px;
-            line-height: 2;
+            font-size: 12px;
+            line-height: 1.8;
             color: rgba(255, 255, 255, 0.9);
         }
 
@@ -925,14 +947,14 @@
         .detail-label-bold {
             font-weight: 600;
             color: #00d4ff;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             display: block;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .detail-text {
-            font-size: 13px;
-            line-height: 1.6;
+            font-size: 12px;
+            line-height: 1.5;
             color: rgba(255, 255, 255, 0.85);
             white-space: pre-wrap;
         }
@@ -943,9 +965,9 @@
             background: rgba(0, 30, 60, 0.5);
             border: 1px solid rgba(0, 200, 255, 0.2);
             border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 0;
+            padding: 12px 10px;
             transition: all 0.3s;
+            flex-shrink: 0;
         }
 
         .timeline-box::before {
@@ -989,14 +1011,14 @@
         }
 
         .timeline-title {
-            font-size: 13px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 4px;
             font-weight: 500;
         }
 
         .timeline-content {
-            font-size: 13px;
+            font-size: 12px;
             color: #00d4ff;
             font-weight: 500;
         }
@@ -1165,6 +1187,18 @@
             box-shadow: 0 4px 12px rgba(0, 200, 255, 0.3);
         }
 
+        /* 没有截图的应用按钮标红 */
+        .app-item.no-screenshot {
+            color: #ffffff;
+            border-color: rgba(255, 68, 68, 0.3);
+        }
+
+        .app-item.no-screenshot:hover {
+            background: rgba(255, 68, 68, 0.15);
+            border-color: rgba(255, 68, 68, 0.5);
+            box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+        }
+
         .location-marker::after {
             content: '';
             position: absolute;
@@ -1259,7 +1293,7 @@
 
         /* 企业详情弹窗样式 */
         .company-detail-modal {
-            max-width: 1150px;
+            max-width: 1450px;
             width: 95%;
             max-height: 85vh;
             position: fixed;
@@ -1289,18 +1323,18 @@
         }
 
         .company-col-left {
-            width: 280px;
+            width: 230px;
             flex-shrink: 0;
         }
 
         .company-col-center {
             flex: 1;
-            min-width: 350px;
-            max-width: 450px;
+            min-width: 550px;
+            max-width: 700px;
         }
 
         .company-col-right {
-            width: 380px;
+            width: 330px;
             flex-shrink: 0;
         }
 
@@ -1476,7 +1510,6 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 6px;
         }
 
         .warning-box.warning-active {
@@ -1511,13 +1544,13 @@
             background: rgba(0, 200, 255, 0.2);
             border: 1px solid rgba(0, 200, 255, 0.4);
             border-radius: 3px;
-            padding: 2px 10px;
+            padding: 4px 12px;
             font-size: 12px;
             color: #00d4ff;
             cursor: pointer;
             transition: all 0.3s;
-            flex-shrink: 0;
-            margin-left: 8px;
+            margin-top: 8px;
+            width: 100%;
         }
 
         .warning-view-btn:hover {
@@ -1743,27 +1776,28 @@
 
         .warning-stats {
             display: flex;
-            justify-content: space-around;
-            padding: 8px 12px;
+            justify-content: center;
+            padding: 12px 12px;
             background: rgba(0, 200, 255, 0.05);
             border-radius: 4px;
             margin-bottom: 10px;
+            min-height: 45px;
         }
 
         .warning-stat-item {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
+            gap: 15px;
         }
 
         .warning-stat-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 2px;
+            font-size: 15px;
+            color: rgba(255, 255, 255, 0.8);
         }
 
         .warning-stat-value {
-            font-size: 16px;
+            font-size: 22px;
             font-weight: 600;
             color: #00d4ff;
         }
@@ -2030,7 +2064,7 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
+            z-index: 40000;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -2059,6 +2093,72 @@
         
         .fullscreen-image-close:hover {
             color: #00c8ff;
+        }
+
+        /* 建设中弹窗样式 */
+        .building-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 40000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .building-content {
+            text-align: center;
+        }
+
+        .building-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .building-text {
+            font-size: 48px;
+            font-weight: 600;
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5), 0 0 40px rgba(0, 212, 255, 0.3);
+            letter-spacing: 8px;
+        }
+
+        .building-hint {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.5);
+            margin-top: 20px;
+        }
+
+        .building-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            font-size: 40px;
+            color: #fff;
+            cursor: pointer;
+            z-index: 10001;
+            transition: color 0.3s;
+        }
+
+        .building-close:hover {
+            color: #00c8ff;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            50% {
+                opacity: 0.6;
+                transform: scale(1.1);
+            }
         }
 
         /* 审管法信闭环跟踪弹窗 */
@@ -2948,7 +3048,7 @@
             <div class="nav-item" onclick="showModelModal()">预警模型</div>
         </div>
         <div class="header-title-wrapper">
-            <div class="header-title glow-text">海南省"审管法信"一体联动平台</div>
+            <div class="header-title glow-text">海南省"互联网+监管"系统</div>
         </div>
         <div class="header-right">
             <select class="custom-select year-select">
@@ -3000,7 +3100,33 @@
                             <table class="dept-table">
                                 <thead>
                                     <tr>
-                                        <th>监管部门</th>
+                                        <th class="dept-name-col">监管部门</th>
+                                        <th>事项数</th>
+                                        <th>执法人员数</th>
+                                        <th>检查任务总数</th>
+                                        <th>人均办件数</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="deptTableBody">
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">20</span></td><td>1000</td><td>50</td></tr>
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">20</span></td><td>1000</td><td>50</td></tr>
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">20</span></td><td>1000</td><td>50</td></tr>
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                    
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                    
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="regionListContent" style="display: none; overflow: auto; max-height: 220px;">
+                            <table class="dept-table">
+                                <thead>
+                                    <tr>
+                                        <th class="dept-name-col">区划</th>
                                         <th>事项数</th>
                                         <th>执法人员数</th>
                                         <th>检查任务总数</th>
@@ -3008,17 +3134,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">20</span></td><td>1000</td><td>50</td></tr>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">20</span></td><td>1000</td><td>50</td></tr>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">20</span></td><td>1000</td><td>50</td></tr>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
-                                    
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
-                                    
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
-                                    <tr><td>海南省XX局</td><td><span class="clickable-item" onclick="showDeptDetailModal()">1000</span></td><td><span class="clickable-item" onclick="showStaffModal()">0</span></td><td>1000</td><td>0</td></tr>
+                                    <tr><td>海口市</td><td>2500</td><td>120</td><td>5000</td><td>42</td></tr>
+                                    <tr><td>三亚市</td><td>1800</td><td>95</td><td>3600</td><td>38</td></tr>
+                                    <tr><td>儋州市</td><td>1200</td><td>65</td><td>2400</td><td>37</td></tr>
+                                    <tr><td>琼海市</td><td>800</td><td>42</td><td>1600</td><td>38</td></tr>
+                                    <tr><td>文昌市</td><td>750</td><td>38</td><td>1500</td><td>39</td></tr>
+                                    <tr><td>万宁市</td><td>680</td><td>35</td><td>1360</td><td>39</td></tr>
+                                    <tr><td>五指山市</td><td>520</td><td>28</td><td>1040</td><td>37</td></tr>
+                                    <tr><td>东方市</td><td>480</td><td>25</td><td>960</td><td>38</td></tr>
                                 </tbody>
                             </table>
                         </div>
@@ -3065,6 +3188,88 @@
                         </div>
                     </div>
                     <div class="dept-tab-arrow" onclick="switchDeptTab('next')">›</div>
+                </div>
+            </div>
+
+            <!-- 监管对象 -->
+            <div class="card reg-object">
+                <div class="card-header" style="justify-content: space-between; align-items: center;">
+                    <span class="card-title">监管对象</span>
+                    <div class="object-tabs">
+                        <div class="tab-item active" onclick="switchObjectType('all')">整体</div>
+                        <div class="tab-item" onclick="switchObjectType('enterprise')">企业</div>
+                        <div class="tab-item" onclick="switchObjectType('individual')">个体工商户</div>
+                        <div class="tab-item" onclick="switchObjectType('other')">其他组织</div>
+                    </div>
+                </div>
+                <div class="object-stats">
+                    <div class="stat-item">
+                        <div class="stat-label">总数</div>
+                        <div class="stat-value" id="objTotal">900000</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">风险预警数</div>
+                        <div class="stat-value" id="objWarning">999</div>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <div style="display: flex; justify-content: flex-end; align-items: center; margin-bottom: 10px;">
+                        <div class="obj-header-tabs">
+                            <div class="obj-tab active" onclick="switchObjTab('list')">列表</div>
+                            <div class="obj-tab" onclick="switchObjTab('trend')">趋势</div>
+                        </div>
+                    </div>
+                    <div class="obj-content-wrapper">
+                        <div id="objListContent" style="height: 200px; overflow-y: auto;">
+                            <table class="obj-table">
+                                <thead>
+                                    <tr>
+                                        <th>对象名称</th>
+                                        <th>预警类别</th>
+                                        <th>预警等级</th>
+                                        <th>预警时间</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="objTableBody">
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>信用评分极低</td><td><span class="high-risk">高</span></td><td>2026-05-20</td></tr>
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('三亚热带海洋世界旅游开发有限公司')">三亚热带海洋旅游开发有限公司</span></td><td>列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-05-19</td></tr>
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('海口恒信贸易有限公司')">海口恒信贸易有限公司</span></td><td>列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-05-18</td></tr>
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('文昌市建筑工程有限公司')">文昌市建筑工程有限公司</span></td><td>列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-05-17</td></tr>
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('儋州鑫源建材有限公司')">儋州鑫源建材有限公司</span></td><td>多次被检查</td><td><span class="medium-risk">中</span></td><td>2026-05-16</td></tr>
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('万宁兴隆咖啡种植园')">万宁兴隆咖啡种植园</span></td><td>多次被检查</td><td><span class="medium-risk">中</span></td><td>2026-05-15</td></tr>
+                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('东方市绿色农业合作社')">东方市绿色农业合作社</span></td><td>多次被检查</td><td><span class="medium-risk">中</span></td><td>2026-05-14</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="objTrendContent" style="display: none;">
+                            <div class="line-chart">
+                                <svg viewBox="0 0 250 120" style="width: 100%; height: 100%;">
+                                    <defs>
+                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="#00d4ff"/>
+                                            <stop offset="100%" stop-color="#00ff88"/>
+                                        </linearGradient>
+                                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                            <stop offset="0%" stop-color="rgba(0,212,255,0.3)"/>
+                                            <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <path d="M 10 90 Q 35 60 60 70 T 110 50 T 160 65 T 210 40 T 240 55" fill="none" stroke="url(#lineGradient)" stroke-width="2"/>
+                                    <path d="M 10 90 Q 35 60 60 70 T 110 50 T 160 65 T 210 40 T 240 55 L 240 110 L 10 110 Z" fill="url(#areaGradient)"/>
+                                    <text x="10" y="118" font-size="9" fill="rgba(255,255,255,0.6)">1月</text>
+                                    <text x="35" y="118" font-size="9" fill="rgba(255,255,255,0.6)">2月</text>
+                                    <text x="60" y="118" font-size="9" fill="rgba(255,255,255,0.6)">3月</text>
+                                    <text x="85" y="118" font-size="9" fill="rgba(255,255,255,0.6)">4月</text>
+                                    <text x="110" y="118" font-size="9" fill="rgba(255,255,255,0.6)">5月</text>
+                                    <text x="135" y="118" font-size="9" fill="rgba(255,255,255,0.6)">6月</text>
+                                    <text x="160" y="118" font-size="9" fill="rgba(255,255,255,0.6)">7月</text>
+                                    <text x="185" y="118" font-size="9" fill="rgba(255,255,255,0.6)">8月</text>
+                                    <text x="210" y="118" font-size="9" fill="rgba(255,255,255,0.6)">9月</text>
+                                    <text x="230" y="118" font-size="9" fill="rgba(255,255,255,0.6)">10月</text>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -3118,89 +3323,6 @@
                             <tr><td>8</td><td>对电子商务的检查</td><td>45</td></tr>
                         </tbody>
                     </table>
-                </div>
-            </div>
-
-            <!-- 监管对象 -->
-            <div class="card reg-object">
-                <div class="card-header" style="justify-content: space-between; align-items: center;">
-                    <span class="card-title">监管对象</span>
-                    <div class="object-tabs">
-                        <div class="tab-item active" onclick="switchObjectType('all')">整体</div>
-                        <div class="tab-item" onclick="switchObjectType('enterprise')">企业</div>
-                        <div class="tab-item" onclick="switchObjectType('individual')">个体工商户</div>
-                        <div class="tab-item" onclick="switchObjectType('other')">其他组织</div>
-                    </div>
-                </div>
-                <div class="object-stats">
-                    <div class="stat-item">
-                        <div class="stat-label">总数</div>
-                        <div class="stat-value" id="objTotal">900000</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-label">风险预警数</div>
-                        <div class="stat-value" id="objWarning">999</div>
-                    </div>
-                </div>
-                <div class="chart-container">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <span style="font-size: 13px; color: rgba(255,255,255,0.7);">监管对象风险预警</span>
-                        <div class="obj-header-tabs">
-                            <div class="obj-tab active" onclick="switchObjTab('list')">列表</div>
-                            <div class="obj-tab" onclick="switchObjTab('trend')">趋势</div>
-                        </div>
-                    </div>
-                    <div class="obj-content-wrapper">
-                        <div id="objListContent" style="height: 200px; overflow-y: auto;">
-                            <table class="obj-table">
-                                <thead>
-                                    <tr>
-                                        <th>对象名称</th>
-                                        <th>预警类别</th>
-                                        <th>预警等级</th>
-                                        <th>预警时间</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="objTableBody">
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>信用评分极低</td><td><span class="high-risk">高</span></td><td>2026-05-20</td></tr>
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('三亚热带海洋世界旅游开发有限公司')">三亚热带海洋旅游开发有限公司</span></td><td>列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-05-19</td></tr>
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('海口恒信贸易有限公司')">海口恒信贸易有限公司</span></td><td>列入异常名录</td><td><span class="high-risk">高</span></td><td>2026-05-18</td></tr>
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('文昌市建筑工程有限公司')">文昌市建筑工程有限公司</span></td><td>多次处罚</td><td><span class="high-risk">高</span></td><td>2026-05-17</td></tr>
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('儋州鑫源建材有限公司')">儋州鑫源建材有限公司</span></td><td>责改逾期</td><td><span class="medium-risk">中</span></td><td>2026-05-16</td></tr>
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('万宁兴隆咖啡种植园')">万宁兴隆咖啡种植园</span></td><td>责改逾期</td><td><span class="medium-risk">中</span></td><td>2026-05-15</td></tr>
-                                    <tr><td><span class="clickable-item" onclick="showCompanyDetail('东方市绿色农业合作社')">东方市绿色农业合作社</span></td><td>信息不全</td><td><span class="medium-risk">中</span></td><td>2026-05-14</td></tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div id="objTrendContent" style="display: none;">
-                            <div class="line-chart">
-                                <svg viewBox="0 0 250 120" style="width: 100%; height: 100%;">
-                                    <defs>
-                                        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                                            <stop offset="0%" stop-color="#00d4ff"/>
-                                            <stop offset="100%" stop-color="#00ff88"/>
-                                        </linearGradient>
-                                        <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                                            <stop offset="0%" stop-color="rgba(0,212,255,0.3)"/>
-                                            <stop offset="100%" stop-color="rgba(0,212,255,0)"/>
-                                        </linearGradient>
-                                    </defs>
-                                    <path d="M 10 90 Q 35 60 60 70 T 110 50 T 160 65 T 210 40 T 240 55" fill="none" stroke="url(#lineGradient)" stroke-width="2"/>
-                                    <path d="M 10 90 Q 35 60 60 70 T 110 50 T 160 65 T 210 40 T 240 55 L 240 110 L 10 110 Z" fill="url(#areaGradient)"/>
-                                    <text x="10" y="118" font-size="9" fill="rgba(255,255,255,0.6)">1月</text>
-                                    <text x="35" y="118" font-size="9" fill="rgba(255,255,255,0.6)">2月</text>
-                                    <text x="60" y="118" font-size="9" fill="rgba(255,255,255,0.6)">3月</text>
-                                    <text x="85" y="118" font-size="9" fill="rgba(255,255,255,0.6)">4月</text>
-                                    <text x="110" y="118" font-size="9" fill="rgba(255,255,255,0.6)">5月</text>
-                                    <text x="135" y="118" font-size="9" fill="rgba(255,255,255,0.6)">6月</text>
-                                    <text x="160" y="118" font-size="9" fill="rgba(255,255,255,0.6)">7月</text>
-                                    <text x="185" y="118" font-size="9" fill="rgba(255,255,255,0.6)">8月</text>
-                                    <text x="210" y="118" font-size="9" fill="rgba(255,255,255,0.6)">9月</text>
-                                    <text x="230" y="118" font-size="9" fill="rgba(255,255,255,0.6)">10月</text>
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -3257,8 +3379,19 @@
                     <div class="map-tab active" onclick="switchMapTab('flow')">流程图</div>
                     <div class="map-tab" onclick="switchMapTab('map')">地图</div>
                 </div>
-                <div id="flowChartContent">
+                <div id="flowChartContent" style="position: relative;">
                     <img src="流程图.gif" style="width: 100%; height: 100%; object-fit: contain;" />
+                    <!-- 热区标注 -->
+                    <div class="flow-hotspot" style="top: 32%; left: 8%;">1</div>
+                    <div class="flow-hotspot" style="top: 42%; left: 15%;">2</div>
+                    <div class="flow-hotspot" style="top: 58%; left: 15%;" onclick="showFullscreenImage('系统-告知承诺.png')">3</div>
+                    <div class="flow-hotspot" style="top: 22%; left: 30%;" onclick="showFullscreenImage('系统-监管对象管理.png')">4</div>
+                    <div class="flow-hotspot" style="top: 31%; left: 42%;" onclick="showFullscreenImage('系统-计划管理.png')">5</div>
+                    <div class="flow-hotspot" style="top: 22%; left: 55%;" onclick="showFullscreenImage('系统-监管行为管理.png')">6</div>
+                    <div class="flow-hotspot" style="top: 32%; left: 73%;">7</div>
+                    <div class="flow-hotspot" style="top: 22%; left: 86%;">8</div>
+                    <!-- <div class="flow-hotspot" style="top: 38%; left: 58%;">9</div> -->
+                    <div class="flow-hotspot" style="top: 66%; left: 42%;" onclick="showFullscreenImage('系统-亮码检查.png')">10</div>
                 </div>
                 <div id="mapContent" style="display: none; width: 100%; height: 100%;">
                     <div class="map-bg"></div>
@@ -3301,7 +3434,6 @@
                             <div class="detail-box">
                                 <div class="detail-row"><span class="detail-label">预警时间：</span><span class="detail-value">XXXXXX</span></div>
                                 <div class="detail-row"><span class="detail-label">预警类型：</span><span class="detail-value">批后核查逾期未办</span></div>
-                                <div class="detail-row"><span class="detail-label">预警类型：</span><span class="detail-value">批后核查逾期未办</span></div>
                                 <div class="detail-row"><span class="detail-label">市场主体：</span><span class="detail-value">XXXXXX</span></div>
                                 <div class="detail-row"><span class="detail-label">审批日期：</span><span class="detail-value">XXXXXX</span></div>
                                 <div class="detail-row"><span class="detail-label">批后核查时限：</span><span class="detail-value">30个工作日</span></div>
@@ -3309,7 +3441,7 @@
                             <div class="detail-box">
                                 <div class="detail-label-bold">预警描述：</div>
                                 <div class="detail-text">
-                                    该市场主体于2026年04月01日取得XX行政许可，根据《XX省批后核查管理办法》规定，需在许可批准后30日内完成现场核查。截至2026年05月01日，责任科室未提交核查计划，系统自动判定为"逾期未办"。经核查，原因为经办人员岗位调整，工作交接遗漏，导致核查任务超期未启动。
+                                    海南融创房地产开发有限公司于2026年04月01日取得食品经营许可证，根据《食品经营许可管理办法》规定，需在许可批准后30日内完成现场核查。截至2026年05月15日，责任科室未提交核查计划，系统自动判定为"逾期未办"高风险预警。经核查，原因为经办人员岗位调整，工作交接遗漏，导致核查任务超期未启动。该预警已推送至XX局，由处理人张三负责跟进处理，目前已重新指定核查责任人并制定核查计划，预计于2026年05月23日完成现场核查。
                                 </div>
                             </div>
                             <div class="detail-box">
@@ -3321,15 +3453,7 @@
                             <div class="detail-box">
                                 <div class="detail-label-bold">处理信息：</div>
                                 <div class="detail-text">
-                                    任务接收：2026年05月22日 15:20，处理人张三通过移动端接收预警工单。<br>
-                                    原因核查：15:30-16:00，联系原经办人李四，确认因岗位调整（李四调至XX科室）导致任务遗漏。<br>
-                                    <br>
-                                    <strong>整改措施：</strong><br>
-                                    16:10，重新指定核查责任人：王五（联系电话：138XXXXXXXXXX）；<br>
-                                    16:20，制定核查计划：2026年05月23日 09:00开展现场核查；<br>
-                                    16:30，向市场主体发送《核查告知书》，说明逾期原因及补查安排。<br>
-                                    <br>
-                                    结果反馈：17:00，在系统上传《整改说明》《核查计划表》《告知书送达回执》，申请解除预警
+                                    任务接收：2026年05月22日 15:20，处理人张三通过移动端接收预警工单。原因核查：15:30-16:00，联系原经办人李四，确认因岗位调整（李四调至XX科室）导致任务遗漏。整改措施：16:10，重新指定核查责任人：王五（联系电话：138XXXXXXXXXX）；16:20，制定核查计划：2026年05月23日 09:00开展现场核查；16:30，向市场主体发送《核查告知书》，说明逾期原因及补查安排。结果反馈：17:00，在系统上传《整改说明》《核查计划表》《告知书送达回执》，申请解除预警
                                 </div>
                             </div>
                         </div>
@@ -3448,7 +3572,7 @@
             </div>
 
             <!-- 企业详情弹窗 -->
-            <div class="detail-modal" id="companyDetailModal" style="display: none;">
+            <div class="detail-modal" id="companyDetailModal">
                 <div class="modal-overlay" onclick="hideCompanyDetail()"></div>
                 <div class="modal-content company-detail-modal">
                     <div class="modal-header">
@@ -3564,40 +3688,24 @@
                                     <div class="company-section-title">风险预警</div>
                                     <div class="warning-box warning-active">
                                         <div class="warning-header">
-                                            <div class="warning-title">信用评分下降预警</div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span class="warning-status warning-active-badge">预警中</span>
-                                                <button class="warning-view-btn" onclick="viewWarningDetail('信用评分下降预警', '2026-05-15', '中', '连续3个月信用评分下降', '预警中')">查看</button>
-                                            </div>
+                                            <div class="warning-title">信用评分极低预警</div>
+                                            <span class="warning-status warning-active-badge">预警中</span>
                                         </div>
                                         <div class="warning-info">预警时间：2026-05-15</div>
                                         <div class="warning-info">预警等级：中</div>
-                                        <div class="warning-info">预警原因：连续3个月信用评分下降</div>
-                                    </div>
-                                    <div class="warning-box warning-active">
-                                        <div class="warning-header">
-                                            <div class="warning-title">年报逾期预警</div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span class="warning-status warning-active-badge">预警中</span>
-                                                <button class="warning-view-btn" onclick="viewWarningDetail('年报逾期预警', '2026-05-10', '高', '未按时提交年度报告', '预警中')">查看</button>
-                                            </div>
-                                        </div>
-                                        <div class="warning-info">预警时间：2026-05-10</div>
-                                        <div class="warning-info">预警等级：高</div>
-                                        <div class="warning-info">预警原因：未按时提交年度报告</div>
+                                        <div class="warning-info">预警原因：信用评分极低</div>
+                                        <button class="warning-view-btn" onclick="viewWarningDetail('信用评分极低预警', '2026-05-15', '中', '信用评分极低', '预警中')">查看详情</button>
                                     </div>
                                     <div class="warning-box warning-resolved">
                                         <div class="warning-header">
-                                            <div class="warning-title">信息不全预警</div>
-                                            <div style="display: flex; align-items: center;">
-                                                <span class="warning-status warning-resolved-badge">已解除</span>
-                                                <button class="warning-view-btn" onclick="viewWarningDetail('信息不全预警', '2026-04-20', '低', '企业公示信息不完整', '已解除', '2026-04-25')">查看</button>
-                                            </div>
+                                            <div class="warning-title">多次被检查预警</div>
+                                            <span class="warning-status warning-resolved-badge">已解除</span>
                                         </div>
                                         <div class="warning-info">预警时间：2026-04-20</div>
                                         <div class="warning-info">预警等级：低</div>
-                                        <div class="warning-info">预警原因：企业公示信息不完整</div>
+                                        <div class="warning-info">预警原因：企业多次被检查</div>
                                         <div class="warning-info">解除预警时间：2026-04-25</div>
+                                        <button class="warning-view-btn" onclick="viewWarningDetail('多次被检查预警', '2026-04-20', '中', '企业多次被检查', '已解除', '2026-04-25')">查看详情</button>
                                     </div>
                                 </div>
                             </div>
@@ -3619,53 +3727,56 @@
                             <div class="app-section app-section-lg">
                                 <div class="section-title">审管联动应用</div>
                                 <div class="app-grid app-grid-2col">
-                                    <div class="app-item">极简审批</div>
-                                    <div class="app-item">"一件事"管理</div>
-                                    <div class="app-item">批后核查管理</div>
-                                    <div class="app-item">联合勘察管理</div>
-                                    <div class="app-item">审监信息资源目录</div>
-                                    <div class="app-item">先照后证协同联动</div>
-                                    <div class="app-item">告知承诺协同联动</div>
-                                    <div class="app-item">审监信息分析关联</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">极简审批</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-一件事管理.png')">"一件事"管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-批后核查任务查询.png')">批后核查管理</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">联合勘察管理</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">审监信息资源目录</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">先照后证协同联动</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-告知承诺.png')">告知承诺协同联动</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">审监信息分析关联</div>
                                 </div>
                             </div>
                             <div class="app-section app-section-xl">
                                 <div class="section-title">行政监管应用</div>
                                 <div class="app-grid app-grid-4col">
-                                    <div class="app-item">线索管理</div>
-                                    <div class="app-item">亮码检查</div>
-                                    <div class="app-item">检查计划管理</div>
-                                    <div class="app-item">监督督办</div>
-                                    <div class="app-item">计划管理</div>
-                                    <div class="app-item">综合查一次</div>
-                                    <div class="app-item">检查方案管理</div>
-                                    <div class="app-item">监管执法应用管理</div>
-                                    <div class="app-item">方案管理</div>
-                                    <div class="app-item">预约式体检</div>
-                                    <div class="app-item">非现场监管</div>
-                                    <div class="app-item">投诉评价管理</div>
-                                    <div class="app-item">日常检查</div>
-                                    <div class="app-item">双随机一公开</div>
-                                    <div class="app-item">行政其他</div>
-                                    <div class="app-item">监管服务一件事</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-线索管理.png')">线索管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-亮码检查.png')">亮码检查</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">监管服务一件事</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-监督督办.png')">监督督办</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-计划管理.png')">计划管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-综合查一次.png')">综合查一次</div>
+                                    
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-非现场监管.png')">非现场监管</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-监管执法应用管理.png')">监管执法应用管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-方案管理.png')">方案管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-预约式体检.png')">预约式体检</div>
+                                    
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-投诉评价管理.png')">投诉评价管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-日常检查.png')">日常检查</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-双随机一公开.png')">双随机一公开</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-行政其他.png')">行政其他</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">当事人侧应用管理（企业码）</div>
+                                    
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">沙盒监管</div>
                                 </div>
                             </div>
                             <div class="app-section app-section-sm">
                                 <div class="section-title">管法衔接应用</div>
                                 <div class="app-grid app-grid-1col">
-                                    <div class="app-item">移送任务处理</div>
-                                    <div class="app-item">跨部门移交审批</div>
-                                    <div class="app-item">移送任务查询</div>
-                                    <div class="app-item">管法衔接材料清单</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-移送任务处理.png')">移送任务处理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-跨部门移交审批.png')">跨部门移交审批</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-移送任务查询.png')">移送任务查询</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-移送材料清单配置.png')">管法衔接材料清单</div>
                                 </div>
                             </div>
                             <div class="app-section app-section-sm">
                                 <div class="section-title">信用+应用</div>
                                 <div class="app-grid app-grid-1col">
-                                    <div class="app-item">信用审批</div>
-                                    <div class="app-item">信用监管</div>
-                                    <div class="app-item">信用执法</div>
-                                    <div class="app-item">信用承诺践诺</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-信用审批.png')">信用审批</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-信用监管.png')">信用监管</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-信用执法.png')">信用执法</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-信用承诺践诺.png')">信用承诺践诺</div>
                                 </div>
                             </div>
                         </div>
@@ -3673,14 +3784,14 @@
                             <div class="app-section app-section-full">
                                 <div class="section-title">预警监测</div>
                                 <div class="app-grid app-grid-4col">
-                                    <div class="app-item">线索汇聚预警监测</div>
-                                    <div class="app-item">任务分发预警监测</div>
-                                    <div class="app-item">任务跟踪预警监测</div>
-                                    <div class="app-item">任务督办预警监测</div>
-                                    <div class="app-item">审管联动预警监测</div>
-                                    <div class="app-item">管法衔接预警监测</div>
-                                    <div class="app-item">"审管法信"监测预警视图</div>
-                                    <div class="app-item">预警监测指标与模型管理</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">线索汇聚预警监测</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">任务分发预警监测</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">任务跟踪预警监测</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">任务督办预警监测</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">审管联动预警监测</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">管法衔接预警监测</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">"审管法信"监测预警视图</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">预警监测指标与模型管理</div>
                                 </div>
                             </div>
                         </div>
@@ -3688,18 +3799,12 @@
                             <div class="app-section app-section-full">
                                 <div class="section-title">基础管理</div>
                                 <div class="app-grid app-grid-6col">
-                                    <div class="app-item">监管事项目录管理</div>
-                                    <div class="app-item">监管对象管理</div>
-                                    <div class="app-item">执法人员管理</div>
-                                    <div class="app-item">用户中心管理</div>
-                                    <div class="app-item">无感监测/领导视窗</div>
-                                    <div class="app-item">监管数据融合监控</div>
-                                    <div class="app-item">数据统计</div>
-                                    <div class="app-item">系统监控</div>
-                                    <div class="app-item">协同监管管理</div>
-                                    <div class="app-item">监管数据综合应用</div>
-                                    <div class="app-item">统一任务协同管理</div>
-                                    <div class="app-item">执法监管专题分析及可视化</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-监管事项目录管理.png')">监管事项目录管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-监管对象管理.png')">监管对象管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-执法人员管理.png')">执法人员管理</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-用户中心管理.png')">用户中心管理</div>
+                                    <div class="app-item no-screenshot" onclick="showBuildingModal()">无感监测/领导视窗</div>
+                                    <div class="app-item has-screenshot" onclick="showFullscreenImage('系统-监管行为管理.png')">监管数据融合监控</div>
                                 </div>
                             </div>
                         </div>
@@ -3877,27 +3982,15 @@
             <!-- 预警信号 -->
             <div class="card warning-section">
                 <div class="card-header">
-                    <span class="card-title">预警信号</span>
+                    <span class="card-title">预警和提醒</span>
                     <span class="more-btn" onclick="showWarningModal()">查看更多</span>
                 </div>
-                <div class="warning-stats">
-                    <div class="warning-stat-item">
-                        <div class="warning-stat-label">预警总数</div>
+                <!-- <div class="warning-stats" style="display: flex; justify-content: center;">
+                    <div class="warning-stat-item" style="display: flex; align-items: center; gap: 15px;">
+                        <div class="warning-stat-label">预警与提醒总数</div>
                         <div class="warning-stat-value">450</div>
                     </div>
-                    <div class="warning-stat-item blue">
-                        <div class="warning-stat-label">蓝色预警</div>
-                        <div class="warning-stat-value">160</div>
-                    </div>
-                    <div class="warning-stat-item yellow">
-                        <div class="warning-stat-label">黄色预警</div>
-                        <div class="warning-stat-value">175</div>
-                    </div>
-                    <div class="warning-stat-item red">
-                        <div class="warning-stat-label">红色预警</div>
-                        <div class="warning-stat-value">115</div>
-                    </div>
-                </div>
+                </div> -->
                 <div class="stacked-bar-container">
                     <div class="stacked-bar-item">
                         <div class="stacked-bar-label">对象信用极低</div>
@@ -3907,6 +4000,24 @@
                             <div class="stacked-bar-segment yellow" style="width: 28%;"><span class="segment-value">28</span></div>
                         </div>
                         <div class="stacked-bar-total">88</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">对象多次被检查</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 30%;"><span class="segment-value">25</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 35%;"><span class="segment-value">29</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 30%;"><span class="segment-value">25</span></div>
+                        </div>
+                        <div class="stacked-bar-total">79</div>
+                    </div>
+                    <div class="stacked-bar-item">
+                        <div class="stacked-bar-label">对象被列入异常名录</div>
+                        <div class="stacked-bar-track">
+                            <div class="stacked-bar-segment blue" style="width: 28%;"><span class="segment-value">22</span></div>
+                            <div class="stacked-bar-segment orange" style="width: 32%;"><span class="segment-value">25</span></div>
+                            <div class="stacked-bar-segment yellow" style="width: 35%;"><span class="segment-value">27</span></div>
+                        </div>
+                        <div class="stacked-bar-total">74</div>
                     </div>
                     <div class="stacked-bar-item">
                         <div class="stacked-bar-label">未亮码检查</div>
@@ -3973,11 +4084,11 @@
                 </div>
                 <div class="key-apps">
                     <button class="key-app-btn" onclick="showFullscreenImage('系统-综合查一次.png')">综合查一次</button>
-                    <button class="key-app-btn">沙盒监管</button>
-                    <button class="key-app-btn">非现场监管</button>
-                    <button class="key-app-btn">监管服务一件事</button>
-                    <button class="key-app-btn">预约式体检</button>
-                    <button class="key-app-btn">“一件事”管理</button>
+                    <button class="key-app-btn" onclick="showBuildingModal()">沙盒监管</button>
+                    <button class="key-app-btn" onclick="showFullscreenImage('系统-非现场监管.png')">非现场监管</button>
+                    <button class="key-app-btn" onclick="showBuildingModal()">监管服务一件事</button>
+                    <button class="key-app-btn" onclick="showFullscreenImage('系统-预约式体检.png')">预约式体检</button>
+                    <button class="key-app-btn" onclick="showFullscreenImage('系统-一件事管理.png')">"一件事"管理</button>
                 </div>
             </div>
         </div>
@@ -4042,14 +4153,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>海南省住建厅</td><td>2026-05-20</td><td>王建国,李海燕</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('三亚热带海洋世界旅游开发有限公司')">三亚热带海洋世界旅游开发有限公司</span></td><td>海南省旅游和文化广电体育厅</td><td>2026-05-19</td><td>张伟,刘芳</td><td>需限期整改</td><td>--</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('海口恒信贸易有限公司')">海口恒信贸易有限公司</span></td><td>海南省商务厅</td><td>2026-05-18</td><td>陈明,赵丽</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('文昌市建筑工程有限公司')">文昌市建筑工程有限公司</span></td><td>海南省住建厅</td><td>2026-05-17</td><td>刘强,孙丽</td><td>需限期整改</td><td>--</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>临时检查</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('儋州鑫源建材有限公司')">儋州鑫源建材有限公司</span></td><td>海南省市场监督管理局</td><td>2026-05-16</td><td>赵伟,周敏</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>临时检查</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('万宁兴隆咖啡种植园')">万宁兴隆咖啡种植园</span></td><td>海南省农业农村厅</td><td>2026-05-15</td><td>吴刚,郑琳</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>双随机一公开</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('海口市龙华区小王水果店')">海口市龙华区小王水果店</span></td><td>海口市市场监督管理局</td><td>2026-05-14</td><td>李明,黄燕</td><td>涉嫌违法</td><td>移送至海口市综合行政执法局</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
-                        <tr><td>双随机一公开</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('三亚市吉阳区阿强海鲜大排档')">三亚市吉阳区阿强海鲜大排档</span></td><td>三亚市市场监督管理局</td><td>2026-05-13</td><td>张虎,林静</td><td>涉嫌违法</td><td>移送至三亚市综合行政执法局</td><td><span class="tracking-detail-link">查看详情</span></td></tr>
+                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>海南省住建厅</td><td>2026-05-20</td><td>王建国,李海燕</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('三亚热带海洋世界旅游开发有限公司')">三亚热带海洋世界旅游开发有限公司</span></td><td>海南省旅游和文化广电体育厅</td><td>2026-05-19</td><td>张伟,刘芳</td><td>需限期整改</td><td>--</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('海口恒信贸易有限公司')">海口恒信贸易有限公司</span></td><td>海南省商务厅</td><td>2026-05-18</td><td>陈明,赵丽</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-item" onclick="showCompanyDetail('文昌市建筑工程有限公司')">文昌市建筑工程有限公司</span></td><td>海南省住建厅</td><td>2026-05-17</td><td>刘强,孙丽</td><td>需限期整改</td><td>--</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>临时检查</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('儋州鑫源建材有限公司')">儋州鑫源建材有限公司</span></td><td>海南省市场监督管理局</td><td>2026-05-16</td><td>赵伟,周敏</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>临时检查</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('万宁兴隆咖啡种植园')">万宁兴隆咖啡种植园</span></td><td>海南省农业农村厅</td><td>2026-05-15</td><td>吴刚,郑琳</td><td>未发现问题</td><td>--</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>双随机一公开</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('海口市龙华区小王水果店')">海口市龙华区小王水果店</span></td><td>海口市市场监督管理局</td><td>2026-05-14</td><td>李明,黄燕</td><td>涉嫌违法</td><td>移送至海口市综合行政执法局</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
+                        <tr><td>双随机一公开</td><td>日常检查</td><td><span class="clickable-item" onclick="showCompanyDetail('三亚市吉阳区阿强海鲜大排档')">三亚市吉阳区阿强海鲜大排档</span></td><td>三亚市市场监督管理局</td><td>2026-05-13</td><td>张虎,林静</td><td>涉嫌违法</td><td>移送至三亚市综合行政执法局</td><td><span class="tracking-detail-link" onclick="showFullscreenImage('系统-检查详情.png')">查看详情</span></td></tr>
                     </tbody>
                 </table>
 
@@ -4080,7 +4191,7 @@
                         <div class="warning-modal-stat-value">2,345</div>
                     </div>
                     <div class="warning-modal-stat-card">
-                        <div class="warning-modal-stat-label">未处理预警数</div>
+                        <div class="warning-modal-stat-label">预警中预警数</div>
                         <div class="warning-modal-stat-value">156</div>
                     </div>
                     <div class="warning-modal-stat-card">
@@ -4120,19 +4231,18 @@
                             <th>预警等级</th>
                             <th>预警对象</th>
                             <th>预警时间</th>
-                            <th>预警原因</th>
                             <th>预警状态</th>
                             <th>操作</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>信用评分极低</td><td><span style="color: #ff4757;">高</span></td><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>2026-05-20</td><td>连续3个月信用评分低于60分</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
-                        <tr><td>已列入异常名录</td><td><span style="color: #ff4757;">高</span></td><td><span class="clickable-item" onclick="showCompanyDetail('三亚热带海洋世界旅游开发有限公司')">三亚热带海洋世界旅游开发有限公司</span></td><td>2026-05-19</td><td>未按规定公示年度报告</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
-                        <tr><td>多次处罚</td><td><span style="color: #ff4757;">高</span></td><td><span class="clickable-item" onclick="showCompanyDetail('文昌市建筑工程有限公司')">文昌市建筑工程有限公司</span></td><td>2026-05-18</td><td>本年度累计受到3次行政处罚</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
-                        <tr><td>责改逾期</td><td><span style="color: #ffa502;">中</span></td><td><span class="clickable-item" onclick="showCompanyDetail('儋州鑫源建材有限公司')">儋州鑫源建材有限公司</span></td><td>2026-05-17</td><td>责令改正期限已过未整改</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
-                        <tr><td>信息不全</td><td><span style="color: #ffa502;">中</span></td><td><span class="clickable-item" onclick="showCompanyDetail('海口市龙华区小王水果店')">海口市龙华区小王水果店</span></td><td>2026-05-16</td><td>企业公示信息不完整</td><td><span style="color: #2ed573;">已解除</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
-                        <tr><td>年报逾期</td><td><span style="color: #ffa502;">中</span></td><td><span class="clickable-item" onclick="showCompanyDetail('海南华信科技有限公司')">海南华信科技有限公司</span></td><td>2026-05-15</td><td>未按时提交年度报告</td><td><span style="color: #2ed573;">已解除</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
-                        <tr><td>资质到期</td><td><span style="color: #ffa502;">中</span></td><td><span class="clickable-item" onclick="showCompanyDetail('琼海博鳌会展中心有限公司')">琼海博鳌会展中心有限公司</span></td><td>2026-05-14</td><td>相关资质证书即将到期</td><td><span style="color: #2ed573;">已解除</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>对象信用极低</td><td><span style="color: #ff4757;">高</span></td><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>2026-05-20</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>多次被检查</td><td><span style="color: #ffa502;">中</span></td><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>2026-05-19</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>列入异常名录</td><td><span style="color: #ffa502;">中</span></td><td><span class="clickable-item" onclick="showCompanyDetail('海南融创房地产开发有限公司')">海南融创房地产开发有限公司</span></td><td>2026-05-18</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>部门人均办案数过多</td><td><span style="color: #ffa502;">中</span></td><td>海南省XX局</td><td>2026-05-17</td><td><span style="color: #ffa502;">预警中</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>批后核查逾期未办</td><td><span style="color: #ff4757;">高</span></td><td>海南省XX局</td><td>2026-05-16</td><td><span style="color: #2ed573;">已解除</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>线下移送涉嫌违法线索</td><td><span style="color: #ff4757;">高</span></td><td>海南省XX局</td><td>2026-05-15</td><td><span style="color: #2ed573;">已解除</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
+                        <tr><td>线上移送线索质量低</td><td><span style="color: #ffa502;">中</span></td><td>海南省XX局</td><td>2026-05-14</td><td><span style="color: #2ed573;">已解除</span></td><td><span class="warning-detail-link" onclick="showDetailModal()">查看详情</span></td></tr>
                     </tbody>
                 </table>
 
@@ -4209,14 +4319,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
-                        <tr><td>对广告监管的检查</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
+                        <tr><td>对广告的监管</td><td>46008901</td><td>海南省xx局</td><td><span class="dept-detail-link">查看详情</span></td></tr>
                     </tbody>
                 </table>
 
@@ -4320,6 +4430,37 @@
                 document.body.style.overflow = '';
             }
         }
+
+        // 显示建设中弹窗
+        function showBuildingModal() {
+            const modal = document.createElement('div');
+            modal.className = 'building-modal';
+            modal.innerHTML = `
+                <div class="building-close" onclick="closeBuildingModal()">×</div>
+                <div class="building-content">
+                    <div class="building-icon">🚧</div>
+                    <div class="building-text">建设中</div>
+                    <div class="building-hint">该功能正在开发中，敬请期待...</div>
+                </div>
+            `;
+            modal.onclick = function(e) {
+                if (e.target === modal) {
+                    closeBuildingModal();
+                }
+            };
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+
+        // 关闭建设中弹窗
+        function closeBuildingModal() {
+            const modal = document.querySelector('.building-modal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = '';
+            }
+        }
+
         
         // 显示审管法信闭环跟踪弹窗
         function showTrackingModal() {
@@ -4399,37 +4540,37 @@
                 { name: '海南融创房地产开发有限公司', type: '信用评分极低', level: 'high', date: '2026-05-20' },
                 { name: '三亚海洋世界旅游开发有限公司', type: '列入异常名录', level: 'high', date: '2026-05-19' },
                 { name: '海口恒信贸易有限公司', type: '列入异常名录', level: 'high', date: '2026-05-18' },
-                { name: '文昌市建筑工程有限公司', type: '多次处罚', level: 'high', date: '2026-05-17' },
-                { name: '儋州鑫源建材有限公司', type: '责改逾期', level: 'medium', date: '2026-05-16' },
-                { name: '万宁兴隆咖啡种植园', type: '责改逾期', level: 'medium', date: '2026-05-15' },
-                { name: '东方市绿色农业合作社', type: '信息不全', level: 'medium', date: '2026-05-14' }
+                { name: '文昌市建筑工程有限公司', type: '列入异常名录', level: 'high', date: '2026-05-17' },
+                { name: '儋州鑫源建材有限公司', type: '多次被检查', level: 'medium', date: '2026-05-16' },
+                { name: '万宁兴隆咖啡种植园', type: '多次被检查', level: 'medium', date: '2026-05-15' },
+                { name: '东方市绿色农业合作社', type: '多次被检查', level: 'medium', date: '2026-05-14' }
             ]},
             enterprise: { total: '150000', warning: '520', data: [
                 { name: '海南融创房地产开发有限公司', type: '信用评分极低', level: 'high', date: '2026-05-20' },
                 { name: '三亚海洋世界旅游开发有限公司', type: '列入异常名录', level: 'high', date: '2026-05-19' },
                 { name: '海口恒信贸易有限公司', type: '列入异常名录', level: 'high', date: '2026-05-18' },
-                { name: '文昌市建筑工程有限公司', type: '多次处罚', level: 'high', date: '2026-05-17' },
-                { name: '儋州鑫源建材有限公司', type: '责改逾期', level: 'medium', date: '2026-05-16' },
-                { name: '海南华信科技有限公司', type: '年报逾期', level: 'low', date: '2026-05-13' },
-                { name: '琼海博鳌会展中心有限公司', type: '资质到期', level: 'medium', date: '2026-05-12' }
+                { name: '文昌市建筑工程有限公司', type: '列入异常名录', level: 'high', date: '2026-05-17' },
+                { name: '儋州鑫源建材有限公司', type: '多次被检查', level: 'medium', date: '2026-05-16' },
+                { name: '海南华信科技有限公司', type: '多次被检查', level: 'low', date: '2026-05-13' },
+                { name: '琼海博鳌会展中心有限公司', type: '多次被检查', level: 'medium', date: '2026-05-12' }
             ]},
             individual: { total: '680000', warning: '380', data: [
-                { name: '海口市龙华区小王水果店', type: '信息不全', level: 'medium', date: '2026-05-20' },
-                { name: '三亚市吉阳区阿强海鲜大排档', type: '卫生不达标', level: 'high', date: '2026-05-19' },
-                { name: '文昌市文城镇老李杂货店', type: '无证经营', level: 'high', date: '2026-05-18' },
-                { name: '万宁市兴隆镇张姐小吃店', type: '食品安全', level: 'high', date: '2026-05-17' },
-                { name: '东方市八所镇阿明理发店', type: '卫生不合格', level: 'medium', date: '2026-05-16' },
-                { name: '澄迈县金江镇老王修理铺', type: '营业执照过期', level: 'medium', date: '2026-05-15' },
-                { name: '临高县临城镇小陈服装店', type: '信息不全', level: 'low', date: '2026-05-14' }
+                { name: '海口市龙华区小王水果店', type: '多次被检查', level: 'medium', date: '2026-05-20' },
+                { name: '三亚市吉阳区阿强海鲜大排档', type: '列入异常名录', level: 'high', date: '2026-05-19' },
+                { name: '文昌市文城镇老李杂货店', type: '列入异常名录', level: 'high', date: '2026-05-18' },
+                { name: '万宁市兴隆镇张姐小吃店', type: '列入异常名录', level: 'high', date: '2026-05-17' },
+                { name: '东方市八所镇阿明理发店', type: '多次被检查', level: 'medium', date: '2026-05-16' },
+                { name: '澄迈县金江镇老王修理铺', type: '多次被检查', level: 'medium', date: '2026-05-15' },
+                { name: '临高县临城镇小陈服装店', type: '多次被检查', level: 'low', date: '2026-05-14' }
             ]},
             other: { total: '70000', warning: '99', data: [
-                { name: '海南省旅游协会', type: '年检逾期', level: 'medium', date: '2026-05-20' },
-                { name: '海口市企业家联合会', type: '信息变更未报备', level: 'low', date: '2026-05-19' },
-                { name: '三亚市慈善基金会', type: '财务不透明', level: 'high', date: '2026-05-18' },
-                { name: '文昌市教育促进会', type: '资质到期', level: 'medium', date: '2026-05-17' },
-                { name: '琼海市农业技术推广协会', type: '活动异常', level: 'medium', date: '2026-05-16' },
-                { name: '儋州市文化艺术协会', type: '年检未通过', level: 'high', date: '2026-05-15' },
-                { name: '万宁市体育总会', type: '信息不全', level: 'low', date: '2026-05-14' }
+                { name: '海南省旅游协会', type: '多次被检查', level: 'medium', date: '2026-05-20' },
+                { name: '海口市企业家联合会', type: '列入异常名录', level: 'high', date: '2026-05-19' },
+                { name: '三亚市慈善基金会', type: '列入异常名录', level: 'high', date: '2026-05-18' },
+                { name: '文昌市教育促进会', type: '多次被检查', level: 'medium', date: '2026-05-17' },
+                { name: '琼海市农业技术推广协会', type: '多次被检查', level: 'medium', date: '2026-05-16' },
+                { name: '儋州市文化艺术协会', type: '列入异常名录', level: 'high', date: '2026-05-15' },
+                { name: '万宁市体育总会', type: '多次被检查', level: 'medium', date: '2026-05-14' }
             ]}
         };
         
@@ -4524,9 +4665,15 @@
         }
 
         function switchDeptTab(tab) {
-            const listContent = document.getElementById('deptListContent');
+            const deptListContent = document.getElementById('deptListContent');
+            const regionListContent = document.getElementById('regionListContent');
             const trendContent = document.getElementById('deptTrendContent');
-            const isListVisible = listContent.style.display !== 'none';
+            const activeTab = document.querySelector('.dept-type-tab.active');
+            const isRegionTab = activeTab.textContent === '区划';
+            
+            // 根据当前选中的tab判断哪个列表是可见的
+            const currentListContent = isRegionTab ? regionListContent : deptListContent;
+            const isListVisible = currentListContent.style.display !== 'none';
             
             let showList = false;
             if (tab === 'prev' || tab === 'next') {
@@ -4538,10 +4685,20 @@
             }
             
             if (showList) {
-                listContent.style.display = 'block';
+                // 隐藏趋势图
                 trendContent.style.display = 'none';
+                // 显示当前tab对应的列表
+                if (isRegionTab) {
+                    regionListContent.style.display = 'block';
+                    deptListContent.style.display = 'none';
+                } else {
+                    deptListContent.style.display = 'block';
+                    regionListContent.style.display = 'none';
+                }
             } else {
-                listContent.style.display = 'none';
+                // 隐藏所有列表，显示趋势图
+                deptListContent.style.display = 'none';
+                regionListContent.style.display = 'none';
                 trendContent.style.display = 'block';
             }
         }
@@ -4549,13 +4706,18 @@
         function switchDeptType(type) {
             const tabs = document.querySelectorAll('.dept-type-tab');
             const deptListContent = document.getElementById('deptListContent');
+            const regionListContent = document.getElementById('regionListContent');
             
             tabs.forEach(t => t.classList.remove('active'));
             
             if (type === 'dept') {
                 tabs[0].classList.add('active');
+                deptListContent.style.display = 'block';
+                regionListContent.style.display = 'none';
             } else {
                 tabs[1].classList.add('active');
+                deptListContent.style.display = 'none';
+                regionListContent.style.display = 'block';
             }
         }
 
@@ -4604,7 +4766,13 @@
 
         function hideDetailModal() {
             const detailModal = document.getElementById('detailModal');
+            const companyModal = document.getElementById('companyDetailModal');
             detailModal.classList.remove('show');
+            // 恢复显示企业详情弹窗
+            if (companyModal && companyModal.dataset.wasOpen === 'true') {
+                companyModal.classList.add('show');
+                companyModal.dataset.wasOpen = 'false';
+            }
         }
 
         function showBackgroundModal() {
@@ -4669,16 +4837,17 @@
 
         function showCompanyDetail() {
             const companyModal = document.getElementById('companyDetailModal');
-            companyModal.style.display = 'block';
+            companyModal.classList.add('show');
         }
 
         function hideCompanyDetail() {
             const companyModal = document.getElementById('companyDetailModal');
-            companyModal.style.display = 'none';
+            companyModal.classList.remove('show');
         }
 
         function viewWarningDetail(title, warningTime, level, reason, status, resolveTime) {
             const detailModal = document.getElementById('detailModal');
+            const companyModal = document.getElementById('companyDetailModal');
             const modalTitle = detailModal.querySelector('.modal-title');
             
             // 更新弹窗标题
@@ -4706,13 +4875,24 @@
                 }
             }
             
+            // 保存企业详情弹窗状态并隐藏
+            if (companyModal && companyModal.classList.contains('show')) {
+                companyModal.dataset.wasOpen = 'true';
+                companyModal.classList.remove('show');
+            } else if (companyModal) {
+                companyModal.dataset.wasOpen = 'false';
+            }
+            
             // 显示弹窗
             detailModal.classList.add('show');
         }
 
         function viewLicense(licenseName) {
-            alert('查看证照：' + licenseName);
-            // 这里可以添加实际的查看逻辑，比如打开新窗口或显示弹窗
+            if (licenseName === '营业执照') {
+                showFullscreenImage('证照营业执照.png');
+            } else {
+                alert('查看证照：' + licenseName);
+            }
         }
 
         function scrollApps(direction) {
