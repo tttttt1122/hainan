@@ -222,8 +222,9 @@
         }
 
         .dept-type-tab.active {
-            color: #00d4ff;
-            background: rgba(0, 200, 255, 0.2);
+            color: #00d4ff !important;
+            background: rgba(0, 200, 255, 0.2) !important;
+            font-weight: bold;
         }
 
         .dept-type-tab:hover {
@@ -286,25 +287,6 @@
         }
 
         /* 监管事项 */
-        .item-tabs {
-            display: flex;
-            gap: 10px;
-        }
-
-        .item-tab {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
-            cursor: pointer;
-            padding: 3px 10px;
-            border-radius: 3px;
-            transition: all 0.3s ease;
-        }
-
-        .item-tab.active {
-            color: #00d4ff;
-            background: rgba(0, 200, 255, 0.2);
-        }
-
         .item-table {
             width: 100%;
             border-collapse: collapse;
@@ -1717,6 +1699,26 @@
             gap: 6px;
         }
 
+        .pie-legend {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
         .company-profile .stats-grid {
             display: flex;
             gap: 8px;
@@ -3042,8 +3044,8 @@
     <!-- 顶部导航 -->
     <header class="header">
         <div class="header-left">
+            <div class="nav-item" onclick="goToSplashScreen()">首页</div>
             <div class="nav-item" onclick="showBackgroundModal()">建设背景</div>
-            <div class="nav-item" onclick="showPanoramaModal()">全景图</div>
             <div class="nav-item" onclick="showArchitectureModal()">架构图</div>
             <div class="nav-item" onclick="showModelModal()">预警模型</div>
         </div>
@@ -3094,7 +3096,6 @@
                     </div>
                 </div>
                 <div class="dept-content-wrapper">
-                    <div class="dept-tab-arrow" onclick="switchDeptTab('prev')">‹</div>
                     <div class="dept-content">
                         <div id="deptListContent" style="overflow: auto; max-height: 220px;">
                             <table class="dept-table">
@@ -3187,7 +3188,6 @@
                             </svg>
                         </div>
                     </div>
-                    <div class="dept-tab-arrow" onclick="switchDeptTab('next')">›</div>
                 </div>
             </div>
 
@@ -3277,13 +3277,13 @@
             <div class="card">
                 <div class="card-header">
                     <span class="card-title">监管事项</span>
-                    <div class="item-tabs">
-                        <div class="item-tab active" onclick="switchItemTab('high')">高频事项</div>
-                        <div class="item-tab" onclick="switchItemTab('uncover')">未覆盖事项</div>
+                    <div class="dept-type-tabs">
+                        <div class="dept-type-tab active" onclick="switchItemTab('high')">高频事项</div>
+                        <div class="dept-type-tab" onclick="switchItemTab('uncovered')">未覆盖事项</div>
                     </div>
                 </div>
-                <div id="highFreqContent" style="overflow: auto; max-height: 240px;">
-                    <table class="item-table">
+                <div style="overflow: auto; max-height: 240px;">
+                    <table class="item-table" id="itemTable">
                         <thead>
                             <tr>
                                 <th>序号</th>
@@ -3291,7 +3291,7 @@
                                 <th>检查次数</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="itemTableBody">
                             <tr><td>1</td><td>对食品经营许可的检查</td><td>1250</td></tr>
                             <tr><td>2</td><td>对药品经营许可的检查</td><td>980</td></tr>
                             <tr><td>3</td><td>对医疗器械经营的检查</td><td>760</td></tr>
@@ -3303,34 +3303,13 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="uncoverContent" style="display: none; overflow: auto; max-height: 240px;">
-                    <table class="item-table">
-                        <thead>
-                            <tr>
-                                <th>序号</th>
-                                <th>事项名称</th>
-                                <th>检查次数</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>1</td><td>对网络安全的检查</td><td>0</td></tr>
-                            <tr><td>2</td><td>对数据安全的检查</td><td>0</td></tr>
-                            <tr><td>3</td><td>对个人信息保护的检查</td><td>0</td></tr>
-                            <tr><td>4</td><td>对劳动用工的检查</td><td>0</td></tr>
-                            <tr><td>5</td><td>对价格监督的检查</td><td>0</td></tr>
-                            <tr><td>6</td><td>对广告监管的检查</td><td>15</td></tr>
-                            <tr><td>7</td><td>对知识产权的检查</td><td>23</td></tr>
-                            <tr><td>8</td><td>对电子商务的检查</td><td>45</td></tr>
-                        </tbody>
-                    </table>
-                </div>
             </div>
         </div>
 
         <!-- 中间区域 -->
         <div class="center-panel">
             <!-- 统计卡片 -->
-            <div class="stats-cards">
+            <!-- <div class="stats-cards">
                 <div class="stat-card large has-sub">
                     <div class="card-main">
                         <div class="card-value">89.81 万</div>
@@ -3371,18 +3350,18 @@
                     <div class="card-label">信用数据归集</div>
                     <div class="card-value">99.88 万</div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- 地图区域 -->
             <div class="map-container">
-                <div class="map-tabs">
-                    <div class="map-tab active" onclick="switchMapTab('flow')">流程图</div>
-                    <div class="map-tab" onclick="switchMapTab('map')">地图</div>
-                </div>
-                <div id="flowChartContent" style="position: relative;">
-                    <img src="流程图.gif" style="width: 100%; height: 100%; object-fit: contain;" />
+                <!-- <div class="map-tabs"> -->
+                    <!-- <div class="map-tab active" onclick="switchMapTab('flow')">流程图</div> -->
+                    <!-- <div class="map-tab" onclick="switchMapTab('map')">地图</div> -->
+                <!-- </div> -->
+                <!-- <div id="flowChartContent" style="position: relative;">
+                    <img src="流程图.gif" style="width: 100%; height: 100%; object-fit: contain;" /> -->
                     <!-- 热区标注 -->
-                    <div class="flow-hotspot" style="top: 32%; left: 8%;">1</div>
+                    <!-- <div class="flow-hotspot" style="top: 32%; left: 8%;">1</div>
                     <div class="flow-hotspot" style="top: 42%; left: 15%;">2</div>
                     <div class="flow-hotspot" style="top: 58%; left: 15%;" onclick="showFullscreenImage('系统-告知承诺.png')">3</div>
                     <div class="flow-hotspot" style="top: 22%; left: 30%;" onclick="showFullscreenImage('系统-监管对象管理.png')">4</div>
@@ -3390,10 +3369,10 @@
                     <div class="flow-hotspot" style="top: 22%; left: 55%;" onclick="showFullscreenImage('系统-监管行为管理.png')">6</div>
                     <div class="flow-hotspot" style="top: 32%; left: 73%;">7</div>
                     <div class="flow-hotspot" style="top: 22%; left: 86%;">8</div>
-                    <!-- <div class="flow-hotspot" style="top: 38%; left: 58%;">9</div> -->
+                    <div class="flow-hotspot" style="top: 38%; left: 58%;">9</div>
                     <div class="flow-hotspot" style="top: 66%; left: 42%;" onclick="showFullscreenImage('系统-亮码检查.png')">10</div>
-                </div>
-                <div id="mapContent" style="display: none; width: 100%; height: 100%;">
+                </div> -->
+                <div id="mapContent" style="width: 100%; height: 100%;">
                     <div class="map-bg"></div>
                     <div class="map-image"></div>
                     <div class="hainan-map">
@@ -3823,6 +3802,7 @@
                         <thead>
                             <tr>
                                 <th>任务来源</th>
+                                <th>检查方式</th>
                                 <th>任务类型</th>
                                 <th>检查对象</th>
                                 <th>监管部门</th>
@@ -3833,10 +3813,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td>综合查一次</td><td>批后核查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口恒信贸易有限公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>未发现问题并告知当事人</td><td>--</td></tr>
-                            <tr><td>双随机一公开</td><td>批后核查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口恒信贸易有限公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>未发现问题并告知当事人</td><td>--</td></tr>
-                            <tr><td>双随机一公开</td><td>日常检查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口恒信贸易有限公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>转涉嫌违法线索移送</td><td>移送至xx执法局</td></tr>
-                            <tr><td>临时检查</td><td>日常检查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口恒信贸易有限公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>转涉嫌违法线索移送</td><td>移送至xx执法局</td></tr>
+                            <tr><td>审批部门</td><td>综合查一次</td><td>批后核查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口XX公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>未发现问题并告知当事人</td><td>--</td></tr>
+                            <tr style="color: #ff4444;"><td>投诉举报</td><td>有因检查</td><td>批后核查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口XX公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>未发现问题并告知当事人</td><td>--</td></tr>
+                            <tr><td>文件通知</td><td>双随机一公开</td><td>日常检查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口XX公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>转涉嫌违法线索移送</td><td>移送至xx执法局</td></tr>
+                            <tr><td>转办交办</td><td>临时检查</td><td>日常检查</td><td><span class="clickable-company" onclick="showCompanyDetail()">海口XX公司</span></td><td>海南省XX局</td><td>2024-01-01</td><td>张三，李四</td><td>转涉嫌违法线索移送</td><td>移送至xx执法局</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -3848,7 +3828,11 @@
             <!-- 行政检查 -->
             <div class="card">
                 <div class="card-header" style="justify-content: space-between; align-items: center;">
-                    <span class="card-title">行政检查</span>
+                    <div style="display: flex; align-items: center; gap: 15px;">
+                        <span class="card-title">行政检查</span>
+                        <span style="font-size: 18px; font-weight: 600; color: #00d4ff;">10000</span>
+                        <span style="font-size: 13px; color: #00ff88;">同比-20.98%</span>
+                    </div>
                     <div class="inspect-tabs">
                         <div class="inspect-tab active" onclick="switchInspectTab('stats')">统计</div>
                         <div class="inspect-tab" onclick="switchInspectTab('trend')">趋势</div>
@@ -3858,13 +3842,6 @@
                 <!-- 统计/趋势 -->
                 <div>
                     <div id="inspectStatsContent">
-                        <div class="big-stat">
-                            <div>
-                                <div class="big-stat-label">检查总数</div>
-                                <div class="big-stat-value">10000</div>
-                            </div>
-                            <div class="big-stat-change decrease">同比-20.98%</div>
-                        </div>
                         <div class="stats-grid">
                             <div class="small-stat">
                                 <div class="small-stat-left">
@@ -3907,6 +3884,21 @@
                                     <div class="small-stat-label">发现问题率</div>
                                 </div>
                                 <div class="small-stat-change increase">同比+9.90%</div>
+                            </div>
+                        </div>
+                        <!-- 饼图 -->
+                        <div class="pie-chart-container" style="display: flex; justify-content: center; padding: 15px 0;">
+                            <svg viewBox="0 0 100 100" style="width: 120px; height: 120px;">
+                                <circle cx="50" cy="50" r="45" fill="#3b5998"/>
+                                <path d="M50,50 L50,5 A45,45 0 0,1 95,50 A45,45 0 0,1 65,95 L50,50" fill="#ff8c00"/>
+                                <path d="M50,50 L65,95 A45,45 0 0,1 40,95 L50,50" fill="#ffd700"/>
+                                <path d="M50,50 L40,95 A45,45 0 0,1 25,85 L50,50" fill="#6b8e23"/>
+                            </svg>
+                            <div class="pie-legend" style="margin-left: 15px;">
+                                <div class="legend-item"><span class="legend-color" style="background: #3b5998;"></span><span>综合查一次</span></div>
+                                <div class="legend-item"><span class="legend-color" style="background: #ff8c00;"></span><span>双随机一公开</span></div>
+                                <div class="legend-item"><span class="legend-color" style="background: #ffd700;"></span><span>有因检查</span></div>
+                                <div class="legend-item"><span class="legend-color" style="background: #6b8e23;"></span><span>临时检查</span></div>
                             </div>
                         </div>
                     </div>
@@ -3980,7 +3972,7 @@
             </div>
 
             <!-- 预警信号 -->
-            <div class="card warning-section">
+            <div class="card warning-section" style="max-height: 320px;">
                 <div class="card-header">
                     <span class="card-title">预警和提醒</span>
                     <span class="more-btn" onclick="showWarningModal()">查看更多</span>
@@ -3991,7 +3983,7 @@
                         <div class="warning-stat-value">450</div>
                     </div>
                 </div> -->
-                <div class="stacked-bar-container">
+                <div class="stacked-bar-container" style="max-height: 260px; overflow-y: auto;">
                     <div class="stacked-bar-item">
                         <div class="stacked-bar-label">对象信用极低</div>
                         <div class="stacked-bar-track">
@@ -4405,6 +4397,11 @@
     </div>
 
     <script>
+        // 返回首屏
+        function goToSplashScreen() {
+            window.location.href = 'index copy.html';
+        }
+
         // 全屏显示图片
         function showFullscreenImage(imageName) {
             const modal = document.createElement('div');
@@ -4646,24 +4643,6 @@
             }
         }
 
-        function switchItemTab(tab) {
-            const tabs = document.querySelectorAll('.item-tab');
-            const highContent = document.getElementById('highFreqContent');
-            const uncoverContent = document.getElementById('uncoverContent');
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            
-            if (tab === 'high') {
-                tabs[0].classList.add('active');
-                highContent.style.display = 'block';
-                uncoverContent.style.display = 'none';
-            } else {
-                tabs[1].classList.add('active');
-                highContent.style.display = 'none';
-                uncoverContent.style.display = 'block';
-            }
-        }
-
         function switchDeptTab(tab) {
             const deptListContent = document.getElementById('deptListContent');
             const regionListContent = document.getElementById('regionListContent');
@@ -4756,6 +4735,39 @@
                 tabs[1].classList.add('active');
                 statsContent.style.display = 'none';
                 trendContent.style.display = 'block';
+            }
+        }
+
+        function switchItemTab(tab) {
+            const tabs = document.querySelectorAll('.dept-type-tab');
+            const tbody = document.getElementById('itemTableBody');
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            
+            if (tab === 'high') {
+                tabs[0].classList.add('active');
+                tbody.innerHTML = `
+                    <tr><td>1</td><td>对食品经营许可的检查</td><td>1250</td></tr>
+                    <tr><td>2</td><td>对药品经营许可的检查</td><td>980</td></tr>
+                    <tr><td>3</td><td>对医疗器械经营的检查</td><td>760</td></tr>
+                    <tr><td>4</td><td>对特种设备安全的检查</td><td>650</td></tr>
+                    <tr><td>5</td><td>对安全生产的检查</td><td>540</td></tr>
+                    <tr><td>6</td><td>对消防安全的检查</td><td>480</td></tr>
+                    <tr><td>7</td><td>对环境保护的检查</td><td>390</td></tr>
+                    <tr><td>8</td><td>对劳动用工的检查</td><td>320</td></tr>
+                `;
+            } else {
+                tabs[1].classList.add('active');
+                tbody.innerHTML = `
+                    <tr><td>1</td><td>对网络交易的检查</td><td>0</td></tr>
+                    <tr><td>2</td><td>对数据安全的检查</td><td>0</td></tr>
+                    <tr><td>3</td><td>对个人信息保护的检查</td><td>0</td></tr>
+                    <tr><td>4</td><td>对算法推荐的检查</td><td>0</td></tr>
+                    <tr><td>5</td><td>对跨境电商的检查</td><td>0</td></tr>
+                    <tr><td>6</td><td>对平台经济的检查</td><td>0</td></tr>
+                    <tr><td>7</td><td>对直播营销的检查</td><td>0</td></tr>
+                    <tr><td>8</td><td>对虚拟货币的检查</td><td>0</td></tr>
+                `;
             }
         }
 
