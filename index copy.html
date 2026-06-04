@@ -980,7 +980,7 @@
         <div class="main-sections">
             <!-- 审批板块 -->
             <div class="card section-approval">
-                <div class="section-title">审批</div>
+                <div class="section-title" onclick="showImageModal('首屏-海易办.png')" style="cursor: pointer;">审批</div>
                 <div class="approval-top-row">
                     <div class="approval-stat-box">
                         <div class="approval-stat-label">审批部门</div>
@@ -1321,7 +1321,7 @@
 
             <!-- 执法板块 -->
             <div class="card section-law">
-                <div class="section-title">执法</div>
+                <div class="section-title" onclick="showImageModal('首屏-执法平台.png')" style="cursor: pointer;">执法</div>
                 <div class="law-top-row">
                     <div class="law-stat-box">
                         <div class="law-stat-text">执法部门</div>
@@ -1390,7 +1390,7 @@
 
             <!-- 信用板块 -->
             <div class="card section-credit">
-                <div class="section-title">信用</div>
+                <div class="section-title" onclick="showImageModal('首屏-信用海南.png')" style="cursor: pointer;">信用</div>
                 <div class="credit-top-box">
                     <div class="credit-top-label">信用信息归集</div>
                     <div class="credit-top-num">88191019</div>
@@ -1622,5 +1622,22 @@
             </table>
         </div>
     </div>
+
+    <!-- 弹窗样式 -->
+    <div id="imageModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 9999; justify-content: center; align-items: center;" onclick="this.style.display='none'">
+        <img id="modalImage" src="" style="max-width: 90%; max-height: 90%; object-fit: contain;" onclick="event.stopPropagation()">
+        <button onclick="document.getElementById('imageModal').style.display='none'" style="position: absolute; top: 20px; right: 30px; background: transparent; border: none; color: #fff; font-size: 40px; cursor: pointer;">&times;</button>
+    </div>
+
+    <script>
+        // 显示图片弹窗
+        function showImageModal(imagePath) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const fullPath = window.location.href.substring(0, window.location.href.lastIndexOf('/')) + '/' + imagePath;
+            modalImg.src = fullPath;
+            modal.style.display = 'flex';
+        }
+    </script>
 </body>
 </html>
