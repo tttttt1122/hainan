@@ -43,9 +43,10 @@
             background: rgba(13, 31, 60, 0.7);
             border: 1px solid rgba(0, 200, 255, 0.3);
             border-radius: 8px;
-            padding: 8px;
+            padding: 18px;
             backdrop-filter: blur(10px);
             position: relative;
+            min-height: 350px;
         }
 
         .card::before {
@@ -111,7 +112,7 @@
             background: rgba(0, 200, 255, 0.1);
             border: 1px solid rgba(0, 200, 255, 0.2);
             border-radius: 4px;
-            padding: 6px;
+            padding: 14px 10px;
             text-align: center;
         }
 
@@ -122,7 +123,7 @@
         }
 
         .approval-stat-label {
-            font-size: 10px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
             margin-top: 2px;
         }
@@ -138,20 +139,20 @@
             background: rgba(0, 200, 255, 0.05);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 5px;
-            margin-bottom: 3px;
+            padding: 12px 8px;
+            margin-bottom: 8px;
         }
 
         .approval-summary-item {
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 3px;
-            padding: 4px;
+            padding: 6px;
             text-align: center;
         }
 
         .approval-summary-label {
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 2px;
         }
@@ -173,7 +174,7 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 3px;
-            padding: 4px 6px;
+            padding: 10px 8px;
             display: flex;
             align-items: center;
         }
@@ -187,7 +188,7 @@
 
         .approval-sub-title {
             color: rgba(255, 255, 255, 0.7);
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .approval-sub-metrics {
@@ -202,14 +203,14 @@
         }
 
         .approval-sub-metric-label {
-            font-size: 10px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.5);
         }
 
         .approval-sub-metric-num {
             color: #00d4ff;
             font-weight: 600;
-            font-size: 10px;
+            font-size: 12px;
         }
 
         .approval-grid {
@@ -223,15 +224,14 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 3px;
-            padding: 4px 6px;
+            padding: 6px 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 32px;
         }
 
         .approval-grid-title {
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
         }
 
@@ -251,7 +251,7 @@
         }
 
         .approval-grid-sub-label {
-            font-size: 10px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.5);
             margin-top: 1px;
         }
@@ -275,9 +275,9 @@
         }
 
         .supervision-top-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 6px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 4px;
             margin-bottom: 8px;
         }
 
@@ -285,7 +285,7 @@
             background: rgba(0, 200, 255, 0.1);
             border: 1px solid rgba(0, 200, 255, 0.2);
             border-radius: 4px;
-            padding: 6px 10px;
+            padding: 10px;
             text-align: left;
         }
 
@@ -293,11 +293,11 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
+            gap: 4px;
         }
 
         .supervision-stat-text {
-            font-size: 11px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
         }
 
@@ -314,7 +314,7 @@
         }
 
         .supervision-stat-change {
-            font-size: 10px;
+            font-size: 12px;
             color: #00ff88;
             margin-top: 1px;
         }
@@ -323,12 +323,12 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 5px;
-            margin-bottom: 5px;
+            padding: 10px 5px;
+            margin-bottom: 8px;
         }
 
         .supervision-obj-title {
-            font-size: 11px;
+            font-size: 12px;
             color: #00d4ff;
             margin-bottom: 4px;
             padding-bottom: 3px;
@@ -346,7 +346,7 @@
         .supervision-obj-item {
             background: rgba(0, 200, 255, 0.08);
             border-radius: 3px;
-            padding: 4px;
+            padding: 14px 4px;
             text-align: center;
         }
 
@@ -364,7 +364,7 @@
         }
 
         .supervision-obj-label {
-            font-size: 10px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 1px;
         }
@@ -376,7 +376,7 @@
         }
 
         .supervision-obj-change {
-            font-size: 10px;
+            font-size: 12px;
             color: #00ff88;
             margin-top: 1px;
         }
@@ -385,12 +385,12 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 5px;
-            margin-bottom: 5px;
+            padding: 10px 5px;
+            margin-bottom: 8px;
         }
 
         .supervision-credit-title {
-            font-size: 11px;
+            font-size: 13px;
             color: #00d4ff;
             margin-bottom: 4px;
             padding-bottom: 3px;
@@ -420,17 +420,17 @@
             background: rgba(0, 200, 255, 0.05);
             border: 1px solid rgba(0, 200, 255, 0.1);
             border-radius: 3px;
-            padding: 2px;
+            padding: 12px 6px;
         }
 
         .supervision-credit-label {
-            font-size: 10px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.6);
-            margin-bottom: 2px;
+            margin-bottom: 4px;
         }
 
         .supervision-credit-num {
-            font-size: 10px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.8);
         }
 
@@ -452,21 +452,21 @@
         }
 
         .supervision-credit-change {
-            font-size: 10px;
+            font-size: 13px;
             color: #00ff88;
-            margin-top: 1px;
+            margin-top: 4px;
         }
 
         .supervision-action-box {
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 3px;
-            margin-bottom: 2px;
+            padding: 8px 3px;
+            margin-bottom: 5px;
         }
 
         .supervision-action-title {
-            font-size: 11px;
+            font-size: 12px;
             color: #00d4ff;
             margin-bottom: 4px;
             padding-bottom: 3px;
@@ -508,7 +508,7 @@
         }
 
         .supervision-action-label {
-            font-size: 10px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 2px;
         }
@@ -520,7 +520,7 @@
         }
 
         .supervision-action-change {
-            font-size: 10px;
+            font-size: 13px;
             color: #00ff88;
             margin-top: 1px;
         }
@@ -541,18 +541,18 @@
         .supervision-action-sub-item {
             background: rgba(0, 200, 255, 0.08);
             border-radius: 2px;
-            padding: 2px;
+            padding: 6px 2px;
             text-align: center;
         }
 
         .supervision-action-sub-label {
-            font-size: 10px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
             margin-bottom: 1px;
         }
 
         .supervision-action-sub-num {
-            font-size: 11px;
+            font-size: 12px;
             font-weight: 600;
             color: #00d4ff;
         }
@@ -567,7 +567,7 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 8px;
+            padding: 14px 8px;
             text-align: left;
         }
 
@@ -585,12 +585,12 @@
         }
 
         .supervision-bottom-label {
-            font-size: 10px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
         }
 
         .supervision-bottom-change {
-            font-size: 10px;
+            font-size: 13px;
             color: #00ff88;
         }
 
@@ -611,12 +611,12 @@
             background: rgba(0, 200, 255, 0.1);
             border: 1px solid rgba(0, 200, 255, 0.2);
             border-radius: 4px;
-            padding: 6px;
+            padding: 12px 6px;
             text-align: center;
         }
 
         .law-stat-text {
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 2px;
         }
@@ -628,7 +628,7 @@
         }
 
         .law-stat-change {
-            font-size: 10px;
+            font-size: 12px;
             color: #00ff88;
             margin-top: 1px;
         }
@@ -637,13 +637,13 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 5px;
+            padding: 10px 5px;
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .law-receive-label {
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 2px;
         }
@@ -664,36 +664,28 @@
         .law-receive-sub-item {
             background: rgba(0, 200, 255, 0.08);
             border-radius: 3px;
-            padding: 3px;
+            padding: 14px 4px;
             text-align: center;
         }
 
         .law-receive-sub-num {
-            font-size: 12px;
-            font-weight: 600;
+            font-size: 16px;
+            font-weight: 700;
             color: #00d4ff;
         }
 
         .law-receive-sub-label {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 1px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2px;
         }
 
         .law-case-box {
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 12px 5px;
-            margin-bottom: 5px;
-        }
-
-        .law-case-title {
-            font-size: 11px;
-            color: #00d4ff;
-            margin-bottom: 4px;
-            padding-bottom: 3px;
-            border-bottom: 1px solid rgba(0, 200, 255, 0.2);
+            padding: 10px 5px;
+            margin-bottom: 8px;
             text-align: center;
         }
 
@@ -706,20 +698,20 @@
         .law-case-item {
             background: rgba(0, 200, 255, 0.08);
             border-radius: 3px;
-            padding: 4px;
+            padding: 14px 4px;
             text-align: center;
         }
 
         .law-case-num {
-            font-size: 13px;
+            font-size: 16px;
             font-weight: 700;
             color: #00d4ff;
         }
 
         .law-case-label {
-            font-size: 10px;
-            color: rgba(255, 255, 255, 0.6);
-            margin-top: 1px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2px;
         }
 
         .law-bottom-row {
@@ -732,12 +724,12 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 5px;
+            padding: 18px 5px;
             text-align: center;
         }
 
         .law-bottom-title {
-            font-size: 11px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
             margin-bottom: 3px;
         }
@@ -755,13 +747,13 @@
         }
 
         .law-bottom-change {
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 600;
             color: #00ff88;
         }
 
         .law-bottom-label {
-            font-size: 10px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.6);
             margin-top: 2px;
         }
@@ -776,9 +768,9 @@
             background: rgba(0, 200, 255, 0.1);
             border: 1px solid rgba(0, 200, 255, 0.2);
             border-radius: 4px;
-            padding: 8px;
+            padding: 14px 8px;
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
         }
 
         .credit-top-num {
@@ -789,7 +781,7 @@
         }
 
         .credit-top-label {
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.6);
             margin-top: 3px;
         }
@@ -805,14 +797,14 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 10px 5px;
+            padding: 26px 5px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .credit-grid-label {
-            font-size: 11px;
+            font-size: 13px;
             color: rgba(255, 255, 255, 0.7);
         }
 
@@ -839,14 +831,14 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 12px 6px;
+            padding: 22px 6px;
             display: flex;
             align-items: center;
             justify-content: space-between;
         }
 
         .credit-bottom-label {
-            font-size: 11px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
         }
 
@@ -889,12 +881,12 @@
             background: rgba(0, 200, 255, 0.08);
             border: 1px solid rgba(0, 200, 255, 0.15);
             border-radius: 4px;
-            padding: 3px 2px;
+            padding: 6px 2px;
             text-align: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 50px;
+            min-height: 60px;
         }
 
         .warning-num {
@@ -905,10 +897,10 @@
         }
 
         .warning-label {
-            font-size: 10px;
+            font-size: 12px;
             color: rgba(255, 255, 255, 0.7);
             line-height: 1.2;
-            min-height: 24px;
+            min-height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -940,7 +932,7 @@
         .tracking-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .tracking-table th, .tracking-table td {
@@ -963,7 +955,7 @@
             color: #00d4ff;
             cursor: pointer;
             text-decoration: underline;
-            font-size: 11px;
+            font-size: 12px;
             display: inline-block;
             margin-right: 8px;
         }
@@ -1172,7 +1164,7 @@
                         <div class="supervision-obj-item">
                             <div class="supervision-obj-content">
                                 <div class="supervision-obj-num-wrapper">
-                                    <div class="supervision-obj-label">重点监管对象</div>
+                                    <div class="supervision-obj-label">审批结果转监管对象</div>
                                     <div class="supervision-obj-num">999</div>
                                 </div>
                                 <div class="supervision-obj-change">同比+9%</div>
@@ -1181,7 +1173,7 @@
                         <div class="supervision-obj-item">
                             <div class="supervision-obj-content">
                                 <div class="supervision-obj-num-wrapper">
-                                    <div class="supervision-obj-label">审批结果转监管对象</div>
+                                    <div class="supervision-obj-label">重点监管对象</div>
                                     <div class="supervision-obj-num">999</div>
                                 </div>
                                 <div class="supervision-obj-change">同比+9%</div>
@@ -1356,7 +1348,8 @@
                     </div>
                 </div>
                 <div class="law-case-box">
-                    <div class="law-case-title">办理执法案件 999</div>
+                    <div class="law-case-label">办理执法案件</div>
+                    <div class="law-case-num">999</div>
                     <div class="law-case-grid">
                         <div class="law-case-item">
                             <div class="law-case-label">简易程序</div>
@@ -1618,6 +1611,28 @@
                             <span class="tracking-action">推送监管一张网</span>
                         </td>
                     </tr>
+                    <tr>
+                        <td>文昌市xx企业</td>
+                        <td>文昌市xx局</td>
+                        <td>告知承诺类</td>
+                        <td>XXXXX</td>
+                        <td>XXXXX</td>
+                        <td>综合查一次</td>
+                        <td>责令改正</td>
+                        <td>XXXXX</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>     
+                            <span class="tracking-action">提醒督办</span>
+                            <span class="tracking-action">推送监管一张网</span>
+                        </td>
+                    </tr>
+                   
+                    
                 </tbody>
             </table>
         </div>
