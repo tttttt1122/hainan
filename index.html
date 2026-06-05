@@ -3287,8 +3287,8 @@
                 <div class="card-header">
                     <span class="card-title">监管事项</span>
                     <div class="dept-type-tabs">
-                        <div class="dept-type-tab active" onclick="switchItemTab('high')">高频事项</div>
-                        <div class="dept-type-tab" onclick="switchItemTab('uncovered')">未覆盖事项</div>
+                        <div class="dept-type-tab item-tab active" onclick="switchItemTab('high')">高频事项</div>
+                        <div class="dept-type-tab item-tab" onclick="switchItemTab('uncovered')">未覆盖事项</div>
                     </div>
                 </div>
                 <div style="overflow: auto; max-height: 240px;">
@@ -4762,11 +4762,11 @@
         }
 
         function switchItemTab(tab) {
-            const tabs = document.querySelectorAll('.dept-type-tab');
+            const tabs = document.querySelectorAll('.item-tab');
             const tbody = document.getElementById('itemTableBody');
-            
+
             tabs.forEach(t => t.classList.remove('active'));
-            
+
             if (tab === 'high') {
                 tabs[0].classList.add('active');
                 tbody.innerHTML = `
