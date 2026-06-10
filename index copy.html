@@ -656,51 +656,53 @@
                     <img src="图表/监管-对象信用.png" alt="监管对象图表" class="chart-image">
                 </div>
 
-                <!-- 监管行为 -->
+                <!-- 行政检查 -->
                 <div class="supervision-chart-box">
-                    <div class="approval-box-title">监管行为</div>
-                    
-                    <!-- 核查子模块 -->
-                    <div style="border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 4px; padding: 6px; margin-bottom: 6px; background: rgba(0, 200, 255, 0.03);">
-                        <div style="font-size: 14px; font-weight: 600; color: #00d4ff; margin-bottom: 6px; border-bottom: 1px solid rgba(0, 200, 255, 0.2); padding-bottom: 4px;">核查</div>
-                        <div style="display: flex; justify-content: space-between; gap: 6px;">
-                            <div style="flex: 1; border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">已办</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">99</span>
-                            </div>
-                            <div style="flex: 1; border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">待办</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">99</span>
-                            </div>
-                            <div style="flex: 1; border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">问题发生率</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">8%</span>
-                            </div>
-                        </div>
+                    <div class="approval-box-title">行政检查 
+                        <span style="font-size: 13px; color: rgba(255,255,255,0.8); margin-left: 8px;">减少上门次数</span>
+                        <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">88</span>
+                        <span style="font-size: 13px; color: rgba(255,255,255,0.8); margin-left: 8px;">同比检查减少率</span>
+                        <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">38%</span>
+                        <span style="font-size: 13px; color: rgba(255,255,255,0.8); margin-left: 8px;">问题发现率</span>
+                        <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">9%</span>
                     </div>
                     
-                    <!-- 检查子模块 -->
-                    <div style="border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 4px; padding: 6px; background: rgba(0, 200, 255, 0.03);">
-                        <div style="font-size: 14px; font-weight: 600; color: #00d4ff; margin-bottom: 6px; border-bottom: 1px solid rgba(0, 200, 255, 0.2); padding-bottom: 4px;">行政检查</div>
-                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;">
-                            <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">减少上门次数</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">99</span>
-                            </div>
-                            <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">检查行为减少次数</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">99</span>
-                            </div>
-                            <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">亮码率</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">90%</span>
-                            </div>
-                            <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
-                                <span style="font-size: 13px; color: rgba(255,255,255,0.8);">问题发生率</span>
-                                <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">8%</span>
-                            </div>
-                        </div>
-                    </div>
+                    <table style="width: 100%; font-size: 13px; border-collapse: collapse;">
+                        <thead>
+                            <tr style="background: rgba(0, 200, 255, 0.1);">
+                                <th style="padding: 4px 6px; text-align: left; color: #00d4ff; font-weight: 600; border-bottom: 1px solid rgba(0, 200, 255, 0.3);">监管方式</th>
+                                <th style="padding: 4px 6px; text-align: center; color: #00d4ff; font-weight: 600; border-bottom: 1px solid rgba(0, 200, 255, 0.3);">已办数</th>
+                                <th style="padding: 4px 6px; text-align: center; color: #00d4ff; font-weight: 600; border-bottom: 1px solid rgba(0, 200, 255, 0.3);">待办数</th>
+                                <th style="padding: 4px 6px; text-align: center; color: #00d4ff; font-weight: 600; border-bottom: 1px solid rgba(0, 200, 255, 0.3);">已亮码数</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid rgba(0, 200, 255, 0.1);">
+                                <td style="padding: 4px 6px; color: rgba(255,255,255,0.8);">双随机一公开</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">99</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">9</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #00ff88; font-weight: 600;">99</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0, 200, 255, 0.1);">
+                                <td style="padding: 4px 6px; color: rgba(255,255,255,0.8);">综合查一次</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">99</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">9</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #00ff88; font-weight: 600;">99</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid rgba(0, 200, 255, 0.1);">
+                                <td style="padding: 4px 6px; color: rgba(255,255,255,0.8);">重点监管</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">99</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">9</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #00ff88; font-weight: 600;">99</td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 4px 6px; color: rgba(255,255,255,0.8);">有因检查</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">99</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #ff9f43; font-weight: 600;">9</td>
+                                <td style="padding: 4px 6px; text-align: center; color: #00ff88; font-weight: 600;">99</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="supervision-scene-box">
@@ -720,6 +722,25 @@
                             <div style="font-size: 14px; font-weight: 600; color: #00d4ff; margin-bottom: 6px; border-bottom: 1px solid rgba(0, 200, 255, 0.3); padding-bottom: 4px;">触发式监管</div>
                             <div style="font-size: 14px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 4px; border-radius: 3px; transition: all 0.3s; margin-bottom: 2px;" onclick="alert('风险预警')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">风险预警</div>
                             <div style="font-size: 14px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 4px; border-radius: 3px; transition: all 0.3s;" onclick="alert('网络舆情')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">网络舆情</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 核查模块 -->
+                <div class="supervision-chart-box">
+                    <div class="approval-box-title">核查</div>
+                    <div style="display: flex; justify-content: space-between; gap: 6px;">
+                        <div style="flex: 1; border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
+                            <span style="font-size: 13px; color: rgba(255,255,255,0.8);">已办</span>
+                            <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">99</span>
+                        </div>
+                        <div style="flex: 1; border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
+                            <span style="font-size: 13px; color: rgba(255,255,255,0.8);">待办</span>
+                            <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">99</span>
+                        </div>
+                        <div style="flex: 1; border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 3px; padding: 4px 6px; text-align: center; background: rgba(0, 200, 255, 0.05);">
+                            <span style="font-size: 13px; color: rgba(255,255,255,0.8);">问题发现率</span>
+                            <span style="font-size: 14px; font-weight: 700; color: #ff9f43;">8%</span>
                         </div>
                     </div>
                 </div>
