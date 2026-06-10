@@ -631,19 +631,21 @@
                 <div class="section-title" style="cursor: pointer;" onclick="window.open('index.html', '_blank')">监管</div>
                 
                 <div class="supervision-chart-box">
-                    <div class="approval-box-title">监管事项总数 <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">99</span></div>
-                    <div style="display: flex; justify-content: space-around; padding: 2px 0; margin-bottom: 5px;">
-                        <div style="display: flex; align-items: center; gap: 4px;">
-                            <span style="font-size: 14px; color: rgba(255,255,255,0.7);">省级</span>
-                            <span style="font-size: 16px; font-weight: 700; color: #00d4ff;">99</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 4px;">
-                            <span style="font-size: 14px; color: rgba(255,255,255,0.7);">市县</span>
-                            <span style="font-size: 16px; font-weight: 700; color: #00d4ff;">9</span>
-                        </div>
-                        <div style="display: flex; align-items: center; gap: 4px;">
-                            <span style="font-size: 14px; color: rgba(255,255,255,0.7);">街镇</span>
-                            <span style="font-size: 16px; font-weight: 700; color: #00d4ff;">9</span>
+                    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(0, 200, 255, 0.2);">
+                        <div class="approval-box-title" style="margin-bottom: 0; border-bottom: none;">检查事项总数 <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">99</span></div>
+                        <div style="display: flex; gap: 8px;">
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; color: rgba(255,255,255,0.7);">省级</span>
+                                <span style="font-size: 16px; font-weight: 700; color: #00d4ff;">99</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; color: rgba(255,255,255,0.7);">市县</span>
+                                <span style="font-size: 16px; font-weight: 700; color: #00d4ff;">9</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 4px;">
+                                <span style="font-size: 14px; color: rgba(255,255,255,0.7);">街镇</span>
+                                <span style="font-size: 16px; font-weight: 700; color: #00d4ff;">9</span>
+                            </div>
                         </div>
                     </div>
                     <img src="图表/监管-事项柱.png" alt="监管事项图表" class="chart-image">
@@ -655,8 +657,69 @@
                 </div>
 
                 <div class="supervision-chart-box">
-                    <div class="approval-box-title">事中事后监管&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;已办办件数量同比减少率（年初至今） <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">30%</span></div>
-                    <img src="图表/监管-行为柱.png" alt="监管行为图表" class="chart-image">
+                    <div class="approval-box-title">事中事后监管&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;减少上门次数 <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">30</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;检查行为减少数 <span style="font-size: 20px; font-weight: 700; color: #ff9f43;">20</span></div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6px;">
+                        <!-- 双随机一公开 -->
+                        <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 4px; padding: 6px 8px; background: rgba(0, 200, 255, 0.05);">
+                            <div style="font-size: 13px; font-weight: 600; color: #00d4ff; margin-bottom: 4px;">双随机一公开：<span style="font-size: 16px; font-weight: 700; color: #ff9f43;">18</span></div>
+                            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.8);">
+                                <span>已办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>待办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>已亮码<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>减少上门次数<span style="font-size: 13px; font-weight: 700; color: #00d4ff;">20</span></span>
+                            </div>
+                        </div>
+                        <!-- 综合查一次 -->
+                        <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 4px; padding: 6px 8px; background: rgba(0, 200, 255, 0.05);">
+                            <div style="font-size: 13px; font-weight: 600; color: #00d4ff; margin-bottom: 4px;">综合查一次：<span style="font-size: 16px; font-weight: 700; color: #ff9f43;">18</span></div>
+                            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.8);">
+                                <span>已办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>待办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>已亮码<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>减少上门次数<span style="font-size: 13px; font-weight: 700; color: #00d4ff;">20</span></span>
+                            </div>
+                        </div>
+                        <!-- 有因检查 -->
+                        <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 4px; padding: 6px 8px; background: rgba(0, 200, 255, 0.05);">
+                            <div style="font-size: 13px; font-weight: 600; color: #00d4ff; margin-bottom: 4px;">有因检查：<span style="font-size: 16px; font-weight: 700; color: #ff9f43;">18</span></div>
+                            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.8);">
+                                <span>已办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>待办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>已亮码<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>减少上门次数<span style="font-size: 13px; font-weight: 700; color: #00d4ff;">20</span></span>
+                            </div>
+                        </div>
+                        <!-- 重点监管 -->
+                        <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 4px; padding: 6px 8px; background: rgba(0, 200, 255, 0.05);">
+                            <div style="font-size: 13px; font-weight: 600; color: #00d4ff; margin-bottom: 4px;">重点监管：<span style="font-size: 16px; font-weight: 700; color: #ff9f43;">18</span></div>
+                            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.8);">
+                                <span>已办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>待办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>已亮码<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>减少上门次数<span style="font-size: 13px; font-weight: 700; color: #00d4ff;">20</span></span>
+                            </div>
+                        </div>
+                        <!-- 批后核查 -->
+                        <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 4px; padding: 6px 8px; background: rgba(0, 200, 255, 0.05);">
+                            <div style="font-size: 13px; font-weight: 600; color: #00d4ff; margin-bottom: 4px;">批后核查：<span style="font-size: 16px; font-weight: 700; color: #ff9f43;">18</span></div>
+                            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.8);">
+                                <span>已办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>待办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>已亮码<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>减少上门次数<span style="font-size: 13px; font-weight: 700; color: #00d4ff;">20</span></span>
+                            </div>
+                        </div>
+                        <!-- 其他核查 -->
+                        <div style="border: 1px solid rgba(0, 200, 255, 0.4); border-radius: 4px; padding: 6px 8px; background: rgba(0, 200, 255, 0.05);">
+                            <div style="font-size: 13px; font-weight: 600; color: #00d4ff; margin-bottom: 4px;">其他核查：<span style="font-size: 16px; font-weight: 700; color: #ff9f43;">18</span></div>
+                            <div style="display: flex; justify-content: space-between; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.8);">
+                                <span>已办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>待办<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>已亮码<span style="font-size: 13px; font-weight: 700; color: #ff9f43;">9</span></span>
+                                <span>减少上门次数<span style="font-size: 13px; font-weight: 700; color: #00d4ff;">20</span></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="supervision-scene-box">
@@ -872,6 +935,32 @@
             document.getElementById('video-player').currentTime = 0;
         }
 
+        // 选择监管类型
+        function selectVideoType(element, type) {
+            // 重置所有监管类型选项的背景
+            const typeOptions = element.parentElement.querySelectorAll('div[onclick^="selectVideoType"]');
+            typeOptions.forEach(opt => {
+                opt.style.background = 'transparent';
+            });
+            // 设置当前选中项的背景
+            element.style.background = 'rgba(0, 200, 255, 0.2)';
+            // 更新显示的当前监控类型
+            document.getElementById('current-video-type').textContent = type;
+        }
+
+        // 选择区划
+        function selectArea(element, area) {
+            // 重置所有区划选项的背景
+            const areaOptions = element.parentElement.querySelectorAll('div[onclick^="selectArea"]');
+            areaOptions.forEach(opt => {
+                opt.style.background = 'transparent';
+            });
+            // 设置当前选中项的背景
+            element.style.background = 'rgba(0, 200, 255, 0.2)';
+            // 更新显示的当前区域
+            document.getElementById('current-area').textContent = area;
+        }
+
         // 监管模式弹窗
         function showSupervisionModal() {
             document.getElementById('supervision-modal').style.display = 'flex';
@@ -975,23 +1064,55 @@
                 <span class="modal-title">非现场监管</span>
                 <button class="modal-close" onclick="closeVideoModal()">×</button>
             </div>
-            <div class="modal-body">
-                <video id="video-player" class="modal-video" controls autoplay>
-                    <source src="非现场监管.mp4" type="video/mp4">
-                    您的浏览器不支持视频播放。
-                </video>
+            <div class="modal-body" style="display: flex; gap: 15px;">
+                <!-- 左侧选项栏 -->
+                <div style="width: 180px; display: flex; flex-direction: column; gap: 8px;">
+                    <!-- 监管类型选项 -->
+                    <div style="border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 4px; padding: 8px; background: rgba(0, 200, 255, 0.05);">
+                        <div style="font-size: 14px; font-weight: 600; color: #00d4ff; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid rgba(0, 200, 255, 0.2);">监管类型</div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; background: rgba(0, 200, 255, 0.2); transition: all 0.3s;" onclick="selectVideoType(this, '明厨亮灶')">明厨亮灶</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; transition: all 0.3s;" onclick="selectVideoType(this, '盗采河沙')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">盗采河沙</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; transition: all 0.3s;" onclick="selectVideoType(this, '临街摆摊')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">临街摆摊</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; transition: all 0.3s;" onclick="selectVideoType(this, '违规停车')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">违规停车</div>
+                        </div>
+                    </div>
+                    <!-- 区划筛选 -->
+                    <div style="border: 1px solid rgba(0, 200, 255, 0.3); border-radius: 4px; padding: 8px; background: rgba(0, 200, 255, 0.05);">
+                        <div style="font-size: 14px; font-weight: 600; color: #00d4ff; margin-bottom: 6px; padding-bottom: 4px; border-bottom: 1px solid rgba(0, 200, 255, 0.2);">区划筛选</div>
+                        <div style="display: flex; flex-direction: column; gap: 4px;">
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; background: rgba(0, 200, 255, 0.2); transition: all 0.3s;" onclick="selectArea(this, '全部')">全部</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; transition: all 0.3s;" onclick="selectArea(this, '海口市')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">海口市</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; transition: all 0.3s;" onclick="selectArea(this, '三亚市')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">三亚市</div>
+                            <div style="font-size: 13px; color: rgba(255,255,255,0.8); cursor: pointer; padding: 6px 8px; border-radius: 3px; transition: all 0.3s;" onclick="selectArea(this, '儋州市')" onmouseover="this.style.background='rgba(0,200,255,0.2)'" onmouseout="this.style.background='transparent'">儋州市</div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 右侧视频区域 -->
+                <div style="flex: 1; display: flex; flex-direction: column;">
+                    <div style="margin-bottom: 8px; padding: 6px 10px; background: rgba(0, 200, 255, 0.1); border-radius: 4px; border: 1px solid rgba(0, 200, 255, 0.3);">
+                        <span style="font-size: 14px; color: rgba(255,255,255,0.9);">当前监控：</span>
+                        <span id="current-video-type" style="font-size: 14px; font-weight: 600; color: #00d4ff;">明厨亮灶</span>
+                        <span style="font-size: 14px; color: rgba(255,255,255,0.9); margin-left: 15px;">区域：</span>
+                        <span id="current-area" style="font-size: 14px; font-weight: 600; color: #00d4ff;">全部</span>
+                    </div>
+                    <video id="video-player" class="modal-video" controls autoplay>
+                        <source src="非现场监管.mp4" type="video/mp4">
+                        您的浏览器不支持视频播放。
+                    </video>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- 监管模式弹窗 -->
     <div id="supervision-modal" class="modal-overlay" style="display: none;">
-        <div class="modal-content supervision-modal">
+        <div class="modal-content" style="max-width: 95vw !important; width: 95vw !important; max-height: 95vh !important; height: 95vh !important;">
             <div class="modal-header">
                 <span class="modal-title">监管模式</span>
                 <button class="modal-close" onclick="closeModal('supervision-modal')">×</button>
             </div>
-            <div class="modal-body scrollable-body">
+            <div class="modal-body scrollable-body" style="height: calc(95vh - 80px);">
                 <div class="scroll-container">
                     <img src="新型监管-监管模式.png" alt="监管模式" class="modal-image-long">
                 </div>
