@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #00d4ff;
+    --primary-glow: rgba(0, 212, 255, 0.5);
+    --secondary-color: #00ff88;
+    --accent-color: #ff6b6b;
+    --bg-primary: #050d18;
+    --bg-secondary: #0a1628;
+    --bg-tertiary: #0d1f3c;
+    --bg-card: rgba(5, 13, 24, 0.85);
+    --border-color: rgba(0, 212, 255, 0.4);
+    --border-glow: rgba(0, 212, 255, 0.6);
+    --text-primary: #ffffff;
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-muted: rgba(255, 255, 255, 0.5);
+    --font-family: 'PingFangSC', 'Microsoft YaHei', sans-serif;
+    --transition-speed: 0.3s;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--bg-primary);
+    min-height: 100vh;
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.glow-text {
+    text-shadow: 
+        0 0 10px var(--primary-glow),
+        0 0 20px var(--primary-glow),
+        0 0 40px rgba(0, 212, 255, 0.3),
+        0 0 80px rgba(0, 212, 255, 0.2);
+}
+
+.glow-border {
+    box-shadow: 
+        0 0 20px var(--primary-glow),
+        inset 0 0 20px rgba(0, 212, 255, 0.05);
+}
+
+.glow-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    box-shadow: 
+        0 0 20px rgba(0, 212, 255, 0.15),
+        inset 0 0 30px rgba(0, 212, 255, 0.03);
+    position: relative;
+    overflow: hidden;
+}
+
+.glow-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    opacity: 0.6;
+}
+
+.glow-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--primary-color), transparent, var(--primary-color));
+    opacity: 0.4;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.15);
+}
+
+.card-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary-color);
+    letter-spacing: 1px;
+}
+
+.more-btn {
+    font-size: 13px;
+    color: rgba(0, 212, 255, 0.8);
+    cursor: pointer;
+    padding: 3px 8px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 3px;
+    transition: all var(--transition-speed);
+}
+
+.more-btn:hover {
+    background: rgba(0, 212, 255, 0.2);
+    color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+@keyframes pulse-glow {
+    0%, 100% { 
+        opacity: 1; 
+        box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    }
+    50% { 
+        opacity: 0.7; 
+        box-shadow: 0 0 40px rgba(0, 212, 255, 0.5);
+    }
+}
+
+@keyframes slide-in {
+    from { 
+        opacity: 0; 
+        transform: translateY(10px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes grid-move {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+}
+
+.animate-slide-in {
+    animation: slide-in 0.4s ease-out forwards;
+}
+
+.animate-grid-move {
+    animation: grid-move 20s linear infinite;
+}
+
+.animate-float {
+    animation: float 3s ease-in-out infinite;
+}
+
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+.gap-10 { gap: 10px; }
+.gap-15 { gap: 15px; }
+.gap-20 { gap: 20px; }
