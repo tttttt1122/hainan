@@ -136,38 +136,68 @@ window.HomePage = class HomePage {
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item">
-                                        <span class="stat-label">建筑工程主要事项审批平均用时</span>
+                                        <span class="stat-label">建筑工程项目主要事项审批平均用时</span>
+                                        <span class="stat-value">7h</span>
+                                    </div>
+                                     <div class="stat-divider"></div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">建筑工程项目从审批到落地平均用时</span>
                                         <span class="stat-value">7h</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="map-container">
-                                <div class="map-tab-overlay">
-                                    <button class="map-tab-btn active">省直</button>
-                                    <button class="map-tab-btn">市县</button>
+                                <div class="map-view-tabs">
+                                    <button class="map-view-tab map-view-tab-active" data-view="panorama">全景图</button>
+                                    <button class="map-view-tab" data-view="map">地图</button>
                                 </div>
-                                <img src="地图.png" class="map-image" alt="海南地图">
+                                <img src="审管法信.gif" class="map-image" data-view="panorama" alt="全景图">
+                                <img src="地图.png" class="map-image map-image-hidden" data-view="map" alt="地图">
                             </div>
                         </div>
                         <div class="card-section industry-section">
                             <div class="card-title">产业总体情况</div>
                             <div class="industry-grid">
-                                <div class="industry-item">
-                                    <div class="industry-title">产业分布</div>
-                                    <div class="industry-tags">
-                                        <span class="industry-tag">旅游业  9</span>
-                                        <span class="industry-tag">现代服务业  8</span>
-                                        <span class="industry-tag">高新技术产业  7</span>
-                                        <span class="industry-tag">热带特色高效农业  3</span>
+                                <div class="industry-tags">
+                                    <div class="industry-tag industry-tag-has-sub">
+                                        <span>旅游业</span>
+                                        <div class="industry-subtypes">
+                                            <span class="industry-subtype">景观旅游</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">文化旅游</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">康养旅游</span>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="industry-item">
-                                    <div class="industry-title">梯度培育</div>
-                                    <div class="industry-tags">
-                                        <span class="industry-tag">企业规模  5</span>
-                                        <span class="industry-tag">创新经营税收  21</span>
-                                        <span class="industry-tag">创新专利  1</span>
-                                        <span class="industry-tag">xxxx  1</span>
+                                    <div class="industry-tag industry-tag-has-sub">
+                                        <span>现代服务业</span>
+                                        <div class="industry-subtypes">
+                                            <span class="industry-subtype">现代物流业</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">医疗健康产业</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">商业服务业</span>
+                                        </div>
+                                    </div>
+                                    <div class="industry-tag industry-tag-has-sub">
+                                        <span>高新技术产业</span>
+                                        <div class="industry-subtypes">
+                                            <span class="industry-subtype">数字经济</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">现代生物医药</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">清洁能源</span>
+                                        </div>
+                                    </div>
+                                    <div class="industry-tag industry-tag-has-sub">
+                                        <span>热带特色高效农业</span>
+                                        <div class="industry-subtypes">
+                                            <span class="industry-subtype">特色种养业</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">农产品精深加工业</span>
+                                            <span class="industry-subtype-divider">|</span>
+                                            <span class="industry-subtype">休闲农（渔）业</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -238,11 +268,11 @@ window.HomePage = class HomePage {
                                 <div class="panel-items">
                                     <div class="panel-item-row">
                                         <div class="panel-item panel-item-half">
-                                            <span class="panel-label">轻微免罚</span>
+                                            <span class="panel-label">轻微免罚清单</span>
                                             <span class="panel-value">80</span>
                                         </div>
                                         <div class="panel-item panel-item-half">
-                                            <span class="panel-label">首违不罚</span>
+                                            <span class="panel-label">首违不罚清单</span>
                                             <span class="panel-value">90</span>
                                         </div>
                                     </div>
@@ -274,6 +304,26 @@ window.HomePage = class HomePage {
                 </div>
             </div>
         `;
+        this.initMapViewTabs();
+    }
+
+    initMapViewTabs() {
+        const tabs = this.container.querySelectorAll('.map-view-tab');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const view = tab.dataset.view;
+                tabs.forEach(t => t.classList.remove('map-view-tab-active'));
+                tab.classList.add('map-view-tab-active');
+                const images = this.container.querySelectorAll('.map-image');
+                images.forEach(img => {
+                    if (img.dataset.view === view) {
+                        img.classList.remove('map-image-hidden');
+                    } else {
+                        img.classList.add('map-image-hidden');
+                    }
+                });
+            });
+        });
     }
 
     show() {
