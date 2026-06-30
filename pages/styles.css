@@ -3884,6 +3884,52 @@
     padding: 10px;
 }
 
+.gradient-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gradient-item {
+    background: linear-gradient(135deg, rgba(0, 212, 255, 0.08) 0%, rgba(0, 212, 255, 0.03) 100%);
+    border: 1px solid rgba(0, 212, 255, 0.15);
+    border-radius: 6px;
+    padding: 10px 12px;
+}
+
+.gradient-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #00d4ff;
+    margin-bottom: 8px;
+    padding-left: 4px;
+}
+
+.gradient-stats {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.gradient-stat {
+    flex: 1;
+    text-align: center;
+}
+
+.gradient-stat-label {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    display: block;
+    margin-bottom: 4px;
+}
+
+.gradient-stat-value {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.9);
+    display: block;
+}
+
 .industry-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
