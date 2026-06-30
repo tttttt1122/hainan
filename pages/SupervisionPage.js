@@ -180,7 +180,7 @@ window.SupervisionPage = class SupervisionPage {
                                             <div class="action-indicator"><span class="action-indicator-value trend-up">↑ 2%</span></div>
                                         </div>
                                     </div>
-                                    <div class="action-card">
+                                    <div class="action-card sv-clickable" data-sv-modal="15">
                                         <div class="action-card-title">承诺即入制</div>
                                         <div class="action-card-body">
                                             <div class="action-indicator"><span class="action-indicator-label">任务</span><span class="action-indicator-value">312</span></div>
@@ -211,7 +211,7 @@ window.SupervisionPage = class SupervisionPage {
             const target = e.target.closest('[data-sv-modal]');
             if (target) {
                 const modalId = parseInt(target.dataset.svModal);
-                if (modalId >= 1 && modalId <= 14) {
+                if (modalId >= 1 && modalId <= 15) {
                     this['openSvModal' + modalId]();
                 }
             }
@@ -235,14 +235,14 @@ window.SupervisionPage = class SupervisionPage {
             4:'主体合规率分析', 5:'信用等级分布分析', 6:'检查行为总览',
             7:'单部门双随机检查分析', 8:'重点检查分析', 9:'专项检查分析',
             10:'有因检查分析', 11:'综合查一次分析', 12:'跨部门双随机分析',
-            13:'核查行为总览', 14:'告知承诺制核查分析'
+            13:'核查行为总览', 14:'告知承诺制核查分析', 15:'承诺即入制核查分析'
         };
         return map[m] || '';
     }
 
     _svClose(overlay) {
-        const ids = ['svc1','svc2','svc3','svc4','svc5','svc6','svc7','svc8','svc9','svc10','svc11','svc12','svc13','svc14',
-                      'svc1b','svc2b','svc3b','svc4b','svc5b','svc6b','svc7b','svc8b','svc9b','svc10b','svc11b','svc12b','svc13b','svc14b'];
+        const ids = ['svc1','svc2','svc3','svc4','svc5','svc6','svc7','svc8','svc9','svc10','svc11','svc12','svc13','svc14','svc15',
+                      'svc1b','svc2b','svc3b','svc4b','svc5b','svc6b','svc7b','svc8b','svc9b','svc10b','svc11b','svc12b','svc13b','svc14b','svc15b'];
         ids.forEach(id => { try { const d = document.getElementById(id); if (d) { const inst = echarts.getInstanceByDom(d); if (inst) inst.dispose(); } } catch(e) {} });
         if (overlay) overlay.remove();
         this.svCurrentModal = 0;
@@ -445,7 +445,7 @@ window.SupervisionPage = class SupervisionPage {
         const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(4)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('主体合规率','99%')}${this._svRenderCard('合规主体数','98.8万户')}${this._svRenderCard('不合规主体数','1.0万户')}${this._svRenderCard('较上季度提升','+0.5%','sv-stat-highlight')}</div>
-            ${this._svChartsWrap('svc4','合规vs不合规占比','svc4b','各行业合规率排行',4,6)}
+            ${this._svChartsWrap('svc4','合规vs不合规占比','svc4b','各行业合规率情况',4,6)}
             <div class="rv-table-wrap">${this._svRenderTable(['序号','主体名称','统一社会信用代码','所属行业','违规类型','发现日期','整改状态'],['idx','name','uscc','industry','violationType','discoverDate','rectificationStatus'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
@@ -476,7 +476,7 @@ window.SupervisionPage = class SupervisionPage {
     _svHtml5() {
         const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(5)}</span><button class="rv-modal-close">×</button></div>
-            <div class="rv-stats">${this._svRenderCard('B级及以上主体数','89.8万户')}${this._svRenderCard('占比','90%')}${this._svRenderCard('A级','45.6万户')}${this._svRenderCard('B级','44.2万户')}</div>
+            <div class="rv-stats">${this._svRenderCard('B级及以上主体数','89.8万户')}${this._svRenderCard('占比','90%')}${this._svRenderCard('信用A级主体数','45.6万户')}${this._svRenderCard('信用B级主体数','44.2万户')}</div>
             ${this._svChartsWrap('svc5','信用等级分布','svc5b','各行业B级及以上占比排行',5,5)}
             <div class="rv-table-wrap">${this._svRenderTable(['序号','主体名称','统一社会信用代码','所属行业','信用等级','评定日期','有效期至'],['idx','name','uscc','industry','creditLevel','assessDate','validUntil'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
@@ -564,7 +564,7 @@ window.SupervisionPage = class SupervisionPage {
         const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(8)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('制定计划','523个')}${this._svRenderCard('检查','489次')}${this._svRenderCard('计划执行率','93.5%')}${this._svRenderCard('违法线索移送','67条')}</div>
-            ${this._svChartsWrap('svc8','重点检查领域分布TOP8','svc8b','重点检查问题检出率',5,5)}
+            ${this._svChartsWrap('svc8','重点检查领域分布TOP8','svc8b','检查结果分布',5,5)}
             <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','检查对象','重点领域','检查日期','检查结果'],['idx','planName','target','keyArea','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
@@ -574,7 +574,7 @@ window.SupervisionPage = class SupervisionPage {
         const vals = [98,85,72,65,58,48,38,25];
         c.setOption({ tooltip:{trigger:'axis'}, grid:{left:'3%',right:'4%',bottom:'15%',top:'8%',containLabel:true}, xAxis:{type:'category',data:cats,axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:9,rotate:20}}, yAxis:{type:'value',axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:10},splitLine:{lineStyle:{color:'rgba(0,212,255,0.1)'}}}, series:[{type:'bar',data:vals,barWidth:'55%',itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff9500'},{offset:1,color:'rgba(255,149,0,0.3)'}])}}] });
         const cb = this._svInitChart('svc8b'); if (!cb) return;
-        cb.setOption({ tooltip:{trigger:'item',formatter:'{b}: {d}%'}, legend:{bottom:0,textStyle:{color:'rgba(255,255,255,0.5)',fontSize:10}}, series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],label:{show:false},data:[{value:60,name:'无问题',itemStyle:{color:'#34c759'}},{value:25,name:'一般问题',itemStyle:{color:'#ff9500'}},{value:10,name:'严重问题',itemStyle:{color:'#ff3b30'}},{value:5,name:'违法移送',itemStyle:{color:'#af52de'}}]}] });
+        cb.setOption({ tooltip:{trigger:'item',formatter:'{b}: {d}%'}, legend:{bottom:0,textStyle:{color:'rgba(255,255,255,0.5)',fontSize:10}}, series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],label:{show:false},data:[{value:75,name:'合格',itemStyle:{color:'#34c759'}},{value:15,name:'责令整改',itemStyle:{color:'#ff9500'}},{value:7,name:'违法线索移送',itemStyle:{color:'#ff3b30'}},{value:3,name:'其他',itemStyle:{color:'#8e8e93'}}]}] });
     }
 
     // ============ MODAL 9: 专项检查分析 ============
@@ -593,7 +593,7 @@ window.SupervisionPage = class SupervisionPage {
         const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(9)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('制定计划','312个')}${this._svRenderCard('检查','287次')}${this._svRenderCard('计划执行率','92.0%')}${this._svRenderCard('违法线索移送','45条')}</div>
-            ${this._svChartsWrap('svc9','专项检查类型分布','svc9b','专项检查问题类型分布',5,5)}
+            ${this._svChartsWrap('svc9','专项检查类型分布','svc9b','检查结果分布',5,5)}
             <div class="rv-table-wrap">${this._svRenderTable(['序号','专项名称','检查对象','专项领域','检查日期','检查结果'],['idx','specialName','target','specialArea','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
@@ -603,7 +603,7 @@ window.SupervisionPage = class SupervisionPage {
         const vals = [82,68,55,42,28,12];
         c.setOption({ tooltip:{trigger:'axis'}, grid:{left:'3%',right:'4%',bottom:'15%',top:'8%',containLabel:true}, xAxis:{type:'category',data:cats,axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:9,rotate:20}}, yAxis:{type:'value',axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:10},splitLine:{lineStyle:{color:'rgba(0,212,255,0.1)'}}}, series:[{type:'bar',data:vals,barWidth:'55%',itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#af52de'},{offset:1,color:'rgba(175,82,222,0.3)'}])}}] });
         const cb = this._svInitChart('svc9b'); if (!cb) return;
-        cb.setOption({ tooltip:{trigger:'item',formatter:'{b}: {d}%'}, legend:{bottom:0,textStyle:{color:'rgba(255,255,255,0.5)',fontSize:10}}, series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],label:{show:false},data:[{value:30,name:'证照问题',itemStyle:{color:'#00d4ff'}},{value:25,name:'产品质量',itemStyle:{color:'#ff9500'}},{value:20,name:'广告违规',itemStyle:{color:'#ff3b30'}},{value:15,name:'价格违法',itemStyle:{color:'#af52de'}},{value:10,name:'其他',itemStyle:{color:'#8e8e93'}}]}] });
+        cb.setOption({ tooltip:{trigger:'item',formatter:'{b}: {d}%'}, legend:{bottom:0,textStyle:{color:'rgba(255,255,255,0.5)',fontSize:10}}, series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],label:{show:false},data:[{value:75,name:'合格',itemStyle:{color:'#34c759'}},{value:15,name:'责令整改',itemStyle:{color:'#ff9500'}},{value:7,name:'违法线索移送',itemStyle:{color:'#ff3b30'}},{value:3,name:'其他',itemStyle:{color:'#8e8e93'}}]}] });
     }
 
     // ============ MODAL 10: 有因检查分析 ============
@@ -679,17 +679,17 @@ window.SupervisionPage = class SupervisionPage {
         const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(12)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('制定计划','167个')}${this._svRenderCard('检查','145次')}${this._svRenderCard('计划执行率','86.8%')}${this._svRenderCard('违法线索移送','23条')}</div>
-            ${this._svChartsWrap('svc12','跨部门双随机高频组合TOP8','svc12b','跨部门双随机检查结果分布',5,5)}
+            ${this._svChartsWrap('svc12','跨部门双随机领域分布','svc12b','检查结果分布',5,5)}
             <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','参与部门','检查对象','检查日期','检查结果'],['idx','planName','participatingDepts','target','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart12() {
         const c = this._svInitChart('svc12'); if (!c) return;
-        const combos = ['市监+税务','市监+环保','市监+消防','市监+卫健','税务+环保','市监+住建','市监+文旅','税务+消防'];
+        const fields = ['市场监管','生态环境','交通运输','卫生健康','文化旅游','应急管理','税务','海关'];
         const vals = [45,38,30,22,18,15,10,7];
-        c.setOption({ tooltip:{trigger:'axis'}, grid:{left:'3%',right:'4%',bottom:'18%',top:'8%',containLabel:true}, xAxis:{type:'category',data:combos,axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:8,rotate:30}}, yAxis:{type:'value',axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:10},splitLine:{lineStyle:{color:'rgba(0,212,255,0.1)'}}}, series:[{type:'bar',data:vals,barWidth:'50%',itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#34c759'},{offset:1,color:'rgba(52,199,89,0.3)'}])}}] });
+        c.setOption({ tooltip:{trigger:'axis'}, grid:{left:'3%',right:'4%',bottom:'15%',top:'8%',containLabel:true}, xAxis:{type:'category',data:fields,axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:9,rotate:20}}, yAxis:{type:'value',axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:10},splitLine:{lineStyle:{color:'rgba(0,212,255,0.1)'}}}, series:[{type:'bar',data:vals,barWidth:'55%',itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#34c759'},{offset:1,color:'rgba(52,199,89,0.3)'}])}}] });
         const cb = this._svInitChart('svc12b'); if (!cb) return;
-        cb.setOption({ tooltip:{trigger:'item',formatter:'{b}: {d}%'}, legend:{bottom:0,textStyle:{color:'rgba(255,255,255,0.5)',fontSize:10}}, series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],label:{show:false},data:[{value:55,name:'全部合格',itemStyle:{color:'#34c759'}},{value:30,name:'部分问题',itemStyle:{color:'#ff9500'}},{value:10,name:'全部问题',itemStyle:{color:'#ff3b30'}},{value:5,name:'违法移送',itemStyle:{color:'#af52de'}}]}] });
+        cb.setOption({ tooltip:{trigger:'item',formatter:'{b}: {d}%'}, legend:{bottom:0,textStyle:{color:'rgba(255,255,255,0.5)',fontSize:10}}, series:[{type:'pie',radius:['45%','70%'],center:['50%','45%'],label:{show:false},data:[{value:75,name:'合格',itemStyle:{color:'#34c759'}},{value:15,name:'责令整改',itemStyle:{color:'#ff9500'}},{value:7,name:'违法线索移送',itemStyle:{color:'#ff3b30'}},{value:3,name:'其他',itemStyle:{color:'#8e8e93'}}]}] });
     }
 
     // ============ MODAL 13: 核查行为总览 ============
@@ -732,14 +732,19 @@ window.SupervisionPage = class SupervisionPage {
         return data;
     }
     openSvModal14() { this._svOpen(14, this.genSv14Data()); }
-    _svHtml14() {
-        const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
-        return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(14)}</span><button class="rv-modal-close">×</button></div>
-            <div class="rv-stats">${this._svRenderCard('核查任务数','523次')}${this._svRenderCard('完成率','98%')}${this._svRenderCard('问题检出率','5%')}${this._svRenderCard('问题检出同比','↑2%','sv-stat-highlight')}</div>
-            ${this._svChartsWrap('svc14','核查结果分布','svc14b','各部门告知承诺制核查问题检出率排行',4,6)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','核查对象','承诺事项','核查日期','核查结果','整改状态'],['idx','target','promiseItem','verificationDate','result','rectificationStatus'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
-            <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
+
+    // ============ MODAL 15: 承诺即入制核查分析 ============
+    genSv15Data() {
+        const data = [];
+        const results = ['合格','问题整改','不合格'];
+        const statuses = ['已完成','进行中','未开始'];
+        for (let i = 1; i <= 40; i++) {
+            const m = Math.floor(Math.random()*12)+1, d = Math.floor(Math.random()*28)+1;
+            data.push({ target:'核查对象'+(15000+i), promiseItem:'承诺事项'+(i%10+1), verificationDate:'2026-'+String(m).padStart(2,'0')+'-'+String(d).padStart(2,'0'), result:results[i%3], rectificationStatus:statuses[i%3] });
+        }
+        return data;
     }
+    openSvModal15() { this._svOpen(15, this.genSv15Data()); }
     _svChart14() {
         const c = this._svInitChart('svc14'); if (!c) return;
         c.setOption({ tooltip:{trigger:'item',formatter:'{b}: {c}%'}, series:[{type:'pie',radius:['55%','72%'],center:['50%','50%'],label:{show:false},emphasis:{label:{show:true,fontSize:12,formatter:'{d}%'}},data:[{value:85,name:'合格',itemStyle:{color:'#34c759'}},{value:10,name:'问题整改',itemStyle:{color:'#ff9500'}},{value:5,name:'不合格',itemStyle:{color:'#ff3b30'}}],graphic:[{type:'text',left:'center',top:'center',style:{text:'98%',textAlign:'center',fill:'#00d4ff',fontSize:26,fontWeight:'bold'}}]}] });
@@ -747,6 +752,25 @@ window.SupervisionPage = class SupervisionPage {
         const depts = ['省市场监管局','省发改委','省住建厅','省卫健委','省财政厅','省生态环境厅','省教育厅','省文旅厅'];
         const vals = [8.5,6.2,5.8,5.1,4.3,3.8,3.2,2.5];
         const colors = vals.map(v => v>8?'#ff3b30':v>5?'#ff9500':'#34c759');
+        cb.setOption({ tooltip:{trigger:'axis',formatter:'{b}: {c}%'}, grid:{left:'3%',right:'8%',bottom:'12%',top:'8%',containLabel:true}, xAxis:{type:'category',data:depts,axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:8,rotate:25}}, yAxis:{type:'value',axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(0,212,255,0.1)'}}}, series:[{type:'bar',data:vals.map((v,i)=>({value:v,itemStyle:{color:colors[i],borderRadius:[4,4,0,0]}})),barWidth:'50%',label:{show:true,position:'top',color:'rgba(255,255,255,0.6)',fontSize:10,formatter:'{c}%'}}] });
+    }
+
+    // ============ MODAL 15: 承诺即入制核查分析 ============
+    _svHtml15() {
+        const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
+        return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(15)}</span><button class="rv-modal-close">×</button></div>
+            <div class="rv-stats">${this._svRenderCard('核查任务数','312次')}${this._svRenderCard('完成率','96%')}${this._svRenderCard('问题检出率','8%')}${this._svRenderCard('问题检出同比','↑8%','sv-stat-highlight')}</div>
+            ${this._svChartsWrap('svc15','核查结果分布','svc15b','各部门承诺即入制核查问题检出率排行',4,6)}
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','核查对象','承诺事项','核查日期','核查结果','整改状态'],['idx','target','promiseItem','verificationDate','result','rectificationStatus'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
+    }
+    _svChart15() {
+        const c = this._svInitChart('svc15'); if (!c) return;
+        c.setOption({ tooltip:{trigger:'item',formatter:'{b}: {c}%'}, series:[{type:'pie',radius:['55%','72%'],center:['50%','50%'],label:{show:false},emphasis:{label:{show:true,fontSize:12,formatter:'{d}%'}},data:[{value:82,name:'合格',itemStyle:{color:'#34c759'}},{value:12,name:'问题整改',itemStyle:{color:'#ff9500'}},{value:6,name:'不合格',itemStyle:{color:'#ff3b30'}}],graphic:[{type:'text',left:'center',top:'center',style:{text:'96%',textAlign:'center',fill:'#00d4ff',fontSize:26,fontWeight:'bold'}}]}] });
+        const cb = this._svInitChart('svc15b'); if (!cb) return;
+        const depts = ['省市场监管局','省发改委','省住建厅','省卫健委','省财政厅','省生态环境厅','省教育厅','省文旅厅'];
+        const vals = [12.5,9.2,8.8,7.1,6.3,5.8,4.2,3.5];
+        const colors = vals.map(v => v>10?'#ff3b30':v>6?'#ff9500':'#34c759');
         cb.setOption({ tooltip:{trigger:'axis',formatter:'{b}: {c}%'}, grid:{left:'3%',right:'8%',bottom:'12%',top:'8%',containLabel:true}, xAxis:{type:'category',data:depts,axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:8,rotate:25}}, yAxis:{type:'value',axisLabel:{color:'rgba(255,255,255,0.5)',fontSize:10,formatter:'{value}%'},splitLine:{lineStyle:{color:'rgba(0,212,255,0.1)'}}}, series:[{type:'bar',data:vals.map((v,i)=>({value:v,itemStyle:{color:colors[i],borderRadius:[4,4,0,0]}})),barWidth:'50%',label:{show:true,position:'top',color:'rgba(255,255,255,0.6)',fontSize:10,formatter:'{c}%'}}] });
     }
 
