@@ -2871,8 +2871,8 @@ window.LawPage = class LawPage {
                 <div class="rv-charts">
                     <div class="rv-chart-left" style="flex:5">
                         <div class="rv-chart-item">
-                            <span class="rv-chart-title">各部门/区域覆盖情况</span>
-                            <div id="rd-treemap-chart" class="rv-chart-container"></div>
+                            <span class="rv-chart-title">区域部门覆盖情况</span>
+                            <div id="rd-coverage-bar" class="rv-chart-container"></div>
                         </div>
                     </div>
                     <div class="rv-chart-right" style="flex:5">
@@ -2926,38 +2926,34 @@ window.LawPage = class LawPage {
     initReviewDeptCharts() {
         if (typeof echarts === 'undefined') return;
         requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => {
-            this.initRdTreemapChart();
+            this.initRdCoverageBarChart();
             this.initRdBarChart();
         }, 150)));
     }
 
-    initRdTreemapChart() {
-        const dom = this._rdOverlay?.querySelector('#rd-treemap-chart'); if (!dom) return;
+    initRdCoverageBarChart() {
+        const dom = this._rdOverlay?.querySelector('#rd-coverage-bar'); if (!dom) return;
         dom.style.width = '100%'; dom.style.height = '230px';
-        if (dom.getBoundingClientRect().width <= 0) { setTimeout(() => this.initRdTreemapChart(), 200); return; }
+        if (dom.getBoundingClientRect().width <= 0) { setTimeout(() => this.initRdCoverageBarChart(), 200); return; }
         const existing = echarts.getInstanceByDom(dom); if (existing) existing.dispose();
-        const chart = echarts.init(dom); this._rdCharts.treemap = chart;
+        const chart = echarts.init(dom); this._rdCharts.coverageBar = chart;
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '五指山市'];
+        const covered = [20, 15, 12, 10, 9, 8, 7, 6];
+        const uncovered = [0, 1, 1, 2, 1, 2, 2, 3];
         chart.setOption({
-            tooltip: { formatter: '{b}: 已覆盖' },
-            series: [{
-                type: 'treemap', roam: false, nodeClick: false, width: '95%', height: '85%',
-                label: { show: true, formatter: '{b}', fontSize: 10, color: '#fff' },
-                itemStyle: { borderColor: 'rgba(5,13,24,0.98)', borderWidth: 2 },
-                levels: [{ itemStyle: { borderColor: '#555', borderWidth: 2, gapWidth: 1 } }],
-                data: [
-                    { name: '海口\n已覆盖', value: 20, itemStyle: { color: 'rgba(0,212,255,0.7)' } },
-                    { name: '三亚\n已覆盖', value: 15, itemStyle: { color: 'rgba(0,212,255,0.65)' } },
-                    { name: '儋州\n已覆盖', value: 12, itemStyle: { color: 'rgba(0,212,255,0.6)' } },
-                    { name: '文昌\n已覆盖', value: 10, itemStyle: { color: 'rgba(0,212,255,0.55)' } },
-                    { name: '琼海\n已覆盖', value: 9, itemStyle: { color: 'rgba(0,212,255,0.5)' } },
-                    { name: '万宁\n已覆盖', value: 8, itemStyle: { color: 'rgba(0,212,255,0.45)' } },
-                    { name: '东方\n已覆盖', value: 7, itemStyle: { color: 'rgba(0,212,255,0.4)' } },
-                    { name: '五指山\n已覆盖', value: 6, itemStyle: { color: 'rgba(0,212,255,0.35)' } },
-                    { name: '定安\n已覆盖', value: 5, itemStyle: { color: 'rgba(0,212,255,0.3)' } },
-                    { name: '澄迈\n已覆盖', value: 5, itemStyle: { color: 'rgba(0,212,255,0.28)' } },
-                    { name: '昌江\n未覆盖', value: 3, itemStyle: { color: 'rgba(255,59,48,0.7)' } }
-                ]
-            }]
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: (params) => {
+                let html = params[0].axisValue + '<br/>';
+                params.forEach(p => { html += `${p.marker}${p.seriesName}: ${p.value}个<br/>`; });
+                return html;
+            }},
+            legend: { data: ['已覆盖', '未覆盖'], bottom: 0, textStyle: { color: 'rgba(255,255,255,0.6)', fontSize: 12 } },
+            grid: { left: '5%', right: '5%', bottom: '12%', top: '8%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 10, rotate: 15 }, axisLine: { lineStyle: { color: 'rgba(0,212,255,0.2)' } }, axisTick: { show: false } },
+            yAxis: { type: 'value', name: '部门数', nameTextStyle: { color: 'rgba(255,255,255,0.5)' }, axisLabel: { color: 'rgba(255,255,255,0.5)' }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.08)' } } },
+            series: [
+                { name: '已覆盖', type: 'bar', data: covered, barWidth: '35%', itemStyle: { borderRadius: [4, 4, 0, 0], color: '#34c759' }, label: { show: true, position: 'top', color: '#34c759', fontSize: 10 } },
+                { name: '未覆盖', type: 'bar', data: uncovered, barWidth: '35%', itemStyle: { borderRadius: [4, 4, 0, 0], color: '#ff3b30' }, label: { show: true, position: 'top', color: '#ff3b30', fontSize: 10 } }
+            ]
         });
         new ResizeObserver(() => chart.resize()).observe(dom);
     }
