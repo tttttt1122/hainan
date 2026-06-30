@@ -12,7 +12,6 @@ window.HomePage = class HomePage {
                         <div class="card-section activity-section">
                             <div class="card-title">市场主体</div>
                             <div class="activity-items">
-                                <!-- 年度新增市场主体 分组 -->
                                 <div class="activity-group">
                                     <div class="activity-item activity-parent">
                                         <span class="activity-label">年度新增市场主体</span>
@@ -21,34 +20,10 @@ window.HomePage = class HomePage {
                                             <span class="trend-up">↑ 1%</span>
                                         </span>
                                     </div>
-                                    <div class="activity-sub-items">
-                                        <div class="activity-item activity-sub">
-                                            <span class="activity-label">迁入本省市场主体</span>
-                                            <span class="activity-value-group">
-                                                <span class="activity-count">99</span>
-                                                <span class="activity-ratio">占比10%</span>
-                                                <span class="trend-up">↑ 1%</span>
-                                            </span>
-                                        </div>
-                                        <div class="activity-item activity-sub">
-                                            <span class="activity-label">新设立市场主体</span>
-                                            <span class="activity-value-group">
-                                                <span class="activity-count">99</span>
-                                                <span class="activity-ratio">占比10%</span>
-                                                <span class="trend-up">↑ 1%</span>
-                                            </span>
-                                        </div>
-                                        <div class="activity-item activity-sub">
-                                            <span class="activity-label">新设市场主体"个转企"</span>
-                                            <span class="activity-value-group">
-                                                <span class="activity-count">99</span>
-                                                <span class="activity-ratio">占比10%</span>
-                                                <span class="trend-up">↑ 1%</span>
-                                            </span>
-                                        </div>
+                                    <div class="activity-pie-container">
+                                        <div id="marketIncreasePie" class="activity-pie"></div>
                                     </div>
                                 </div>
-                                <!-- 年度减少市场主体 分组 -->
                                 <div class="activity-group">
                                     <div class="activity-item activity-parent">
                                         <span class="activity-label">年度减少市场主体</span>
@@ -57,24 +32,10 @@ window.HomePage = class HomePage {
                                             <span class="trend-down">↓ 1%</span>
                                         </span>
                                     </div>
-                                    <div class="activity-sub-items">
-                                        <div class="activity-item activity-sub">
-                                            <span class="activity-label">迁出本省市场主体</span>
-                                            <span class="activity-value-group">
-                                                <span class="activity-count">99</span>
-                                                <span class="trend-down">↓ 1%</span>
-                                            </span>
-                                        </div>
-                                        <div class="activity-item activity-sub">
-                                            <span class="activity-label">市场主体注（吊）销</span>
-                                            <span class="activity-value-group">
-                                                <span class="activity-count">99</span>
-                                                <span class="trend-up">↑ 1%</span>
-                                            </span>
-                                        </div>
+                                    <div class="activity-pie-container">
+                                        <div id="marketDecreasePie" class="activity-pie"></div>
                                     </div>
                                 </div>
-                                <!-- 同级独立指标 -->
                                 <div class="activity-item activity-parent">
                                     <span class="activity-label">信用等级B级及以上市场主体</span>
                                     <span class="activity-value-group">
@@ -85,33 +46,20 @@ window.HomePage = class HomePage {
                                 </div>
                             </div>
                         </div>
-                        <div class="card-section satisfaction-section-bottom">
-                            <div class="card-title">企业和群众满意度</div>
-                            <div class="satisfaction-items">
-                                <div class="satisfaction-item">
-                                    <span class="satisfaction-label">"海易办"月活峰值</span>
-                                    <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">600万</span>
-                                        <span class="satisfaction-ratio">占常住人口75%</span>
-                                    </span>
+                        <div class="card-section time-stats-section">
+                            <div class="card-title">审批用时</div>
+                            <div class="time-stats-items">
+                                <div class="time-stat-item">
+                                    <span class="time-stat-label">办理开办企业手续平均耗时</span>
+                                    <span class="time-stat-value">7h</span>
                                 </div>
-                                <div class="satisfaction-item">
-                                    <span class="satisfaction-label">"好差评"好评率</span>
-                                    <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">99.96%</span>
-                                    </span>
+                                <div class="time-stat-item">
+                                    <span class="time-stat-label">建筑工程项目主要事项审批平均用时</span>
+                                    <span class="time-stat-value">7h</span>
                                 </div>
-                                <div class="satisfaction-item">
-                                    <span class="satisfaction-label">涉企检查市场主体满意度</span>
-                                    <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">99%</span>
-                                    </span>
-                                </div>
-                                <div class="satisfaction-item">
-                                    <span class="satisfaction-label">涉企检查12345投诉下降</span>
-                                    <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">99%</span>
-                                    </span>
+                                <div class="time-stat-item">
+                                    <span class="time-stat-label">建筑工程项目从审批到落地平均用时</span>
+                                    <span class="time-stat-value">7h</span>
                                 </div>
                             </div>
                         </div>
@@ -126,23 +74,8 @@ window.HomePage = class HomePage {
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item">
-                                        <span class="stat-label">办理开办企业手续平均耗时</span>
-                                        <span class="stat-value">7h</span>
-                                    </div>
-                                    <div class="stat-divider"></div>
-                                    <div class="stat-item">
                                         <span class="stat-label">今日新增建筑工程项目</span>
                                         <span class="stat-value">80</span>
-                                    </div>
-                                    <div class="stat-divider"></div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">建筑工程项目主要事项审批平均用时</span>
-                                        <span class="stat-value">7h</span>
-                                    </div>
-                                     <div class="stat-divider"></div>
-                                    <div class="stat-item">
-                                        <span class="stat-label">建筑工程项目从审批到落地平均用时</span>
-                                        <span class="stat-value">7h</span>
                                     </div>
                                 </div>
                             </div>
@@ -209,80 +142,26 @@ window.HomePage = class HomePage {
                                 <div class="panel-title">审批</div>
                                 <div class="panel-items">
                                     <div class="panel-item">
-                                        <span class="panel-label">高效办成"一件事"场景服务</span>
-                                        <span class="panel-value">600项</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">"智能快办"场景服务</span>
-                                        <span class="panel-value">200项</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">"极简审批"服务</span>
-                                        <span class="panel-value">200项</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">信用等级审批服务</span>
-                                        <span class="panel-value">200项</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">"全省通办"</span>
-                                        <span class="panel-value">100项</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">零跑动事项数</span>
-                                        <span class="panel-value">100项</span>
+                                        <span class="panel-label">减少审批时间</span>
+                                        <span class="panel-value">99%</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel-group panel-grid">
                                 <div class="panel-title">监管</div>
                                 <div class="panel-items">
-                                    <div class="panel-item panel-item-full">
-                                        <span class="panel-label">审管法信数字链路</span>
-                                        <span class="panel-value">45个领域 4664条</span>
-                                    </div>
-                                    <div class="panel-item panel-item-full">
-                                        <span class="panel-label">通过链路办理业务</span>
-                                        <span class="panel-value">99次</span>
-                                    </div>
                                     <div class="panel-item">
-                                        <span class="panel-label">新型监管场景</span>
-                                        <span class="panel-value">322个</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">减少企业上门数</span>
-                                        <span class="panel-value">9639户次</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">规范行政检查行为</span>
-                                        <span class="panel-value">199</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">问题检出率</span>
-                                        <span class="panel-value">9%</span>
+                                        <span class="panel-label">减少检查次数</span>
+                                        <span class="panel-value">99%</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="panel-group">
                                 <div class="panel-title">执法</div>
                                 <div class="panel-items">
-                                    <div class="panel-item-row">
-                                        <div class="panel-item panel-item-half">
-                                            <span class="panel-label">轻微免罚清单</span>
-                                            <span class="panel-value">80</span>
-                                        </div>
-                                        <div class="panel-item panel-item-half">
-                                            <span class="panel-label">首违不罚清单</span>
-                                            <span class="panel-value">90</span>
-                                        </div>
-                                    </div>
                                     <div class="panel-item">
-                                        <span class="panel-label">重点领域违法发生率同比降幅</span>
-                                        <span class="panel-value"> 20%</span>
-                                    </div>
-                                    <div class="panel-item">
-                                        <span class="panel-label">高风险主体违规行为发生率同比降幅</span>
-                                        <span class="panel-value">5%</span>
+                                        <span class="panel-label">违法发生率同比降幅</span>
+                                        <span class="panel-value">20%</span>
                                     </div>
                                 </div>
                             </div>
@@ -299,12 +178,43 @@ window.HomePage = class HomePage {
                                     </div>
                                 </div>
                             </div>
+                            <div class="card-section satisfaction-section-bottom">
+                                <div class="card-title">企业和群众满意度</div>
+                                <div class="satisfaction-items">
+                                    <div class="satisfaction-item">
+                                        <span class="satisfaction-label">"海易办"月活峰值</span>
+                                        <span class="satisfaction-value-group">
+                                            <span class="satisfaction-count">600万</span>
+                                            <span class="satisfaction-ratio">占常住人口75%</span>
+                                        </span>
+                                    </div>
+                                    <div class="satisfaction-item">
+                                        <span class="satisfaction-label">"好差评"好评率</span>
+                                        <span class="satisfaction-value-group">
+                                            <span class="satisfaction-count">99.96%</span>
+                                        </span>
+                                    </div>
+                                    <div class="satisfaction-item">
+                                        <span class="satisfaction-label">涉企检查市场主体满意度</span>
+                                        <span class="satisfaction-value-group">
+                                            <span class="satisfaction-count">99%</span>
+                                        </span>
+                                    </div>
+                                    <div class="satisfaction-item">
+                                        <span class="satisfaction-label">涉企检查12345投诉下降</span>
+                                        <span class="satisfaction-value-group">
+                                            <span class="satisfaction-count">99%</span>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
         this.initMapViewTabs();
+        this.initPieCharts();
     }
 
     initMapViewTabs() {
@@ -323,6 +233,58 @@ window.HomePage = class HomePage {
                     }
                 });
             });
+        });
+    }
+
+    initPieCharts() {
+        const increasePie = echarts.init(document.getElementById('marketIncreasePie'));
+        increasePie.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            legend: {
+                orient: 'vertical',
+                right: '5%',
+                top: 'center',
+                textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['40%', '50%'],
+                label: { show: false },
+                emphasis: { label: { show: true, fontSize: 12, formatter: '{d}%' } },
+                data: [
+                    { value: 45, name: '迁入本省市场主体', itemStyle: { color: '#34c759' } },
+                    { value: 40, name: '新设立市场主体', itemStyle: { color: '#00d4ff' } },
+                    { value: 15, name: '新设市场主体"个转企"', itemStyle: { color: '#ff9500' } }
+                ]
+            }]
+        });
+
+        const decreasePie = echarts.init(document.getElementById('marketDecreasePie'));
+        decreasePie.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            legend: {
+                orient: 'vertical',
+                right: '5%',
+                top: 'center',
+                textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['40%', '50%'],
+                label: { show: false },
+                emphasis: { label: { show: true, fontSize: 12, formatter: '{d}%' } },
+                data: [
+                    { value: 30, name: '迁出本省市场主体', itemStyle: { color: '#ff3b30' } },
+                    { value: 70, name: '市场主体注（吊）销', itemStyle: { color: '#ff9500' } }
+                ]
+            }]
+        });
+
+        window.addEventListener('resize', () => {
+            try { increasePie.resize(); } catch(e) {}
+            try { decreasePie.resize(); } catch(e) {}
         });
     }
 
