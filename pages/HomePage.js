@@ -115,47 +115,58 @@ window.HomePage = class HomePage {
                             </div>
                         </div>
                         <div class="card-section industry-section">
-                            <div class="card-title">产业总体情况</div>
+                            <div class="card-title">梯度培育</div>
                             <div class="industry-grid">
-                                <div class="industry-tags">
-                                    <div class="industry-tag industry-tag-has-sub">
-                                        <span>旅游业</span>
-                                        <div class="industry-subtypes">
-                                            <span class="industry-subtype">景观旅游</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">文化旅游</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">康养旅游</span>
+                                <div class="gradient-grid">
+                                    <div class="gradient-item">
+                                        <div class="gradient-title">科技和创新型中小企业</div>
+                                        <div class="gradient-stats">
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">认定企业总数</span>
+                                                <span class="gradient-stat-value">1258</span>
+                                            </div>
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">年度新增认定企业数</span>
+                                                <span class="gradient-stat-value">326</span>
+                                            </div>
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">同比增加</span>
+                                                <span class="gradient-stat-value">2%</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="industry-tag industry-tag-has-sub">
-                                        <span>现代服务业</span>
-                                        <div class="industry-subtypes">
-                                            <span class="industry-subtype">现代物流业</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">医疗健康产业</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">商业服务业</span>
+                                    <div class="gradient-item">
+                                        <div class="gradient-title">专精特新中小企业</div>
+                                        <div class="gradient-stats">
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">认定企业总数</span>
+                                                <span class="gradient-stat-value">456</span>
+                                            </div>
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">年度新增认定企业数</span>
+                                                <span class="gradient-stat-value">118</span>
+                                            </div>
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">同比增加</span>
+                                                <span class="gradient-stat-value">8%</span>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="industry-tag industry-tag-has-sub">
-                                        <span>高新技术产业</span>
-                                        <div class="industry-subtypes">
-                                            <span class="industry-subtype">数字经济</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">现代生物医药</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">清洁能源</span>
-                                        </div>
-                                    </div>
-                                    <div class="industry-tag industry-tag-has-sub">
-                                        <span>热带特色高效农业</span>
-                                        <div class="industry-subtypes">
-                                            <span class="industry-subtype">特色种养业</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">农产品精深加工业</span>
-                                            <span class="industry-subtype-divider">|</span>
-                                            <span class="industry-subtype">休闲农（渔）业</span>
+                                    <div class="gradient-item">
+                                        <div class="gradient-title">专精特新"小巨人"企业</div>
+                                        <div class="gradient-stats">
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">认定企业总数</span>
+                                                <span class="gradient-stat-value">89</span>
+                                            </div>
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">年度新增认定企业数</span>
+                                                <span class="gradient-stat-value">23</span>
+                                            </div>
+                                            <div class="gradient-stat">
+                                                <span class="gradient-stat-label">同比增加</span>
+                                                <span class="gradient-stat-value">5%</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -222,7 +233,7 @@ window.HomePage = class HomePage {
                                 <div class="achievement-card" data-modal="credit_verify" style="cursor: pointer;">
                                     <div class="achievement-header">
                                         <span class="achievement-icon">✓</span>
-                                        <span class="achievement-title">信用服务广泛覆盖</span>
+                                        <span class="achievement-title">诚信激励效果显著</span>
                                     </div>
                                     <div class="achievement-content">
                                         <div class="achievement-desc">"海易办"平台累计为超<span class="highlight-num">630万</span>申请人提供自动信用核验服务</div>
@@ -273,9 +284,9 @@ window.HomePage = class HomePage {
                 },
                 emphasis: { label: { show: true, fontSize: 16, formatter: '{b}\n{d}%' } },
                 data: [
-                    { value: 45, name: '迁入本省市场主体', itemStyle: { color: '#34c759' } },
-                    { value: 40, name: '新设立市场主体', itemStyle: { color: '#00d4ff' } },
-                    { value: 15, name: '新设市场主体"个转企"', itemStyle: { color: '#ff9500' } }
+                    { value: 45, name: '迁入', itemStyle: { color: '#34c759' } },
+                    { value: 40, name: '新设立', itemStyle: { color: '#00d4ff' } },
+                    { value: 15, name: '"个转企"', itemStyle: { color: '#ff9500' } }
                 ]
             }]
         });
@@ -295,8 +306,8 @@ window.HomePage = class HomePage {
                 },
                 emphasis: { label: { show: true, fontSize: 16, formatter: '{b}\n{d}%' } },
                 data: [
-                    { value: 30, name: '迁出本省市场主体', itemStyle: { color: '#ff3b30' } },
-                    { value: 70, name: '市场主体注（吊）销', itemStyle: { color: '#ff9500' } }
+                    { value: 30, name: '迁出', itemStyle: { color: '#ff3b30' } },
+                    { value: 70, name: '注（吊）销', itemStyle: { color: '#ff9500' } }
                 ]
             }]
         });
