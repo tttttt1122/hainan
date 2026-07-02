@@ -4,7 +4,7 @@ window.ApprovalPage = class ApprovalPage {
         this.charts = {};
         this.modalData = [];
         this.currentPage = 1;
-        this.pageSize = 10;
+        this.pageSize = 5;
         this.currentStatus = 'all';
         this.currentType = 'all';
         this.itemTypeFilter = 'all';
@@ -26,7 +26,7 @@ window.ApprovalPage = class ApprovalPage {
         const personBarEl = document.getElementById('person-bar-chart');
         const columnEl = document.getElementById('column-chart');
 
-        if (pieEl) pieEl.style.height = '150px';
+        if (pieEl) pieEl.style.height = '130px';
         if (legalBarEl) legalBarEl.style.height = '293px';
         if (personBarEl) personBarEl.style.height = '293px';
         if (columnEl) columnEl.style.height = '300px';
@@ -56,7 +56,7 @@ window.ApprovalPage = class ApprovalPage {
                             <h3 class="card-title">事项情况</h3>
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; padding: 8px 16px; border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 4px; cursor: pointer;" class="cp-clickable" data-indicator="item_overview_analysis">
                                 <span class="stat-label">事项总数</span>
-                                <span class="stat-value">999</span>
+                                <span class="stat-value">100</span>
                             </div>
                             <div id="pie-chart" class="chart-container pie-container" style="width: 80%; margin: 0 auto;"></div>
                         </div>
@@ -67,37 +67,37 @@ window.ApprovalPage = class ApprovalPage {
                                 <div class="run-group cp-clickable" data-indicator="run_zero_analysis">
                                     <div class="run-label">无需跑动占比</div>
                                     <div class="run-items">
-                                        <span>省级 99%</span>
-                                        <span>市级 99%</span>
-                                        <span>县级 99%</span>
-                                        <span>街镇级 99%</span>
+                                        <span>省级 80%</span>
+                                        <span>市级 82%</span>
+                                        <span>县级 80%</span>
+                                        <span>街镇级 82%</span>
                                     </div>
                                 </div>
                                 <div class="run-group cp-clickable" data-indicator="run_once_analysis">
                                     <div class="run-label">跑动一次占比</div>
                                     <div class="run-items">
-                                        <span>省级 99%</span>
-                                        <span>市级 99%</span>
-                                        <span>县级 99%</span>
-                                        <span>街镇级 99%</span>
+                                        <span>省级 9%</span>
+                                        <span>市级 10%</span>
+                                        <span>县级 9%</span>
+                                        <span>街镇级 10%</span>
                                     </div>
                                 </div>
                                 <div class="run-group cp-clickable" data-indicator="run_twice_analysis">
                                     <div class="run-label">跑动两次占比</div>
                                     <div class="run-items">
-                                        <span>省级 99%</span>
-                                        <span>市级 99%</span>
-                                        <span>县级 99%</span>
-                                        <span>街镇级 99%</span>
+                                        <span>省级 7%</span>
+                                        <span>市级 6%</span>
+                                        <span>县级 7%</span>
+                                        <span>街镇级 6%</span>
                                     </div>
                                 </div>
                                 <div class="run-group cp-clickable" data-indicator="run_three_analysis">
                                     <div class="run-label">跑动三次及以上占比</div>
                                     <div class="run-items">
-                                        <span>省级 99%</span>
-                                        <span>市级 99%</span>
-                                        <span>县级 99%</span>
-                                        <span>街镇级 99%</span>
+                                        <span>省级 4%</span>
+                                        <span>市级 2%</span>
+                                        <span>县级 4%</span>
+                                        <span>街镇级 2%</span>
                                     </div>
                                 </div>
                             </div>
