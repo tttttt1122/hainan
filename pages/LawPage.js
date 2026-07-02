@@ -4,7 +4,7 @@ window.LawPage = class LawPage {
         this.charts = {};
         this.modalData = [];
         this.currentPage = 1;
-        this.pageSize = 10;
+        this.pageSize = 5;
         this.currentStatusFilter = 'all';
         this.currentTypeFilter = 'all';
         this.currentRegionFilter = 'all';
@@ -17,65 +17,68 @@ window.LawPage = class LawPage {
         // 首违不罚弹窗
         this.firstOffenseData = [];
         this.foCurrentPage = 1;
-        this.foPageSize = 10;
+        this.foPageSize = 5;
         this._foOverlay = null;
         this._foCharts = {};
         // 轻微免罚弹窗
         this.minorPenaltyData = [];
         this.mpCurrentPage = 1;
-        this.mpPageSize = 10;
+        this.mpPageSize = 5;
         this._mpOverlay = null;
         this._mpCharts = {};
         // 案件办结率弹窗
+        this.caseRateData = [];
+        this.crCurrentPage = 1;
+        this.crPageSize = 5;
         this._crOverlay = null;
         this._crCharts = {};
         // 行刑衔接弹窗
         this.criminalLinkData = [];
         this.clCurrentPage = 1;
-        this.clPageSize = 10;
+        this.clPageSize = 5;
         this._clOverlay = null;
         this._clCharts = {};
         this.clSearchTerm = '';
         // 评查计划弹窗
         this.reviewPlanData = [];
         this.rpCurrentPage = 1;
-        this.rpPageSize = 10;
+        this.rpPageSize = 5;
         this._rpOverlay = null;
         this._rpCharts = {};
         // 评查任务弹窗
         this.reviewTaskData = [];
         this.rtCurrentPage = 1;
-        this.rtPageSize = 10;
+        this.rtPageSize = 5;
         this._rtOverlay = null;
         this._rtCharts = {};
         // 覆盖部门弹窗
         this.reviewDeptData = [];
         this.rdCurrentPage = 1;
-        this.rdPageSize = 10;
+        this.rdPageSize = 5;
         this._rdOverlay = null;
         this._rdCharts = {};
         // 评查结果弹窗
         this.reviewResultData = [];
         this.rrCurrentPage = 1;
-        this.rrPageSize = 10;
+        this.rrPageSize = 5;
         this._rrOverlay = null;
         this._rrCharts = {};
         // 信用数据归集弹窗
         this.creditCollectData = [];
         this.ccCurrentPage = 1;
-        this.ccPageSize = 10;
+        this.ccPageSize = 5;
         this._ccOverlay = null;
         this._ccCharts = {};
         // 信用数据公示弹窗
         this.creditPublishData = [];
         this.cpCurrentPage = 1;
-        this.cpPageSize = 10;
+        this.cpPageSize = 5;
         this._cpOverlay = null;
         this._cpCharts = {};
         // 平均办案时效弹窗
         this.caseEfficiencyData = [];
         this.ceCurrentPage = 1;
-        this.cePageSize = 10;
+        this.cePageSize = 5;
         this._ceOverlay = null;
         this._ceCharts = {};
         this.render();
@@ -147,8 +150,8 @@ window.LawPage = class LawPage {
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-criminal-link="true">
-                                        <span class="stat-label">行刑衔接率</span>
-                                        <span class="stat-value">85%</span>
+                                        <span class="stat-label">涉刑案件数</span>
+                                        <span class="stat-value">85</span>
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +173,7 @@ window.LawPage = class LawPage {
                         <div class="card-section top10-section">
                             <div class="top10-container">
                                 <div class="top10-card">
-                                    <div class="top10-title">本月执法行为TOP10</div>
+                                    <div class="top10-title">本月执法行为TOP8</div>
                                     <div class="top10-list">
                                         <table class="top10-table">
                                                 <thead>
@@ -180,8 +183,7 @@ window.LawPage = class LawPage {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>xxx</td><td>156</td></tr>
-                                                <tr><td>xxx</td><td>142</td></tr>
+                                                
                                                 <tr><td>xxx</td><td>89</td></tr>
                                                 <tr><td>xxx</td><td>78</td></tr>
                                                 <tr><td>xxx</td><td>65</td></tr>
@@ -195,7 +197,7 @@ window.LawPage = class LawPage {
                                     </div>
                                 </div>
                                 <div class="top10-card">
-                                    <div class="top10-title">本月检出问题领域TOP10</div>
+                                    <div class="top10-title">本月检出问题领域TOP8</div>
                                     <div class="top10-list">
                                         <table class="top10-table">
                                                 <thead>
@@ -205,8 +207,7 @@ window.LawPage = class LawPage {
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr><td>食品安全</td><td>134</td></tr>
-                                                <tr><td>产品质量</td><td>98</td></tr>
+                                                
                                                 <tr><td>价格违规</td><td>76</td></tr>
                                                 <tr><td>广告违法</td><td>65</td></tr>
                                                 <tr><td>特种设备</td><td>54</td></tr>
@@ -2124,7 +2125,10 @@ window.LawPage = class LawPage {
     // 案件办结率弹窗
     // ============================================
 
+    genCaseRateData(){const d=[];const names=['XX公司虚假宣传案','YY餐饮店食品案','ZZ超市价格违法案','AA药房售假案','BB建材环保案','CC运输超载案','DD广告违规案','EE消防隐患案','FF医疗器械案','GG网络安全案','HH知识产权案','II产品质量案','JJ环境违法案','KK安全生产案','LL劳动保障案','MM价格垄断案'];for(let i=1;i<=40;i++){const m=Math.floor(Math.random()*6)+1;const d2=Math.floor(Math.random()*28)+1;const status=i%3===0?'已超期':i%3===1?'即将到期':'正常';d.push({code:`CASE-2025-${String(i).padStart(3,'0')}`,name:names[i%16],submitDate:`2025-${String(m).padStart(2,'0')}-${String(d2).padStart(2,'0')}`,deadline:`2025-${String((m+3)%12+1).padStart(2,'0')}-${String(d2).padStart(2,'0')}`,status});}return d;}
     openCaseRateModal() {
+        this.crCurrentPage = 1;
+        this.caseRateData = this.genCaseRateData();
         const overlay = document.createElement('div');
         overlay.className = 'case-rate-modal-overlay';
         overlay.innerHTML = this.renderCaseRateModal();
@@ -2132,8 +2136,11 @@ window.LawPage = class LawPage {
         this._crOverlay = overlay;
         overlay.querySelector('.cr-modal-close').addEventListener('click', () => this.closeCaseRateModal());
         overlay.addEventListener('click', (e) => { if (e.target === overlay) this.closeCaseRateModal(); });
+        this.bindCaseRateEvents();
         this.initCaseRateCharts();
     }
+    bindCaseRateEvents(){const ovl=this._crOverlay;if(!ovl)return;ovl.querySelector('#cr-prev')?.addEventListener('click',()=>{if(this.crCurrentPage>1){this.crCurrentPage--;this.updateCaseRateModal();}});ovl.querySelector('#cr-next')?.addEventListener('click',()=>{if(this.crCurrentPage<Math.ceil(this.caseRateData.length/this.crPageSize)){this.crCurrentPage++;this.updateCaseRateModal();}});}
+    updateCaseRateModal(){const ovl=this._crOverlay;if(!ovl)return;Object.values(this._crCharts).forEach(c=>{try{c.dispose();}catch(e){}});this._crCharts={};ovl.innerHTML=this.renderCaseRateModal();this.bindCaseRateEvents();this.initCaseRateCharts();}
 
     closeCaseRateModal() {
         Object.values(this._crCharts).forEach(c => { try { c.dispose(); } catch(e) {} });
@@ -2144,6 +2151,9 @@ window.LawPage = class LawPage {
     }
 
     renderCaseRateModal() {
+        const data = this.caseRateData;
+        const tp = Math.ceil(data.length / this.crPageSize);
+        const pd = data.slice((this.crCurrentPage - 1) * this.crPageSize, this.crCurrentPage * this.crPageSize);
         return `
             <div class="cr-modal">
                 <div class="cr-modal-header">
@@ -2168,16 +2178,14 @@ window.LawPage = class LawPage {
                     <table class="cr-table">
                         <thead><tr><th>案件编号</th><th>案件名称</th><th>交办时间</th><th>限办期限</th><th>超期状态</th></tr></thead>
                         <tbody>
-                            <tr><td>CASE-2025-001</td><td>XX公司虚假宣传案</td><td>2025-04-15</td><td>2025-07-15</td><td><span class="cr-tag cr-tag-red">已超期</span></td></tr>
-                            <tr><td>CASE-2025-002</td><td>YY餐饮店食品案</td><td>2025-05-20</td><td>2025-08-20</td><td><span class="cr-tag cr-tag-yellow">即将到期</span></td></tr>
-                            <tr><td>CASE-2025-003</td><td>ZZ超市价格违法案</td><td>2025-06-01</td><td>2025-09-01</td><td><span class="cr-tag cr-tag-red">已超期</span></td></tr>
-                            <tr><td>CASE-2025-004</td><td>AA药房售假案</td><td>2025-05-10</td><td>2025-08-10</td><td><span class="cr-tag cr-tag-yellow">即将到期</span></td></tr>
-                            <tr><td>CASE-2025-005</td><td>BB建材环保案</td><td>2025-04-20</td><td>2025-07-20</td><td><span class="cr-tag cr-tag-red">已超期</span></td></tr>
-                            <tr><td>CASE-2025-006</td><td>CC运输超载案</td><td>2025-06-15</td><td>2025-09-15</td><td><span class="cr-tag cr-tag-yellow">即将到期</span></td></tr>
-                            <tr><td>CASE-2025-007</td><td>DD广告违规案</td><td>2025-05-05</td><td>2025-08-05</td><td><span class="cr-tag cr-tag-red">已超期</span></td></tr>
-                            <tr><td>CASE-2025-008</td><td>EE消防隐患案</td><td>2025-06-20</td><td>2025-09-20</td><td><span class="cr-tag cr-tag-yellow">即将到期</span></td></tr>
+                            ${pd.map(r => `<tr><td>${r.code}</td><td>${r.name}</td><td>${r.submitDate}</td><td>${r.deadline}</td><td><span class="cr-tag cr-tag-${r.status==='已超期'?'red':r.status==='即将到期'?'yellow':'green'}">${r.status}</span></td></tr>`).join('')}
                         </tbody>
                     </table>
+                </div>
+                <div class="cr-footer">
+                    <button class="cr-page-btn" id="cr-prev" ${this.crCurrentPage <= 1 ? 'disabled' : ''}>上一页</button>
+                    <span class="cr-page-info">第 ${this.crCurrentPage} / ${tp} 页</span>
+                    <button class="cr-page-btn" id="cr-next" ${this.crCurrentPage >= tp ? 'disabled' : ''}>下一页</button>
                 </div>
             </div>`;
     }
@@ -2192,18 +2200,18 @@ window.LawPage = class LawPage {
 
     initCrGaugeChart() {
         const dom = this._crOverlay?.querySelector('#cr-gauge-chart'); if (!dom) return;
-        dom.style.width = '100%'; dom.style.height = '220px';
+        dom.style.width = '100%'; dom.style.height = '110px';
         if (dom.getBoundingClientRect().width <= 0) { setTimeout(() => this.initCrGaugeChart(), 200); return; }
         const existing = echarts.getInstanceByDom(dom); if (existing) existing.dispose();
         const chart = echarts.init(dom); this._crCharts.gauge = chart;
         chart.setOption({
             series: [{
-                type: 'gauge', startAngle: 210, endAngle: -30, center: ['50%', '55%'], radius: '85%',
+                type: 'gauge', startAngle: 210, endAngle: -30, center: ['50%', '55%'], radius: '75%',
                 min: 0, max: 100, splitNumber: 10,
-                axisLine: { lineStyle: { width: 16, color: [[0.92, '#34c759'], [0.80, '#ff9500'], [1, '#ff6b6b']] } },
-                pointer: { length: '60%', width: 6, itemStyle: { color: '#00d4ff' } },
+                axisLine: { lineStyle: { width: 8, color: [[0.92, '#34c759'], [0.80, '#ff9500'], [1, '#ff6b6b']] } },
+                pointer: { length: '60%', width: 3, itemStyle: { color: '#00d4ff' } },
                 axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
-                detail: { valueAnimation: true, formatter: '{value}%', fontSize: 28, fontWeight: 'bold', color: '#34c759', offsetCenter: [0, '65%'] },
+                detail: { valueAnimation: true, formatter: '{value}%', fontSize: 16, fontWeight: 'bold', color: '#34c759', offsetCenter: [0, '65%'] },
                 data: [{ value: 92 }]
             }]
         });
