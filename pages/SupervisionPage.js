@@ -5,7 +5,7 @@ window.SupervisionPage = class SupervisionPage {
         this.svModalData = [];
         this.svCurrentPage = 1;
         this.svCurrentModal = 0;
-        this.pageSize = 10;
+        this.pageSize = 5;
         this.render();
         this.ensureChartHeights();
         this.bindEvents();
@@ -86,20 +86,20 @@ window.SupervisionPage = class SupervisionPage {
                         <div class="card-section">
                             <div class="top10-container">
                                 <div class="top10-section">
-                                    <h4 class="top10-section-title">本月监管行为TOP10</h4>
+                                    <h4 class="top10-section-title">本月监管行为TOP8</h4>
                                     <div class="top10-list">
                                     <table class="top10-table"><thead><tr><th>事项名称</th><th>次数</th></tr></thead>
                                     <tbody>
-                                        <tr><td>xxx</td><td>1256</td></tr><tr><td>xxx</td><td>985</td></tr><tr><td>xxx</td><td>843</td></tr><tr><td>xxx</td><td>721</td></tr><tr><td>xxx</td><td>654</td></tr><tr><td>xxx</td><td>587</td></tr><tr><td>xxx</td><td>423</td></tr><tr><td>xxx</td><td>367</td></tr><tr><td>xxx</td><td>289</td></tr><tr><td>xxx</td><td>215</td></tr>
+                                        <tr><td>xxx</td><td>843</td></tr><tr><td>xxx</td><td>721</td></tr><tr><td>xxx</td><td>654</td></tr><tr><td>xxx</td><td>587</td></tr><tr><td>xxx</td><td>423</td></tr><tr><td>xxx</td><td>367</td></tr><tr><td>xxx</td><td>289</td></tr><tr><td>xxx</td><td>215</td></tr>
                                     </tbody></table>
                                     </div>
                                 </div>
                                 <div class="top10-section">
-                                    <h4 class="top10-section-title">本月检出问题领域TOP10</h4>
+                                    <h4 class="top10-section-title">本月检出问题领域TOP8</h4>
                                     <div class="top10-list">
                                     <table class="top10-table"><thead><tr><th>领域</th><th>问题数</th></tr></thead>
                                     <tbody>
-                                        <tr><td>市场监管</td><td>523</td></tr><tr><td>食品安全</td><td>389</td></tr><tr><td>消防安全</td><td>276</td></tr><tr><td>交通运输</td><td>215</td></tr><tr><td>安全生产</td><td>187</td></tr><tr><td>环境保护</td><td>156</td></tr><tr><td>医疗器械</td><td>123</td></tr><tr><td>特种设备</td><td>98</td></tr><tr><td>网络交易</td><td>67</td></tr><tr><td>广告监管</td><td>56</td></tr>
+                                        <tr><td>消防安全</td><td>276</td></tr><tr><td>交通运输</td><td>215</td></tr><tr><td>安全生产</td><td>187</td></tr><tr><td>环境保护</td><td>156</td></tr><tr><td>医疗器械</td><td>123</td></tr><tr><td>特种设备</td><td>98</td></tr><tr><td>网络交易</td><td>67</td></tr><tr><td>广告监管</td><td>56</td></tr>
                                     </tbody></table>
                                     </div>
                                 </div>
