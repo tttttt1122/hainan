@@ -6,8 +6,9 @@ window.CockpitPage = class CockpitPage {
         this.cpModalData = [];
         this.cpCurrentPage = 1;
         this.cpCurrentModal = 0;
-        this.pageSize = 10;
+        this.pageSize = 5;
         this.render();
+        this.initHomeCharts();
         this.bindEvents();
     }
 
@@ -16,98 +17,57 @@ window.CockpitPage = class CockpitPage {
             <div class="page-container cockpit-layout animate-slide-in">
                 <div class="cockpit-content">
                     <div class="cockpit-tab-content">
-                        <div id="tab-home" class="cockpit-tab-pane active" style="display: grid">
+                        <div id="tab-home" class="cockpit-tab-pane active" style="display: grid;">
                             <div class="cockpit-row">
                                 <div class="card-section supervision-section">
-                                    <div class="card-title">事项监督</div>
-                                    <div class="supervision-stats">
-                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="1">
-                                            <span class="stat-label">检查事项覆盖率</span>
-                                            <span class="stat-value">98%</span>
-                                        </div>
-                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="2">
-                                            <span class="stat-label">处罚事项发生率</span>
-                                            <span class="stat-value">5%</span>
-                                        </div>
-                                    </div>
-                                    <div class="supervision-list">
-                                        <div class="list-header">
-                                            <span class="list-col">部门/区划</span>
-                                            <span class="list-col">事项数</span>
-                                            <span class="list-col">覆盖率</span>
-                                        </div>
-                                        <div class="list-row">
-                                            <span class="list-col">海口</span>
-                                            <span class="list-col">156</span>
-                                            <span class="list-col">99%</span>
-                                        </div>
-                                        <div class="list-row">
-                                            <span class="list-col">三亚</span>
-                                            <span class="list-col">145</span>
-                                            <span class="list-col">98%</span>
-                                        </div>
-                                        <div class="list-row">
-                                            <span class="list-col">儋州</span>
-                                            <span class="list-col">132</span>
-                                            <span class="list-col">97%</span>
+                                    <div class="card-title">事项情况</div>
+                                    <div id="cockpit-matters-pie" class="matters-chart-container" style="height: 150px;"></div>
+                                
+
+                                    <div class="home-sub-section">
+                                        <div class="card-title">主体/人员情况</div>
+                                        <div class="supervision-stats">
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">主体数量</span>
+                                                <span class="stat-value">156</span>
+                                            </div>
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">执法人员数量</span>
+                                                <span class="stat-value">234</span>
+                                            </div>
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">辅助执法人员数量</span>
+                                                <span class="stat-value">89</span>
+                                            </div>
                                         </div>
                                     </div>
                                     
                                     <div class="home-sub-section">
-                                        <div class="card-title">监督处置</div>
-                                        <div class="oversight-grid">
-                                            <div class="oversight-item cp-clickable" data-cp-modal="3">
-                                                <span class="oversight-label">审批</span>
-                                                <div class="oversight-values-row">
-                                                    <span class="oversight-value">已处置 156</span>
-                                                    <span class="oversight-value">未处置 2</span>
-                                                </div>
+                                        <div class="card-title">行为情况</div>
+                                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">审批办件数</span>
+                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">1,234</span>
                                             </div>
-                                            <div class="oversight-item cp-clickable" data-cp-modal="4">
-                                                <span class="oversight-label">监管</span>
-                                                <div class="oversight-values-row">
-                                                    <span class="oversight-value">已处置 145</span>
-                                                    <span class="oversight-value">未处置 3</span>
-                                                </div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">检查任务数</span>
+                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">567</span>
                                             </div>
-                                            <div class="oversight-item cp-clickable" data-cp-modal="5">
-                                                <span class="oversight-label">执法</span>
-                                                <div class="oversight-values-row">
-                                                    <span class="oversight-value">已处置 132</span>
-                                                    <span class="oversight-value">未处置 1</span>
-                                                </div>
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">执法案件数</span>
+                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">89</span>
                                             </div>
-                                            <div class="oversight-item cp-clickable" data-cp-modal="6">
-                                                <span class="oversight-label">信用</span>
-                                                <div class="oversight-values-row">
-                                                    <span class="oversight-value">已处置 167</span>
-                                                    <span class="oversight-value">未处置 0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="oversight-list cp-clickable" data-cp-modal="7">
-                                            <div class="list-header">
-                                                <span class="list-col">部门/区划</span>
-                                                <span class="list-col">总数</span>
-                                                <span class="list-col">处置率</span>
-                                            </div>
-                                            <div class="list-row">
-                                                <span class="list-col">海口</span>
-                                                <span class="list-col">597</span>
-                                                <span class="list-col">99%</span>
-                                            </div>
-                                            <div class="list-row">
-                                                <span class="list-col">三亚</span>
-                                                <span class="list-col">562</span>
-                                                <span class="list-col">99%</span>
+                                            <div style="display: flex; justify-content: space-between; align-items: center;">
+                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">信用归集数</span>
+                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">3,456</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="card-section map-risk-section">
+                                <div class="card-section map-section">
                                     <div class="card-title">地图</div>
-                                    <div class="map-container">
+                                    <div class="map-container" style="height: 280px;">
                                         <div class="map-tab-overlay">
                                             <button class="map-tab-btn active">省直</button>
                                             <button class="map-tab-btn">市县</button>
@@ -132,106 +92,143 @@ window.CockpitPage = class CockpitPage {
                                     </div>
                                 </div>
 
-                                <div class="card-section behavior-section">
-                                    <div class="card-title">行为监督</div>
-                                    <div class="behavior-group">
-                                        <div class="behavior-stats">
-                                            <div class="behavior-item cp-clickable" data-cp-modal="11">
-                                                <span class="behavior-label">上线模型数</span>
-                                                <span class="behavior-value">15</span>
+                                <div class="card-section right-section">
+                                    <div class="supervision-stats">
+                                        <div class="supervision-stat-row">
+                                            <span class="stat-label">上线模型数</span>
+                                            <span class="stat-value">99</span>
+                                        </div>
+                                        <div class="supervision-stat-row">
+                                            <span class="stat-label">问题发现数</span>
+                                            <span class="stat-value">100</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="home-sub-section">
+                                        <div class="card-title">事项预警</div>
+                                        <div class="supervision-stats">
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">事项覆盖</span>
+                                                <span class="stat-value">100</span>
                                             </div>
-                                            <div class="behavior-item cp-clickable" data-cp-modal="12">
-                                                <span class="behavior-label">问题发现数</span>
-                                                <span class="behavior-value">234</span>
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">处罚发生率</span>
+                                                <span class="stat-value">9%</span>
+                                            </div>
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">事项关联率</span>
+                                                <span class="stat-value">100%</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="behavior-group cp-clickable" data-cp-modal="13">
-                                        <div class="group-title">【审批】</div>
-                                        <div class="behavior-stats">
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">审批超承诺期限工单量</span>
-                                                <span class="behavior-value">12</span>
+
+                                    <div class="home-sub-section">
+                                        <div class="card-title">主体/人员预警</div>
+                                        <div class="supervision-stats">
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">主体无执法资格</span>
+                                                <span class="stat-value" style="color: #ff3b30;">1</span>
                                             </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">审批材料反复退回补正次数</span>
-                                                <span class="behavior-value">8</span>
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">部门内无执法人员</span>
+                                                <span class="stat-value">0</span>
                                             </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">无依据不予受理件数</span>
-                                                <span class="behavior-value">3</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="behavior-group cp-clickable" data-cp-modal="14">
-                                        <div class="group-title">【监管】</div>
-                                        <div class="behavior-stats">
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">线下线索流转工单</span>
-                                                <span class="behavior-value">56</span>
-                                            </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">高频率重复检查户数</span>
-                                                <span class="behavior-value">23</span>
-                                            </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">线索材料退回平均次数</span>
-                                                <span class="behavior-value">1.5</span>
+                                            <div class="supervision-stat-row">
+                                                <span class="stat-label">单次执法少于两名执法人员</span>
+                                                <span class="stat-value" style="color: #ff9500;">2</span>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="behavior-group cp-clickable" data-cp-modal="15">
-                                        <div class="group-title">【处罚】</div>
-                                        <div class="behavior-stats">
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">处罚办案超期</span>
-                                                <span class="behavior-value">5</span>
-                                            </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">处罚公示超期</span>
-                                                <span class="behavior-value">3</span>
-                                            </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">超出裁量标准</span>
-                                                <span class="behavior-value">2</span>
-                                            </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">违规处罚撤销</span>
-                                                <span class="behavior-value">1</span>
+
+                                    <div class="home-sub-section">
+                                        <div class="card-title">行为预警</div>
+                                        <div class="behavior-group">
+                                            <div class="group-title">【审批】</div>
+                                            <div class="behavior-stats">
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">审批超承诺期限工单量</span>
+                                                    <span class="behavior-value">12</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">审批材料反复退回补正次数</span>
+                                                    <span class="behavior-value">8</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">无依据不予受理件数</span>
+                                                    <span class="behavior-value">3</span>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="behavior-group cp-clickable" data-cp-modal="16">
-                                        <div class="group-title">【信用】</div>
-                                        <div class="behavior-stats">
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">失信信息公示滞后</span>
-                                                <span class="behavior-value">4</span>
+                                        <div class="behavior-group">
+                                            <div class="group-title">【监管】</div>
+                                            <div class="behavior-stats">
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">线下线索流转工单</span>
+                                                    <span class="behavior-value">56</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">高频率重复检查户数</span>
+                                                    <span class="behavior-value">23</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">线索材料退回平均次数</span>
+                                                    <span class="behavior-value">1.5</span>
+                                                </div>
                                             </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">联合惩戒应执行未执行主体数量</span>
-                                                <span class="behavior-value">6</span>
+                                        </div>
+                                        <div class="behavior-group">
+                                            <div class="group-title">【处罚】</div>
+                                            <div class="behavior-stats">
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">处罚办案超期</span>
+                                                    <span class="behavior-value">5</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">处罚公示超期</span>
+                                                    <span class="behavior-value">3</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">超出裁量标准</span>
+                                                    <span class="behavior-value">2</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">违规处罚撤销</span>
+                                                    <span class="behavior-value">1</span>
+                                                </div>
                                             </div>
-                                            <div class="behavior-item">
-                                                <span class="behavior-label">信用修复超期办理</span>
-                                                <span class="behavior-value">2</span>
+                                        </div>
+                                        <div class="behavior-group">
+                                            <div class="group-title">【信用】</div>
+                                            <div class="behavior-stats">
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">失信信息公示滞后</span>
+                                                    <span class="behavior-value">4</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">联合惩戒应执行未执行主体数量</span>
+                                                    <span class="behavior-value">6</span>
+                                                </div>
+                                                <div class="behavior-item">
+                                                    <span class="behavior-label">信用修复超期办理</span>
+                                                    <span class="behavior-value">2</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <!-- 指挥调度 - 地图正下方 -->
+                            <!-- 协同调度 -->
                             <div class="cockpit-row home-dispatch-row">
                                 <div class="card-section dispatch-card-home">
-                                    <div class="card-title">指挥调度</div>
+                                    <div class="card-title">协同调度</div>
                                     <div class="dispatch-content">
                                         <div class="dispatch-item cp-clickable" data-cp-modal="8">
-                                            <span class="dispatch-label">指挥调度场景</span>
+                                            <span class="dispatch-label">协同调度场景</span>
                                             <span class="dispatch-value">99</span>
                                         </div>
                                         <div class="dispatch-item cp-clickable" data-cp-modal="9">
-                                            <span class="dispatch-label">指挥调度任务</span>
+                                            <span class="dispatch-label">协同调度任务</span>
                                             <span class="dispatch-value">99</span>
                                         </div>
                                         <div class="dispatch-item cp-clickable" data-cp-modal="10">
@@ -321,7 +318,7 @@ window.CockpitPage = class CockpitPage {
                         <div id="tab-matters" class="cockpit-tab-pane" style="display: none">
                                     <div class="cockpit-row">
                                         <div class="card-section matters-section matters-left-top">
-                                            <div class="card-title">一、政务服务事项</div>
+                                            <div class="card-title">政务服务事项</div>
                                             <div class="matters-content">
                                                 <div class="matters-main-stat cp-clickable" data-cp-modal="17">
                                                     <span class="matters-main-label">事项数量</span>
@@ -362,7 +359,7 @@ window.CockpitPage = class CockpitPage {
                                         </div>
 
                                 <div class="card-section matters-section matters-center-top">
-                                    <div class="card-title">二、事项关联情况</div>
+                                    <div class="card-title">事项关联情况</div>
                                     <div class="correlation-image-wrap">
                                         <img src="驾驶舱事项.png" class="correlation-img" alt="事项关联关系图">
                                     </div>
@@ -376,7 +373,7 @@ window.CockpitPage = class CockpitPage {
                                 </div>
 
                                 <div class="card-section matters-section matters-right-top">
-                                    <div class="card-title">三、监管执法事项</div>
+                                    <div class="card-title">监管执法事项</div>
                                     <div class="matters-content">
                                         <div class="matters-stat-row">
                                             <div class="matters-main-stat cp-clickable" data-cp-modal="26">
@@ -394,17 +391,17 @@ window.CockpitPage = class CockpitPage {
                                                 <div id="matters-enforce-pie1" class="matters-chart-container"></div>
                                             </div>
                                             <div class="matters-chart-half">
-                                                <div class="group-title">行政检查：</div>
+                                                <div class="group-title">行政检查</div>
                                                 <div id="matters-enforce-pie2" class="matters-chart-container"></div>
                                             </div>
                                         </div>
                                         <div class="matters-group">
-                                            <div class="group-title">1.按层级展示：</div>
+                                            <div class="group-title">按层级展示</div>
                                             <div id="matters-enforce-pyramid" class="matters-chart-container"></div>
                                         </div>
                                         <div class="matters-group matters-lists-row">
                                             <div class="matters-list-half">
-                                                <div class="group-title">2.按区域展示</div>
+                                                <div class="group-title">按区域展示</div>
                                                 <div class="matters-list-table">
                                                     <div class="matters-list-row header">
                                                         <span>区划</span>
@@ -426,14 +423,11 @@ window.CockpitPage = class CockpitPage {
                                                         <span>琼海市</span>
                                                         <span>892</span>
                                                     </div>
-                                                    <div class="matters-list-row">
-                                                        <span>文昌市</span>
-                                                        <span>756</span>
-                                                    </div>
+                                                   
                                                 </div>
                                             </div>
                                             <div class="matters-list-half">
-                                                <div class="group-title">3.按部门展示</div>
+                                                <div class="group-title">按部门展示</div>
                                                 <div class="matters-list-table">
                                                     <div class="matters-list-row header">
                                                         <span>部门</span>
@@ -451,10 +445,7 @@ window.CockpitPage = class CockpitPage {
                                                         <span>人社局</span>
                                                         <span>1,856</span>
                                                     </div>
-                                                    <div class="matters-list-row">
-                                                        <span>资规局</span>
-                                                        <span>1,432</span>
-                                                    </div>
+                                                   
                                                     <div class="matters-list-row">
                                                         <span>住建局</span>
                                                         <span>1,123</span>
@@ -468,7 +459,7 @@ window.CockpitPage = class CockpitPage {
 
                             <div class="cockpit-row">
                                 <div class="card-section matters-section matters-left-bottom">
-                                    <div class="card-title">四、行政审批制度改革事项</div>
+                                    <div class="card-title">行政审批制度改革事项</div>
                                     <div class="matters-content matters-reform-content">
                                         <div class="stat-card-horizontal reform-stat-card">
                                             <div class="stat-item cp-clickable" data-cp-modal="20">
@@ -507,7 +498,7 @@ window.CockpitPage = class CockpitPage {
 
                                 <div class="card-section matters-section matters-center-bottom">
                                     <div class="card-title-row">
-                                        <span class="card-title">三、高频审批/检查/处罚事项列表</span>
+                                        <span class="card-title">高频审批/检查/处罚事项列表</span>
                                         <div class="matters-tabs" id="matters-tabs">
                                             <button class="matters-tab-btn active" data-tab="approval">审批</button>
                                             <button class="matters-tab-btn" data-tab="inspection">检查</button>
@@ -595,7 +586,7 @@ window.CockpitPage = class CockpitPage {
                                 </div>
 
                                 <div class="card-section matters-section matters-right-bottom">
-                                    <div class="card-title">五、覆盖率</div>
+                                    <div class="card-title">覆盖率</div>
                                     <div class="matters-content">
                                         <div class="stat-card-horizontal">
                                             <div class="stat-item stat-item-row cp-clickable" data-cp-modal="28">
@@ -906,6 +897,33 @@ window.CockpitPage = class CockpitPage {
                 </div>
             </div>
         `;
+    }
+
+    initHomeCharts() {
+        const pieEl = document.getElementById('cockpit-matters-pie');
+        if (pieEl) {
+            if (this.charts['cockpit-matters-pie']) {
+                this.charts['cockpit-matters-pie'].dispose();
+            }
+            const chart = echarts.init(pieEl);
+            chart.setOption({
+                textStyle: { color: 'rgba(255,255,255,0.6)' },
+                tooltip: { trigger: 'item', formatter: '{b}: {c}件 ({d}%)' },
+                series: [{
+                    type: 'pie',
+                    radius: ['40%', '70%'],
+                    center: ['50%', '50%'],
+                    label: { show: true, formatter: '{b}\n{c}件', color: 'rgba(255,255,255,0.8)', fontSize: 11 },
+                    data: [
+                        { value: 350, name: '行政检查', itemStyle: { color: '#34c759' } },
+                        { value: 120, name: '行政处罚', itemStyle: { color: '#ff3b30' } },
+                        { value: 50, name: '行政强制', itemStyle: { color: '#ff9500' } },
+                        { value: 80, name: '其他事项', itemStyle: { color: '#007aff' } }
+                    ]
+                }]
+            });
+            this.charts['cockpit-matters-pie'] = chart;
+        }
     }
 
     bindEvents() {
