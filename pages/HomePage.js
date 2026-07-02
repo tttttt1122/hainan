@@ -20,7 +20,7 @@ window.HomePage = class HomePage {
                                     <div class="activity-item activity-parent">
                                         <span class="activity-label">年度新增市场主体</span>
                                         <span class="activity-value-group">
-                                            <span class="activity-count">99</span>
+                                            <span class="activity-count highlight-num" data-modal="yearly_add" style="cursor: pointer;">99</span>
                                             <span class="trend-up">↑ 1%</span>
                                         </span>
                                     </div>
@@ -32,7 +32,7 @@ window.HomePage = class HomePage {
                                     <div class="activity-item activity-parent">
                                         <span class="activity-label">年度减少市场主体</span>
                                         <span class="activity-value-group">
-                                            <span class="activity-count">99</span>
+                                            <span class="activity-count highlight-num" data-modal="yearly_remove" style="cursor: pointer;">99</span>
                                             <span class="trend-down">↓ 1%</span>
                                         </span>
                                     </div>
@@ -40,14 +40,7 @@ window.HomePage = class HomePage {
                                         <div id="marketDecreasePie" class="activity-pie"></div>
                                     </div>
                                 </div>
-                                <div class="activity-item activity-parent">
-                                    <span class="activity-label">信用等级B级及以上市场主体</span>
-                                    <span class="activity-value-group">
-                                        <span class="activity-count">99万</span>
-                                        <span class="activity-ratio">占比70%</span>
-                                        <span class="trend-up">↑ 1%</span>
-                                    </span>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="card-section satisfaction-section-left">
@@ -57,19 +50,23 @@ window.HomePage = class HomePage {
                                 <div class="satisfaction-item">
                                     <span class="satisfaction-label">"好差评"好评率</span>
                                     <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">99.96%</span>
+                                        <span class="satisfaction-count highlight-num" data-modal="good_bad_rate" style="cursor: pointer;">99.96%</span>
+                                        <span class="trend-up">↑ 1%</span>
                                     </span>
+                                    
                                 </div>
                                 <div class="satisfaction-item">
                                     <span class="satisfaction-label">涉企检查市场主体满意度</span>
                                     <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">99%</span>
+                                        <span class="satisfaction-count highlight-num" data-modal="enterprise_satisfaction" style="cursor: pointer;">99%</span>
+                                        <span class="trend-up">↑ 1%</span>
                                     </span>
                                 </div>
                                 <div class="satisfaction-item">
                                     <span class="satisfaction-label">涉企检查12345投诉下降</span>
                                     <span class="satisfaction-value-group">
-                                        <span class="satisfaction-count">99%</span>
+                                        <span class="satisfaction-count highlight-num" data-modal="complaint_decrease" style="cursor: pointer;">99%</span>
+                                        <span class="trend-down">↓ 1%</span>
                                     </span>
                                 </div>
                             </div>
@@ -81,27 +78,27 @@ window.HomePage = class HomePage {
                                 <div class="stat-card-horizontal">
                                     <div class="stat-item">
                                         <span class="stat-label">今日新增市场主体（户）</span>
-                                        <span class="stat-value">80</span>
+                                        <span class="stat-value highlight-num" data-modal="new_market" style="cursor: pointer;">80</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item">
                                         <span class="stat-label">办理开办企业手续平均耗时</span>
-                                        <span class="stat-value">7h</span>
+                                        <span class="stat-value highlight-num" data-modal="startup_time" style="cursor: pointer;">7h</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item">
-                                        <span class="stat-label">今日新增建筑工程项目</span>
-                                        <span class="stat-value">80</span>
+                                        <span class="stat-label">今日新增项目</span>
+                                        <span class="stat-value highlight-num" data-modal="new_project" style="cursor: pointer;">80</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item">
-                                        <span class="stat-label">建筑工程项目主要事项审批平均用时</span>
-                                        <span class="stat-value">7h</span>
+                                        <span class="stat-label">项目主要事项审批平均用时</span>
+                                        <span class="stat-value highlight-num" data-modal="project_approval" style="cursor: pointer;">7h</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item">
-                                        <span class="stat-label">建筑工程项目从审批到落地平均用时</span>
-                                        <span class="stat-value">7h</span>
+                                        <span class="stat-label">项目从审批到落地平均用时</span>
+                                        <span class="stat-value highlight-num" data-modal="project_landing" style="cursor: pointer;">7h</span>
                                     </div>
                                 </div>
                             </div>
@@ -110,7 +107,7 @@ window.HomePage = class HomePage {
                                     <button class="map-view-tab map-view-tab-active" data-view="panorama">全景图</button>
                                     <button class="map-view-tab" data-view="map">地图</button>
                                 </div>
-                                <img src="审管法信.gif" class="map-image" data-view="panorama" alt="全景图">
+                                <img src="审管法信.gif" class="map-image" data-view="panorama" alt="全景图" style="cursor: pointer;" onclick="window.homePage.openPanoramaModal()">
                                 <img src="地图.png" class="map-image map-image-hidden" data-view="map" alt="地图">
                             </div>
                         </div>
@@ -123,15 +120,15 @@ window.HomePage = class HomePage {
                                         <div class="gradient-stats">
                                             <div class="gradient-stat">
                                                 <span class="gradient-stat-label">认定企业总数</span>
-                                                <span class="gradient-stat-value">1258</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="tech_total" style="cursor: pointer;">1258</span>
                                             </div>
                                             <div class="gradient-stat">
-                                                <span class="gradient-stat-label">年度新增认定企业数</span>
-                                                <span class="gradient-stat-value">326</span>
+                                                <span class="gradient-stat-label">年度新增认定企业</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="tech_new" style="cursor: pointer;">326</span>
                                             </div>
                                             <div class="gradient-stat">
                                                 <span class="gradient-stat-label">同比增加</span>
-                                                <span class="gradient-stat-value">2%</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="tech_growth" style="cursor: pointer;">92%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -140,15 +137,15 @@ window.HomePage = class HomePage {
                                         <div class="gradient-stats">
                                             <div class="gradient-stat">
                                                 <span class="gradient-stat-label">认定企业总数</span>
-                                                <span class="gradient-stat-value">456</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="special_total" style="cursor: pointer;">456</span>
                                             </div>
                                             <div class="gradient-stat">
-                                                <span class="gradient-stat-label">年度新增认定企业数</span>
-                                                <span class="gradient-stat-value">118</span>
+                                                <span class="gradient-stat-label">年度新增认定企业</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="special_new" style="cursor: pointer;">118</span>
                                             </div>
                                             <div class="gradient-stat">
                                                 <span class="gradient-stat-label">同比增加</span>
-                                                <span class="gradient-stat-value">8%</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="special_growth" style="cursor: pointer;">88%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -157,15 +154,15 @@ window.HomePage = class HomePage {
                                         <div class="gradient-stats">
                                             <div class="gradient-stat">
                                                 <span class="gradient-stat-label">认定企业总数</span>
-                                                <span class="gradient-stat-value">89</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="giant_total" style="cursor: pointer;">89</span>
                                             </div>
                                             <div class="gradient-stat">
-                                                <span class="gradient-stat-label">年度新增认定企业数</span>
-                                                <span class="gradient-stat-value">23</span>
+                                                <span class="gradient-stat-label">年度新增认定企业</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="giant_new" style="cursor: pointer;">23</span>
                                             </div>
                                             <div class="gradient-stat">
                                                 <span class="gradient-stat-label">同比增加</span>
-                                                <span class="gradient-stat-value">5%</span>
+                                                <span class="gradient-stat-value highlight-num" data-modal="giant_growth" style="cursor: pointer;">85%</span>
                                             </div>
                                         </div>
                                     </div>
@@ -182,20 +179,12 @@ window.HomePage = class HomePage {
                                         <span class="achievement-title">审批效率飞跃</span>
                                     </div>
                                     <div class="achievement-content">
-                                        <div class="achievement-row" data-modal="approval_compress" style="cursor: pointer;">审批时限整体压缩<span class="highlight-num">90%以上</span></div>
-                                        <div class="achievement-row" data-modal="approval_efficiency" style="cursor: pointer;">平均<span class="highlight-num">20分钟</span>即可办结1件业务</div>
+                                        <div class="achievement-row" data-modal="approval_compress" style="cursor: pointer;">审批时限整体压缩<span class="highlight-num">90%</span><span class="trend-up">↑ 1%</span></div>
+                                        <div class="achievement-row" data-modal="approval_efficiency" style="cursor: pointer;">平均<span class="highlight-num">20分钟</span>即可办结1件业务<span class="trend-down">↓ 1%</span></div>
                                     </div>
                                 </div>
                                 
-                                <div class="achievement-card" data-modal="info_share" style="cursor: pointer;">
-                                    <div class="achievement-header">
-                                        <span class="achievement-icon">🔗</span>
-                                        <span class="achievement-title">信息共享规模</span>
-                                    </div>
-                                    <div class="achievement-content">
-                                        <div class="achievement-row">平台累计共享各类许可信息超过<span class="highlight-num">68万件次</span></div>
-                                    </div>
-                                </div>
+                              
                                 
                                 <div class="achievement-card" data-modal="approval_supervision" style="cursor: pointer;">
                                     <div class="achievement-header">
@@ -211,11 +200,10 @@ window.HomePage = class HomePage {
                                 <div class="achievement-card">
                                     <div class="achievement-header">
                                         <span class="achievement-icon">⚡</span>
-                                        <span class="achievement-title">业务协同高效</span>
+                                        <span class="achievement-title">管法衔接顺畅</span>
                                     </div>
                                     <div class="achievement-content">
-                                        <div class="achievement-row" data-modal="task_push" style="cursor: pointer;">自动推送监管核查任务<span class="highlight-num">11万+件</span></div>
-                                        <div class="achievement-row" data-modal="penalty_transfer" style="cursor: pointer;">流转行政处罚办件<span class="highlight-num">18万+件次</span></div>
+                                        <div class="achievement-row">线上移送线索<span class="highlight-num" data-modal="task_push" style="cursor: pointer;">11.21万宗</span>，转换案件<span class="highlight-num" data-modal="push_rate" style="cursor: pointer;">99宗</span>，线上线索移送率<span class="highlight-num" data-modal="transfer_rate" style="cursor: pointer;">99%</span></div>
                                     </div>
                                 </div>
                                 
@@ -225,18 +213,29 @@ window.HomePage = class HomePage {
                                         <span class="achievement-title">信用服务广泛覆盖</span>
                                     </div>
                                     <div class="achievement-content">
-                                        <div class="achievement-row" data-modal="credit_service" style="cursor: pointer;">办件量超<span class="highlight-num">300万件</span></div>
-                                        <div class="achievement-desc" data-modal="credit_coverage" style="cursor: pointer;"><span class="highlight-num">99%</span>的办事企业享受到诚信便利服务</div>
+                                        <div class="achievement-row" data-modal="credit_service" style="cursor: pointer;">信用等级审批办件量<span class="highlight-num">300万件</span><span class="trend-up">↑ 1%</span></div>
+                                        <div class="achievement-desc">累计为<span class="highlight-num" data-modal="credit_verify" style="cursor: pointer;">630.11万</span>申请人提供自动信用核验服务，<span class="highlight-num" data-modal="credit_coverage" style="cursor: pointer;">99%</span>的办事主体享受到诚信便利服务</div>
+                                    
                                     </div>
                                 </div>
                                 
-                                <div class="achievement-card" data-modal="credit_verify" style="cursor: pointer;">
+                                <div class="achievement-card">
                                     <div class="achievement-header">
                                         <span class="achievement-icon">✓</span>
                                         <span class="achievement-title">诚信激励效果显著</span>
                                     </div>
                                     <div class="achievement-content">
-                                        <div class="achievement-desc">"海易办"平台累计为超<span class="highlight-num">630万</span>申请人提供自动信用核验服务</div>
+                                        <div class="achievement-desc">合规比例<span class="highlight-num" data-modal="compliance_rate" style="cursor: pointer;">90%  </span><span class="trend-up">    ↑ 1%</span> ，信用等级B级及以上市场主体<span class="highlight-num" data-modal="credit_b_above" style="cursor: pointer;">630.11万  </span><span class="trend-up">    ↑ 1%</span> ，违法比例<span class="highlight-num" data-modal="violation_rate" style="cursor: pointer;">10%  </span><span class="trend-down">    ↓ 1%</span></div>
+                                    </div>
+                                </div>
+
+                                  <div class="achievement-card" style="cursor: pointer;">
+                                    <div class="achievement-header">
+                                        <span class="achievement-icon">🔗</span>
+                                        <span class="achievement-title">风险预警动态监测</span>
+                                    </div>
+                                    <div class="achievement-content">
+                                        <div class="achievement-row">根据风险预警模型发现并处置<span class="highlight-num" data-modal="risk_warning" style="cursor: pointer;">45个</span>预警信息，处置率<span class="highlight-num" style="cursor: pointer;">100%</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -340,9 +339,47 @@ window.HomePage = class HomePage {
                 this.openModal(modalType);
             });
         });
+
+        // 绑定风险预警动态监测指标点击
+        const statItems = this.container.querySelectorAll('.highlight-num[data-modal]');
+        statItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const modalType = item.dataset.modal;
+                this.openModal(modalType);
+            });
+        });
     }
 
     // ==================== 弹窗系统 ====================
+    openPanoramaModal() {
+        const overlay = document.createElement('div');
+        overlay.className = 'indicator-modal-overlay';
+        overlay.innerHTML = `
+            <div class="panorama-modal">
+                <div class="panorama-modal-header">
+                    <span class="panorama-modal-title">全景流程图</span>
+                    <button class="panorama-modal-close">×</button>
+                </div>
+                <div class="panorama-modal-content">
+                    <img src="流程图.gif" class="panorama-image" alt="流程图">
+                </div>
+            </div>
+        `;
+        
+        document.body.appendChild(overlay);
+        
+        overlay.querySelector('.panorama-modal-close').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+    }
+
     openModal(type) {
         this.currentModalType = type;
         this.currentPage = 1;
@@ -358,8 +395,17 @@ window.HomePage = class HomePage {
             case 'approval_efficiency':
                 overlay.innerHTML = this.renderApprovalEfficiencyModal();
                 break;
-            case 'info_share':
-                overlay.innerHTML = this.renderInfoShareModal();
+            case 'info_share_field':
+                overlay.innerHTML = this.renderInfoShareFieldModal();
+                break;
+            case 'info_share_dept':
+                overlay.innerHTML = this.renderInfoShareDeptModal();
+                break;
+            case 'info_share_trend':
+                overlay.innerHTML = this.renderInfoShareTrendModal();
+                break;
+            case 'info_share_rate':
+                overlay.innerHTML = this.renderInfoShareRateModal();
                 break;
             case 'approval_supervision':
                 overlay.innerHTML = this.renderApprovalSupervisionModal();
@@ -367,8 +413,14 @@ window.HomePage = class HomePage {
             case 'task_push':
                 overlay.innerHTML = this.renderTaskPushModal();
                 break;
+            case 'push_rate':
+                overlay.innerHTML = this.renderPushRateModal();
+                break;
             case 'penalty_transfer':
                 overlay.innerHTML = this.renderPenaltyTransferModal();
+                break;
+            case 'transfer_rate':
+                overlay.innerHTML = this.renderTransferRateModal();
                 break;
             case 'credit_service':
                 overlay.innerHTML = this.renderCreditServiceModal();
@@ -378,6 +430,78 @@ window.HomePage = class HomePage {
                 break;
             case 'credit_verify':
                 overlay.innerHTML = this.renderCreditVerifyModal();
+                break;
+            case 'credit_b_above':
+                overlay.innerHTML = this.renderCreditBAboveModal();
+                break;
+            case 'credit_b_ratio':
+                overlay.innerHTML = this.renderCreditBRatioModal();
+                break;
+            case 'compliance_rate':
+                overlay.innerHTML = this.renderComplianceRateModal();
+                break;
+            case 'violation_rate':
+                overlay.innerHTML = this.renderViolationRateModal();
+                break;
+            case 'risk_warning':
+                overlay.innerHTML = this.renderRiskWarningModal();
+                break;
+            case 'new_market':
+                overlay.innerHTML = this.renderNewMarketModal();
+                break;
+            case 'startup_time':
+                overlay.innerHTML = this.renderStartupTimeModal();
+                break;
+            case 'new_project':
+                overlay.innerHTML = this.renderNewProjectModal();
+                break;
+            case 'project_approval':
+                overlay.innerHTML = this.renderProjectApprovalModal();
+                break;
+            case 'project_landing':
+                overlay.innerHTML = this.renderProjectLandingModal();
+                break;
+            case 'yearly_add':
+                overlay.innerHTML = this.renderYearlyAddModal();
+                break;
+            case 'yearly_remove':
+                overlay.innerHTML = this.renderYearlyRemoveModal();
+                break;
+            case 'good_bad_rate':
+                overlay.innerHTML = this.renderGoodBadRateModal();
+                break;
+            case 'enterprise_satisfaction':
+                overlay.innerHTML = this.renderEnterpriseSatisfactionModal();
+                break;
+            case 'complaint_decrease':
+                overlay.innerHTML = this.renderComplaintDecreaseModal();
+                break;
+            case 'tech_total':
+                overlay.innerHTML = this.renderTechTotalModal();
+                break;
+            case 'tech_new':
+                overlay.innerHTML = this.renderTechNewModal();
+                break;
+            case 'tech_growth':
+                overlay.innerHTML = this.renderTechGrowthModal();
+                break;
+            case 'special_total':
+                overlay.innerHTML = this.renderSpecialTotalModal();
+                break;
+            case 'special_new':
+                overlay.innerHTML = this.renderSpecialNewModal();
+                break;
+            case 'special_growth':
+                overlay.innerHTML = this.renderSpecialGrowthModal();
+                break;
+            case 'giant_total':
+                overlay.innerHTML = this.renderGiantTotalModal();
+                break;
+            case 'giant_new':
+                overlay.innerHTML = this.renderGiantNewModal();
+                break;
+            case 'giant_growth':
+                overlay.innerHTML = this.renderGiantGrowthModal();
                 break;
         }
         
@@ -415,8 +539,8 @@ window.HomePage = class HomePage {
                         <span class="indicator-stat-value">90%</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">原法定总时限</span>
-                        <span class="indicator-stat-value">1,280天</span>
+                        <span class="indicator-stat-label">原平均办理时限</span>
+                        <span class="indicator-stat-value">20天</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">现平均办理时限</span>
@@ -426,6 +550,10 @@ window.HomePage = class HomePage {
                         <span class="indicator-stat-label">累计节省天数</span>
                         <span class="indicator-stat-value">9,856天</span>
                     </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">累计减少跑动次数</span>
+                        <span class="indicator-stat-value">2,912次</span>
+                    </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
                     <div class="indicator-chart-item">
@@ -433,7 +561,7 @@ window.HomePage = class HomePage {
                         <div id="modal-radar-1" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各事项压缩幅度排行TOP8</span>
+                        <span class="indicator-chart-title">各事项压缩幅度情况</span>
                         <div id="modal-bar-1" class="indicator-chart-container"></div>
                     </div>
                 </div>
@@ -444,7 +572,7 @@ window.HomePage = class HomePage {
                                 <th>序号</th>
                                 <th>事项名称</th>
                                 <th>事项类型</th>
-                                <th>原法定时限（天）</th>
+                                <th>原办理时限（天）</th>
                                 <th>现办理时限（天）</th>
                                 <th>压缩率（%）</th>
                             </tr>
@@ -501,12 +629,9 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">平均办结时限</span>
-                        <span class="indicator-stat-value">20分钟</span>
+                        <span class="indicator-stat-value">1.2天</span>
                     </div>
-                    <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">即办件占比</span>
-                        <span class="indicator-stat-value">45%</span>
-                    </div>
+                   
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">最快办结</span>
                         <span class="indicator-stat-value">5分钟</span>
@@ -534,8 +659,8 @@ window.HomePage = class HomePage {
                                 <th>事项名称</th>
                                 <th>事项类型</th>
                                 <th>平均办理时限（分钟）</th>
-                                <th>即办件标识</th>
-                                <th>办理效率评级</th>
+                                <th>最快办结（分钟）</th>
+                                <th>最慢办结（分钟）</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -554,16 +679,16 @@ window.HomePage = class HomePage {
 
     generateEfficiencyTableRows() {
         const allItems = [
-            { name: '企业名称预先核准', type: '企业登记', time: 5, instant: '是', level: '高效' },
-            { name: '营业执照补发', type: '企业登记', time: 8, instant: '是', level: '高效' },
-            { name: '食品经营许可新办', type: '食品药品', time: 15, instant: '否', level: '高效' },
-            { name: '公共场所卫生许可', type: '卫生计生', time: 12, instant: '是', level: '高效' },
-            { name: '劳务派遣经营许可', type: '人力资源', time: 25, instant: '否', level: '一般' },
-            { name: '危险化学品许可', type: '安全生产', time: 35, instant: '否', level: '待优化' },
-            { name: '建筑施工许可', type: '工程建设', time: 20, instant: '否', level: '高效' },
-            { name: '特种设备登记', type: '市场监管', time: 10, instant: '是', level: '高效' },
-            { name: '医疗器械备案', type: '食品药品', time: 18, instant: '是', level: '高效' },
-            { name: '进出口权备案', type: '商务贸易', time: 22, instant: '否', level: '一般' }
+            { name: '企业名称预先核准', type: '高效办成一件事', time: 5, instant: '2', level: '20' },
+            { name: '营业执照补发', type: '便民简证', time: 8, instant: '4', level: '20' },
+            { name: '食品经营许可新办', type: '极简审批', time: 15, instant: '10', level: '20' },
+            { name: '公共场所卫生许可', type: '智能快办', time: 12, instant: '4', level: '20' },
+            { name: '劳务派遣经营许可', type: '免申即享', time: 25, instant: '10', level: '40' },
+            { name: '危险化学品许可', type: '全省通办', time: 35, instant: '15', level: '50' },
+            { name: '建筑施工许可', type: '极简审批', time: 20, instant: '10', level: '60' },
+            { name: '特种设备登记', type: '智能快办', time: 10, instant: '4', level: '20' },
+            { name: '医疗器械备案', type: '智能快办', time: 18, instant: '8', level: '30' },
+            { name: '进出口权备案', type: '智能快办', time: 22, instant: '12', level: '50' }
         ];
         const start = (this.currentPage - 1) * this.pageSize;
         const items = allItems.slice(start, start + this.pageSize);
@@ -579,40 +704,37 @@ window.HomePage = class HomePage {
         `).join('');
     }
 
-    // 弹窗三：信息共享规模分析
-    renderInfoShareModal() {
+    // 弹窗三：信息共享领域全景分析
+    renderInfoShareFieldModal() {
         return `
             <div class="indicator-modal">
                 <div class="indicator-modal-header">
-                    <span class="indicator-modal-title">信息共享规模分析</span>
+                    <span class="indicator-modal-title">信息共享领域全景分析</span>
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">累计共享信息</span>
-                        <span class="indicator-stat-value">68万件次</span>
+                        <span class="indicator-stat-label">覆盖领域总数</span>
+                        <span class="indicator-stat-value">45个</span>
+                    </div>
+                
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">信息共享率</span>
+                        <span class="indicator-stat-value">100%</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">本月新增</span>
-                        <span class="indicator-stat-value">3,456件次</span>
-                    </div>
-                    <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">共享部门数</span>
-                        <span class="indicator-stat-value">38个</span>
-                    </div>
-                    <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">接口调用次数</span>
-                        <span class="indicator-stat-value">125,678次</span>
+                        <span class="indicator-stat-label">累计数据共享量</span>
+                        <span class="indicator-stat-value">199.01万件次</span>
                     </div>
                 </div>
-                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">近12个月信息共享趋势</span>
-                        <div id="modal-line-3" class="indicator-chart-container"></div>
+                        <span class="indicator-chart-title">各领域共享信息量情况</span>
+                        <div id="modal-field-bar" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">信息类型分布</span>
-                        <div id="modal-pie-3" class="indicator-chart-container"></div>
+                        <span class="indicator-chart-title">共享数据类型分类占比</span>
+                        <div id="modal-field-pie" class="indicator-chart-container"></div>
                     </div>
                 </div>
                 <div class="indicator-modal-content">
@@ -620,16 +742,378 @@ window.HomePage = class HomePage {
                         <thead>
                             <tr>
                                 <th>序号</th>
-                                <th>共享批次</th>
-                                <th>信息类型</th>
-                                <th>提供部门</th>
-                                <th>接收部门</th>
-                                <th>共享时间</th>
-                                <th>共享方式</th>
+                                <th>领域名称</th>
+                                <th>共享信息量（件次）</th>
+                                <th>涉及部门数</th>
+                                <th>共享率（%）</th>
+                                <th>主要共享数据类型</th>
+                                <th>最近共享时间</th>
                             </tr>
                         </thead>
                         <tbody>
-                            ${this.generateInfoShareTableRows()}
+                            ${this.generateInfoShareFieldTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 9 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateInfoShareFieldTableRows() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关', '人力资源', '农业农村', '自然资源', '住建', '教育', '科技', '民政', '公安', '财政', '审计', '统计', '发改', '商务', '工信', '司法', '信访', '国防', '体育', '水利', '林业', '气象', '地震', '邮政', '通信', '电力', '燃气', '供水', '供热', '环保', '医疗', '社保', '就业', '物价', '质检', '药监', '烟草', '粮食'];
+        const dataTypes = ['许可信息', '监管信息', '执法信息', '信用信息', '备案信息'];
+        const allItems = [];
+        for (let i = 1; i <= 45; i++) {
+            const shareCount = Math.floor(Math.random() * 5000 + 500);
+            allItems.push({
+                field: fields[i - 1],
+                count: shareCount,
+                deptCount: Math.floor(Math.random() * 20 + 5),
+                rate: 100,
+                dataType: dataTypes[i % 5],
+                time: `2024-0${i % 12 + 1}-15`
+            });
+        }
+        const start = (this.currentPage - 1) * this.pageSize;
+        const items = allItems.slice(start, start + this.pageSize);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.field}</td>
+                <td>${item.count.toLocaleString()}</td>
+                <td>${item.deptCount}</td>
+                <td>${item.rate}</td>
+                <td>${item.dataType}</td>
+                <td>${item.time}</td>
+            </tr>
+        `).join('');
+    }
+
+    // 弹窗四：信息共享部门全景分析
+    renderInfoShareDeptModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">信息共享部门全景分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">覆盖部门总数</span>
+                        <span class="indicator-stat-value">1,909个</span>
+                    </div>
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">信息共享率</span>
+                        <span class="indicator-stat-value">100%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">平均每部门共享量</span>
+                        <span class="indicator-stat-value">238件次</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各部门共享信息量情况</span>
+                        <div id="modal-dept-bar" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">部门层级分布</span>
+                        <div id="modal-dept-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>部门名称</th>
+                                <th>所属层级</th>
+                                <th>共享信息量（件次）</th>
+                                <th>涉及领域数</th>
+                                <th>共享率（%）</th>
+                                <th>最近共享时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateInfoShareDeptTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 382 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateInfoShareDeptTableRows() {
+        const depts = ['省市场监管局', '省交通运输厅', '省生态环境厅', '省卫健委', '省文旅厅', '省应急管理厅', '省税务局', '海口海关', '省人社厅', '省农业农村厅', '省自然资源厅', '省住建厅', '省教育厅', '省科技厅', '省民政厅'];
+        const levels = ['省级', '市级', '区县级'];
+        const allItems = [];
+        for (let i = 1; i <= 30; i++) {
+            const shareCount = Math.floor(Math.random() * 1000 + 50);
+            allItems.push({
+                dept: depts[i % 15] + (i > 15 ? '（海口）' : ''),
+                level: levels[i % 3],
+                count: shareCount,
+                fieldCount: Math.floor(Math.random() * 10 + 3),
+                rate: 100,
+                time: `2024-0${i % 12 + 1}-20`
+            });
+        }
+        const start = (this.currentPage - 1) * this.pageSize;
+        const items = allItems.slice(start, start + this.pageSize);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.dept}</td>
+                <td>${item.level}</td>
+                <td>${item.count.toLocaleString()}</td>
+                <td>${item.fieldCount}</td>
+                <td>${item.rate}</td>
+                <td>${item.time}</td>
+            </tr>
+        `).join('');
+    }
+
+    // 弹窗五：信息共享规模趋势分析
+    renderInfoShareTrendModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">信息共享规模趋势分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">累计共享总量</span>
+                        <span class="indicator-stat-value">45.44万件次</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">本月新增</span>
+                        <span class="indicator-stat-value">3.2万件次</span>
+                    </div>
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">本月新增同比增长</span>
+                        <span class="indicator-stat-value">+12.5%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">日均共享量</span>
+                        <span class="indicator-stat-value">1,245件次</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">近12个月信息共享趋势</span>
+                        <div id="modal-trend-line" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">信息类型分布</span>
+                        <div id="modal-trend-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>月份</th>
+                                <th>共享量（件次）</th>
+                                <th>环比增长（%）</th>
+                                <th>主要共享领域</th>
+                                <th>主要共享部门</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateInfoShareTrendTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 3 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateInfoShareTrendTableRows() {
+        const months = ['2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12', '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-06'];
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康'];
+        const depts = ['省市场监管局', '省交通运输厅', '省生态环境厅', '省卫健委'];
+        const allItems = [];
+        for (let i = 0; i < 12; i++) {
+            const count = Math.floor(Math.random() * 5000 + 2500);
+            allItems.push({
+                month: months[i],
+                count: count,
+                growth: Math.random() * 20 - 5,
+                field: fields[i % 4],
+                dept: depts[i % 4]
+            });
+        }
+        const start = (this.currentPage - 1) * this.pageSize;
+        const items = allItems.slice(start, start + this.pageSize);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.month}</td>
+                <td>${item.count.toLocaleString()}</td>
+                <td>${item.growth >= 0 ? '+' : ''}${item.growth.toFixed(1)}</td>
+                <td>${item.field}</td>
+                <td>${item.dept}</td>
+            </tr>
+        `).join('');
+    }
+
+    // 弹窗六：信息共享率达成分析
+    renderInfoShareRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">信息共享率达成分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">整体共享率</span>
+                        <span class="indicator-stat-value">100%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">已共享领域</span>
+                        <span class="indicator-stat-value">45个</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">已共享部门</span>
+                        <span class="indicator-stat-value">1,909个</span>
+                    </div>
+                    
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">整体共享率</span>
+                        <div id="modal-rate-donut" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域共享率达成情况</span>
+                        <div id="modal-rate-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>领域名称</th>
+                                <th>应共享量（件次）</th>
+                                <th>实际共享量（件次）</th>
+                                <th>共享率（%）</th>
+                                <th>共享状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateInfoShareRateTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 9 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateInfoShareRateTableRows() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关', '人力资源', '农业农村', '自然资源', '住建', '教育', '科技', '民政', '公安', '财政', '审计', '统计', '发改', '商务', '工信', '司法', '信访', '国防', '体育', '水利', '林业', '气象', '地震', '邮政', '通信', '电力', '燃气', '供水', '供热', '环保', '医疗', '社保', '就业', '物价', '质检', '药监', '烟草', '粮食'];
+        const allItems = [];
+        for (let i = 1; i <= 45; i++) {
+            const shouldShare = Math.floor(Math.random() * 5000 + 500);
+            allItems.push({
+                field: fields[i - 1],
+                shouldShare: shouldShare,
+                actualShare: shouldShare,
+                rate: 100,
+                status: '全部达成'
+            });
+        }
+        const start = (this.currentPage - 1) * this.pageSize;
+        const items = allItems.slice(start, start + this.pageSize);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.field}</td>
+                <td>${item.shouldShare.toLocaleString()}</td>
+                <td>${item.actualShare.toLocaleString()}</td>
+                <td>${item.rate}</td>
+                <td>${item.status}</td>
+            </tr>
+        `).join('');
+    }
+
+    // 弹窗七：监管核查任务自动推送率分析
+    renderPushRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">线索转案件分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">转换案件总数</span>
+                        <span class="indicator-stat-value">99宗</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">线索转案件率</span>
+                        <span class="indicator-stat-value">0.088%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">已结案</span>
+                        <span class="indicator-stat-value">67宗</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">办理中</span>
+                        <span class="indicator-stat-value">32宗</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">线索转案件全流程转化</span>
+                        <div id="modal-case-funnel" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域转换案件数量情况</span>
+                        <div id="modal-case-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>案件编号</th>
+                                <th>线索编号</th>
+                                <th>案件名称</th>
+                                <th>所属领域</th>
+                                <th>立案日期</th>
+                                <th>案件状态</th>
+                                <th>承办部门</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateCaseTransferTableRows()}
                         </tbody>
                     </table>
                     <div class="indicator-modal-pagination">
@@ -642,32 +1126,2181 @@ window.HomePage = class HomePage {
         `;
     }
 
-    generateInfoShareTableRows() {
-        const types = ['许可信息', '监管信息', '执法信息', '信用信息'];
-        const methods = ['接口', '文件', '库表'];
-        const depts = ['审批局', '市场监管局', '生态环境局', '交通运输局', '卫健委'];
+    renderCreditBAboveModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">信用等级B级及以上市场主体分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">市场主体总数</span>
+                        <span class="indicator-stat-value">100.00万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">B级及以上市场主体总数</span>
+                        <span class="indicator-stat-value">600.11万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">B级及以上市场主体总数占比</span>
+                        <span class="indicator-stat-value">60%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 1fr 1fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各等级市场主体数量</span>
+                        <div id="modal-b-level-bar" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">信用等级B级及以上市场主体类型分布</span>
+                        <div id="modal-b-level-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>对象名称</th>
+                                <th>统一社会信用代码</th>
+                                <th>信用等级</th>
+                                <th>所属行业</th>
+                                <th>评定日期</th>
+                                <th>有效期至</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateCreditBAboveTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 10 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    renderNewMarketModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">今日新增市场主体分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">今日新增</span>
+                        <span class="indicator-stat-value">80户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">新增企业</span>
+                        <span class="indicator-stat-value">45户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">新增个体工商户</span>
+                        <span class="indicator-stat-value">30户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">新增农民专业合作社</span>
+                        <span class="indicator-stat-value">5户</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">新增主体类型分布</span>
+                        <div id="modal-market-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各区域今日新增排行TOP8</span>
+                        <div id="modal-market-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>主体名称</th>
+                                <th>统一社会信用代码</th>
+                                <th>主体类型</th>
+                                <th>所属区域</th>
+                                <th>登记时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateMarketTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 16 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateMarketTableRows() {
+        const types = ['企业', '个体', '农专'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务', '万宁渔业公司', '东方化工企业', '澄迈物流中心'];
         const allItems = [];
-        for (let i = 1; i <= 40; i++) {
+        for (let i = 1; i <= 80; i++) {
             allItems.push({
-                batch: `Batch${20240000 + i}`,
-                type: types[i % 4],
-                provideDept: depts[i % 5],
-                receiveDept: depts[(i + 2) % 5],
-                time: `2024-${(i % 12 + 1).toString().padStart(2, '0')}-15`,
-                method: methods[i % 3]
+                name: names[i % 8] + i,
+                code: `9146${String(i).padStart(10, '0')}`,
+                type: types[i % 3],
+                region: regions[i % 8],
+                time: `2026-07-02 ${Math.floor(Math.random() * 12) + 8}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`
             });
         }
-        const start = (this.currentPage - 1) * this.pageSize;
-        const items = allItems.slice(start, start + this.pageSize);
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.batch}</td>
+                <td>${item.name}</td>
+                <td>${item.code}</td>
                 <td>${item.type}</td>
-                <td>${item.provideDept}</td>
-                <td>${item.receiveDept}</td>
+                <td>${item.region}</td>
                 <td>${item.time}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderStartupTimeModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">开办企业手续耗时分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">平均耗时</span>
+                        <span class="indicator-stat-value">7小时</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">最快</span>
+                        <span class="indicator-stat-value">2.5小时</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">最慢</span>
+                        <span class="indicator-stat-value">15小时</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比压缩</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">-15%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各环节平均耗时拆解</span>
+                        <div id="modal-startup-bar" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">耗时占比分布</span>
+                        <div id="modal-startup-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>名称核准</th>
+                                <th>材料提交</th>
+                                <th>审批审核</th>
+                                <th>刻章备案</th>
+                                <th>税务登记</th>
+                                <th>银行开户</th>
+                                <th>总耗时</th>
+                                <th>办理日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateStartupTimeTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 10 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateStartupTimeTableRows() {
+        const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
+        const allItems = [];
+        for (let i = 1; i <= 50; i++) {
+            const name = names[i % 5] + i;
+            const step1 = parseFloat((Math.random() * 0.5 + 0.5).toFixed(1));
+            const step2 = parseFloat((Math.random() * 1 + 1).toFixed(1));
+            const step3 = parseFloat((Math.random() * 2 + 2).toFixed(1));
+            const step4 = parseFloat((Math.random() * 1 + 0.5).toFixed(1));
+            const step5 = parseFloat((Math.random() * 1 + 0.5).toFixed(1));
+            const step6 = parseFloat((Math.random() * 1 + 0.5).toFixed(1));
+            const total = parseFloat((step1 + step2 + step3 + step4 + step5 + step6).toFixed(1));
+            allItems.push({ name, step1, step2, step3, step4, step5, step6, total, date: `2026-06-${Math.floor(Math.random() * 20) + 10}` });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.step1}h</td>
+                <td>${item.step2}h</td>
+                <td>${item.step3}h</td>
+                <td>${item.step4}h</td>
+                <td>${item.step5}h</td>
+                <td>${item.step6}h</td>
+                <td>${item.total}h</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderNewProjectModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">今日新增项目分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">今日新增</span>
+                        <span class="indicator-stat-value">80个</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">政府投资项目</span>
+                        <span class="indicator-stat-value">32个</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">企业投资项目</span>
+                        <span class="indicator-stat-value">48个</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">总投资额</span>
+                        <span class="indicator-stat-value">12.5亿元</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">项目类型分布</span>
+                        <div id="modal-project-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各区域今日新增项目排行TOP8</span>
+                        <div id="modal-project-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>项目名称</th>
+                                <th>项目类型</th>
+                                <th>所属区域</th>
+                                <th>总投资额（万元）</th>
+                                <th>立项时间</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateProjectTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 16 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateProjectTableRows() {
+        const types = ['政府投资', '企业投资'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['基础设施建设项目', '产业园区开发项目', '旅游综合体项目', '科技创新项目', '生态环保项目', '城市更新项目', '现代农业项目', '物流枢纽项目'];
+        const allItems = [];
+        for (let i = 1; i <= 80; i++) {
+            allItems.push({
+                name: names[i % 8] + i,
+                type: types[i % 2],
+                region: regions[i % 8],
+                investment: Math.floor(Math.random() * 5000) + 500,
+                time: `2026-07-02 ${Math.floor(Math.random() * 12) + 8}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.type}</td>
+                <td>${item.region}</td>
+                <td>${item.investment.toLocaleString()}</td>
+                <td>${item.time}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderProjectApprovalModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">项目审批用时分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">平均审批用时</span>
+                        <span class="indicator-stat-value">7小时</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">立项审批</span>
+                        <span class="indicator-stat-value">1.5h</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">规划审批</span>
+                        <span class="indicator-stat-value">2h</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">施工许可</span>
+                        <span class="indicator-stat-value">2h</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">竣工验收</span>
+                        <span class="indicator-stat-value">1.5h</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各审批环节平均用时</span>
+                        <div id="modal-approval-bar" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各环节用时占比</span>
+                        <div id="modal-approval-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>项目名称</th>
+                                <th>立项审批</th>
+                                <th>用地规划</th>
+                                <th>工程规划</th>
+                                <th>施工许可</th>
+                                <th>竣工验收</th>
+                                <th>总用时</th>
+                                <th>审批日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateApprovalTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 10 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateApprovalTableRows() {
+        const names = ['基础设施建设项目', '产业园区开发项目', '旅游综合体项目', '科技创新项目', '生态环保项目'];
+        const allItems = [];
+        for (let i = 1; i <= 50; i++) {
+            const name = names[i % 5] + i;
+            const step1 = parseFloat((Math.random() * 1 + 1).toFixed(1));
+            const step2 = parseFloat((Math.random() * 1 + 1).toFixed(1));
+            const step3 = parseFloat((Math.random() * 1 + 1).toFixed(1));
+            const step4 = parseFloat((Math.random() * 1 + 1).toFixed(1));
+            const step5 = parseFloat((Math.random() * 1 + 1).toFixed(1));
+            const total = parseFloat((step1 + step2 + step3 + step4 + step5).toFixed(1));
+            allItems.push({ name, step1, step2, step3, step4, step5, total, date: `2026-06-${Math.floor(Math.random() * 20) + 10}` });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.step1}h</td>
+                <td>${item.step2}h</td>
+                <td>${item.step3}h</td>
+                <td>${item.step4}h</td>
+                <td>${item.step5}h</td>
+                <td>${item.total}h</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderProjectLandingModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">项目审批到落地用时分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">平均落地用时</span>
+                        <span class="indicator-stat-value">7小时</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">审批阶段</span>
+                        <span class="indicator-stat-value">5h</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">落地阶段</span>
+                        <span class="indicator-stat-value">2h</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比压缩</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">-20%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">审批与落地阶段用时占比</span>
+                        <div id="modal-landing-donut" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各项目落地用时排行TOP8</span>
+                        <div id="modal-landing-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>项目名称</th>
+                                <th>审批用时</th>
+                                <th>落地用时</th>
+                                <th>总用时</th>
+                                <th>落地日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateLandingTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 10 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateLandingTableRows() {
+        const names = ['基础设施建设项目', '产业园区开发项目', '旅游综合体项目', '科技创新项目', '生态环保项目'];
+        const allItems = [];
+        for (let i = 1; i <= 50; i++) {
+            const name = names[i % 5] + i;
+            const approval = parseFloat((Math.random() * 3 + 3).toFixed(1));
+            const landing = parseFloat((Math.random() * 2 + 1).toFixed(1));
+            const total = parseFloat((approval + landing).toFixed(1));
+            allItems.push({ name, approval, landing, total, date: `2026-06-${Math.floor(Math.random() * 20) + 10}` });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.approval}h</td>
+                <td>${item.landing}h</td>
+                <td>${item.total}h</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderYearlyAddModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">年度新增市场主体分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">2,856户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">新增企业</span>
+                        <span class="indicator-stat-value">1,456户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">新增个体工商户</span>
+                        <span class="indicator-stat-value">1,200户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">新增农村专业合作社</span>
+                        <span class="indicator-stat-value">200户</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">近12个月新增市场主体趋势</span>
+                        <div id="modal-yearly-add-trend" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">新增类型分布</span>
+                        <div id="modal-yearly-add-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>主体名称</th>
+                                <th>主体类型</th>
+                                <th>所属区域</th>
+                                <th>新增日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateYearlyAddTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 572 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateYearlyAddTableRows() {
+        const types = ['企业', '个体', '农专'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
+        const allItems = [];
+        for (let i = 1; i <= 2856; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                type: types[i % 3],
+                region: regions[i % 8],
+                date: `2026-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.type}</td>
+                <td>${item.region}</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderYearlyRemoveModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">年度减少市场主体分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度减少</span>
+                        <span class="indicator-stat-value">1,234户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度注销</span>
+                        <span class="indicator-stat-value">987户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度吊销</span>
+                        <span class="indicator-stat-value">247户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">净减少率</span>
+                        <span class="indicator-stat-value">0.5%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">减少类型分布</span>
+                        <div id="modal-yearly-remove-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各行业减少数量排行TOP8</span>
+                        <div id="modal-yearly-remove-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>主体名称</th>
+                                <th>类型</th>
+                                <th>所属行业</th>
+                                <th>注（吊）销日期</th>
+                                <th>注（吊）销原因</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateYearlyRemoveTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 247 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateYearlyRemoveTableRows() {
+        const types = ['注销', '吊销'];
+        const industries = ['制造业', '批发零售', '住宿餐饮', '交通运输', '信息技术', '建筑业', '金融业', '农林牧渔'];
+        const reasons = ['经营不善', '主动注销', '违法违规', '吊销营业执照', '破产清算', '其他'];
+        const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
+        const allItems = [];
+        for (let i = 1; i <= 1234; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                type: types[i % 2],
+                industry: industries[i % 8],
+                date: `2026-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+                reason: reasons[i % 6]
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.type}</td>
+                <td>${item.industry}</td>
+                <td>${item.date}</td>
+                <td>${item.reason}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderGoodBadRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">“好差评”好评率分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">评价总数</span>
+                        <span class="indicator-stat-value">12,856条</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">好评数</span>
+                        <span class="indicator-stat-value">12,851条</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">差评数</span>
+                        <span class="indicator-stat-value" style="color: #ff3b30;">5条</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">好评率</span>
+                        <span class="indicator-stat-value">99.96%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">好评率仪表盘</span>
+                        <div id="modal-goodbad-gauge" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">评价维度分布</span>
+                        <div id="modal-goodbad-pie" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>评价编号</th>
+                                <th>评价类型</th>
+                                <th>评价内容</th>
+                                <th>评价日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateGoodBadTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 2572 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateGoodBadTableRows() {
+        const goodContents = ['服务态度好，办事效率高', '流程便捷，一次办好', '工作人员热情耐心', '材料清单清晰明了', '整体服务体验满意'];
+        const badContents = ['服务态度差', '办事效率低', '流程不便捷', '材料不清晰', '其他问题'];
+        const allItems = [];
+        for (let i = 1; i <= 5; i++) {
+            const isGood = i <= 3;
+            allItems.push({
+                code: `PJ${202606}${String(i).padStart(4, '0')}`,
+                type: isGood ? '好评' : '差评',
+                content: isGood ? goodContents[i - 1] : badContents[i - 3],
+                date: `2026-${String(Math.floor(Math.random() * 3) + 4).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        return allItems.map((item, index) => {
+            const typeColor = item.type === '好评' ? '#34c759' : '#ff3b30';
+            return `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.code}</td>
+                <td><span style="color: ${typeColor}; font-weight: bold;">${item.type}</span></td>
+                <td>${item.content}</td>
+                <td>${item.date}</td>
+            </tr>
+        `}).join('');
+    }
+
+    renderEnterpriseSatisfactionModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">涉企检查满意度分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">非常满意</span>
+                        <span class="indicator-stat-value">65%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">满意</span>
+                        <span class="indicator-stat-value">20%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">基本满意</span>
+                        <span class="indicator-stat-value">14%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">不满意</span>
+                        <span class="indicator-stat-value" style="color: #ff3b30;">0.5%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">非常不满意</span>
+                        <span class="indicator-stat-value" style="color: #ff3b30;">0.5%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">满意度</span>
+                        <span class="indicator-stat-value">99%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">满意度等级分布</span>
+                        <div id="modal-satisfaction-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域满意度排行TOP8</span>
+                        <div id="modal-satisfaction-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>检查对象</th>
+                                <th>所属领域</th>
+                                <th>满意度评价</th>
+                                <th>评价日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateSatisfactionTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 100 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateSatisfactionTableRows() {
+        const evaluations = ['非常满意', '满意', '不满意'];
+        const domains = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
+        const allItems = [];
+        for (let i = 1; i <= 500; i++) {
+            const evalIndex = Math.random() > 0.99 ? 2 : (Math.random() > 0.65 ? 1 : 0);
+            allItems.push({
+                name: names[i % 5] + i,
+                domain: domains[i % 8],
+                evaluation: evaluations[evalIndex],
+                date: `2026-${String(Math.floor(Math.random() * 3) + 4).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => {
+            const evalColor = item.evaluation === '非常满意' ? '#34c759' : (item.evaluation === '满意' ? '#007aff' : '#ff3b30');
+            return `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.domain}</td>
+                <td><span style="color: ${evalColor}; font-weight: bold;">${item.evaluation}</span></td>
+                <td>${item.date}</td>
+            </tr>
+        `}).join('');
+    }
+
+    renderComplaintDecreaseModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">涉企检查投诉分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                   
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">本期投诉</span>
+                        <span class="indicator-stat-value">23件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">上期投诉</span>
+                        <span class="indicator-stat-value">2,300件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">减少</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">2,277件</span>
+                    </div>
+                     <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">投诉下降率</span>
+                        <span class="indicator-stat-value">99%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">投诉类型分布</span>
+                        <div id="modal-complaint-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域投诉量排行TOP8</span>
+                        <div id="modal-complaint-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>投诉编号</th>
+                                <th>投诉类型</th>
+                                <th>所属领域</th>
+                                <th>投诉日期</th>
+                                <th>处理状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateComplaintTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 5 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateComplaintTableRows() {
+        const types = ['服务态度', '办事效率', '流程问题', '材料要求', '其他'];
+        const domains = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        const statuses = ['已处理', '处理中'];
+        const allItems = [];
+        for (let i = 1; i <= 23; i++) {
+            allItems.push({
+                code: `TS${202606}${String(i).padStart(4, '0')}`,
+                type: types[i % 5],
+                domain: domains[i % 8],
+                date: `2026-${String(Math.floor(Math.random() * 3) + 4).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+                status: statuses[i % 2]
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => {
+            const statusColor = item.status === '已处理' ? '#34c759' : '#ffcc00';
+            return `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.code}</td>
+                <td>${item.type}</td>
+                <td>${item.domain}</td>
+                <td>${item.date}</td>
+                <td><span style="color: ${statusColor}; font-weight: bold;">${item.status}</span></td>
+            </tr>
+        `}).join('');
+    }
+
+    renderTechTotalModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">科技和创新型中小企业全景分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">认定总数</span>
+                        <span class="indicator-stat-value">1,258家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">326家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+92%</span>
+                    </div>
+                    
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">行业分布</span>
+                        <div id="modal-tech-total-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市认定数量排行TOP8</span>
+                        <div id="modal-tech-total-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>统一社会信用代码</th>
+                                <th>所属行业</th>
+                                <th>认定日期</th>
+                                <th>有效期至</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateTechTotalTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 252 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateTechTotalTableRows() {
+        const industries = ['制造业', '信息技术', '科学研究', '生物医药', '新材料', '其他'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚创新科技公司', '海口信息技术企业', '文昌生物科技', '琼海新材料公司'];
+        const allItems = [];
+        for (let i = 1; i <= 1258; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                code: `9146${String(i).padStart(10, '0')}`,
+                industry: industries[i % 6],
+                region: regions[i % 8],
+                date: `202${Math.floor(Math.random() * 4) + 3}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+                validUntil: `202${Math.floor(Math.random() * 2) + 6}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.code}</td>
+                <td>${item.industry}</td>
+                <td>${item.date}</td>
+                <td>${item.validUntil}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderTechNewModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">科技和创新型中小企业年度新增分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">326家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+92%</span>
+                    </div>
+                  
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">近5年新增趋势</span>
+                        <div id="modal-tech-new-trend" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市年度新增排行TOP8</span>
+                        <div id="modal-tech-new-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>所属行业</th>
+                                <th>所属区域</th>
+                                <th>认定日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateTechNewTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 66 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateTechNewTableRows() {
+        const industries = ['制造业', '信息技术', '科学研究', '生物医药', '新材料', '其他'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚创新科技公司', '海口信息技术企业', '文昌生物科技', '琼海新材料公司'];
+        const allItems = [];
+        for (let i = 1; i <= 326; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                industry: industries[i % 6],
+                region: regions[i % 8],
+                date: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.industry}</td>
+                <td>${item.region}</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderTechGrowthModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">科技和创新型中小企业同比增长分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">上年度新增</span>
+                        <span class="indicator-stat-value">170家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">本年度新增</span>
+                        <span class="indicator-stat-value">326家</span>
+                    </div>
+                  <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+92%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 1fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市同比增长率情况</span>
+                        <div id="modal-tech-growth-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>市/区名称</th>
+                                <th>上年度新增（家）</th>
+                                <th>本年度新增（家）</th>
+                                <th>同比增长率（%）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateTechGrowthTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 2 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateTechGrowthTableRows() {
+        const cities = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const data = [
+            { city: '海口', lastYear: 55, thisYear: 110, rate: 100 },
+            { city: '三亚', lastYear: 35, thisYear: 68, rate: 94 },
+            { city: '儋州', lastYear: 25, thisYear: 48, rate: 92 },
+            { city: '文昌', lastYear: 20, thisYear: 38, rate: 90 },
+            { city: '琼海', lastYear: 15, thisYear: 28, rate: 87 },
+            { city: '万宁', lastYear: 10, thisYear: 18, rate: 80 },
+            { city: '东方', lastYear: 8, thisYear: 14, rate: 75 },
+            { city: '澄迈', lastYear: 2, thisYear: 4, rate: 100 }
+        ];
+        return data.slice(0, 5).map((item, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.city}</td>
+                <td>${item.lastYear}</td>
+                <td>${item.thisYear}</td>
+                <td>${item.rate}%</td>
+            </tr>
+        `).join('');
+    }
+
+    renderSpecialTotalModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">专精特新中小企业全景分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">认定总数</span>
+                        <span class="indicator-stat-value">456家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">118家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+88%</span>
+                    </div>
+                    
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">行业分布TOP6</span>
+                        <div id="modal-special-total-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市认定数量排行TOP8</span>
+                        <div id="modal-special-total-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>统一社会信用代码</th>
+                                <th>所属行业</th>
+                                <th>认定日期</th>
+                                <th>有效期至</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateSpecialTotalTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 92 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateSpecialTotalTableRows() {
+        const industries = ['制造业', '信息技术', '科学研究', '生物医药', '新材料', '其他'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚创新科技公司', '海口信息技术企业', '文昌生物科技', '琼海新材料公司'];
+        const allItems = [];
+        for (let i = 1; i <= 456; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                code: `9146${String(i).padStart(10, '0')}`,
+                industry: industries[i % 6],
+                region: regions[i % 8],
+                date: `202${Math.floor(Math.random() * 4) + 3}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+                validUntil: `202${Math.floor(Math.random() * 2) + 6}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.code}</td>
+                <td>${item.industry}</td>
+                <td>${item.date}</td>
+                <td>${item.validUntil}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderSpecialNewModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">专精特新中小企业年度新增分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">118家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+88%</span>
+                    </div>
+                    
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">近5年新增趋势</span>
+                        <div id="modal-special-new-trend" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市年度新增排行TOP8</span>
+                        <div id="modal-special-new-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>所属行业</th>
+                                <th>所属区域</th>
+                                <th>认定日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateSpecialNewTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 24 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateSpecialNewTableRows() {
+        const industries = ['制造业', '信息技术', '科学研究', '生物医药', '新材料', '其他'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚创新科技公司', '海口信息技术企业', '文昌生物科技', '琼海新材料公司'];
+        const allItems = [];
+        for (let i = 1; i <= 118; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                industry: industries[i % 6],
+                region: regions[i % 8],
+                date: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.industry}</td>
+                <td>${item.region}</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderSpecialGrowthModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">专精特新中小企业同比增长分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">上年度新增</span>
+                        <span class="indicator-stat-value">63家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">本年度新增</span>
+                        <span class="indicator-stat-value">118家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+88%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 1fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市同比增长率情况</span>
+                        <div id="modal-special-growth-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>市/区名称</th>
+                                <th>上年度新增（家）</th>
+                                <th>本年度新增（家）</th>
+                                <th>同比增长率（%）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateSpecialGrowthTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 2 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateSpecialGrowthTableRows() {
+        const cities = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const data = [
+            { city: '海口', lastYear: 25, thisYear: 48, rate: 92 },
+            { city: '三亚', lastYear: 15, thisYear: 28, rate: 87 },
+            { city: '儋州', lastYear: 10, thisYear: 18, rate: 80 },
+            { city: '文昌', lastYear: 5, thisYear: 9, rate: 80 },
+            { city: '琼海', lastYear: 5, thisYear: 8, rate: 60 },
+            { city: '万宁', lastYear: 3, thisYear: 4, rate: 33 },
+            { city: '东方', lastYear: 0, thisYear: 2, rate: 0 },
+            { city: '澄迈', lastYear: 0, thisYear: 1, rate: 0 }
+        ];
+        return data.slice(0, 5).map((item, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.city}</td>
+                <td>${item.lastYear}</td>
+                <td>${item.thisYear}</td>
+                <td>${item.rate}%</td>
+            </tr>
+        `).join('');
+    }
+
+    renderGiantTotalModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">专精特新"小巨人"企业全景分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">认定总数</span>
+                        <span class="indicator-stat-value">89家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">23家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+85%</span>
+                    </div>
+                  
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">行业分布</span>
+                        <div id="modal-giant-total-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市认定数量排行TOP8</span>
+                        <div id="modal-giant-total-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>统一社会信用代码</th>
+                                <th>所属行业</th>
+                                <th>认定日期</th>
+                                <th>有效期至</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateGiantTotalTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 18 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateGiantTotalTableRows() {
+        const industries = ['制造业', '信息技术', '科学研究', '生物医药', '新材料', '其他'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚创新科技公司', '海口信息技术企业', '文昌生物科技', '琼海新材料公司'];
+        const allItems = [];
+        for (let i = 1; i <= 89; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                code: `9146${String(i).padStart(10, '0')}`,
+                industry: industries[i % 6],
+                region: regions[i % 8],
+                date: `202${Math.floor(Math.random() * 4) + 3}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+                validUntil: `202${Math.floor(Math.random() * 2) + 6}-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.code}</td>
+                <td>${item.industry}</td>
+                <td>${item.date}</td>
+                <td>${item.validUntil}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderGiantNewModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">专精特新"小巨人"企业年度新增分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">年度新增</span>
+                        <span class="indicator-stat-value">23家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+85%</span>
+                    </div>
+                    
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">近5年新增趋势</span>
+                        <div id="modal-giant-new-trend" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市年度新增排行TOP8</span>
+                        <div id="modal-giant-new-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>企业名称</th>
+                                <th>所属行业</th>
+                                <th>所属区域</th>
+                                <th>认定日期</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateGiantNewTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 5 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateGiantNewTableRows() {
+        const industries = ['制造业', '信息技术', '科学研究', '生物医药', '新材料', '其他'];
+        const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const names = ['海南科技有限公司', '三亚创新科技公司', '海口信息技术企业', '文昌生物科技', '琼海新材料公司'];
+        const allItems = [];
+        for (let i = 1; i <= 23; i++) {
+            allItems.push({
+                name: names[i % 5] + i,
+                industry: industries[i % 6],
+                region: regions[i % 8],
+                date: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.industry}</td>
+                <td>${item.region}</td>
+                <td>${item.date}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderGiantGrowthModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">专精特新"小巨人"企业同比增长分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">上年度新增</span>
+                        <span class="indicator-stat-value">12家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">本年度新增</span>
+                        <span class="indicator-stat-value">23家</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">同比增长</span>
+                        <span class="indicator-stat-value" style="color: #34c759;">+85%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 1fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各市同比增长率情况</span>
+                        <div id="modal-giant-growth-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>市/区名称</th>
+                                <th>上年度新增（家）</th>
+                                <th>本年度新增（家）</th>
+                                <th>同比增长率（%）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateGiantGrowthTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 2 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateGiantGrowthTableRows() {
+        const cities = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
+        const data = [
+            { city: '海口', lastYear: 6, thisYear: 11, rate: 83 },
+            { city: '三亚', lastYear: 3, thisYear: 6, rate: 100 },
+            { city: '儋州', lastYear: 2, thisYear: 3, rate: 50 },
+            { city: '文昌', lastYear: 1, thisYear: 2, rate: 100 },
+            { city: '琼海', lastYear: 0, thisYear: 1, rate: 0 },
+            { city: '万宁', lastYear: 0, thisYear: 0, rate: 0 },
+            { city: '东方', lastYear: 0, thisYear: 0, rate: 0 },
+            { city: '澄迈', lastYear: 0, thisYear: 0, rate: 0 }
+        ];
+        return data.slice(0, 5).map((item, index) => `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${item.city}</td>
+                <td>${item.lastYear}</td>
+                <td>${item.thisYear}</td>
+                <td>${item.rate}%</td>
+            </tr>
+        `).join('');
+    }
+
+    renderRiskWarningModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">风险预警动态监测全景</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">发现预警总数</span>
+                        <span class="indicator-stat-value">45</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">处置预警总数</span>
+                        <span class="indicator-stat-value">45</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">处置率</span>
+                        <span class="indicator-stat-value">100%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">平均处置时间</span>
+                        <span class="indicator-stat-value">1天</span>
+                    </div>
+                  
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">已排除预警类型分布</span>
+                        <div id="modal-warning-pie" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域已排除预警数量排行TOP8</span>
+                        <div id="modal-warning-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域四色预警分布</span>
+                        <div id="modal-warning-stack-bar" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">全省近7天风险趋势</span>
+                        <div id="modal-warning-trend" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>预警编号</th>
+                                <th>预警主题/领域</th>
+                                <th>预警等级</th>
+                                <th>预警来源</th>
+                                <th>发现时间</th>
+                                <th>处置时间</th>
+                                <th>处置方式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateWarningTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 9 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateWarningTableRows() {
+        const domains = ['危化品安全', '传销监测', '交通运输新业态', '涉水产品违规', '农民工欠薪', '非法现金贷', '食品安全', '特种设备安全'];
+        const levels = ['红色', '橙色', '黄色', '蓝色'];
+        const sources = ['国办', '省办', '市县'];
+        const methods = ['人工处置', '系统自动'];
+        const allItems = [];
+        for (let i = 1; i <= 45; i++) {
+            const level = levels[i % 4];
+            const domain = domains[i % 8];
+            const foundDate = `2026-06-${Math.floor(Math.random() * 20) + 10}`;
+            const excludeDate = `2026-06-${Math.floor(Math.random() * 20) + 15}`;
+            allItems.push({
+                code: `YW${202606}${String(i).padStart(4, '0')}`,
+                domain: domain,
+                level: level,
+                source: sources[i % 3],
+                foundDate: foundDate,
+                excludeDate: excludeDate,
+                method: methods[i % 2]
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => {
+            const levelColor = item.level === '红色' ? '#ff3b30' : item.level === '橙色' ? '#ff9500' : item.level === '黄色' ? '#ffcc00' : '#007aff';
+            return `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.code}</td>
+                <td>${item.domain}</td>
+                <td><span style="color: ${levelColor}; font-weight: bold;">${item.level}</span></td>
+                <td>${item.source}</td>
+                <td>${item.foundDate}</td>
+                <td>${item.excludeDate}</td>
                 <td>${item.method}</td>
+            </tr>
+        `}).join('');
+    }
+
+    renderComplianceRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">市场主体合规比例分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">市场主体总数</span>
+                        <span class="indicator-stat-value">700.12万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">合规主体数</span>
+                        <span class="indicator-stat-value">630.11万户</span>
+                    </div>
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">不合规主体数</span>
+                        <span class="indicator-stat-value">70.01万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">合规比例</span>
+                        <span class="indicator-stat-value">90%</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">合规占比</span>
+                        <div id="modal-compliance-donut" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域合规比例情况</span>
+                        <div id="modal-compliance-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>行业名称</th>
+                                <th>市场主体总数（万户）</th>
+                                <th>合规主体数（万户）</th>
+                                <th>合规比例（%）</th>
+                                <th>不合规主体数（万户）</th>
+                                <th>主要不合规类型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateComplianceTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 8 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateComplianceTableRows() {
+        const industries = ['制造业', '批发零售', '信息技术', '建筑业', '交通运输', '住宿餐饮', '金融业', '农林牧渔', '教育', '医疗', '文化娱乐', '房地产', '电力能源', '水利', '环保'];
+        const violationTypes = ['无证经营', '超范围经营', '未年报', '产品质量', '虚假宣传', '价格欺诈'];
+        const allItems = [];
+        for (let i = 1; i <= 40; i++) {
+            const total = parseFloat((Math.random() * 50 + 10).toFixed(2));
+            const rate = Math.floor(Math.random() * 20) + 80;
+            const compliant = parseFloat((total * rate / 100).toFixed(2));
+            const nonCompliant = parseFloat((total - compliant).toFixed(2));
+            allItems.push({
+                industry: industries[i % 15],
+                total: total,
+                compliant: compliant,
+                rate: rate,
+                nonCompliant: nonCompliant,
+                violationType: violationTypes[i % 6]
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.industry}</td>
+                <td>${item.total}</td>
+                <td>${item.compliant}</td>
+                <td>${item.rate}</td>
+                <td>${item.nonCompliant}</td>
+                <td>${item.violationType}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderViolationRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">市场主体违法比例分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">市场主体总数</span>
+                        <span class="indicator-stat-value">700.12万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">违法主体数</span>
+                        <span class="indicator-stat-value">70.01万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">合规主体数</span>
+                        <span class="indicator-stat-value">630.11万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">违法比例</span>
+                        <span class="indicator-stat-value">10%</span>
+                    </div>
+                    
+                    
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">违法占比</span>
+                        <div id="modal-violation-donut" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域违法比例情况</span>
+                        <div id="modal-violation-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>行业名称</th>
+                                <th>市场主体总数（万户）</th>
+                                <th>违法主体数（万户）</th>
+                                <th>违法比例（%）</th>
+                                <th>主要违法类型</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateViolationTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 8 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateViolationTableRows() {
+        const industries = ['建筑业', '住宿餐饮', '批发零售', '交通运输', '制造业', '信息技术', '金融业', '农林牧渔', '教育', '医疗', '文化娱乐', '房地产', '电力能源', '水利', '环保'];
+        const violationTypes = ['无证经营', '超范围经营', '未年报', '产品质量', '虚假宣传', '价格欺诈', '违法广告', '不正当竞争'];
+        const allItems = [];
+        for (let i = 1; i <= 40; i++) {
+            const total = parseFloat((Math.random() * 50 + 10).toFixed(2));
+            const rate = Math.floor(Math.random() * 20) + 5;
+            const violation = parseFloat((total * rate / 100).toFixed(2));
+            allItems.push({
+                industry: industries[i % 15],
+                total: total,
+                violation: violation,
+                rate: rate,
+                violationType: violationTypes[i % 8]
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.industry}</td>
+                <td>${item.total}</td>
+                <td>${item.violation}</td>
+                <td>${item.rate}</td>
+                <td>${item.violationType}</td>
+            </tr>
+        `).join('');
+    }
+
+    renderCreditBRatioModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">信用等级B级及以上占比分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">B级及以上占比</span>
+                        <span class="indicator-stat-value">90%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">B级及以上主体数</span>
+                        <span class="indicator-stat-value">630.11万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">市场主体总数</span>
+                        <span class="indicator-stat-value">700.12万户</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">C级及以下主体数</span>
+                        <span class="indicator-stat-value">70.01万户</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">信用等级整体分布（ABCD）</span>
+                        <div id="modal-b-ratio-donut" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各行业B级及以上占比排行TOP8</span>
+                        <div id="modal-b-ratio-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>行业名称</th>
+                                <th>市场主体总数（万户）</th>
+                                <th>B级及以上数量（万户）</th>
+                                <th>B级及以上占比（%）</th>
+                                <th>C级数量（万户）</th>
+                                <th>D级数量（万户）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateCreditBRatioTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 8 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateCaseTransferTableRows() {
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        const depts = ['市场监管局', '生态环境局', '交通运输局', '卫健委', '文旅局', '应急管理局', '税务局', '海关'];
+        const allItems = [];
+        for (let i = 1; i <= 40; i++) {
+            allItems.push({
+                caseNo: `AJ${20240000 + i}`,
+                clueNo: `XS${20240000 + i}`,
+                caseName: `${fields[i % 8]}案件-${i}`,
+                field: fields[i % 8],
+                registerDate: `2024-${(i % 12 + 1).toString().padStart(2, '0')}-${(i % 28 + 1).toString().padStart(2, '0')}`,
+                status: i % 3 === 0 ? '办理中' : (i % 5 === 0 ? '已撤销' : '已结案'),
+                dept: 'xx执法局'
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.caseNo}</td>
+                <td>${item.clueNo}</td>
+                <td>${item.caseName}</td>
+                <td>${item.field}</td>
+                <td>${item.registerDate}</td>
+                <td>${item.status}</td>
+                <td>${item.dept}</td>
+            </tr>
+        `).join('');
+    }
+
+    // 弹窗八：线上线索移送率分析
+    renderTransferRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">线上线索移送率分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">线上移送率</span>
+                        <span class="indicator-stat-value">99%</span>
+                    </div>
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">已线上移送</span>
+                        <span class="indicator-stat-value">11.21万宗</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">线下移送</span>
+                        <span class="indicator-stat-value">0.11万宗</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 1fr 1fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">整体移送率</span>
+                        <div id="modal-transfer-donut" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域线上移送率情况</span>
+                        <div id="modal-transfer-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>领域名称</th>
+                                <th>已线上移送数</th>
+                                <th>线下移送数</th>
+                                <th>线上移送率（%）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateTransferRateTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 8 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    generateTransferRateTableRows() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关', '人力资源', '农业农村', '自然资源', '住建', '教育', '科技', '民政'];
+        const reasons = ['系统未对接', '纸质材料要求', '历史遗留', '特殊审批流程', '数据保密要求'];
+        const allItems = [];
+        for (let i = 1; i <= 40; i++) {
+            const shouldTransfer = Math.floor(Math.random() * 5000 + 500);
+            const rate = Math.random() > 0.05 ? 100 : Math.floor(Math.random() * 5) + 95;
+            const onlineTransfer = Math.floor(shouldTransfer * rate / 100);
+            allItems.push({
+                field: fields[i % 15],
+                shouldTransfer: shouldTransfer,
+                onlineTransfer: onlineTransfer,
+                rate: rate,
+                offlineTransfer: shouldTransfer - onlineTransfer,
+                reason: (shouldTransfer - onlineTransfer > 0) ? reasons[i % 5] : '-'
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.field}</td>
+                <td>${item.onlineTransfer.toLocaleString()}</td>
+                <td>${item.offlineTransfer}</td>
+                <td>${item.rate}</td>
             </tr>
         `).join('');
     }
@@ -682,29 +3315,26 @@ window.HomePage = class HomePage {
                 </div>
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">互通共享率</span>
+                        <span class="indicator-stat-label">审批办件总数</span>
+                        <span class="indicator-stat-value">100.32万件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">已推送办件数</span>
+                        <span class="indicator-stat-value">100.32万件</span>
+                    </div>
+                    
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">推送率</span>
                         <span class="indicator-stat-value">100%</span>
-                    </div>
-                    <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">已衔接事项</span>
-                        <span class="indicator-stat-value">1,286项</span>
-                    </div>
-                    <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">自动推送任务</span>
-                        <span class="indicator-stat-value">11万+件</span>
-                    </div>
-                    <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">流转办件</span>
-                        <span class="indicator-stat-value">18万+件次</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">互通状态</span>
+                        <span class="indicator-chart-title">各类型审批办件占比</span>
                         <div id="modal-pie-4" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各领域审管衔接覆盖率</span>
+                        <span class="indicator-chart-title">各领域审管衔接互通率</span>
                         <div id="modal-bar-4" class="indicator-chart-container"></div>
                     </div>
                 </div>
@@ -714,10 +3344,10 @@ window.HomePage = class HomePage {
                             <tr>
                                 <th>序号</th>
                                 <th>事项名称</th>
-                                <th>审批部门</th>
-                                <th>监管部门</th>
-                                <th>衔接方式</th>
-                                <th>衔接状态</th>
+                                <th>事项类型</th>
+                                <th>已办结数</th>
+                                <th>已推送数</th>
+                                <th>推送率</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -736,16 +3366,16 @@ window.HomePage = class HomePage {
 
     generateSupervisionTableRows() {
         const allItems = [
-            { name: '食品经营许可证', approval: '审批局', supervision: '市场监管局', method: '自动推送', status: '已互通' },
-            { name: '建筑工程施工许可', approval: '住建局', supervision: '质安站', method: '自动推送', status: '已互通' },
-            { name: '排污许可证', approval: '生态环境局', supervision: '执法支队', method: '自动推送', status: '已互通' },
-            { name: '医疗机构执业许可', approval: '卫健委', supervision: '卫生监督所', method: '自动推送', status: '已互通' },
-            { name: '劳务派遣许可', approval: '人社局', supervision: '劳动保障监察', method: '手动抄送', status: '已互通' },
-            { name: '道路运输许可', approval: '交通运输局', supervision: '运管处', method: '自动推送', status: '已互通' },
-            { name: '危险化学品许可', approval: '应急管理局', supervision: '执法大队', method: '自动推送', status: '已互通' },
-            { name: '特种设备许可', approval: '市场监管局', supervision: '特检院', method: '自动推送', status: '已互通' },
-            { name: '药品经营许可', approval: '药监局', supervision: '市场监管所', method: '自动推送', status: '已互通' },
-            { name: '文化经营许可', approval: '文旅局', supervision: '文化执法队', method: '手动抄送', status: '推进中' }
+            { name: '食品经营许可证', approval: '极简审批', supervision: '2000', method: '2000', status: '100%' },
+            { name: '建筑工程施工许可', approval: '高效办成一件事', supervision: '2000', method: '2000', status: '100%' },
+            { name: '排污许可证', approval: '信用审批', supervision: '200', method: '200', status: '100%' },
+            { name: '医疗机构执业许可', approval: '免申即享', supervision: '2000', method: '2000', status: '100%' },
+            { name: '劳务派遣许可', approval: '全省通办', supervision: '2000', method: '2000', status: '100%' },  
+            { name: '道路运输许可', approval: '免申即享', supervision: '2000', method: '2000', status: '100%' },
+            { name: '危险化学品许可', approval: '全省通办', supervision: '2000', method: '2000', status: '100%' },
+            { name: '特种设备许可', approval: '全省通办', supervision: '2000', method: '2000', status: '100%' },
+            { name: '药品经营许可', approval: '智能快办', supervision: '2000', method: '2000', status: '100%' },
+            { name: '文化经营许可', approval: '智能快办', supervision: '2000', method: '2000', status: '100%' }
         ];
         const start = (this.currentPage - 1) * this.pageSize;
         const items = allItems.slice(start, start + this.pageSize);
@@ -766,35 +3396,35 @@ window.HomePage = class HomePage {
         return `
             <div class="indicator-modal">
                 <div class="indicator-modal-header">
-                    <span class="indicator-modal-title">监管核查任务自动推送分析</span>
+                    <span class="indicator-modal-title">线上移送线索全景分析</span>
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">自动推送任务</span>
-                        <span class="indicator-stat-value">11.2万件</span>
+                        <span class="indicator-stat-label">线上移送线索总数</span>
+                        <span class="indicator-stat-value">11.21万宗</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">已签收</span>
-                        <span class="indicator-stat-value">10.6万件</span>
+                        <span class="indicator-stat-label">已接收</span>
+                        <span class="indicator-stat-value">10.98万宗</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">签收率</span>
-                        <span class="indicator-stat-value">94.6%</span>
+                        <span class="indicator-stat-label">接收率</span>
+                        <span class="indicator-stat-value">98%</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">已办结</span>
-                        <span class="indicator-stat-value">8.9万件</span>
+                        <span class="indicator-stat-label">办理中</span>
+                        <span class="indicator-stat-value">8.56万宗</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各领域自动推送任务分布TOP8</span>
-                        <div id="modal-bar-5" class="indicator-chart-container"></div>
+                        <span class="indicator-chart-title">近12个月线上移送线索趋势</span>
+                        <div id="modal-transfer-trend" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">任务类型分布</span>
-                        <div id="modal-pie-5" class="indicator-chart-container"></div>
+                        <span class="indicator-chart-title">线索来源分布</span>
+                        <div id="modal-transfer-source" class="indicator-chart-container"></div>
                     </div>
                 </div>
                 <div class="indicator-modal-content">
@@ -802,17 +3432,17 @@ window.HomePage = class HomePage {
                         <thead>
                             <tr>
                                 <th>序号</th>
-                                <th>任务编号</th>
-                                <th>任务名称</th>
-                                <th>推送部门</th>
+                                <th>线索编号</th>
+                                <th>线索来源</th>
+                                <th>移送部门</th>
                                 <th>接收部门</th>
-                                <th>推送时间</th>
-                                <th>签收状态</th>
-                                <th>办结状态</th>
+                                <th>移送时间</th>
+                                <th>接收状态</th>
+                                <th>办理状态</th>
                             </tr>
                         </thead>
                         <tbody>
-                            ${this.generateTaskPushTableRows()}
+                            ${this.generateTransferTaskTableRows()}
                         </tbody>
                     </table>
                     <div class="indicator-modal-pagination">
@@ -825,33 +3455,33 @@ window.HomePage = class HomePage {
         `;
     }
 
-    generateTaskPushTableRows() {
-        const depts = ['市场监管局', '生态环境局', '交通运输局', '卫健委', '应急管理局'];
-        const types = ['日常监管', '专项检查', '双随机任务', '重点监管'];
+    generateTransferTaskTableRows() {
+        const sources = ['重点检查', '专项检查', '有因检查', '双随机一公开', '综合查一次'];
+        const depts = ['市场监管局', '生态环境局', '交通运输局', '卫健委', '应急管理局', '税务局', '海关', '文旅局'];
         const allItems = [];
         for (let i = 1; i <= 75; i++) {
             allItems.push({
-                taskNo: `RW${20240000 + i}`,
-                taskName: `${types[i % 4]}任务-${i}`,
-                pushDept: '审批局',
-                receiveDept: depts[i % 5],
-                pushTime: `2024-${(i % 12 + 1).toString().padStart(2, '0')}-${(i % 28 + 1).toString().padStart(2, '0')}`,
-                signStatus: i % 10 === 0 ? '未签收' : '已签收',
-                finishStatus: i % 5 === 0 ? '办理中' : (i % 7 === 0 ? '未办结' : '已办结')
+                clueNo: `XS${20240000 + i}`,
+                source: sources[i % 5],
+                transferDept: depts[i % 8],
+                receiveDept: 'xx执法局',
+                transferTime: `2024-${(i % 12 + 1).toString().padStart(2, '0')}-${(i % 28 + 1).toString().padStart(2, '0')}`,
+                receiveStatus: i % 20 === 0 ? '未接收' : '已接收',
+                handleStatus: i % 5 === 0 ? '办理中' : (i % 7 === 0 ? '已退回' : '已办结')
             });
         }
-        const start = (this.currentPage - 1) * this.pageSize;
-        const items = allItems.slice(start, start + this.pageSize);
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.taskNo}</td>
-                <td>${item.taskName}</td>
-                <td>${item.pushDept}</td>
+                <td>${item.clueNo}</td>
+                <td>${item.source}</td>
+                <td>${item.transferDept}</td>
                 <td>${item.receiveDept}</td>
-                <td>${item.pushTime}</td>
-                <td>${item.signStatus}</td>
-                <td>${item.finishStatus}</td>
+                <td>${item.transferTime}</td>
+                <td>${item.receiveStatus}</td>
+                <td>${item.handleStatus}</td>
             </tr>
         `).join('');
     }
@@ -956,31 +3586,51 @@ window.HomePage = class HomePage {
         return `
             <div class="indicator-modal">
                 <div class="indicator-modal-header">
-                    <span class="indicator-modal-title">信用服务办件量分析</span>
+                    <span class="indicator-modal-title">信用等级审批办件量分析</span>
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">总办件量</span>
+                        <span class="indicator-stat-label">总数</span>
                         <span class="indicator-stat-value">300万件</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">行政审批</span>
-                        <span class="indicator-stat-value">135万件</span>
+                        <span class="indicator-stat-label">行政许可</span>
+                        <span class="indicator-stat-value">120万件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">行政确认</span>
+                        <span class="indicator-stat-value">45万件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">行政裁决</span>
+                        <span class="indicator-stat-value">20万件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">行政奖励</span>
+                        <span class="indicator-stat-value">15万件</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">行政给付</span>
+                        <span class="indicator-stat-value">8万件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">公共服务</span>
-                        <span class="indicator-stat-value">98万件</span>
+                        <span class="indicator-stat-value">72万件</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">监管执法</span>
-                        <span class="indicator-stat-value">67万件</span>
+                        <span class="indicator-stat-label">其他行政权力</span>
+                        <span class="indicator-stat-value">20万件</span>
                     </div>
                 </div>
-                <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
+                <div class="indicator-modal-chart" style="grid-template-columns: repeat(3, 1fr);">
                     <div class="indicator-chart-item">
                         <span class="indicator-chart-title">近12个月办件量趋势</span>
                         <div id="modal-area-7" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">信用等级审批占比</span>
+                        <div id="modal-pie-7a" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
                         <span class="indicator-chart-title">办件类型分布</span>
@@ -1051,11 +3701,11 @@ window.HomePage = class HomePage {
                         <span class="indicator-stat-value">99%</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">享受服务企业</span>
+                        <span class="indicator-stat-label">享受服务对象</span>
                         <span class="indicator-stat-value">1.2万家</span>
                     </div>
                     <div class="indicator-stat-card">
-                        <span class="indicator-stat-label">未覆盖企业</span>
+                        <span class="indicator-stat-label">未覆盖对象</span>
                         <span class="indicator-stat-value">120家</span>
                     </div>
                     <div class="indicator-stat-card">
@@ -1065,7 +3715,7 @@ window.HomePage = class HomePage {
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">覆盖情况</span>
+                        <span class="indicator-chart-title">各类型对象覆盖情况</span>
                         <div id="modal-donut-8" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
@@ -1078,7 +3728,7 @@ window.HomePage = class HomePage {
                         <thead>
                             <tr>
                                 <th>序号</th>
-                                <th>企业名称</th>
+                                <th>对象名称</th>
                                 <th>统一社会信用代码</th>
                                 <th>信用等级</th>
                                 <th>享受便利类型</th>
@@ -1123,6 +3773,67 @@ window.HomePage = class HomePage {
                 <td>${item.level}</td>
                 <td>${item.benefitType}</td>
                 <td>${item.firstTime}</td>
+            </tr>
+        `).join('');
+    }
+
+    generateCreditBAboveTableRows() {
+        const industries = ['制造业', '批发和零售业', '信息技术', '建筑业', '交通运输', '住宿餐饮', '金融业', '农林牧渔'];
+        const allItems = [];
+        for (let i = 1; i <= 50; i++) {
+            allItems.push({
+                name: `海南${industries[i % 8]}有限公司`,
+                code: `9146${String(i).padStart(10, '0')}`,
+                level: i % 3 === 0 ? 'A' : 'B',
+                industry: industries[i % 8],
+                assessDate: `2024-${(i % 12 + 1).toString().padStart(2, '0')}-10`,
+                validUntil: `2025-${(i % 12 + 1).toString().padStart(2, '0')}-09`
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.name}</td>
+                <td>${item.code}</td>
+                <td>${item.level}</td>
+                <td>${item.industry}</td>
+                <td>${item.assessDate}</td>
+                <td>${item.validUntil}</td>
+            </tr>
+        `).join('');
+    }
+
+    generateCreditBRatioTableRows() {
+        const industries = ['制造业', '批发和零售业', '信息技术', '建筑业', '交通运输', '住宿餐饮', '金融业', '农林牧渔'];
+        const allItems = [];
+        for (let i = 0; i < 8; i++) {
+            const total = Math.round((Math.random() * 50 + 50) * 100) / 100;
+            const ratio = Math.round((Math.random() * 8 + 88) * 100) / 100;
+            const bAbove = Math.round(total * ratio / 100 * 100) / 100;
+            const c = Math.round((total * (100 - ratio) * 0.7) * 100) / 100;
+            const d = Math.round((total * (100 - ratio) * 0.3) * 100) / 100;
+            allItems.push({
+                industry: industries[i],
+                total,
+                bAbove,
+                ratio,
+                c,
+                d
+            });
+        }
+        const start = 0;
+        const items = allItems.slice(start, start + 5);
+        return items.map((item, index) => `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td>${item.industry}</td>
+                <td>${item.total}</td>
+                <td>${item.bAbove}</td>
+                <td>${item.ratio}%</td>
+                <td>${item.c}</td>
+                <td>${item.d}</td>
             </tr>
         `).join('');
     }
@@ -1231,8 +3942,17 @@ window.HomePage = class HomePage {
                 case 'approval_efficiency':
                     this.initApprovalEfficiencyCharts();
                     break;
-                case 'info_share':
-                    this.initInfoShareCharts();
+                case 'info_share_field':
+                    this.initInfoShareFieldCharts();
+                    break;
+                case 'info_share_dept':
+                    this.initInfoShareDeptCharts();
+                    break;
+                case 'info_share_trend':
+                    this.initInfoShareTrendCharts();
+                    break;
+                case 'info_share_rate':
+                    this.initInfoShareRateCharts();
                     break;
                 case 'approval_supervision':
                     this.initApprovalSupervisionCharts();
@@ -1240,8 +3960,14 @@ window.HomePage = class HomePage {
                 case 'task_push':
                     this.initTaskPushCharts();
                     break;
+                case 'push_rate':
+                    this.initPushRateCharts();
+                    break;
                 case 'penalty_transfer':
                     this.initPenaltyTransferCharts();
+                    break;
+                case 'transfer_rate':
+                    this.initTransferRateCharts();
                     break;
                 case 'credit_service':
                     this.initCreditServiceCharts();
@@ -1251,6 +3977,78 @@ window.HomePage = class HomePage {
                     break;
                 case 'credit_verify':
                     this.initCreditVerifyCharts();
+                    break;
+                case 'credit_b_above':
+                    this.initCreditBAboveCharts();
+                    break;
+                case 'credit_b_ratio':
+                    this.initCreditBRatioCharts();
+                    break;
+                case 'compliance_rate':
+                    this.initComplianceRateCharts();
+                    break;
+                case 'violation_rate':
+                    this.initViolationRateCharts();
+                    break;
+                case 'risk_warning':
+                    this.initRiskWarningCharts();
+                    break;
+                case 'new_market':
+                    this.initNewMarketCharts();
+                    break;
+                case 'startup_time':
+                    this.initStartupTimeCharts();
+                    break;
+                case 'new_project':
+                    this.initNewProjectCharts();
+                    break;
+                case 'project_approval':
+                    this.initProjectApprovalCharts();
+                    break;
+                case 'project_landing':
+                    this.initProjectLandingCharts();
+                    break;
+                case 'yearly_add':
+                    this.initYearlyAddCharts();
+                    break;
+                case 'yearly_remove':
+                    this.initYearlyRemoveCharts();
+                    break;
+                case 'good_bad_rate':
+                    this.initGoodBadRateCharts();
+                    break;
+                case 'enterprise_satisfaction':
+                    this.initEnterpriseSatisfactionCharts();
+                    break;
+                case 'complaint_decrease':
+                    this.initComplaintDecreaseCharts();
+                    break;
+                case 'tech_total':
+                    this.initTechTotalCharts();
+                    break;
+                case 'tech_new':
+                    this.initTechNewCharts();
+                    break;
+                case 'tech_growth':
+                    this.initTechGrowthCharts();
+                    break;
+                case 'special_total':
+                    this.initSpecialTotalCharts();
+                    break;
+                case 'special_new':
+                    this.initSpecialNewCharts();
+                    break;
+                case 'special_growth':
+                    this.initSpecialGrowthCharts();
+                    break;
+                case 'giant_total':
+                    this.initGiantTotalCharts();
+                    break;
+                case 'giant_new':
+                    this.initGiantNewCharts();
+                    break;
+                case 'giant_growth':
+                    this.initGiantGrowthCharts();
                     break;
             }
         }, 100);
@@ -1365,21 +4163,113 @@ window.HomePage = class HomePage {
         });
     }
 
-    // 弹窗三图表
-    initInfoShareCharts() {
-        const line = echarts.init(document.getElementById('modal-line-3'));
+    // 弹窗三图表：信息共享领域全景分析
+    initInfoShareFieldCharts() {
+        const bar = echarts.init(document.getElementById('modal-field-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}件次' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关', '人力资源', '农业农村', '自然资源', '住建', '教育', '科技', '民政'],
+                axisLabel: { fontSize: 11, rotate: 45 }
+            },
+            yAxis: { type: 'value', name: '件次' },
+            series: [{
+                type: 'bar',
+                data: [81796, 68160, 54528, 45440, 36352, 31808, 27264, 45440, 45440, 45440, 45440, 45440, 45440, 45440, 45440],
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#00d4ff' },
+                        { offset: 1, color: '#0080ff' }
+                    ]),
+                    borderRadius: [4, 4, 0, 0]
+                },
+                label: { show: false }
+            }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-field-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                data: [
+                    { value: 28, name: '监管信息', itemStyle: { color: '#00d4ff' } },
+                    { value: 25, name: '执法信息', itemStyle: { color: '#34c759' } },
+                    { value: 20, name: '信用信息', itemStyle: { color: '#ff9500' } },
+                    { value: 15, name: '备案信息', itemStyle: { color: '#af52de' } },
+                    { value: 12, name: '许可信息', itemStyle: { color: '#ffcc00' } }
+                ],
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
+                labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
+            }]
+        });
+    }
+
+    // 弹窗四图表：信息共享部门全景分析
+    initInfoShareDeptCharts() {
+        const bar = echarts.init(document.getElementById('modal-dept-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}件次' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['省市场监管局', '省交通运输厅', '省生态环境厅', '省卫健委', '省文旅厅', '省应急管理厅', '省税务局', '海口海关', '省人社厅', '省农业农村厅', '省自然资源厅', '省住建厅', '省教育厅', '省科技厅', '省民政厅'],
+                axisLabel: { fontSize: 10, rotate: 45 }
+            },
+            yAxis: { type: 'value', name: '件次' },
+            series: [{
+                type: 'bar',
+                data: [52000, 45000, 38000, 32000, 28000, 25000, 22000, 20000, 18000, 16000, 15000, 14000, 13000, 12000, 11000],
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#34c759' },
+                        { offset: 1, color: '#30d158' }
+                    ]),
+                    borderRadius: [4, 4, 0, 0]
+                },
+                label: { show: false }
+            }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-dept-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                data: [
+                    { value: 12, name: '省级部门', itemStyle: { color: '#00d4ff' } },
+                    { value: 35, name: '市级部门', itemStyle: { color: '#34c759' } },
+                    { value: 53, name: '区县级部门', itemStyle: { color: '#ff9500' } }
+                ],
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
+                labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
+            }]
+        });
+    }
+
+    // 弹窗五图表：信息共享规模趋势分析
+    initInfoShareTrendCharts() {
+        const line = echarts.init(document.getElementById('modal-trend-line'));
         line.setOption({
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'axis' },
             grid: { left: '8%', right: '8%', bottom: '10%', top: '15%', containLabel: true },
             xAxis: {
                 type: 'category',
-                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月']
+                data: ['2024-07', '2024-08', '2024-09', '2024-10', '2024-11', '2024-12', '2025-01', '2025-02', '2025-03', '2025-04', '2025-05', '2025-06']
             },
             yAxis: { type: 'value', name: '件次' },
             series: [{
                 type: 'line',
-                data: [52000, 48000, 55000, 58000, 62000, 65000, 68000, 72000, 75000, 78000, 82000, 85600],
+                data: [32000, 35000, 38000, 42000, 45000, 48000, 52000, 55000, 58000, 62000, 65000, 68000],
                 smooth: true,
                 areaStyle: { color: 'rgba(0, 212, 255, 0.3)' },
                 lineStyle: { color: '#00d4ff', width: 2 },
@@ -1388,7 +4278,7 @@ window.HomePage = class HomePage {
             }]
         });
 
-        const pie = echarts.init(document.getElementById('modal-pie-3'));
+        const pie = echarts.init(document.getElementById('modal-trend-pie'));
         pie.setOption({
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
@@ -1396,13 +4286,62 @@ window.HomePage = class HomePage {
                 type: 'pie',
                 radius: ['40%', '70%'],
                 data: [
-                    { value: 40, name: '许可信息', itemStyle: { color: '#00d4ff' } },
-                    { value: 25, name: '监管信息', itemStyle: { color: '#34c759' } },
-                    { value: 20, name: '执法信息', itemStyle: { color: '#ff9500' } },
-                    { value: 15, name: '信用信息', itemStyle: { color: '#af52de' } }
+                    { value: 35, name: '许可信息', itemStyle: { color: '#00d4ff' } },
+                    { value: 28, name: '监管信息', itemStyle: { color: '#34c759' } },
+                    { value: 22, name: '执法信息', itemStyle: { color: '#ff9500' } },
+                    { value: 10, name: '信用信息', itemStyle: { color: '#af52de' } },
+                    { value: 5, name: '其他', itemStyle: { color: '#636366' } }
                 ],
                 label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
                 labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
+            }]
+        });
+    }
+
+    // 弹窗六图表：信息共享率达成分析
+    initInfoShareRateCharts() {
+        const donut = echarts.init(document.getElementById('modal-rate-donut'));
+        donut.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['50%', '70%'],
+                center: ['50%', '50%'],
+                data: [
+                    { value: 100, name: '已共享', itemStyle: { color: '#34c759' } }
+                ],
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '100%',
+                    fontSize: 28,
+                    fontWeight: 'bold',
+                    color: '#34c759',
+                    textBorderWidth: 0
+                }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-rate-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关'],
+                axisLabel: { fontSize: 12 }
+            },
+            yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+            series: [{
+                type: 'bar',
+                data: [100, 100, 100, 100, 100, 100, 100, 100],
+                itemStyle: {
+                    color: '#34c759',
+                    borderRadius: [4, 4, 0, 0]
+                },
+                label: { show: true, position: 'top', formatter: '{c}%', color: '#34c759', textBorderWidth: 0 }
             }]
         });
     }
@@ -1415,20 +4354,22 @@ window.HomePage = class HomePage {
             tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
             series: [{
                 type: 'pie',
-                radius: ['50%', '70%'],
+                radius: ['40%', '70%'],
                 center: ['50%', '50%'],
+                label: { 
+                    show: true, 
+                    formatter: '{b}\n{c}%', 
+                    color: 'rgba(255,255,255,0.8)',
+                    fontSize: 12
+                },
                 data: [
-                    { value: 100, name: '已互通', itemStyle: { color: '#34c759' } }
-                ],
-                label: {
-                    show: true,
-                    position: 'center',
-                    formatter: '100%',
-                    fontSize: 28,
-                    fontWeight: 'bold',
-                    color: '#34c759',
-                    textBorderWidth: 0
-                }
+                    { value: 25, name: '高效办成一件事', itemStyle: { color: '#34c759' } },
+                    { value: 20, name: '极简审批', itemStyle: { color: '#00d4ff' } },
+                    { value: 18, name: '智能快办', itemStyle: { color: '#007aff' } },
+                    { value: 15, name: '免申即享', itemStyle: { color: '#ffcc00' } },
+                    { value: 12, name: '全省通办', itemStyle: { color: '#ff9500' } },
+                    { value: 10, name: '信用审批', itemStyle: { color: '#af52de' } }
+                ]
             }]
         });
 
@@ -1445,7 +4386,7 @@ window.HomePage = class HomePage {
             },
             series: [{
                 type: 'bar',
-                data: [100, 100, 98, 100, 95, 100],
+                data: [100, 100, 100, 100, 100, 100],
                 itemStyle: {
                     color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
                         { offset: 0, color: '#00d4ff' },
@@ -1460,32 +4401,28 @@ window.HomePage = class HomePage {
 
     // 弹窗五图表
     initTaskPushCharts() {
-        const bar = echarts.init(document.getElementById('modal-bar-5'));
-        bar.setOption({
+        const area = echarts.init(document.getElementById('modal-transfer-trend'));
+        area.setOption({
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'axis' },
-            grid: { left: '8%', right: '8%', bottom: '10%', top: '10%', containLabel: true },
-            xAxis: { type: 'value' },
-            yAxis: {
+            grid: { left: '8%', right: '8%', bottom: '10%', top: '15%', containLabel: true },
+            xAxis: {
                 type: 'category',
-                data: ['市场监管', '生态环境', '交通运输', '卫生健康', '应急管理', '住建工程', '自然资源', '文化旅游'],
-                axisLabel: { fontSize: 12 }
+                data: ['去年7月', '去年8月', '去年9月', '去年10月', '去年11月', '去年12月', '今年1月', '今年2月', '今年3月', '今年4月', '今年5月', '今年6月']
             },
+            yAxis: { type: 'value', name: '宗' },
             series: [{
-                type: 'bar',
-                data: [28500, 22000, 18500, 16200, 14800, 13200, 11500, 9800],
-                itemStyle: {
-                    color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [
-                        { offset: 0, color: '#00d4ff' },
-                        { offset: 1, color: '#0080ff' }
-                    ]),
-                    borderRadius: [0, 4, 4, 0]
-                },
-                label: { show: true, position: 'right', formatter: '{c}', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+                type: 'line',
+                data: [8500, 8200, 9100, 8800, 9500, 9200, 9800, 9500, 10200, 9900, 10500, 10800],
+                smooth: true,
+                areaStyle: { color: 'rgba(0, 212, 255, 0.3)' },
+                lineStyle: { color: '#00d4ff', width: 2 },
+                itemStyle: { color: '#00d4ff' },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
             }]
         });
 
-        const pie = echarts.init(document.getElementById('modal-pie-5'));
+        const pie = echarts.init(document.getElementById('modal-transfer-source'));
         pie.setOption({
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
@@ -1493,10 +4430,11 @@ window.HomePage = class HomePage {
                 type: 'pie',
                 radius: ['40%', '70%'],
                 data: [
-                    { value: 45, name: '日常监管', itemStyle: { color: '#00d4ff' } },
+                    { value: 35, name: '日常监管', itemStyle: { color: '#00d4ff' } },
                     { value: 25, name: '专项检查', itemStyle: { color: '#34c759' } },
-                    { value: 20, name: '双随机任务', itemStyle: { color: '#ff9500' } },
-                    { value: 10, name: '重点监管', itemStyle: { color: '#af52de' } }
+                    { value: 20, name: '投诉举报', itemStyle: { color: '#ff9500' } },
+                    { value: 12, name: '双随机抽查', itemStyle: { color: '#af52de' } },
+                    { value: 8, name: '其他', itemStyle: { color: '#8e8e93' } }
                 ],
                 label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
                 labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
@@ -1546,6 +4484,132 @@ window.HomePage = class HomePage {
         });
     }
 
+    // 弹窗七图表：线索转案件分析
+    initPushRateCharts() {
+        const funnel = echarts.init(document.getElementById('modal-case-funnel'));
+        funnel.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}宗 ({d}%)' },
+            series: [{
+                type: 'funnel',
+                left: '10%',
+                top: '10%',
+                bottom: '10%',
+                width: '80%',
+                min: 0,
+                max: 112100,
+                minSize: '0%',
+                maxSize: '100%',
+                sort: 'descending',
+                gap: 2,
+                label: { show: true, position: 'inside', formatter: '{b}\n{c}宗', color: '#fff', fontSize: 12 },
+                labelLine: { show: false },
+                itemStyle: {
+                    borderColor: '#fff',
+                    borderWidth: 1
+                },
+                emphasis: {
+                    label: { fontSize: 14 }
+                },
+                data: [
+                    { value: 112100, name: '线上移送线索', itemStyle: { color: '#00d4ff' } },
+                    { value: 8965, name: '已接收线索(8%)', itemStyle: { color: '#5856d6' } },
+                    { value: 1255, name: '已立案调查(14%)', itemStyle: { color: '#ff9500' } },
+                    { value: 99, name: '已结案(7.9%)', itemStyle: { color: '#34c759' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-case-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}宗' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'],
+                axisLabel: { fontSize: 11 }
+            },
+            yAxis: { type: 'value', name: '宗' },
+            series: [{
+                type: 'bar',
+                data: [32, 18, 15, 12, 8, 6, 4, 4],
+                itemStyle: {
+                    color: '#00d4ff',
+                    borderRadius: [4, 4, 0, 0]
+                },
+                label: { show: true, position: 'top', formatter: '{c}', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+    }
+
+    // 弹窗八图表：线上线索移送率分析
+    initTransferRateCharts() {
+        const donut = echarts.init(document.getElementById('modal-transfer-donut'));
+        donut.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['55%', '75%'],
+                center: ['50%', '50%'],
+                avoidLabelOverlap: false,
+                label: { show: false, position: 'center' },
+                emphasis: { label: { show: true, fontSize: 18, fontWeight: 'bold', formatter: '线上移送率\n{b}\n{c}%' } },
+                labelLine: { show: false },
+                data: [
+                    { value: 99, name: '99%', itemStyle: { color: '#34c759' } },
+                    { value: 1, name: '1%', itemStyle: { color: '#ff3b30' } }
+                ]
+            }]
+        });
+        const centerLabel = document.createElement('div');
+        centerLabel.style.position = 'absolute';
+        centerLabel.style.left = '50%';
+        centerLabel.style.top = '50%';
+        centerLabel.style.transform = 'translate(-50%, -50%)';
+        centerLabel.style.textAlign = 'center';
+        centerLabel.style.color = '#fff';
+        centerLabel.innerHTML = '<div style="font-size: 14px;">线上移送率</div><div style="font-size: 24px; font-weight: bold;">99%</div>';
+        document.getElementById('modal-transfer-donut').appendChild(centerLabel);
+
+        const bar = echarts.init(document.getElementById('modal-transfer-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关'],
+                axisLabel: { fontSize: 11 }
+            },
+            yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+            series: [
+                {
+                    type: 'bar',
+                    data: [
+                        { value: 99, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                        { value: 97, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                        { value: 98, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                        { value: 100, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                        { value: 94, itemStyle: { color: '#ff3b30', borderRadius: [4, 4, 0, 0] } },
+                        { value: 96, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                        { value: 99, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                        { value: 95, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } }
+                    ],
+                    label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+                },
+                {
+                    type: 'line',
+                    data: [100, 100, 100, 100, 100, 100, 100, 100],
+                    lineStyle: { color: '#ff3b30', width: 2, type: 'dashed' },
+                    itemStyle: { color: '#ff3b30' },
+                    symbol: 'none'
+                }
+            ]
+        });
+    }
+
     // 弹窗七图表
     initCreditServiceCharts() {
         const area = echarts.init(document.getElementById('modal-area-7'));
@@ -1567,9 +4631,25 @@ window.HomePage = class HomePage {
                 itemStyle: { color: '#00d4ff' },
                 markPoint: {
                     data: [{ type: 'max', name: '最大值' }],
-                    label: { formatter: '300万累计' }
+                    
                 },
                 label: { show: true, position: 'top', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+
+        const pie7a = echarts.init(document.getElementById('modal-pie-7a'));
+        pie7a.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                data: [
+                    { value: 65, name: '信用等级审批', itemStyle: { color: '#00d4ff' } },
+                    { value: 35, name: '非信用等级审批', itemStyle: { color: '#34c759' } }
+                ],
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
+                labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
             }]
         });
 
@@ -1581,9 +4661,13 @@ window.HomePage = class HomePage {
                 type: 'pie',
                 radius: ['40%', '70%'],
                 data: [
-                    { value: 45, name: '行政审批', itemStyle: { color: '#00d4ff' } },
-                    { value: 33, name: '公共服务', itemStyle: { color: '#34c759' } },
-                    { value: 22, name: '监管执法', itemStyle: { color: '#ff9500' } }
+                    { value: 40, name: '行政许可', itemStyle: { color: '#00d4ff' } },
+                    { value: 15, name: '行政确认', itemStyle: { color: '#34c759' } },
+                    { value: 7, name: '行政裁决', itemStyle: { color: '#ff9500' } },
+                    { value: 5, name: '行政奖励', itemStyle: { color: '#ffcc00' } },
+                    { value: 3, name: '行政给付', itemStyle: { color: '#ff6b6b' } },
+                    { value: 24, name: '公共服务', itemStyle: { color: '#9b59b6' } },
+                    { value: 6, name: '其他行政权力', itemStyle: { color: '#1abc9c' } }
                 ],
                 label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
                 labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
@@ -1599,20 +4683,15 @@ window.HomePage = class HomePage {
             tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
             series: [{
                 type: 'pie',
-                radius: ['50%', '70%'],
+                radius: ['40%', '70%'],
                 data: [
-                    { value: 99, name: '已覆盖', itemStyle: { color: '#34c759' } },
-                    { value: 1, name: '未覆盖', itemStyle: { color: '#ff3b30' } }
+                    { value: 55, name: '企业', itemStyle: { color: '#00d4ff' } },
+                    { value: 30, name: '个体工商', itemStyle: { color: '#34c759' } },
+                    { value: 10, name: '农专社', itemStyle: { color: '#ff9500' } },
+                    { value: 5, name: '其他组织', itemStyle: { color: '#9b59b6' } }
                 ],
-                label: {
-                    show: true,
-                    position: 'center',
-                    formatter: '99%',
-                    fontSize: 28,
-                    fontWeight: 'bold',
-                    color: '#34c759',
-                    textBorderWidth: 0
-                }
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
+                labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
             }]
         });
 
@@ -1679,6 +4758,929 @@ window.HomePage = class HomePage {
                 ],
                 label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
                 labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } }
+            }]
+        });
+    }
+
+    initCreditBAboveCharts() {
+        const bar = echarts.init(document.getElementById('modal-b-level-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}万户' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['A级', 'B级', 'C级', 'D级']
+            },
+            yAxis: { type: 'value', name: '万户' },
+            series: [{
+                type: 'bar',
+                data: [245.67, 384.44, 49.01, 21.0],
+                itemStyle: {
+                    color: ['#34c759', '#00d4ff', '#ff9500', '#ff3b30'],
+                    borderRadius: [4, 4, 0, 0]
+                },
+                label: { show: true, position: 'top', formatter: '{c}', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-b-level-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                data: [
+                    { value: 45, name: '企业', itemStyle: { color: '#34c759' } },
+                    { value: 40, name: '个体工商', itemStyle: { color: '#00d4ff' } },
+                    { value: 10, name: '农专社', itemStyle: { color: '#ff9500' } },
+                    { value: 5, name: '其他组织', itemStyle: { color: '#af52de' } }
+                ],
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 },
+                labelLine: { lineStyle: { color: 'rgba(255,255,255,0.4)' } },
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+    }
+
+    initCreditBRatioCharts() {
+        const donut = echarts.init(document.getElementById('modal-b-ratio-donut'));
+        donut.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['50%', '70%'],
+                center: ['50%', '50%'],
+                data: [
+                    { value: 35, name: 'A级', itemStyle: { color: '#34c759' } },
+                    { value: 55, name: 'B级', itemStyle: { color: '#06c270' } },
+                    { value: 7, name: 'C级', itemStyle: { color: '#ff9500' } },
+                    { value: 3, name: 'D级', itemStyle: { color: '#ff3b30' } }
+                ],
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: 'B级及以上\n90%',
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#34c759',
+                    textBorderWidth: 0
+                },
+                labelLine: { show: false },
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-b-ratio-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['制造业', '批发零售', '信息技术', '建筑业', '交通运输', '住宿餐饮', '金融业', '农林牧渔'],
+                axisLabel: { fontSize: 11, interval: 0, rotate: 30 }
+            },
+            yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+            series: [
+                {
+                    type: 'bar',
+                    data: [92, 91, 93, 88, 89, 87, 94, 86],
+                    itemStyle: {
+                        color: '#00d4ff',
+                        borderRadius: [4, 4, 0, 0]
+                    },
+                    label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+                },
+                {
+                    type: 'line',
+                    data: [90, 90, 90, 90, 90, 90, 90, 90],
+                    lineStyle: { color: '#ff3b30', width: 2, type: 'dashed' },
+                    itemStyle: { color: '#ff3b30' },
+                    symbol: 'none'
+                }
+            ]
+        });
+    }
+
+    initComplianceRateCharts() {
+        const donut = echarts.init(document.getElementById('modal-compliance-donut'));
+        donut.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['50%', '75%'],
+                center: ['50%', '50%'],
+                data: [
+                    { value: 90, name: '合规', itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#34c759' }, { offset: 1, color: '#06c270' }]) } },
+                    { value: 10, name: '不合规', itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#ff3b30' }, { offset: 1, color: '#ff9500' }]) } }
+                ],
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '90%',
+                    fontSize: 32,
+                    fontWeight: 'bold',
+                    color: '#34c759',
+                    textBorderWidth: 0
+                },
+                labelLine: { show: false },
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-compliance-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['制造业', '批发零售', '信息技术', '建筑业', '交通运输', '住宿餐饮', '金融业', '农林牧渔'],
+                axisLabel: { fontSize: 11, interval: 0, rotate: 30 }
+            },
+            yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
+            series: [{
+                type: 'bar',
+                data: [
+                    { value: 92, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                    { value: 90, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                    { value: 95, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                    { value: 85, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                    { value: 88, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                    { value: 82, itemStyle: { color: '#ff3b30', borderRadius: [4, 4, 0, 0] } },
+                    { value: 96, itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] } },
+                    { value: 87, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } }
+                ],
+                label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+    }
+
+    initViolationRateCharts() {
+        const donut = echarts.init(document.getElementById('modal-violation-donut'));
+        donut.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['50%', '75%'],
+                center: ['50%', '50%'],
+                data: [
+                    { value: 90, name: '合规', itemStyle: { color: 'rgba(52, 199, 89, 0.3)' } },
+                    { value: 10, name: '违法', itemStyle: { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{ offset: 0, color: '#ff3b30' }, { offset: 1, color: '#ff6b30' }]) } }
+                ],
+                label: {
+                    show: true,
+                    position: 'center',
+                    formatter: '10%',
+                    fontSize: 32,
+                    fontWeight: 'bold',
+                    color: '#ff3b30',
+                    textBorderWidth: 0
+                },
+                labelLine: { show: false },
+                emphasis: {
+                    itemStyle: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-violation-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['建筑业', '住宿餐饮', '批发零售', '交通运输', '制造业', '信息技术', '金融业', '农林牧渔'],
+                axisLabel: { fontSize: 11, interval: 0, rotate: 30 }
+            },
+            yAxis: { type: 'value', max: 25, axisLabel: { formatter: '{value}%' } },
+            series: [{
+                type: 'bar',
+                data: [
+                    { value: 18, itemStyle: { color: '#ff3b30', borderRadius: [4, 4, 0, 0] } },
+                    { value: 15, itemStyle: { color: '#ff3b30', borderRadius: [4, 4, 0, 0] } },
+                    { value: 12, itemStyle: { color: '#ff6b30', borderRadius: [4, 4, 0, 0] } },
+                    { value: 10, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                    { value: 8, itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] } },
+                    { value: 7, itemStyle: { color: '#ffcc00', borderRadius: [4, 4, 0, 0] } },
+                    { value: 5, itemStyle: { color: '#ffcc00', borderRadius: [4, 4, 0, 0] } },
+                    { value: 6, itemStyle: { color: '#ffcc00', borderRadius: [4, 4, 0, 0] } }
+                ],
+                label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+    }
+
+    initNewMarketCharts() {
+        const pie = echarts.init(document.getElementById('modal-market-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}户 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}户 ({d}%)', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 45, name: '企业', itemStyle: { color: '#007aff' } },
+                    { value: 30, name: '个体工商户', itemStyle: { color: '#34c759' } },
+                    { value: 5, name: '农民专业合作社', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-market-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}户' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}户' } },
+            series: [{ type: 'bar', data: [25, 18, 12, 8, 6, 5, 4, 2], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}户', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initStartupTimeCharts() {
+        const bar = echarts.init(document.getElementById('modal-startup-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}小时' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['名称核准', '材料提交', '审批审核', '刻章备案', '税务登记', '银行开户'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}h' } },
+            series: [{ type: 'bar', data: [0.8, 1.5, 2.5, 0.7, 0.8, 0.7], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-startup-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}h ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 0.8, name: '名称核准', itemStyle: { color: '#34c759' } },
+                    { value: 1.5, name: '材料提交', itemStyle: { color: '#007aff' } },
+                    { value: 2.5, name: '审批审核', itemStyle: { color: '#00d4ff' } },
+                    { value: 0.7, name: '刻章备案', itemStyle: { color: '#ffcc00' } },
+                    { value: 0.8, name: '税务登记', itemStyle: { color: '#ff9500' } },
+                    { value: 0.7, name: '银行开户', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+    }
+
+    initNewProjectCharts() {
+        const pie = echarts.init(document.getElementById('modal-project-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}个 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}个 ({d}%)', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 32, name: '政府投资项目', itemStyle: { color: '#007aff' } },
+                    { value: 48, name: '企业投资项目', itemStyle: { color: '#00d4ff' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-project-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}个' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}个' } },
+            series: [{ type: 'bar', data: [22, 18, 12, 8, 7, 6, 4, 3], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}个', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initProjectApprovalCharts() {
+        const bar = echarts.init(document.getElementById('modal-approval-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}小时' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['立项审批', '用地规划', '工程规划', '施工许可', '竣工验收'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}h' } },
+            series: [{ type: 'bar', data: [1.5, 1.8, 1.7, 2.0, 1.5], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-approval-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}h ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 1.5, name: '立项审批', itemStyle: { color: '#34c759' } },
+                    { value: 1.8, name: '用地规划', itemStyle: { color: '#007aff' } },
+                    { value: 1.7, name: '工程规划', itemStyle: { color: '#00d4ff' } },
+                    { value: 2.0, name: '施工许可', itemStyle: { color: '#ffcc00' } },
+                    { value: 1.5, name: '竣工验收', itemStyle: { color: '#ff9500' } }
+                ]
+            }]
+        });
+    }
+
+    initYearlyAddCharts() {
+        const trend = echarts.init(document.getElementById('modal-yearly-add-trend'));
+        trend.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}<br/>新增: {c}户' },
+            grid: { left: '8%', right: '8%', bottom: '10%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['去年7月', '去年8月', '去年9月', '去年10月', '去年11月', '去年12月', '今年1月', '今年2月', '今年3月', '今年4月', '今年5月', '今年6月'], axisLabel: { fontSize: 11 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}户' } },
+            series: [{
+                type: 'line',
+                data: [210, 225, 245, 230, 255, 268, 280, 220, 275, 290, 265, 285],
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 6,
+                itemStyle: { color: '#00d4ff' },
+                lineStyle: { color: '#00d4ff', width: 2 },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(0, 212, 255, 0.3)' },
+                        { offset: 1, color: 'rgba(0, 212, 255, 0.05)' }
+                    ])
+                },
+                label: { show: true, position: 'top', formatter: '{c}', fontSize: 11, color: '#00d4ff', textBorderWidth: 0 }
+            }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-yearly-add-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}户 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}户 ({d}%)', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 1456, name: '企业', itemStyle: { color: '#007aff' } },
+                    { value: 1200, name: '个体', itemStyle: { color: '#34c759' } },
+                    { value: 200, name: '农专', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+    }
+
+    initYearlyRemoveCharts() {
+        const pie = echarts.init(document.getElementById('modal-yearly-remove-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}户 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}户 ({d}%)', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 987, name: '注销', itemStyle: { color: '#007aff' } },
+                    { value: 247, name: '吊销', itemStyle: { color: '#ff3b30' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-yearly-remove-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}户' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['制造业', '批发零售', '住宿餐饮', '交通运输', '信息技术', '建筑业', '金融业', '农林牧渔'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}户' } },
+            series: [{ type: 'bar', data: [280, 220, 180, 150, 130, 120, 100, 84], itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}户', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initGoodBadRateCharts() {
+        const gauge = echarts.init(document.getElementById('modal-goodbad-gauge'));
+        gauge.setOption({
+            textStyle: { color: '#fff' },
+            series: [{
+                type: 'gauge',
+                startAngle: 90,
+                endAngle: -270,
+                pointer: { show: true, length: '60%', width: 6, itemStyle: { color: '#34c759' } },
+                progress: { show: true, overlap: false, roundCap: true, clip: false, itemStyle: { color: '#34c759' } },
+                axisLine: { lineStyle: { width: 20, color: [[1, '#34c759']] } },
+                splitLine: { show: false },
+                axisTick: { show: false },
+                axisLabel: { show: false },
+                title: { show: false },
+                detail: {
+                    valueAnimation: true,
+                    formatter: '{value}%',
+                    fontSize: 36,
+                    fontWeight: 'bold',
+                    color: '#34c759',
+                    offsetCenter: [0, '30%']
+                },
+                data: [{ value: 99.96, name: '' }]
+            }]
+        });
+
+        const pie = echarts.init(document.getElementById('modal-goodbad-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 35, name: '服务态度', itemStyle: { color: '#34c759' } },
+                    { value: 30, name: '办事效率', itemStyle: { color: '#007aff' } },
+                    { value: 20, name: '流程便捷', itemStyle: { color: '#00d4ff' } },
+                    { value: 10, name: '材料清晰', itemStyle: { color: '#ffcc00' } },
+                    { value: 5, name: '其他', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+    }
+
+    initEnterpriseSatisfactionCharts() {
+        const pie = echarts.init(document.getElementById('modal-satisfaction-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}%' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 45, name: '非常满意', itemStyle: { color: '#34c759' } },
+                    { value: 35, name: '满意', itemStyle: { color: '#007aff' } },
+                    { value: 15, name: '基本满意', itemStyle: { color: '#ffcc00' } },
+                    { value: 4, name: '不满意', itemStyle: { color: '#ff9500' } },
+                    { value: 1, name: '非常不满意', itemStyle: { color: '#ff3b30' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-satisfaction-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 100 },
+            series: [{ type: 'bar', data: [99.5, 99.2, 99.0, 98.8, 98.5, 98.2, 98.0, 97.5], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initTechTotalCharts() {
+        const pie = echarts.init(document.getElementById('modal-tech-total-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}家 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 30, name: '制造业', itemStyle: { color: '#007aff' } },
+                    { value: 25, name: '信息技术', itemStyle: { color: '#00d4ff' } },
+                    { value: 20, name: '科学研究', itemStyle: { color: '#34c759' } },
+                    { value: 12, name: '生物医药', itemStyle: { color: '#ffcc00' } },
+                    { value: 8, name: '新材料', itemStyle: { color: '#ff9500' } },
+                    { value: 5, name: '其他', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-tech-total-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{ type: 'bar', data: [380, 280, 200, 150, 120, 80, 40, 8], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}家', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initTechNewCharts() {
+        const trend = echarts.init(document.getElementById('modal-tech-new-trend'));
+        trend.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}<br/>新增: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '10%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['2022年', '2023年', '2024年', '2025年', '2026年'], axisLabel: { fontSize: 11 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{
+                type: 'line',
+                data: [85, 120, 170, 200, 326],
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                itemStyle: { color: '#34c759' },
+                lineStyle: { color: '#34c759', width: 2 },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(52, 199, 89, 0.3)' },
+                        { offset: 1, color: 'rgba(52, 199, 89, 0.05)' }
+                    ])
+                },
+                label: { show: true, position: 'top', formatter: '{c}', fontSize: 11, color: '#34c759', textBorderWidth: 0 }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-tech-new-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{ type: 'bar', data: [100, 75, 55, 40, 30, 20, 8, 0], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}家', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initTechGrowthCharts() {
+        const bar = echarts.init(document.getElementById('modal-tech-growth-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 120 },
+            series: [{ type: 'bar', data: [100, 94, 92, 90, 87, 80, 75, 100], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initSpecialTotalCharts() {
+        const pie = echarts.init(document.getElementById('modal-special-total-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}家 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 35, name: '制造业', itemStyle: { color: '#007aff' } },
+                    { value: 28, name: '信息技术', itemStyle: { color: '#00d4ff' } },
+                    { value: 18, name: '科学研究', itemStyle: { color: '#34c759' } },
+                    { value: 10, name: '生物医药', itemStyle: { color: '#ffcc00' } },
+                    { value: 6, name: '新材料', itemStyle: { color: '#ff9500' } },
+                    { value: 3, name: '其他', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-special-total-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{ type: 'bar', data: [150, 100, 75, 55, 40, 25, 10, 1], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}家', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initSpecialNewCharts() {
+        const trend = echarts.init(document.getElementById('modal-special-new-trend'));
+        trend.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}<br/>新增: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '10%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['2022年', '2023年', '2024年', '2025年', '2026年'], axisLabel: { fontSize: 11 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{
+                type: 'line',
+                data: [35, 50, 63, 80, 118],
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                itemStyle: { color: '#34c759' },
+                lineStyle: { color: '#34c759', width: 2 },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(52, 199, 89, 0.3)' },
+                        { offset: 1, color: 'rgba(52, 199, 89, 0.05)' }
+                    ])
+                },
+                label: { show: true, position: 'top', formatter: '{c}', fontSize: 11, color: '#34c759', textBorderWidth: 0 }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-special-new-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{ type: 'bar', data: [40, 28, 18, 12, 10, 6, 3, 1], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}家', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initSpecialGrowthCharts() {
+        const bar = echarts.init(document.getElementById('modal-special-growth-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 120 },
+            series: [{ type: 'bar', data: [92, 87, 80, 80, 60, 33, 0, 0], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initGiantTotalCharts() {
+        const pie = echarts.init(document.getElementById('modal-giant-total-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}家 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 40, name: '制造业', itemStyle: { color: '#007aff' } },
+                    { value: 30, name: '信息技术', itemStyle: { color: '#00d4ff' } },
+                    { value: 15, name: '科学研究', itemStyle: { color: '#34c759' } },
+                    { value: 8, name: '生物医药', itemStyle: { color: '#ffcc00' } },
+                    { value: 5, name: '新材料', itemStyle: { color: '#ff9500' } },
+                    { value: 2, name: '其他', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-giant-total-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{ type: 'bar', data: [40, 25, 10, 6, 4, 3, 1, 0], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}家', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initGiantNewCharts() {
+        const trend = echarts.init(document.getElementById('modal-giant-new-trend'));
+        trend.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}<br/>新增: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '10%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['2022年', '2023年', '2024年', '2025年', '2026年'], axisLabel: { fontSize: 11 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{
+                type: 'line',
+                data: [5, 8, 12, 15, 23],
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                itemStyle: { color: '#34c759' },
+                lineStyle: { color: '#34c759', width: 2 },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(52, 199, 89, 0.3)' },
+                        { offset: 1, color: 'rgba(52, 199, 89, 0.05)' }
+                    ])
+                },
+                label: { show: true, position: 'top', formatter: '{c}', fontSize: 11, color: '#34c759', textBorderWidth: 0 }
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-giant-new-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}家' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}家' } },
+            series: [{ type: 'bar', data: [10, 6, 3, 2, 1, 1, 0, 0], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}家', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initGiantGrowthCharts() {
+        const bar = echarts.init(document.getElementById('modal-giant-growth-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}%' }, max: 120 },
+            series: [{ type: 'bar', data: [83, 100, 50, 100, 0, 0, 0, 0], itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initComplaintDecreaseCharts() {
+        const pie = echarts.init(document.getElementById('modal-complaint-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}件' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { show: true, formatter: '{b}\n{c}件', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                data: [
+                    { value: 8, name: '服务态度', itemStyle: { color: '#ff3b30' } },
+                    { value: 6, name: '办事效率', itemStyle: { color: '#ff9500' } },
+                    { value: 5, name: '流程问题', itemStyle: { color: '#ffcc00' } },
+                    { value: 3, name: '材料要求', itemStyle: { color: '#007aff' } },
+                    { value: 1, name: '其他', itemStyle: { color: '#af52de' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-complaint-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}件' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}件' } },
+            series: [{ type: 'bar', data: [8, 5, 4, 3, 2, 1, 0, 0], itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}件', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initProjectLandingCharts() {
+        const donut = echarts.init(document.getElementById('modal-landing-donut'));
+        donut.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}h ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['50%', '75%'],
+                center: ['50%', '50%'],
+                label: { show: false },
+                labelLine: { show: false },
+                data: [
+                    { value: 5, name: '审批阶段', itemStyle: { color: '#007aff' } },
+                    { value: 2, name: '落地阶段', itemStyle: { color: '#00d4ff' } }
+                ]
+            }]
+        });
+        setTimeout(() => {
+            donut.setOption({
+                graphic: [{
+                    type: 'text',
+                    left: 'center',
+                    top: 'center',
+                    style: { text: '7h', fontSize: 36, fontWeight: 'bold', fill: '#00d4ff' }
+                }]
+            });
+        }, 100);
+
+        const bar = echarts.init(document.getElementById('modal-landing-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}小时' },
+            grid: { left: '8%', right: '8%', bottom: '20%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['基建项目A', '产业园B', '旅游项目C', '科技项目D', '环保项目E', '城市更新F', '农业项目G', '物流项目H'], axisLabel: { fontSize: 11, interval: 0, rotate: 45 } },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}h' } },
+            series: [{ type: 'bar', data: [5.5, 6.2, 6.8, 7.0, 7.5, 8.0, 8.5, 9.2], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+        });
+    }
+
+    initRiskWarningCharts() {
+        const pie = echarts.init(document.getElementById('modal-warning-pie'));
+        pie.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'item', formatter: '{b}: {c}个 ({d}%)' },
+            series: [{
+                type: 'pie',
+                radius: ['40%', '70%'],
+                center: ['50%', '50%'],
+                label: { 
+                    show: true, 
+                    formatter: '{b}\n{c}个 ({d}%)', 
+                    color: 'rgba(255,255,255,0.8)',
+                    fontSize: 12
+                },
+                data: [
+                    { value: 8, name: '红色预警', itemStyle: { color: '#ff3b30' } },
+                    { value: 15, name: '橙色预警', itemStyle: { color: '#ff9500' } },
+                    { value: 12, name: '黄色预警', itemStyle: { color: '#ffcc00' } },
+                    { value: 10, name: '蓝色预警', itemStyle: { color: '#007aff' } }
+                ]
+            }]
+        });
+
+        const bar = echarts.init(document.getElementById('modal-warning-bar'));
+        bar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}个' },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['危化品安全', '传销监测', '交通运输新业态', '涉水产品违规', '农民工欠薪', '非法现金贷', '食品安全', '特种设备安全'],
+                axisLabel: { fontSize: 11, interval: 0, rotate: 30 }
+            },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}个' } },
+            series: [{
+                type: 'bar',
+                data: [12, 8, 6, 5, 5, 4, 3, 2],
+                itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] },
+                label: { show: true, position: 'top', formatter: '{c}个', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+
+        const stackBar = echarts.init(document.getElementById('modal-warning-stack-bar'));
+        stackBar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            legend: { 
+                data: ['红色预警', '橙色预警', '黄色预警', '蓝色预警'],
+                bottom: 0,
+                textStyle: { fontSize: 11 }
+            },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['危化品安全', '传销监测', '交通运输新业态', '涉水产品违规', '农民工欠薪']
+            },
+            yAxis: { type: 'value' },
+            series: [
+                { name: '红色预警', type: 'bar', stack: 'total', data: [3, 2, 1, 1, 1], itemStyle: { color: '#ff3b30' } },
+                { name: '橙色预警', type: 'bar', stack: 'total', data: [4, 3, 3, 2, 3], itemStyle: { color: '#ff9500' } },
+                { name: '黄色预警', type: 'bar', stack: 'total', data: [3, 2, 2, 1, 4], itemStyle: { color: '#ffcc00' } },
+                { name: '蓝色预警', type: 'bar', stack: 'total', data: [2, 1, 1, 1, 2], itemStyle: { color: '#007aff' } }
+            ]
+        });
+
+        const trend = echarts.init(document.getElementById('modal-warning-trend'));
+        trend.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}<br/>风险预警数: {c}个' },
+            grid: { left: '8%', right: '8%', bottom: '10%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['2026-06-26', '2026-06-27', '2026-06-28', '2026-06-29', '2026-06-30', '2026-07-01', '2026-07-02'],
+                axisLabel: { fontSize: 11 }
+            },
+            yAxis: { type: 'value' },
+            series: [{
+                type: 'line',
+                data: [12, 8, 10, 6, 9, 7, 5],
+                smooth: true,
+                symbol: 'circle',
+                symbolSize: 8,
+                itemStyle: { color: '#00d4ff' },
+                lineStyle: { color: '#00d4ff', width: 2 },
+                areaStyle: {
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: 'rgba(0, 212, 255, 0.3)' },
+                        { offset: 1, color: 'rgba(0, 212, 255, 0.05)' }
+                    ])
+                },
+                label: { 
+                    show: true, 
+                    position: 'top', 
+                    formatter: '{c}', 
+                    fontSize: 11,
+                    color: '#00d4ff',
+                    textBorderWidth: 0 
+                }
             }]
         });
     }
