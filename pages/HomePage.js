@@ -20,7 +20,7 @@ window.HomePage = class HomePage {
                                     <div class="activity-item activity-parent">
                                         <span class="activity-label">年度新增市场主体</span>
                                         <span class="activity-value-group">
-                                            <span class="activity-count highlight-num" data-modal="yearly_add" style="cursor: pointer;">99</span>
+                                            <span class="activity-count highlight-num" data-modal="yearly_add" style="cursor: pointer;">2856</span>
                                             <span class="trend-up">↑ 1%</span>
                                         </span>
                                     </div>
@@ -32,7 +32,7 @@ window.HomePage = class HomePage {
                                     <div class="activity-item activity-parent">
                                         <span class="activity-label">年度减少市场主体</span>
                                         <span class="activity-value-group">
-                                            <span class="activity-count highlight-num" data-modal="yearly_remove" style="cursor: pointer;">99</span>
+                                            <span class="activity-count highlight-num" data-modal="yearly_remove" style="cursor: pointer;">1234</span>
                                             <span class="trend-down">↓ 1%</span>
                                         </span>
                                     </div>
@@ -1655,19 +1655,19 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度新增</span>
-                        <span class="indicator-stat-value">99户</span>
+                        <span class="indicator-stat-value">2856户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">新增企业</span>
-                        <span class="indicator-stat-value">55户</span>
+                        <span class="indicator-stat-value">1456户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">新增个体工商户</span>
-                        <span class="indicator-stat-value">40户</span>
+                        <span class="indicator-stat-value">1200户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">新增农村专业合作社</span>
-                        <span class="indicator-stat-value">4户</span>
+                        <span class="indicator-stat-value">200户</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
@@ -1741,15 +1741,15 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度减少</span>
-                        <span class="indicator-stat-value">99户</span>
+                        <span class="indicator-stat-value">1234户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度注销</span>
-                        <span class="indicator-stat-value">69户</span>
+                        <span class="indicator-stat-value">987户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度吊销</span>
-                        <span class="indicator-stat-value">30户</span>
+                        <span class="indicator-stat-value">247户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">净减少率</span>
