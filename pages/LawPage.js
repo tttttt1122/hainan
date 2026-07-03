@@ -96,17 +96,17 @@ window.LawPage = class LawPage {
                             <div class="stat-card-horizontal">
                                 <div class="stat-item" data-indicator="clue_all">
                                     <span class="stat-label">线索总数</span>
-                                    <span class="stat-value">1,234</span>
+                                    <span class="stat-value">30</span>
                                 </div>
                                 <div class="stat-divider"></div>
                                 <div class="stat-item" data-indicator="clue_pending">
                                     <span class="stat-label">待办线索数</span>
-                                    <span class="stat-value">156</span>
+                                    <span class="stat-value">10</span>
                                 </div>
                                 <div class="stat-divider"></div>
                                 <div class="stat-item" data-indicator="clue_done">
                                     <span class="stat-label">已办线索数</span>
-                                    <span class="stat-value">1,078</span>
+                                    <span class="stat-value">20</span>
                                 </div>
                             </div>
                         </div>
@@ -117,17 +117,17 @@ window.LawPage = class LawPage {
                                 <div class="stat-card-horizontal">
                                     <div class="stat-item" data-indicator="case_source">
                                         <span class="stat-label">案源数</span>
-                                        <span class="stat-value">892</span>
+                                        <span class="stat-value">30</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-indicator="case_filing">
                                         <span class="stat-label">立案数</span>
-                                        <span class="stat-value">756</span>
+                                        <span class="stat-value">22</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-indicator="case_penalty">
                                         <span class="stat-label">处罚数</span>
-                                        <span class="stat-value">689</span>
+                                        <span class="stat-value">22</span>
                                     </div>
                                 </div>
                             </div>
