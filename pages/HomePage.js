@@ -235,7 +235,7 @@ window.HomePage = class HomePage {
                                         <span class="achievement-title">风险预警动态监测</span>
                                     </div>
                                     <div class="achievement-content">
-                                        <div class="achievement-row">根据风险预警模型发现并处置<span class="highlight-num" data-modal="risk_warning" style="cursor: pointer;">45个</span>预警信息，处置率<span class="highlight-num" style="cursor: pointer;">100%</span></div>
+                                        <div class="achievement-row">根据风险预警模型发现并处置<span class="highlight-num" data-modal="risk_warning" style="cursor: pointer;">45个</span>预警信息，处置率<span class="highlight-num" data-modal="risk_disposal_rate" style="cursor: pointer;">100%</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -445,6 +445,9 @@ window.HomePage = class HomePage {
                 break;
             case 'risk_warning':
                 overlay.innerHTML = this.renderRiskWarningModal();
+                break;
+            case 'risk_disposal_rate':
+                overlay.innerHTML = this.renderRiskDisposalRateModal();
                 break;
             case 'new_market':
                 overlay.innerHTML = this.renderNewMarketModal();
@@ -1136,15 +1139,15 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">市场主体总数</span>
-                        <span class="indicator-stat-value">100.00万户</span>
+                        <span class="indicator-stat-value">700.12万户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">B级及以上市场主体总数</span>
-                        <span class="indicator-stat-value">600.11万户</span>
+                        <span class="indicator-stat-value">630.11万户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">B级及以上市场主体总数占比</span>
-                        <span class="indicator-stat-value">60%</span>
+                        <span class="indicator-stat-value">90%</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 1fr 1fr;">
@@ -1264,7 +1267,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '${item.code}', '', '${item.region}')">${item.name}</span></td>
                 <td>${item.code}</td>
                 <td>${item.type}</td>
                 <td>${item.region}</td>
@@ -1357,7 +1360,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}')">${item.name}</span></td>
                 <td>${item.step1}h</td>
                 <td>${item.step2}h</td>
                 <td>${item.step3}h</td>
@@ -1652,19 +1655,19 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度新增</span>
-                        <span class="indicator-stat-value">2,856户</span>
+                        <span class="indicator-stat-value">99户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">新增企业</span>
-                        <span class="indicator-stat-value">1,456户</span>
+                        <span class="indicator-stat-value">55户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">新增个体工商户</span>
-                        <span class="indicator-stat-value">1,200户</span>
+                        <span class="indicator-stat-value">40户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">新增农村专业合作社</span>
-                        <span class="indicator-stat-value">200户</span>
+                        <span class="indicator-stat-value">4户</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
@@ -1707,7 +1710,7 @@ window.HomePage = class HomePage {
         const regions = ['海口', '三亚', '儋州', '文昌', '琼海', '万宁', '东方', '澄迈'];
         const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
         const allItems = [];
-        for (let i = 1; i <= 2856; i++) {
+        for (let i = 1; i <= 99; i++) {
             allItems.push({
                 name: names[i % 5] + i,
                 type: types[i % 3],
@@ -1720,7 +1723,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '', '', '${item.region}')">${item.name}</span></td>
                 <td>${item.type}</td>
                 <td>${item.region}</td>
                 <td>${item.date}</td>
@@ -1738,19 +1741,19 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度减少</span>
-                        <span class="indicator-stat-value">1,234户</span>
+                        <span class="indicator-stat-value">99户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度注销</span>
-                        <span class="indicator-stat-value">987户</span>
+                        <span class="indicator-stat-value">69户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">年度吊销</span>
-                        <span class="indicator-stat-value">247户</span>
+                        <span class="indicator-stat-value">30户</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">净减少率</span>
-                        <span class="indicator-stat-value">0.5%</span>
+                        <span class="indicator-stat-value">0.1%</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
@@ -1795,7 +1798,7 @@ window.HomePage = class HomePage {
         const reasons = ['经营不善', '主动注销', '违法违规', '吊销营业执照', '破产清算', '其他'];
         const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
         const allItems = [];
-        for (let i = 1; i <= 1234; i++) {
+        for (let i = 1; i <= 99; i++) {
             allItems.push({
                 name: names[i % 5] + i,
                 type: types[i % 2],
@@ -1809,7 +1812,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '', '${item.industry}')">${item.name}</span></td>
                 <td>${item.type}</td>
                 <td>${item.industry}</td>
                 <td>${item.date}</td>
@@ -1975,12 +1978,12 @@ window.HomePage = class HomePage {
     }
 
     generateSatisfactionTableRows() {
-        const evaluations = ['非常满意', '满意', '不满意'];
+        const evaluations = ['非常满意', '满意', '基本满意', '不满意', '非常不满意'];
         const domains = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
         const names = ['海南科技有限公司', '三亚旅游服务公司', '海口商贸企业', '文昌农业开发', '琼海餐饮服务'];
         const allItems = [];
         for (let i = 1; i <= 500; i++) {
-            const evalIndex = Math.random() > 0.99 ? 2 : (Math.random() > 0.65 ? 1 : 0);
+            const evalIndex = Math.random() > 0.995 ? 4 : (Math.random() > 0.99 ? 3 : (Math.random() > 0.85 ? 2 : (Math.random() > 0.65 ? 1 : 0)));
             allItems.push({
                 name: names[i % 5] + i,
                 domain: domains[i % 8],
@@ -1991,11 +1994,11 @@ window.HomePage = class HomePage {
         const start = 0;
         const items = allItems.slice(start, start + 5);
         return items.map((item, index) => {
-            const evalColor = item.evaluation === '非常满意' ? '#34c759' : (item.evaluation === '满意' ? '#007aff' : '#ff3b30');
+            const evalColor = item.evaluation === '非常满意' ? '#34c759' : (item.evaluation === '满意' ? '#007aff' : (item.evaluation === '基本满意' ? '#ffcc00' : '#ff3b30'));
             return `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}')">${item.name}</span></td>
                 <td>${item.domain}</td>
                 <td><span style="color: ${evalColor}; font-weight: bold;">${item.evaluation}</span></td>
                 <td>${item.date}</td>
@@ -2173,7 +2176,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '${item.code}', '${item.industry}', '${item.region}')">${item.name}</span></td>
                 <td>${item.code}</td>
                 <td>${item.industry}</td>
                 <td>${item.date}</td>
@@ -2253,7 +2256,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '', '${item.industry}', '${item.region}')">${item.name}</span></td>
                 <td>${item.industry}</td>
                 <td>${item.region}</td>
                 <td>${item.date}</td>
@@ -2415,7 +2418,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '${item.code}', '${item.industry}', '${item.region}')">${item.name}</span></td>
                 <td>${item.code}</td>
                 <td>${item.industry}</td>
                 <td>${item.date}</td>
@@ -2495,7 +2498,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '', '${item.industry}', '${item.region}')">${item.name}</span></td>
                 <td>${item.industry}</td>
                 <td>${item.region}</td>
                 <td>${item.date}</td>
@@ -2657,7 +2660,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '${item.code}', '${item.industry}', '${item.region}')">${item.name}</span></td>
                 <td>${item.code}</td>
                 <td>${item.industry}</td>
                 <td>${item.date}</td>
@@ -2737,7 +2740,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '', '${item.industry}', '${item.region}')">${item.name}</span></td>
                 <td>${item.industry}</td>
                 <td>${item.region}</td>
                 <td>${item.date}</td>
@@ -2849,16 +2852,6 @@ window.HomePage = class HomePage {
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">已排除预警类型分布</span>
-                        <div id="modal-warning-pie" class="indicator-chart-container"></div>
-                    </div>
-                    <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各领域已排除预警数量排行TOP8</span>
-                        <div id="modal-warning-bar" class="indicator-chart-container"></div>
-                    </div>
-                </div>
-                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
-                    <div class="indicator-chart-item">
                         <span class="indicator-chart-title">各领域四色预警分布</span>
                         <div id="modal-warning-stack-bar" class="indicator-chart-container"></div>
                     </div>
@@ -2883,6 +2876,69 @@ window.HomePage = class HomePage {
                         </thead>
                         <tbody>
                             ${this.generateWarningTableRows()}
+                        </tbody>
+                    </table>
+                    <div class="indicator-modal-pagination">
+                        <button class="indicator-pagination-btn">上一页</button>
+                        <span class="indicator-pagination-info">第 1 页 / 共 9 页</span>
+                        <button class="indicator-pagination-btn">下一页</button>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    renderRiskDisposalRateModal() {
+        return `
+            <div class="indicator-modal">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">风险预警处置率达成分析</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="indicator-modal-stats">
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">处置率</span>
+                        <span class="indicator-stat-value">100%</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">已处置预警</span>
+                        <span class="indicator-stat-value">45个</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">待处置预警</span>
+                        <span class="indicator-stat-value">0个</span>
+                    </div>
+                    <div class="indicator-stat-card">
+                        <span class="indicator-stat-label">平均处置时长</span>
+                        <span class="indicator-stat-value">2.3天</span>
+                    </div>
+                </div>
+                <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域处置数量排行TOP8</span>
+                        <div id="modal-disposal-domain-bar" class="indicator-chart-container"></div>
+                    </div>
+                    <div class="indicator-chart-item">
+                        <span class="indicator-chart-title">各领域处置时效排行TOP8</span>
+                        <div id="modal-disposal-efficiency-bar" class="indicator-chart-container"></div>
+                    </div>
+                </div>
+                <div class="indicator-modal-content">
+                    <table class="indicator-modal-table">
+                        <thead>
+                            <tr>
+                                <th>序号</th>
+                                <th>预警编号</th>
+                                <th>预警主题/领域</th>
+                                <th>预警等级</th>
+                                <th>发现时间</th>
+                                <th>处置完成时间</th>
+                                <th>处置时长（天）</th>
+                                <th>处置方式</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            ${this.generateDisposalWarningTableRows()}
                         </tbody>
                     </table>
                     <div class="indicator-modal-pagination">
@@ -2923,12 +2979,53 @@ window.HomePage = class HomePage {
             return `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.code}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openWarningDetailModal('${item.code}', '${item.domain}', '${item.level}', '${item.source}', '${item.foundDate}', '${item.excludeDate}', '${item.method}')">${item.code}</span></td>
                 <td>${item.domain}</td>
                 <td><span style="color: ${levelColor}; font-weight: bold;">${item.level}</span></td>
                 <td>${item.source}</td>
                 <td>${item.foundDate}</td>
                 <td>${item.excludeDate}</td>
+                <td>${item.method}</td>
+            </tr>
+        `}).join('');
+    }
+
+    generateDisposalWarningTableRows() {
+        const domains = ['危化品安全', '传销监测', '交通运输新业态', '涉水产品违规', '农民工欠薪', '非法现金贷', '食品安全', '特种设备安全'];
+        const levels = ['红色', '橙色', '黄色', '蓝色'];
+        const methods = ['人工处置', '系统自动'];
+        const allItems = [];
+        for (let i = 1; i <= 45; i++) {
+            const level = levels[i % 4];
+            const domain = domains[i % 8];
+            const foundDate = `2026-06-${Math.floor(Math.random() * 20) + 10}`;
+            const disposalDate = `2026-06-${Math.floor(Math.random() * 20) + 15}`;
+            const foundDateTime = new Date(foundDate);
+            const disposalDateTime = new Date(disposalDate);
+            const disposalDays = Math.floor((disposalDateTime - foundDateTime) / (1000 * 60 * 60 * 24));
+            allItems.push({
+                code: `YW${202606}${String(i).padStart(4, '0')}`,
+                domain: domain,
+                level: level,
+                foundDate: foundDate,
+                disposalDate: disposalDate,
+                disposalDays: disposalDays > 0 ? disposalDays : 1,
+                method: methods[i % 2]
+            });
+        }
+        const start = (this.currentPage - 1) * this.pageSize;
+        const items = allItems.slice(start, start + this.pageSize);
+        return items.map((item, index) => {
+            const levelColor = item.level === '红色' ? '#ff3b30' : item.level === '橙色' ? '#ff9500' : item.level === '黄色' ? '#ffcc00' : '#007aff';
+            return `
+            <tr>
+                <td>${start + index + 1}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openWarningDetailModal('${item.code}', '${item.domain}', '${item.level}', '系统', '${item.foundDate}', '${item.disposalDate}', '${item.method}')">${item.code}</span></td>
+                <td>${item.domain}</td>
+                <td><span style="color: ${levelColor}; font-weight: bold;">${item.level}</span></td>
+                <td>${item.foundDate}</td>
+                <td>${item.disposalDate}</td>
+                <td>${item.disposalDays}</td>
                 <td>${item.method}</td>
             </tr>
         `}).join('');
@@ -3768,7 +3865,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.company}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.company}', '${item.creditCode}')">${item.company}</span></td>
                 <td>${item.creditCode}</td>
                 <td>${item.level}</td>
                 <td>${item.benefitType}</td>
@@ -3795,7 +3892,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.name}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.name}', '${item.code}', '${item.industry}')">${item.name}</span></td>
                 <td>${item.code}</td>
                 <td>${item.level}</td>
                 <td>${item.industry}</td>
@@ -3922,7 +4019,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.applicant}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${item.applicant}', '${item.creditCode}')">${item.applicant}</span></td>
                 <td>${item.creditCode}</td>
                 <td>${item.verifyTime}</td>
                 <td>${item.result}</td>
@@ -3992,6 +4089,9 @@ window.HomePage = class HomePage {
                     break;
                 case 'risk_warning':
                     this.initRiskWarningCharts();
+                    break;
+                case 'risk_disposal_rate':
+                    this.initRiskDisposalRateCharts();
                     break;
                 case 'new_market':
                     this.initNewMarketCharts();
@@ -5583,48 +5683,6 @@ window.HomePage = class HomePage {
     }
 
     initRiskWarningCharts() {
-        const pie = echarts.init(document.getElementById('modal-warning-pie'));
-        pie.setOption({
-            textStyle: { color: 'rgba(255,255,255,0.6)' },
-            tooltip: { trigger: 'item', formatter: '{b}: {c}个 ({d}%)' },
-            series: [{
-                type: 'pie',
-                radius: ['40%', '70%'],
-                center: ['50%', '50%'],
-                label: { 
-                    show: true, 
-                    formatter: '{b}\n{c}个 ({d}%)', 
-                    color: 'rgba(255,255,255,0.8)',
-                    fontSize: 12
-                },
-                data: [
-                    { value: 8, name: '红色预警', itemStyle: { color: '#ff3b30' } },
-                    { value: 15, name: '橙色预警', itemStyle: { color: '#ff9500' } },
-                    { value: 12, name: '黄色预警', itemStyle: { color: '#ffcc00' } },
-                    { value: 10, name: '蓝色预警', itemStyle: { color: '#007aff' } }
-                ]
-            }]
-        });
-
-        const bar = echarts.init(document.getElementById('modal-warning-bar'));
-        bar.setOption({
-            textStyle: { color: 'rgba(255,255,255,0.6)' },
-            tooltip: { trigger: 'axis', formatter: '{b}: {c}个' },
-            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
-            xAxis: {
-                type: 'category',
-                data: ['危化品安全', '传销监测', '交通运输新业态', '涉水产品违规', '农民工欠薪', '非法现金贷', '食品安全', '特种设备安全'],
-                axisLabel: { fontSize: 11, interval: 0, rotate: 30 }
-            },
-            yAxis: { type: 'value', axisLabel: { formatter: '{value}个' } },
-            series: [{
-                type: 'bar',
-                data: [12, 8, 6, 5, 5, 4, 3, 2],
-                itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] },
-                label: { show: true, position: 'top', formatter: '{c}个', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
-            }]
-        });
-
         const stackBar = echarts.init(document.getElementById('modal-warning-stack-bar'));
         stackBar.setOption({
             textStyle: { color: 'rgba(255,255,255,0.6)' },
@@ -5683,6 +5741,426 @@ window.HomePage = class HomePage {
                 }
             }]
         });
+    }
+
+    initRiskDisposalRateCharts() {
+        const domainBar = echarts.init(document.getElementById('modal-disposal-domain-bar'));
+        domainBar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}个' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['危化品安全', '交通运输新业态', '传销监测', '涉水产品违规', '农民工欠薪', '非法现金贷', '食品安全', '特种设备安全'],
+                axisLabel: { fontSize: 10, interval: 0, rotate: 25 }
+            },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}个' } },
+            series: [{
+                type: 'bar',
+                data: [8, 7, 6, 5, 5, 4, 4, 2],
+                itemStyle: { color: '#34c759', borderRadius: [4, 4, 0, 0] },
+                label: { show: true, position: 'top', formatter: '{c}个', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+
+        const efficiencyBar = echarts.init(document.getElementById('modal-disposal-efficiency-bar'));
+        efficiencyBar.setOption({
+            textStyle: { color: 'rgba(255,255,255,0.6)' },
+            tooltip: { trigger: 'axis', formatter: '{b}: {c}天' },
+            grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
+            xAxis: {
+                type: 'category',
+                data: ['食品安全', '特种设备安全', '危化品安全', '交通运输新业态', '传销监测', '涉水产品违规', '农民工欠薪', '非法现金贷'],
+                axisLabel: { fontSize: 10, interval: 0, rotate: 25 }
+            },
+            yAxis: { type: 'value', axisLabel: { formatter: '{value}天' } },
+            series: [{
+                type: 'bar',
+                data: [1.2, 1.5, 1.8, 2.0, 2.2, 2.5, 2.8, 3.0],
+                itemStyle: { 
+                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        { offset: 0, color: '#34c759' },
+                        { offset: 1, color: '#90ee90' }
+                    ]),
+                    borderRadius: [4, 4, 0, 0] 
+                },
+                label: { show: true, position: 'top', formatter: '{c}天', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
+            }]
+        });
+    }
+
+    openWarningDetailModal(code, domain, level, source, foundDate, disposalDate, method) {
+        const overlay = document.createElement('div');
+        overlay.className = 'indicator-modal-overlay';
+        overlay.innerHTML = this.renderWarningDetailModal(code, domain, level, source, foundDate, disposalDate, method);
+        document.body.appendChild(overlay);
+        
+        overlay.querySelector('.warning-detail-close').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+    }
+
+    renderWarningDetailModal(code, domain, level, source, foundDate, disposalDate, method) {
+        const levelColor = level === '红色' ? '#ff3b30' : level === '橙色' ? '#ff9500' : level === '黄色' ? '#ffcc00' : '#007aff';
+        return `
+            <div class="warning-detail-modal">
+                <div class="warning-detail-header">
+                    <span class="warning-detail-title">${code} - ${domain}${level}风险预警</span>
+                    <button class="warning-detail-close">×</button>
+                </div>
+                <div class="warning-detail-content">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 20px;">
+                        <div class="warning-detail-row">
+                            <span class="warning-detail-label">预警时间</span>
+                            <span class="warning-detail-value">${foundDate}</span>
+                        </div>
+                        <div class="warning-detail-row">
+                            <span class="warning-detail-label">预警类型</span>
+                            <span class="warning-detail-value">批后核查逾期未办</span>
+                        </div>
+                        <div class="warning-detail-row">
+                            <span class="warning-detail-label">市场主体</span>
+                            <span class="warning-detail-value">海南融创房地产开发有限公司</span>
+                        </div>
+                        <div class="warning-detail-row">
+                            <span class="warning-detail-label">审批日期</span>
+                            <span class="warning-detail-value">2026-04-01</span>
+                        </div>
+                        <div class="warning-detail-row">
+                            <span class="warning-detail-label">批后核查时限</span>
+                            <span class="warning-detail-value">30个工作日</span>
+                        </div>
+                        <div class="warning-detail-row">
+                            <span class="warning-detail-label">预警等级</span>
+                            <span class="warning-detail-value" style="color: ${levelColor}; font-weight: 600;">${level}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="warning-detail-row" style="margin-bottom: 20px;">
+                        <span class="warning-detail-label">预警描述</span>
+                        <div class="warning-detail-value" style="line-height: 1.6;">
+                            海南融创房地产开发有限公司于2026年04月01日取得食品经营许可证，根据《食品经营许可管理办法》规定，需在许可批准后30日内完成现场核查。截至2026年05月15日，责任科室未提交核查计划，系统自动判定为"逾期未办"高风险预警。经核查，原因为经办人员岗位调整，工作交接遗漏，导致核查任务超期未启动，该预警已推送至XX局，由处理人张三负责跟进处理，目前已重新指定核查责任人并制定核查计划，预计于2026年05月23日完成现场核查。
+                        </div>
+                    </div>
+                    
+                    <div class="warning-detail-row" style="margin-bottom: 20px;">
+                        <span class="warning-detail-label">预警原因</span>
+                        <div class="warning-detail-value">
+                            批后核查任务超过规定时限未启动，且无正当理由的，触发高风险预警。
+                        </div>
+                    </div>
+                    
+                    <div class="warning-detail-row">
+                        <span class="warning-detail-label">处理信息</span>
+                        <div class="warning-detail-value" style="line-height: 1.6;">
+                            任务接收：2026年05月22日 15:20，处理人张三通过移动端接收预警工单，原因核查：15:30-16:00，联系原经办人李四，确认因岗位调整（李四调至XX科室）导致任务遗漏。整改措施：16:10，重新指定核查责任人：王五（联系电话：138XXXXXXXXXX）；16:20，制定核查计划：2026年05月23日 09:00开展现场核查；16:30，向市场主体发送《核查告知书》，说明逾期原因及补查安排。结果反馈：17:00，在系统上传《整改说明》《核查计划表》《告知书送达回执》，申请解除预警。
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding-top: 15px; border-top: 1px solid rgba(0, 212, 255, 0.15);">
+                        <div class="warning-detail-label">预警处理流程</div>
+                        <div class="warning-detail-timeline">
+                            <div class="warning-timeline-item green">
+                                <div class="warning-timeline-title">触发预警</div>
+                                <div class="warning-timeline-time">2026-01-01 12:00:00</div>
+                                <div class="warning-timeline-content">系统自动触发预警信号</div>
+                            </div>
+                            <div class="warning-timeline-item blue">
+                                <div class="warning-timeline-title">推送至：XX局</div>
+                                <div class="warning-timeline-time">2026-01-01 12:00:00</div>
+                                <div class="warning-timeline-content">预警信息已推送至相关部门</div>
+                            </div>
+                            <div class="warning-timeline-item orange">
+                                <div class="warning-timeline-title">处理人：张三</div>
+                                <div class="warning-timeline-time">2026-01-01 12:00:00</div>
+                                <div class="warning-timeline-content">处理人已接收并开始处理</div>
+                            </div>
+                            <div class="warning-timeline-item red">
+                                <div class="warning-timeline-title">解除预警</div>
+                                <div class="warning-timeline-time">2026-01-01 12:00:00</div>
+                                <div class="warning-timeline-content">预警已解除</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    openObjectProfileModal(name, code, industry, region) {
+        const overlay = document.createElement('div');
+        overlay.className = 'indicator-modal-overlay';
+        overlay.innerHTML = this.renderObjectProfileModal(name, code, industry, region);
+        document.body.appendChild(overlay);
+        
+        overlay.querySelector('.indicator-modal-close').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+        
+        this.initObjectProfileCharts();
+    }
+
+    renderObjectProfileModal(name, code, industry, region) {
+        return `
+            <div class="indicator-modal" style="width: 90%; max-width: 1200px;">
+                <div class="indicator-modal-header">
+                    <span class="indicator-modal-title">企业画像</span>
+                    <button class="indicator-modal-close">×</button>
+                </div>
+                <div class="object-profile-content">
+                    <div class="object-profile-left">
+                        <div class="profile-section">
+                            <div class="profile-section-title">基础信息</div>
+                            <div class="profile-info-grid">
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">统一社会信用代码</span>
+                                    <span class="profile-info-value">${code || '91460000MA5TG635K'}</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">企业名称</span>
+                                    <span class="profile-info-value">${name || '海南信信贸易有限公司'}</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">法定代表人</span>
+                                    <span class="profile-info-value">王建国</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">注册日期</span>
+                                    <span class="profile-info-value">2018-05-20</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">登记机关</span>
+                                    <span class="profile-info-value">海口市市场监督管理局</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">行业类别</span>
+                                    <span class="profile-info-value">${industry || '批发和零售业'}</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">行政区划</span>
+                                    <span class="profile-info-value">${region || '海南省海口市龙华区'}</span>
+                                </div>
+                                <div class="profile-info-item">
+                                    <span class="profile-info-label">经营范围</span>
+                                    <span class="profile-info-value">国内贸易、进出口贸易</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <div class="profile-section-title">信用信息</div>
+                            <div class="credit-info-grid">
+                                <div class="credit-item">
+                                    <div class="credit-title">公共信用评级</div>
+                                    <div class="credit-detail">
+                                        <div class="credit-level">信用等级：B</div>
+                                        <div class="credit-date">评价时间：2026-03-15</div>
+                                        <div class="credit-agency">评价单位：海南省发改委</div>
+                                    </div>
+                                </div>
+                                <div class="credit-item">
+                                    <div class="credit-title">市监诚信信用评级</div>
+                                    <div class="credit-detail">
+                                        <div class="credit-level">信用等级：A</div>
+                                        <div class="credit-date">评价时间：2026-04-01</div>
+                                        <div class="credit-agency">评价单位：海南省市场监管局</div>
+                                    </div>
+                                </div>
+                                <div class="credit-item">
+                                    <div class="credit-title">税务纳税信用评级</div>
+                                    <div class="credit-detail">
+                                        <div class="credit-level">信用等级：A级</div>
+                                        <div class="credit-date">评价时间：2026-01-10</div>
+                                        <div class="credit-agency">评价单位：海南省税务局</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="object-profile-center">
+                        <div class="profile-section">
+                            <div class="profile-section-title">企业画像</div>
+                            <div class="profile-stats-card">
+                                <div class="profile-stat-item">
+                                    <span class="profile-stat-value">12</span>
+                                    <span class="profile-stat-label">许可审批次数</span>
+                                </div>
+                                <div class="profile-stat-item">
+                                    <span class="profile-stat-value">15</span>
+                                    <span class="profile-stat-label">被检查次数</span>
+                                </div>
+                                <div class="profile-stat-item">
+                                    <span class="profile-stat-value">2</span>
+                                    <span class="profile-stat-label">被处罚次数</span>
+                                </div>
+                                <div class="profile-stat-item">
+                                    <span class="profile-stat-value">3</span>
+                                    <span class="profile-stat-label">公共信用评级</span>
+                                </div>
+                                <div class="profile-stat-item">
+                                    <span class="profile-stat-value">2</span>
+                                    <span class="profile-stat-label">预警次数</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <div class="profile-section-title">审批信息</div>
+                            <table class="profile-table">
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>审批部门</th>
+                                        <th>审批时间</th>
+                                        <th>审批事项</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>海南省商务厅</td><td>2026-03-10</td><td>对外贸易经营者备案</td></tr>
+                                    <tr><td>2</td><td>海口市市场监管局</td><td>2026-02-15</td><td>营业执照变更</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <div class="profile-section-title">监管信息</div>
+                            <table class="profile-table">
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>监管部门</th>
+                                        <th>检查时间</th>
+                                        <th>检查结果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>海口市市场监管局</td><td>2026-05-18</td><td>未发现问题</td></tr>
+                                    <tr><td>2</td><td>海南省商务厅</td><td>2026-04-20</td><td>需限期整改</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <div class="profile-section-title">执法信息</div>
+                            <table class="profile-table">
+                                <thead>
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>执法部门</th>
+                                        <th>决定时间</th>
+                                        <th>处罚结果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td>1</td><td>海口市综合行政执法局</td><td>2025-11-05</td><td>罚款5000元</td></tr>
+                                    <tr><td>2</td><td>海口市综合行政执法局</td><td>2024-08-15</td><td>警告</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="object-profile-right">
+                        <div class="profile-section">
+                            <div class="profile-section-title">证照信息</div>
+                            <div class="license-list">
+                                <div class="license-item">
+                                    <span class="license-name">营业执照</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div class="license-item">
+                                    <span class="license-name">对外贸易经营者备案登记表</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div class="license-item">
+                                    <span class="license-name">税务登记证</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div class="license-item">
+                                    <span class="license-name">组织机构代码证</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div class="license-item">
+                                    <span class="license-name">海关报关单位注册登记证书</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="profile-section">
+                            <div class="profile-section-title">风险预警</div>
+                            <div class="risk-warning-list">
+                                <div class="risk-warning-item risk-warning-active">
+                                    <div class="risk-warning-header">
+                                        <span class="risk-warning-title">信用评分极低预警</span>
+                                        <span class="risk-warning-status">预警中</span>
+                                    </div>
+                                    <div class="risk-warning-detail">
+                                        <div>预警时间：2026-05-15</div>
+                                        <div>预警等级：中</div>
+                                        <div>预警原因：信用评分极低</div>
+                                    </div>
+                                    <button class="risk-warning-detail-btn">查看详情</button>
+                                </div>
+                                <div class="risk-warning-item risk-warning-resolved">
+                                    <div class="risk-warning-header">
+                                        <span class="risk-warning-title">多次被检查预警</span>
+                                        <span class="risk-warning-status">已解除</span>
+                                    </div>
+                                    <div class="risk-warning-detail">
+                                        <div>预警时间：2026-04-20</div>
+                                        <div>预警等级：低</div>
+                                        <div>预警原因：企业多次被检查</div>
+                                    </div>
+                                    <div class="risk-warning-resolved-time">解除预警时间：2026-04-25</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    initObjectProfileCharts() {
+        setTimeout(() => {
+            const chart = echarts.init(document.getElementById('modal-profile-chart'));
+            if (chart) {
+                chart.setOption({
+                    textStyle: { color: 'rgba(255,255,255,0.6)' },
+                    tooltip: { trigger: 'item', formatter: '{b}: {c}次' },
+                    series: [{
+                        type: 'pie',
+                        radius: ['40%', '70%'],
+                        center: ['50%', '50%'],
+                        label: { 
+                            show: true, 
+                            formatter: '{b}\n{c}次', 
+                            color: 'rgba(255,255,255,0.8)',
+                            fontSize: 12
+                        },
+                        data: [
+                            { value: 12, name: '许可审批', itemStyle: { color: '#00d4ff' } },
+                            { value: 15, name: '被检查', itemStyle: { color: '#ff9500' } },
+                            { value: 2, name: '被处罚', itemStyle: { color: '#ff3b30' } },
+                            { value: 2, name: '预警', itemStyle: { color: '#ffcc00' } }
+                        ]
+                    }]
+                });
+            }
+        }, 100);
     }
 
     show() {
