@@ -7,8 +7,25 @@ window.CockpitPage = class CockpitPage {
         this.cpCurrentPage = 1;
         this.cpCurrentModal = 0;
         this.pageSize = 5;
+        this.behaviorWarningPage = 1;
+        this.behaviorWarningPageSize = 4;
+        this.behaviorWarningData = [
+            { label: '审批超承诺期限工单量', value: '12', modal: 54 },
+            { label: '审批材料反复退回补正次数', value: '8', modal: 55 },
+            { label: '线下线索流转工单', value: '56', modal: 56 },
+            { label: '高频率重复检查户数', value: '23', modal: 57 },
+            { label: '线索材料退回平均次数', value: '1.5', modal: 58 },
+            { label: '处罚办案超期', value: '5', modal: 59 },
+            { label: '处罚公示超期', value: '3', modal: 60 },
+            { label: '超出裁量标准', value: '2', modal: 61 },
+            { label: '违规处罚撤销', value: '1', modal: 62 },
+            { label: '失信信息公示滞后', value: '4', modal: 63 },
+            { label: '联合惩戒应执行未执行主体数量', value: '6', modal: 64 },
+            { label: '信用修复超期办理', value: '2', modal: 65 }
+        ];
         this.render();
         this.initHomeCharts();
+        this.renderBehaviorWarning();
         this.bindEvents();
     }
 
@@ -20,22 +37,36 @@ window.CockpitPage = class CockpitPage {
                         <div id="tab-home" class="cockpit-tab-pane active" style="display: grid;">
                             <div class="cockpit-row">
                                 <div class="card-section supervision-section">
-                                    <div class="card-title">事项情况</div>
+                                    <div class="card-title">事项</div>
+                                    <div class="supervision-stats supervision-stat-vertical">
+                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="66">
+                                            <span class="stat-label">事项覆盖率</span>
+                                            <span class="stat-value">100%</span>
+                                        </div>
+                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="67">
+                                            <span class="stat-label">处罚发生率</span>
+                                            <span class="stat-value">9%</span>
+                                        </div>
+                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="68">
+                                            <span class="stat-label">事项关联率</span>
+                                            <span class="stat-value">100%</span>
+                                        </div>
+                                    </div>
                                     <div id="cockpit-matters-pie" class="matters-chart-container" style="height: 150px;"></div>
                                 
 
                                     <div class="home-sub-section">
-                                        <div class="card-title">主体/人员情况</div>
-                                        <div class="supervision-stats">
-                                            <div class="supervision-stat-row">
+                                        <div class="card-title">主体/人员</div>
+                                        <div class="supervision-stats supervision-stat-vertical">
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="44">
                                                 <span class="stat-label">主体数量</span>
                                                 <span class="stat-value">156</span>
                                             </div>
-                                            <div class="supervision-stat-row">
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="45">
                                                 <span class="stat-label">执法人员数量</span>
                                                 <span class="stat-value">234</span>
                                             </div>
-                                            <div class="supervision-stat-row">
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="46">
                                                 <span class="stat-label">辅助执法人员数量</span>
                                                 <span class="stat-value">89</span>
                                             </div>
@@ -43,23 +74,23 @@ window.CockpitPage = class CockpitPage {
                                     </div>
                                     
                                     <div class="home-sub-section">
-                                        <div class="card-title">行为情况</div>
-                                        <div style="display: flex; flex-direction: column; gap: 8px;">
-                                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">审批办件数</span>
-                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">1,234</span>
+                                        <div class="card-title">行为</div>
+                                        <div class="supervision-stats behavior-situation-grid">
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="47">
+                                                <span class="stat-label">审批办件数</span>
+                                                <span class="stat-value">1,234</span>
                                             </div>
-                                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">检查任务数</span>
-                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">567</span>
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="48">
+                                                <span class="stat-label">检查任务数</span>
+                                                <span class="stat-value">567</span>
                                             </div>
-                                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">执法案件数</span>
-                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">89</span>
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="49">
+                                                <span class="stat-label">执法案件数</span>
+                                                <span class="stat-value">89</span>
                                             </div>
-                                            <div style="display: flex; justify-content: space-between; align-items: center;">
-                                                <span style="color: rgba(255,255,255,0.6); font-size: 13px;">信用归集数</span>
-                                                <span style="color: #fff; font-size: 16px; font-weight: bold;">3,456</span>
+                                            <div class="supervision-stat-row cp-clickable" data-cp-modal="50">
+                                                <span class="stat-label">信用归集数</span>
+                                                <span class="stat-value">3,456</span>
                                             </div>
                                         </div>
                                     </div>
@@ -67,7 +98,7 @@ window.CockpitPage = class CockpitPage {
 
                                 <div class="card-section map-section">
                                     <div class="card-title">地图</div>
-                                    <div class="map-container" style="height: 280px;">
+                                    <div class="map-container">
                                         <div class="map-tab-overlay">
                                             <button class="map-tab-btn active">省直</button>
                                             <button class="map-tab-btn">市县</button>
@@ -87,132 +118,88 @@ window.CockpitPage = class CockpitPage {
                                                 <span class="risk-label">原因</span>
                                                 <span class="risk-value">数据异常</span>
                                             </div>
-                                            <div class="risk-action">处置</div>
+                                            <div class="risk-action cp-clickable" data-cp-modal="69">处置</div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="card-section right-section">
+                                    <div class="card-title">预警投诉</div>
                                     <div class="supervision-stats">
-                                        <div class="supervision-stat-row">
+                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="11">
                                             <span class="stat-label">上线模型数</span>
                                             <span class="stat-value">99</span>
                                         </div>
-                                        <div class="supervision-stat-row">
+                                        <div class="supervision-stat-row cp-clickable" data-cp-modal="12">
                                             <span class="stat-label">问题发现数</span>
                                             <span class="stat-value">100</span>
                                         </div>
                                     </div>
-
-                                    <div class="home-sub-section">
-                                        <div class="card-title">事项预警</div>
-                                        <div class="supervision-stats">
-                                            <div class="supervision-stat-row">
-                                                <span class="stat-label">事项覆盖</span>
-                                                <span class="stat-value">100</span>
-                                            </div>
-                                            <div class="supervision-stat-row">
-                                                <span class="stat-label">处罚发生率</span>
-                                                <span class="stat-value">9%</span>
-                                            </div>
-                                            <div class="supervision-stat-row">
-                                                <span class="stat-label">事项关联率</span>
-                                                <span class="stat-value">100%</span>
-                                            </div>
+                                    <div class="behavior-warning-divider"></div>
+                                    <div class="behavior-warning-grid behavior-warning-grid-taller">
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="51">
+                                            <span class="behavior-warning-label">主体无执法资格</span>
+                                            <span class="behavior-warning-value" style="color: #ff3b30;">1</span>
                                         </div>
-                                    </div>
-
-                                    <div class="home-sub-section">
-                                        <div class="card-title">主体/人员预警</div>
-                                        <div class="supervision-stats">
-                                            <div class="supervision-stat-row">
-                                                <span class="stat-label">主体无执法资格</span>
-                                                <span class="stat-value" style="color: #ff3b30;">1</span>
-                                            </div>
-                                            <div class="supervision-stat-row">
-                                                <span class="stat-label">部门内无执法人员</span>
-                                                <span class="stat-value">0</span>
-                                            </div>
-                                            <div class="supervision-stat-row">
-                                                <span class="stat-label">单次执法少于两名执法人员</span>
-                                                <span class="stat-value" style="color: #ff9500;">2</span>
-                                            </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="52">
+                                            <span class="behavior-warning-label">部门内无执法人员</span>
+                                            <span class="behavior-warning-value">0</span>
                                         </div>
-                                    </div>
-
-                                    <div class="home-sub-section">
-                                        <div class="card-title">行为预警</div>
-                                        <div class="behavior-group">
-                                            <div class="group-title">【审批】</div>
-                                            <div class="behavior-stats">
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">审批超承诺期限工单量</span>
-                                                    <span class="behavior-value">12</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">审批材料反复退回补正次数</span>
-                                                    <span class="behavior-value">8</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">无依据不予受理件数</span>
-                                                    <span class="behavior-value">3</span>
-                                                </div>
-                                            </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="53">
+                                            <span class="behavior-warning-label">单次执法少于两名执法人员</span>
+                                            <span class="behavior-warning-value" style="color: #ff9500;">2</span>
                                         </div>
-                                        <div class="behavior-group">
-                                            <div class="group-title">【监管】</div>
-                                            <div class="behavior-stats">
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">线下线索流转工单</span>
-                                                    <span class="behavior-value">56</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">高频率重复检查户数</span>
-                                                    <span class="behavior-value">23</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">线索材料退回平均次数</span>
-                                                    <span class="behavior-value">1.5</span>
-                                                </div>
-                                            </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="54">
+                                            <span class="behavior-warning-label">审批超承诺期限工单量</span>
+                                            <span class="behavior-warning-value">12</span>
                                         </div>
-                                        <div class="behavior-group">
-                                            <div class="group-title">【处罚】</div>
-                                            <div class="behavior-stats">
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">处罚办案超期</span>
-                                                    <span class="behavior-value">5</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">处罚公示超期</span>
-                                                    <span class="behavior-value">3</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">超出裁量标准</span>
-                                                    <span class="behavior-value">2</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">违规处罚撤销</span>
-                                                    <span class="behavior-value">1</span>
-                                                </div>
-                                            </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="55">
+                                            <span class="behavior-warning-label">审批材料反复退回补正次数</span>
+                                            <span class="behavior-warning-value">8</span>
                                         </div>
-                                        <div class="behavior-group">
-                                            <div class="group-title">【信用】</div>
-                                            <div class="behavior-stats">
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">失信信息公示滞后</span>
-                                                    <span class="behavior-value">4</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">联合惩戒应执行未执行主体数量</span>
-                                                    <span class="behavior-value">6</span>
-                                                </div>
-                                                <div class="behavior-item">
-                                                    <span class="behavior-label">信用修复超期办理</span>
-                                                    <span class="behavior-value">2</span>
-                                                </div>
-                                            </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="69">
+                                            <span class="behavior-warning-label">无依据不予受理件数</span>
+                                            <span class="behavior-warning-value">3</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="56">
+                                            <span class="behavior-warning-label">线下线索流转工单</span>
+                                            <span class="behavior-warning-value">56</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="57">
+                                            <span class="behavior-warning-label">高频率重复检查户数</span>
+                                            <span class="behavior-warning-value">23</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="58">
+                                            <span class="behavior-warning-label">线索材料退回平均次数</span>
+                                            <span class="behavior-warning-value">1.5</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="59">
+                                            <span class="behavior-warning-label">处罚办案超期</span>
+                                            <span class="behavior-warning-value">5</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="60">
+                                            <span class="behavior-warning-label">处罚公示超期</span>
+                                            <span class="behavior-warning-value">3</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="61">
+                                            <span class="behavior-warning-label">超出裁量标准</span>
+                                            <span class="behavior-warning-value">2</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="62">
+                                            <span class="behavior-warning-label">违规处罚撤销</span>
+                                            <span class="behavior-warning-value">1</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="63">
+                                            <span class="behavior-warning-label">失信信息公示滞后</span>
+                                            <span class="behavior-warning-value">4</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="64">
+                                            <span class="behavior-warning-label">联合惩戒应执行未执行主体数量</span>
+                                            <span class="behavior-warning-value">6</span>
+                                        </div>
+                                        <div class="behavior-warning-item cp-clickable" data-cp-modal="65">
+                                            <span class="behavior-warning-label">信用修复超期办理</span>
+                                            <span class="behavior-warning-value">2</span>
                                         </div>
                                     </div>
                                 </div>
@@ -288,7 +275,7 @@ window.CockpitPage = class CockpitPage {
                                                     <td>xxx</td>
                                                     <td>xxx</td>
                                                     <td>xxx</td>
-                                                    <td><button class="remind-btn">提醒督办</button><button class="push-btn">推送监管一张网</button></td>
+                                                    <td><button class="remind-btn cp-clickable" data-cp-modal="70">提醒督办</button><button class="push-btn cp-clickable" data-cp-modal="71">推送监管一张网</button></td>
                                                 </tr>
                                                 <tr>
                                                     <td>xxx</td>
@@ -306,7 +293,7 @@ window.CockpitPage = class CockpitPage {
                                                     <td>xxx</td>
                                                     <td>xxx</td>
                                                     <td>xxx</td>
-                                                    <td><button class="remind-btn">提醒督办</button><button class="push-btn">推送监管一张网</button></td>
+                                                    <td><button class="remind-btn cp-clickable" data-cp-modal="70">提醒督办</button><button class="push-btn cp-clickable" data-cp-modal="71">推送监管一张网</button></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -419,10 +406,7 @@ window.CockpitPage = class CockpitPage {
                                                         <span>儋州市</span>
                                                         <span>1,234</span>
                                                     </div>
-                                                    <div class="matters-list-row">
-                                                        <span>琼海市</span>
-                                                        <span>892</span>
-                                                    </div>
+                                                    
                                                    
                                                 </div>
                                             </div>
@@ -441,10 +425,7 @@ window.CockpitPage = class CockpitPage {
                                                         <span>行政审批局</span>
                                                         <span>2,789</span>
                                                     </div>
-                                                    <div class="matters-list-row">
-                                                        <span>人社局</span>
-                                                        <span>1,856</span>
-                                                    </div>
+                                                  
                                                    
                                                     <div class="matters-list-row">
                                                         <span>住建局</span>
@@ -913,7 +894,7 @@ window.CockpitPage = class CockpitPage {
                     type: 'pie',
                     radius: ['40%', '70%'],
                     center: ['50%', '50%'],
-                    label: { show: true, formatter: '{b}\n{c}件', color: 'rgba(255,255,255,0.8)', fontSize: 11 },
+                    label: { show: true, formatter: '{b}\n{c}件', color: 'rgba(255,255,255,0.8)', fontSize: 13 },
                     data: [
                         { value: 350, name: '行政检查', itemStyle: { color: '#34c759' } },
                         { value: 120, name: '行政处罚', itemStyle: { color: '#ff3b30' } },
@@ -926,12 +907,52 @@ window.CockpitPage = class CockpitPage {
         }
     }
 
+    renderBehaviorWarning() {
+        const panel = document.getElementById('behavior-warning-panel');
+        if (!panel) return;
+
+        const { behaviorWarningData, behaviorWarningPage, behaviorWarningPageSize } = this;
+        const totalPages = Math.ceil(behaviorWarningData.length / behaviorWarningPageSize) || 1;
+        if (this.behaviorWarningPage > totalPages) {
+            this.behaviorWarningPage = totalPages;
+        }
+        const start = (this.behaviorWarningPage - 1) * behaviorWarningPageSize;
+        const pageItems = behaviorWarningData.slice(start, start + behaviorWarningPageSize);
+
+        panel.innerHTML = `
+            <div class="behavior-warning-grid">
+                ${pageItems.map(item => `
+                    <div class="behavior-warning-item ${item.modal ? 'cp-clickable' : ''}" ${item.modal ? `data-cp-modal="${item.modal}"` : ''}>
+                        <span class="behavior-warning-label">${item.label}</span>
+                        <span class="behavior-warning-value">${item.value}</span>
+                    </div>
+                `).join('')}
+            </div>
+            <div class="behavior-warning-dots">
+                ${Array.from({ length: totalPages }, (_, i) => `
+                    <span class="behavior-warning-dot ${i + 1 === this.behaviorWarningPage ? 'active' : ''}" data-bw-page="${i + 1}"></span>
+                `).join('')}
+            </div>
+        `;
+    }
+
     bindEvents() {
         if (this._boundHandler) {
             this.container.removeEventListener('click', this._boundHandler);
         }
 
         this._boundHandler = (e) => {
+            const bwDot = e.target.closest('.behavior-warning-dot');
+            if (bwDot) {
+                e.stopPropagation();
+                const page = parseInt(bwDot.dataset.bwPage, 10);
+                if (page && page !== this.behaviorWarningPage) {
+                    this.behaviorWarningPage = page;
+                    this.renderBehaviorWarning();
+                }
+                return;
+            }
+
             const mattersTabBtn = e.target.closest('.matters-tab-btn');
             if (mattersTabBtn) {
                 e.stopPropagation();
@@ -945,7 +966,7 @@ window.CockpitPage = class CockpitPage {
             if (cpModalTarget) {
                 e.stopPropagation();
                 const modalId = parseInt(cpModalTarget.dataset.cpModal);
-                if (modalId >= 1 && modalId <= 43) {
+                if (modalId >= 1 && modalId <= 71) {
                     this['openCpModal' + modalId]();
                 }
                 return;
@@ -988,14 +1009,24 @@ window.CockpitPage = class CockpitPage {
             34:'部委执法人员分析', 35:'行政执法人员全景分析', 36:'辅助执法人员分析',
             37:'超期办结分析', 38:'告知承诺核查超期分析', 39:'重复检查分析',
             40:'未响应联合检查任务分析', 41:'承诺即入制核查超期分析',
-            43:'重点领域检查缺位分析'
+            43:'重点领域检查缺位分析',
+            44:'主体全景分析', 45:'执法人员全景分析', 46:'辅助执法人员全景分析',
+            47:'审批办件全景分析', 48:'检查任务全景分析', 49:'执法案件全景分析',
+            50:'信用归集全景分析',
+            51:'主体无执法资格预警分析', 52:'部门内无执法人员预警分析', 53:'单次执法少于两名执法人员预警分析',
+            54:'审批超承诺期限预警分析', 55:'审批材料反复退回补正预警分析',
+            56:'线下线索流转工单预警分析', 57:'高频率重复检查预警分析', 58:'线索材料退回次数分析',
+            59:'处罚办案超期预警分析', 60:'处罚公示超期预警分析', 61:'超出裁量标准预警分析',
+            62:'违规处罚撤销预警分析', 63:'失信信息公示滞后预警分析', 64:'联合惩戒应执行未执行主体预警分析',
+            65:'信用修复超期办理预警分析',
+            66:'事项覆盖率全景分析', 67:'处罚发生率深度分析', 68:'事项关联率全景分析'
         };
         return map[m] || '';
     }
 
     _cpClose(overlay) {
         const ids = [];
-        for (let i = 1; i <= 43; i++) {
+        for (let i = 1; i <= 71; i++) {
             ids.push('cpc' + i, 'cpc' + i + 'b');
         }
         ids.forEach(id => { try { const d = document.getElementById(id); if (d) { const inst = echarts.getInstanceByDom(d); if (inst) inst.dispose(); } } catch(e) {} });
@@ -1016,7 +1047,7 @@ window.CockpitPage = class CockpitPage {
 
     _cpUpdate(overlay) {
         const m = this.cpCurrentModal;
-        if (m < 1 || m > 43) return;
+        if (m < 1 || m > 71) return;
         overlay.innerHTML = this['_cpHtml' + m]();
         this._cpBindPages(overlay);
         overlay.querySelector('.rv-modal-close').addEventListener('click', () => this._cpClose(overlay));
@@ -2638,7 +2669,7 @@ window.CockpitPage = class CockpitPage {
     genCp11Data() {
         const types = ['审批', '监管', '处罚', '信用'];
         const statuses = ['正常', '异常', '维护中'];
-        return Array.from({ length: 15 }, (_, i) => ({
+        return Array.from({ length: 99 }, (_, i) => ({
             id: i + 1,
             name: `模型${i + 1}`,
             type: types[Math.floor(Math.random() * types.length)],
@@ -2656,17 +2687,18 @@ window.CockpitPage = class CockpitPage {
         const end = start + this.pageSize;
         const pageData = data.slice(start, end);
         const totalPages = Math.ceil(data.length / this.pageSize);
+        const typeCounts = data.reduce((acc, d) => { acc[d.type] = (acc[d.type] || 0) + 1; return acc; }, {});
 
         return `
             <div class="rv-modal">
                 <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(11)}</span><span class="rv-modal-close">×</span></div>
                 <div class="rv-modal-body">
                     <div class="rv-stat-row">
-                        ${this._cpRenderCard('上线模型总数', '15个', 'highlight')}
-                        ${this._cpRenderCard('审批类', '4个')}
-                        ${this._cpRenderCard('监管类', '5个')}
-                        ${this._cpRenderCard('执法类', '3个')}
-                        ${this._cpRenderCard('信用类', '3个')}
+                        ${this._cpRenderCard('上线模型总数', '99个', 'highlight')}
+                        ${this._cpRenderCard('审批类', `${typeCounts['审批'] || 0}个`)}
+                        ${this._cpRenderCard('监管类', `${typeCounts['监管'] || 0}个`)}
+                        ${this._cpRenderCard('处罚类', `${typeCounts['处罚'] || 0}个`)}
+                        ${this._cpRenderCard('信用类', `${typeCounts['信用'] || 0}个`)}
                     </div>
                     <div class="rv-chart-row">
                         <div class="rv-chart-item"><div class="rv-chart-title">模型类型分布</div><div id="cpc11" class="rv-chart"></div></div>
@@ -2721,12 +2753,12 @@ window.CockpitPage = class CockpitPage {
     genCp12Data() {
         const types = ['审批', '监管', '处罚', '信用'];
         const statuses = ['已处置', '处置中', '未处置'];
-        return Array.from({ length: 50 }, (_, i) => ({
+        return Array.from({ length: 100 }, (_, i) => ({
             id: i + 1,
             code: `WT${String(i + 1).padStart(6, '0')}`,
             type: types[Math.floor(Math.random() * types.length)],
             desc: `发现问题${i + 1}，存在异常情况`,
-            model: `模型${Math.floor(Math.random() * 10) + 1}`,
+            model: `模型${Math.floor(Math.random() * 99) + 1}`,
             date: `${2026}-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
             status: statuses[Math.random() > 0.6 ? Math.random() > 0.5 ? 2 : 1 : 0]
         }));
@@ -2740,17 +2772,18 @@ window.CockpitPage = class CockpitPage {
         const end = start + this.pageSize;
         const pageData = data.slice(start, end);
         const totalPages = Math.ceil(data.length / this.pageSize);
+        const typeCounts = data.reduce((acc, d) => { acc[d.type] = (acc[d.type] || 0) + 1; return acc; }, {});
 
         return `
             <div class="rv-modal">
                 <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(12)}</span><span class="rv-modal-close">×</span></div>
                 <div class="rv-modal-body">
                     <div class="rv-stat-row">
-                        ${this._cpRenderCard('问题发现总数', '234个', 'highlight')}
-                        ${this._cpRenderCard('审批类模型发现问题数', '23个')}
-                        ${this._cpRenderCard('监管类模型发现问题数', '80个')}
-                        ${this._cpRenderCard('执法类模型发现问题数', '11个')}
-                        ${this._cpRenderCard('信用类模型发现问题数', '12个')}
+                        ${this._cpRenderCard('问题发现总数', '100个', 'highlight')}
+                        ${this._cpRenderCard('审批类模型发现问题数', `${typeCounts['审批'] || 0}个`)}
+                        ${this._cpRenderCard('监管类模型发现问题数', `${typeCounts['监管'] || 0}个`)}
+                        ${this._cpRenderCard('处罚类模型发现问题数', `${typeCounts['处罚'] || 0}个`)}
+                        ${this._cpRenderCard('信用类模型发现问题数', `${typeCounts['信用'] || 0}个`)}
                     </div>
                     <div class="rv-chart-row">
                         <div class="rv-chart-item"><div class="rv-chart-title">问题类型分布（按四大类）</div><div id="cpc12" class="rv-chart"></div></div>
@@ -5372,4 +5405,2122 @@ window.CockpitPage = class CockpitPage {
             }]
         });
     }
+
+    // ============ MODAL 44: 主体全景分析 ============
+    genCp44Data() {
+        const types = ['企业法人', '社会组织', '个体', '其他'];
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const statuses = ['正常', '正常', '正常', '注销'];
+        return Array.from({ length: 156 }, (_, i) => ({
+            id: i + 1,
+            name: `主体单位${i + 1}`,
+            code: `9146010${String(Math.floor(Math.random() * 9))}${String(i + 1).padStart(8, '0')}X`,
+            type: types[Math.floor(Math.random() * types.length)],
+            region: regions[Math.floor(Math.random() * regions.length)],
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal44() { this._cpOpen(44, this.genCp44Data()); }
+
+    _cpHtml44() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(44)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('主体总数', '156个', 'highlight')}
+                        ${this._cpRenderCard('企业法人', '89个')}
+                        ${this._cpRenderCard('个体工商户', '34个')}
+                        ${this._cpRenderCard('其他组织', '33个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">主体类型分布</div><div id="cpc44" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">各区域主体数量排行TOP8</div><div id="cpc44b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>主体名称</th><th>统一社会信用代码</th><th>主体类型</th><th>所属区域</th><th>状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.code}</td><td>${d.type}</td><td>${d.region}</td><td><span class="rv-status ${d.status === '正常' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart44() {
+        const c44 = echarts.init(document.getElementById('cpc44'));
+        c44.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 57, name: '企业法人', itemStyle: { color: '#00d4ff' } },
+                    { value: 35, name: '个体工商户', itemStyle: { color: '#34c759' } },
+                    { value: 8, name: '其他组织', itemStyle: { color: '#ff9500' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [42, 28, 22, 18, 15, 12, 10, 9];
+        const c44b = echarts.init(document.getElementById('cpc44b'));
+        c44b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00d4ff'},{offset:1,color:'rgba(0,212,255,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 45: 执法人员全景分析 ============
+    genCp45Data() {
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '农业农村', '城市管理'];
+        const statuses = ['在岗', '在岗', '在岗', '调离'];
+        return Array.from({ length: 234 }, (_, i) => ({
+            id: i + 1,
+            name: `执法人员${i + 1}`,
+            unit: `${fields[Math.floor(Math.random() * fields.length)]}局`,
+            field: fields[Math.floor(Math.random() * fields.length)],
+            certNo: `ZF${String(i + 1).padStart(8, '0')}`,
+            certExpire: `2027-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal45() { this._cpOpen(45, this.genCp45Data()); }
+
+    _cpHtml45() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(45)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('执法人员总数', '234人', 'highlight')}
+                        ${this._cpRenderCard('持证人数', '218人')}
+                        ${this._cpRenderCard('持证率', '93.2%')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">执法人员层级分布</div><div id="cpc45" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域执法人员数量排行TOP8</div><div id="cpc45b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>姓名</th><th>所属单位</th><th>执法领域</th><th>证件编号</th><th>执法证有效期</th><th>状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.unit}</td><td>${d.field}</td><td>${d.certNo}</td><td>${d.certExpire}</td><td><span class="rv-status ${d.status === '在岗' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart45() {
+        const c45 = echarts.init(document.getElementById('cpc45'));
+        c45.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 15, name: '省级', itemStyle: { color: '#00d4ff' } },
+                    { value: 35, name: '市级', itemStyle: { color: '#34c759' } },
+                    { value: 50, name: '区县级', itemStyle: { color: '#ff9500' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '农业农村', '城市管理'];
+        const counts = [45, 38, 32, 28, 25, 22, 24, 20];
+        const c45b = echarts.init(document.getElementById('cpc45b'));
+        c45b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#34c759'},{offset:1,color:'rgba(52,199,89,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 46: 辅助执法人员全景分析 ============
+    genCp46Data() {
+        const posts = ['窗口服务', '现场巡查', '档案管理', '其他'];
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const statuses = ['在岗', '在岗', '在岗', '离职'];
+        return Array.from({ length: 89 }, (_, i) => ({
+            id: i + 1,
+            name: `辅助人员${i + 1}`,
+            unit: `${regions[Math.floor(Math.random() * regions.length)]}综合执法局`,
+            post: posts[Math.floor(Math.random() * posts.length)],
+            certified: Math.random() > 0.19 ? '是' : '否',
+            entryDate: `2024-${String(Math.floor(Math.random() * 12) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal46() { this._cpOpen(46, this.genCp46Data()); }
+
+    _cpHtml46() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(46)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('辅助执法人员总数', '89人', 'highlight')}
+                        ${this._cpRenderCard('持证上岗', '72人')}
+                        ${this._cpRenderCard('持证率', '80.9%')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">辅助执法人员岗位分布</div><div id="cpc46" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">各区域辅助执法人员数量排行TOP8</div><div id="cpc46b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>姓名</th><th>所属单位</th><th>岗位类型</th><th>是否持证上岗</th><th>入职日期</th><th>状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.unit}</td><td>${d.post}</td><td>${d.certified}</td><td>${d.entryDate}</td><td><span class="rv-status ${d.status === '在岗' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart46() {
+        const c46 = echarts.init(document.getElementById('cpc46'));
+        c46.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 35, name: '窗口服务', itemStyle: { color: '#00d4ff' } },
+                    { value: 30, name: '现场巡查', itemStyle: { color: '#34c759' } },
+                    { value: 20, name: '档案管理', itemStyle: { color: '#ff9500' } },
+                    { value: 15, name: '其他', itemStyle: { color: '#af52de' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [18, 15, 12, 10, 9, 8, 9, 8];
+        const c46b = echarts.init(document.getElementById('cpc46b'));
+        c46b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff9500'},{offset:1,color:'rgba(255,149,0,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 47: 审批办件全景分析 ============
+    genCp47Data() {
+        const types = ['行政许可', '行政确认', '公共服务'];
+        const statuses = ['已办结', '已办结', '已办结', '办理中', '已退回'];
+        return Array.from({ length: 1234 }, (_, i) => ({
+            id: i + 1,
+            code: `SP${String(i + 1).padStart(8, '0')}`,
+            matterName: `审批事项${i + 1}`,
+            type: types[Math.floor(Math.random() * types.length)],
+            applicant: `申请方${i + 1}`,
+            applyDate: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal47() { this._cpOpen(47, this.genCp47Data()); }
+
+    _cpHtml47() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(47)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('审批办件总数', '1,234件', 'highlight')}
+                        ${this._cpRenderCard('已办结', '1,156件')}
+                        ${this._cpRenderCard('办结率', '93.7%')}
+                        ${this._cpRenderCard('在办', '78件')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">审批类型分布</div><div id="cpc47" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">近6个月审批办件趋势</div><div id="cpc47b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>办件编号</th><th>事项名称</th><th>审批类型</th><th>申请人/企业</th><th>申请日期</th><th>办结状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.matterName}</td><td>${d.type}</td><td>${d.applicant}</td><td>${d.applyDate}</td><td><span class="rv-status ${d.status === '已办结' ? 'positive' : d.status === '办理中' ? '' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart47() {
+        const c47 = echarts.init(document.getElementById('cpc47'));
+        c47.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 45, name: '行政许可', itemStyle: { color: '#00d4ff' } },
+                    { value: 30, name: '行政确认', itemStyle: { color: '#34c759' } },
+                    { value: 25, name: '公共服务', itemStyle: { color: '#ff9500' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const months = ['1月', '2月', '3月', '4月', '5月', '6月'];
+        const counts = [186, 205, 234, 198, 212, 199];
+        const c47b = echarts.init(document.getElementById('cpc47b'));
+        c47b.setOption({
+            tooltip: { trigger: 'axis' },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: months, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '45%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00d4ff'},{offset:1,color:'rgba(0,212,255,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 48: 检查任务全景分析 ============
+    genCp48Data() {
+        const types = ['日常监管', '专项检查', '双随机', '重点检查'];
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '农业农村', '城市管理'];
+        const statuses = ['已完成', '已完成', '已完成', '进行中', '未开始'];
+        return Array.from({ length: 567 }, (_, i) => ({
+            id: i + 1,
+            code: `JC${String(i + 1).padStart(6, '0')}`,
+            name: `检查任务${i + 1}`,
+            type: types[Math.floor(Math.random() * types.length)],
+            target: `检查对象${i + 1}`,
+            checkDate: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            field: fields[Math.floor(Math.random() * fields.length)]
+        }));
+    }
+
+    openCpModal48() { this._cpOpen(48, this.genCp48Data()); }
+
+    _cpHtml48() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(48)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('检查任务总数', '567次', 'highlight')}
+                        ${this._cpRenderCard('已完成', '512次')}
+                        ${this._cpRenderCard('完成率', '90.3%')}
+                        ${this._cpRenderCard('进行中', '55次')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">检查类型分布</div><div id="cpc48" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域检查任务数量排行TOP8</div><div id="cpc48b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>任务编号</th><th>任务名称</th><th>检查类型</th><th>检查对象</th><th>检查日期</th><th>任务状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.type}</td><td>${d.target}</td><td>${d.checkDate}</td><td><span class="rv-status ${d.status === '已完成' ? 'positive' : d.status === '未开始' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart48() {
+        const c48 = echarts.init(document.getElementById('cpc48'));
+        c48.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 40, name: '日常监管', itemStyle: { color: '#00d4ff' } },
+                    { value: 25, name: '专项检查', itemStyle: { color: '#34c759' } },
+                    { value: 20, name: '双随机', itemStyle: { color: '#ff9500' } },
+                    { value: 15, name: '重点检查', itemStyle: { color: '#af52de' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '农业农村', '城市管理'];
+        const counts = [98, 85, 76, 65, 58, 52, 45, 42];
+        const c48b = echarts.init(document.getElementById('cpc48b'));
+        c48b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#34c759'},{offset:1,color:'rgba(52,199,89,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 49: 执法案件全景分析 ============
+    genCp49Data() {
+        const types = ['行政处罚', '行政强制', '行政检查'];
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '农业农村', '城市管理'];
+        const statuses = ['已结案', '已结案', '已结案', '办理中', '已撤销'];
+        return Array.from({ length: 89 }, (_, i) => ({
+            id: i + 1,
+            code: `ZF${String(i + 1).padStart(6, '0')}`,
+            name: `执法案件${i + 1}`,
+            type: types[Math.floor(Math.random() * types.length)],
+            target: `执法对象${i + 1}`,
+            filingDate: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)],
+            field: fields[Math.floor(Math.random() * fields.length)]
+        }));
+    }
+
+    openCpModal49() { this._cpOpen(49, this.genCp49Data()); }
+
+    _cpHtml49() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(49)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('执法案件总数', '89件', 'highlight')}
+                        ${this._cpRenderCard('已结案', '67件')}
+                        ${this._cpRenderCard('结案率', '75.3%')}
+                        ${this._cpRenderCard('办理中', '22件')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">案件类型分布</div><div id="cpc49" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域执法案件数量排行TOP8</div><div id="cpc49b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>案件编号</th><th>案件名称</th><th>案件类型</th><th>执法对象</th><th>立案日期</th><th>案件状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.type}</td><td>${d.target}</td><td>${d.filingDate}</td><td><span class="rv-status ${d.status === '已结案' ? 'positive' : d.status === '已撤销' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart49() {
+        const c49 = echarts.init(document.getElementById('cpc49'));
+        c49.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 55, name: '行政处罚', itemStyle: { color: '#ff3b30' } },
+                    { value: 25, name: '行政强制', itemStyle: { color: '#ff9500' } },
+                    { value: 20, name: '行政检查', itemStyle: { color: '#00d4ff' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '农业农村', '城市管理'];
+        const counts = [18, 15, 12, 10, 9, 8, 9, 8];
+        const c49b = echarts.init(document.getElementById('cpc49b'));
+        c49b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 50: 信用归集全景分析 ============
+    genCp50Data() {
+        const types = ['行政许可', '行政处罚', '信用承诺', '其他'];
+        const depts = ['市场监管局', '行政审批局', '住建局', '生态环境局', '交通运输局'];
+        const statuses = ['已审核', '已审核', '已审核', '待审核'];
+        return Array.from({ length: 3456 }, (_, i) => ({
+            id: i + 1,
+            code: `XY${String(i + 1).padStart(8, '0')}`,
+            type: types[Math.floor(Math.random() * types.length)],
+            subject: `归集主体${i + 1}`,
+            dept: depts[Math.floor(Math.random() * depts.length)],
+            collectTime: `2026-${String(Math.floor(Math.random() * 6) + 1).padStart(2, '0')}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal50() { this._cpOpen(50, this.genCp50Data()); }
+
+    _cpHtml50() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(50)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('信用归集总数', '3,456条', 'highlight')}
+                        ${this._cpRenderCard('行政许可', '1,234条')}
+                        ${this._cpRenderCard('行政处罚', '890条')}
+                        ${this._cpRenderCard('信用承诺', '678条')}
+                        ${this._cpRenderCard('其他', '654条')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">信用数据类型分布</div><div id="cpc50" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">近6个月信用归集趋势</div><div id="cpc50b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>归集编号</th><th>数据类型</th><th>归集主体</th><th>归集部门</th><th>归集时间</th><th>数据状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.type}</td><td>${d.subject}</td><td>${d.dept}</td><td>${d.collectTime}</td><td><span class="rv-status ${d.status === '已审核' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart50() {
+        const c50 = echarts.init(document.getElementById('cpc50'));
+        c50.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 35.7, name: '行政许可', itemStyle: { color: '#00d4ff' } },
+                    { value: 25.8, name: '行政处罚', itemStyle: { color: '#ff3b30' } },
+                    { value: 19.6, name: '信用承诺', itemStyle: { color: '#34c759' } },
+                    { value: 18.9, name: '其他', itemStyle: { color: '#af52de' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+
+        const months = ['1月', '2月', '3月', '4月', '5月', '6月'];
+        const counts = [528, 612, 685, 549, 567, 515];
+        const c50b = echarts.init(document.getElementById('cpc50b'));
+        c50b.setOption({
+            tooltip: { trigger: 'axis' },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: months, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '45%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#af52de'},{offset:1,color:'rgba(175,82,222,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+    }
+
+    // ============ MODAL 51: 主体无执法资格预警分析 ============
+    genCp51Data() {
+        const reasons = ['未通过考试', '证件过期', '岗位不符'];
+        const statuses = ['整改中', '未整改'];
+        return Array.from({ length: 1 }, (_, i) => ({
+            id: i + 1,
+            name: '某事业单位',
+            code: '91460100MA5T12345X',
+            dept: '某区综合执法局',
+            reason: reasons[i % reasons.length],
+            findTime: '2026-06-15',
+            status: statuses[i % statuses.length]
+        }));
+    }
+
+    openCpModal51() { this._cpOpen(51, this.genCp51Data()); }
+
+    _cpHtml51() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(51)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('无执法资格主体数', '1个', 'highlight')}
+                        ${this._cpRenderCard('涉及领域', '1个')}
+                        ${this._cpRenderCard('涉及部门', '1个')}
+                        ${this._cpRenderCard('已整改', '0个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">无执法资格主体分布</div><div id="cpc51" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">无执法资格主体类型分布</div><div id="cpc51b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>主体名称</th><th>统一社会信用代码</th><th>所属部门</th><th>无执法资格原因</th><th>发现时间</th><th>整改状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.code}</td><td>${d.dept}</td><td>${d.reason}</td><td>${d.findTime}</td><td><span class="rv-status ${d.status === '已整改' ? 'positive' : d.status === '未整改' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart51() {
+        const c51 = echarts.init(document.getElementById('cpc51'));
+        c51.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['某区综合执法局'], axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: [1], barWidth: '40%',
+                itemStyle: { color: '#ff3b30', borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+
+        const c51b = echarts.init(document.getElementById('cpc51b'));
+        c51b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [{ value: 100, name: '事业单位', itemStyle: { color: '#ff3b30' } }],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+    }
+
+    // ============ MODAL 52: 部门内无执法人员预警分析 ============
+    genCp52Data() {
+        const depts = ['市场监管局', '行政审批局', '住建局', '生态环境局', '交通运输局', '卫生健康委', '文化旅游局', '应急管理局', '农业农村局', '综合执法局'];
+        const statuses = ['配置充足', '配置充足', '配置充足', '配置充足', '配置充足', '配置充足', '配置充足', '配置不足', '配置充足', '配置充足'];
+        return Array.from({ length: 38 }, (_, i) => ({
+            id: i + 1,
+            dept: `部门${i + 1}`,
+            enforcers: Math.floor(Math.random() * 10) + 3,
+            auxEnforcers: Math.floor(Math.random() * 5) + 1,
+            capacity: Math.floor(Math.random() * 15) + 5,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal52() { this._cpOpen(52, this.genCp52Data()); }
+
+    _cpHtml52() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(52)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('无执法人员部门数', '0个', 'highlight')}
+                        ${this._cpRenderCard('执法部门总数', '38个')}
+                        ${this._cpRenderCard('执法人员覆盖率', '100%')}
+                        ${this._cpRenderCard('预警状态', '无预警')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各部门执法人员配置情况</div><div id="cpc52" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">部门执法人员配置覆盖率</div><div id="cpc52b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>部门名称</th><th>执法人员数</th><th>辅助执法人员数</th><th>配置状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.dept}</td><td>${d.enforcers}</td><td>${d.auxEnforcers}</td><td><span class="rv-status positive">无预警</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart52() {
+        const depts = ['市场监管局', '行政审批局', '住建局', '生态环境局', '交通运输局', '卫生健康委', '文化旅游局', '应急管理局'];
+        const counts = [12, 10, 8, 9, 7, 6, 5, 8];
+        const c52 = echarts.init(document.getElementById('cpc52'));
+        c52.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: depts, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: '#34c759', borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+
+        const c52b = echarts.init(document.getElementById('cpc52b'));
+        c52b.setOption({
+            tooltip: { trigger: 'item' },
+            series: [{
+                type: 'pie', radius: ['55%', '75%'], center: ['50%', '50%'],
+                data: [{ value: 100, name: '覆盖率', itemStyle: { color: '#34c759' } }],
+                label: { show: true, position: 'center', formatter: '100%', color: '#34c759', fontSize: 24, fontWeight: 'bold' },
+                silent: true,
+                labelLine: { show: false },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+    }
+
+    // ============ MODAL 53: 单次执法少于两名执法人员预警分析 ============
+    genCp53Data() {
+        const reasons = ['少于两名执法人员'];
+        const statuses = ['整改中', '未整改'];
+        return Array.from({ length: 2 }, (_, i) => ({
+            id: i + 1,
+            code: `ZF${String(i + 1).padStart(6, '0')}`,
+            dept: i === 0 ? '部门A' : '部门B',
+            enforcer: `执法人员${i + 1}`,
+            date: `2026-0${i + 5}-1${i + 2}`,
+            count: 1,
+            reason: reasons[0],
+            status: statuses[i % statuses.length]
+        }));
+    }
+
+    openCpModal53() { this._cpOpen(53, this.genCp53Data()); }
+
+    _cpHtml53() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(53)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('违规执法次数', '2次', 'highlight')}
+                        ${this._cpRenderCard('涉及执法人员', '3人')}
+                        ${this._cpRenderCard('涉及部门', '2个')}
+                        ${this._cpRenderCard('已整改', '0次')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各执法记录单次执法人数分布</div><div id="cpc53" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">违规执法部门分布</div><div id="cpc53b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>执法记录编号</th><th>执法部门</th><th>执法人员</th><th>执法日期</th><th>执法人数</th><th>违规类型</th><th>整改状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.dept}</td><td>${d.enforcer}</td><td>${d.date}</td><td><span class="rv-status negative">${d.count}</span></td><td>${d.reason}</td><td><span class="rv-status ${d.status === '已整改' ? 'positive' : d.status === '未整改' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart53() {
+        const records = ['ZF000001', 'ZF000002'];
+        const counts = [1, 1];
+        const c53 = echarts.init(document.getElementById('cpc53'));
+        c53.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: records, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } }, max: 4 },
+            series: [{
+                type: 'bar', data: counts.map(v => ({ value: v, itemStyle: { color: '#ff3b30' } })), barWidth: '30%',
+                itemStyle: { borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 },
+                markLine: { data: [{ yAxis: 2, name: '标准线', lineStyle: { color: '#34c759', type: 'dashed' }, label: { formatter: '标准:2人', color: '#34c759' } }] }
+            }]
+        });
+
+        const c53b = echarts.init(document.getElementById('cpc53b'));
+        c53b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}次 ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 1, name: '部门A', itemStyle: { color: '#ff3b30' } },
+                    { value: 1, name: '部门B', itemStyle: { color: '#ff9500' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}次' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+    }
+
+    // ============ MODAL 54: 审批超承诺期限预警分析 ============
+    genCp54Data() {
+        const types = ['行政许可', '行政确认', '公共服务'];
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        return Array.from({ length: 12 }, (_, i) => ({
+            id: i + 1,
+            code: `SP${String(i + 1).padStart(8, '0')}`,
+            matterName: `审批事项${i + 1}`,
+            dept: `${regions[Math.floor(Math.random() * regions.length)]}行政审批局`,
+            promiseDays: Math.floor(Math.random() * 10) + 5,
+            actualDays: Math.floor(Math.random() * 15) + 10,
+            type: types[Math.floor(Math.random() * types.length)]
+        }));
+    }
+
+    openCpModal54() { this._cpOpen(54, this.genCp54Data()); }
+
+    _cpHtml54() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(54)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('超期工单总数', '12件', 'highlight')}
+                        ${this._cpRenderCard('平均超期天数', '3.2天')}
+                        ${this._cpRenderCard('最长超期', '8天')}
+                        ${this._cpRenderCard('涉及部门', '5个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区超期工单分布TOP8</div><div id="cpc54" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">超期事项类型分布</div><div id="cpc54b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>工单编号</th><th>事项名称</th><th>所属部门/区划</th><th>承诺办结时限</th><th>实际办结时限</th><th>超期天数</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.matterName}</td><td>${d.dept}</td><td>${d.promiseDays}天</td><td>${d.actualDays}天</td><td><span class="rv-status negative">${d.actualDays - d.promiseDays}天</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart54() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [3, 2, 2, 1, 1, 1, 1, 1];
+        const c54 = echarts.init(document.getElementById('cpc54'));
+        c54.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+
+        const c54b = echarts.init(document.getElementById('cpc54b'));
+        c54b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 42, name: '行政许可', itemStyle: { color: '#00d4ff' } },
+                    { value: 33, name: '行政确认', itemStyle: { color: '#34c759' } },
+                    { value: 25, name: '公共服务', itemStyle: { color: '#ff9500' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+    }
+
+    // ============ MODAL 55: 审批材料反复退回补正预警分析 ============
+    genCp55Data() {
+        const reasons = ['材料不齐', '格式不符', '内容有误', '其他'];
+        const statuses = ['已补正', '已补正', '已补正', '未补正'];
+        return Array.from({ length: 8 }, (_, i) => ({
+            id: i + 1,
+            code: `SP${String(i + 1).padStart(8, '0')}`,
+            matterName: `审批事项${i + 1}`,
+            applicant: `申请方${i + 1}`,
+            returnCount: Math.floor(Math.random() * 3) + 1,
+            reason: reasons[Math.floor(Math.random() * reasons.length)],
+            lastReturnTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal55() { this._cpOpen(55, this.genCp55Data()); }
+
+    _cpHtml55() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(55)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('反复退回补正总次数', '8次', 'highlight')}
+                        ${this._cpRenderCard('涉及事项', '4项')}
+                        ${this._cpRenderCard('平均退回次数', '2次/项')}
+                        ${this._cpRenderCard('涉及申请人', '4人')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各事项退回补正次数排行TOP8</div><div id="cpc55" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">退回原因分布</div><div id="cpc55b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>办件编号</th><th>事项名称</th><th>申请人/企业</th><th>退回次数</th><th>退回原因</th><th>最近退回时间</th><th>补正状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.matterName}</td><td>${d.applicant}</td><td>${d.returnCount}</td><td>${d.reason}</td><td>${d.lastReturnTime}</td><td><span class="rv-status ${d.status === '已补正' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart55() {
+        const matters = ['事项1', '事项2', '事项3', '事项4', '事项5', '事项6', '事项7', '事项8'];
+        const counts = [3, 2, 1, 1, 1, 1, 1, 1];
+        const c55 = echarts.init(document.getElementById('cpc55'));
+        c55.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: matters, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{
+                type: 'bar', data: counts, barWidth: '50%',
+                itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff9500'},{offset:1,color:'rgba(255,149,0,0.3)'}]), borderRadius: [4,4,0,0] },
+                label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 }
+            }]
+        });
+
+        const c55b = echarts.init(document.getElementById('cpc55b'));
+        c55b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' },
+            legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{
+                type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'],
+                data: [
+                    { value: 35, name: '材料不齐', itemStyle: { color: '#ff3b30' } },
+                    { value: 25, name: '格式不符', itemStyle: { color: '#ff9500' } },
+                    { value: 20, name: '内容有误', itemStyle: { color: '#00d4ff' } },
+                    { value: 20, name: '其他', itemStyle: { color: '#af52de' } }
+                ],
+                label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' },
+                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 }
+            }]
+        });
+    }
+
+    // ============ MODAL 56: 线下线索流转工单预警分析 ============
+    genCp56Data() {
+        const sources = ['投诉举报', '日常巡查', '上级交办', '其他'];
+        const statuses = ['已转线上', '已转线上', '已转线上', '待流转'];
+        const depts = ['市场监管局', '生态环境局', '住建局', '交通运输局', '应急管理局'];
+        return Array.from({ length: 56 }, (_, i) => ({
+            id: i + 1,
+            code: `XS${String(i + 1).padStart(6, '0')}`,
+            source: sources[Math.floor(Math.random() * sources.length)],
+            desc: `线索描述${i + 1}`,
+            dept: depts[Math.floor(Math.random() * depts.length)],
+            receiveTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal56() { this._cpOpen(56, this.genCp56Data()); }
+
+    _cpHtml56() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(56)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('线下线索工单总数', '56件', 'highlight')}
+                        ${this._cpRenderCard('已转线上', '12件')}
+                        ${this._cpRenderCard('转线上率', '21.4%')}
+                        ${this._cpRenderCard('涉及部门', '18个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区线下线索工单分布TOP8</div><div id="cpc56" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">线索来源分布</div><div id="cpc56b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>工单编号</th><th>线索来源</th><th>线索描述</th><th>所属部门</th><th>接收时间</th><th>流转状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.source}</td><td>${d.desc}</td><td>${d.dept}</td><td>${d.receiveTime}</td><td><span class="rv-status ${d.status === '已转线上' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart56() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [12, 9, 8, 7, 6, 5, 5, 4];
+        const c56 = echarts.init(document.getElementById('cpc56'));
+        c56.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#00d4ff'},{offset:1,color:'rgba(0,212,255,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c56b = echarts.init(document.getElementById('cpc56b'));
+        c56b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 40, name: '投诉举报', itemStyle: { color: '#00d4ff' } }, { value: 30, name: '日常巡查', itemStyle: { color: '#34c759' } }, { value: 20, name: '上级交办', itemStyle: { color: '#ff9500' } }, { value: 10, name: '其他', itemStyle: { color: '#af52de' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 57: 高频率重复检查预警分析 ============
+    genCp57Data() {
+        const depts = ['市场监管局', '生态环境局', '交通运输局', '应急管理局'];
+        return Array.from({ length: 23 }, (_, i) => ({
+            id: i + 1,
+            name: `企业${i + 1}`,
+            code: `9146010${String(i + 1).padStart(8, '0')}X`,
+            checkCount: Math.floor(Math.random() * 4) + 3,
+            dept: depts.slice(0, Math.floor(Math.random() * 3) + 2).join('、'),
+            lastDate: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            isRepeat: '是'
+        }));
+    }
+
+    openCpModal57() { this._cpOpen(57, this.genCp57Data()); }
+
+    _cpHtml57() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(57)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('高频重复检查户数', '23户', 'highlight')}
+                        ${this._cpRenderCard('涉及检查次数', '89次')}
+                        ${this._cpRenderCard('平均检查次数', '3.9次/户')}
+                        ${this._cpRenderCard('涉及部门', '12个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">重复检查频次分布TOP8</div><div id="cpc57" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">检查部门分布</div><div id="cpc57b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>企业/主体名称</th><th>统一社会信用代码</th><th>被检查次数</th><th>涉及检查部门</th><th>最近检查日期</th><th>是否存在重复检查</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.code}</td><td>${d.checkCount}</td><td>${d.dept}</td><td>${d.lastDate}</td><td><span class="rv-status negative">${d.isRepeat}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart57() {
+        const targets = ['企业1', '企业2', '企业3', '企业4', '企业5', '企业6', '企业7', '企业8'];
+        const counts = [8, 7, 6, 5, 5, 4, 4, 3];
+        const c57 = echarts.init(document.getElementById('cpc57'));
+        c57.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: targets, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c57b = echarts.init(document.getElementById('cpc57b'));
+        c57b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 30, name: '市场监管', itemStyle: { color: '#00d4ff' } }, { value: 25, name: '生态环境', itemStyle: { color: '#34c759' } }, { value: 20, name: '交通运输', itemStyle: { color: '#ff9500' } }, { value: 25, name: '其他', itemStyle: { color: '#af52de' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 58: 线索材料退回次数分析 ============
+    genCp58Data() {
+        const reasons = ['材料不完整', '格式不符合要求', '内容不清晰', '其他'];
+        const statuses = ['已补正', '已补正', '已补正', '未补正'];
+        return Array.from({ length: 56 }, (_, i) => ({
+            id: i + 1,
+            code: `XS${String(i + 1).padStart(6, '0')}`,
+            name: `线索${i + 1}`,
+            dept: ['市场监管局', '生态环境局', '住建局', '交通运输局'][Math.floor(Math.random() * 4)],
+            returnCount: Math.floor(Math.random() * 5) + 1,
+            reason: reasons[Math.floor(Math.random() * reasons.length)],
+            lastReturnTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal58() { this._cpOpen(58, this.genCp58Data()); }
+
+    _cpHtml58() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(58)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('平均退回次数', '1.5次', 'highlight')}
+                        ${this._cpRenderCard('总退回次数', '84次')}
+                        ${this._cpRenderCard('涉及线索', '56条')}
+                        ${this._cpRenderCard('最高退回次数', '5次')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各线索材料退回次数分布</div><div id="cpc58" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">退回原因分布</div><div id="cpc58b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>线索编号</th><th>线索名称</th><th>提交部门</th><th>退回次数</th><th>退回原因</th><th>最近退回时间</th><th>补正状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.dept}</td><td>${d.returnCount}</td><td>${d.reason}</td><td>${d.lastReturnTime}</td><td><span class="rv-status ${d.status === '已补正' ? 'positive' : 'negative'}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart58() {
+        const codes = ['XS001', 'XS002', 'XS003', 'XS004', 'XS005', 'XS006', 'XS007', 'XS008'];
+        const counts = [5, 4, 3, 2, 2, 2, 1, 1];
+        const c58 = echarts.init(document.getElementById('cpc58'));
+        c58.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: codes, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff9500'},{offset:1,color:'rgba(255,149,0,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c58b = echarts.init(document.getElementById('cpc58b'));
+        c58b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 40, name: '材料不完整', itemStyle: { color: '#ff3b30' } }, { value: 30, name: '格式不符合要求', itemStyle: { color: '#ff9500' } }, { value: 20, name: '内容不清晰', itemStyle: { color: '#00d4ff' } }, { value: 10, name: '其他', itemStyle: { color: '#af52de' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 59: 处罚办案超期预警分析 ============
+    genCp59Data() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市'];
+        return Array.from({ length: 5 }, (_, i) => ({
+            id: i + 1,
+            code: `CF${String(i + 1).padStart(6, '0')}`,
+            name: `处罚案件${i + 1}`,
+            dept: `${regions[i]}综合执法局`,
+            filingDate: `2026-0${i + 1}-01`,
+            legalDate: `2026-0${i + 1}-20`,
+            actualDate: `2026-0${i + 2}-0${i + 1}`,
+            overDays: [4, 8, 6, 15, 3][i]
+        }));
+    }
+
+    openCpModal59() { this._cpOpen(59, this.genCp59Data()); }
+
+    _cpHtml59() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(59)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('办案超期案件数', '5件', 'highlight')}
+                        ${this._cpRenderCard('平均超期天数', '6.4天')}
+                        ${this._cpRenderCard('最长超期', '15天')}
+                        ${this._cpRenderCard('涉及部门', '3个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区处罚办案超期分布TOP8</div><div id="cpc59" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">超期环节分布</div><div id="cpc59b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>案件编号</th><th>案件名称</th><th>所属部门</th><th>立案日期</th><th>法定办结日期</th><th>实际办结日期</th><th>超期天数</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.dept}</td><td>${d.filingDate}</td><td>${d.legalDate}</td><td>${d.actualDate}</td><td><span class="rv-status negative">${d.overDays}天</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart59() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [2, 1, 1, 1, 0, 0, 0, 0];
+        const c59 = echarts.init(document.getElementById('cpc59'));
+        c59.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c59b = echarts.init(document.getElementById('cpc59b'));
+        c59b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 20, name: '立案阶段', itemStyle: { color: '#00d4ff' } }, { value: 40, name: '调查阶段', itemStyle: { color: '#34c759' } }, { value: 25, name: '决定阶段', itemStyle: { color: '#ff9500' } }, { value: 15, name: '送达阶段', itemStyle: { color: '#af52de' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 60: 处罚公示超期预警分析 ============
+    genCp60Data() {
+        const regions = ['海口市', '三亚市', '儋州市'];
+        return Array.from({ length: 3 }, (_, i) => ({
+            id: i + 1,
+            code: `CF${String(i + 1).padStart(6, '0')}`,
+            name: `处罚案件${i + 1}`,
+            dept: `${regions[i]}综合执法局`,
+            decisionDate: `2026-0${i + 3}-01`,
+            shouldDate: `2026-0${i + 3}-03`,
+            actualDate: `2026-0${i + 3}-0${i + 5}`,
+            overDays: [4, 10, 2][i]
+        }));
+    }
+
+    openCpModal60() { this._cpOpen(60, this.genCp60Data()); }
+
+    _cpHtml60() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(60)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('公示超期案件数', '3件', 'highlight')}
+                        ${this._cpRenderCard('平均超期天数', '5.3天')}
+                        ${this._cpRenderCard('最长超期', '10天')}
+                        ${this._cpRenderCard('涉及部门', '2个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区处罚公示超期分布</div><div id="cpc60" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">超期原因分布</div><div id="cpc60b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>案件编号</th><th>案件名称</th><th>所属部门</th><th>处罚决定日期</th><th>应公示日期</th><th>实际公示日期</th><th>超期天数</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.dept}</td><td>${d.decisionDate}</td><td>${d.shouldDate}</td><td>${d.actualDate}</td><td><span class="rv-status negative">${d.overDays}天</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart60() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [1, 1, 1, 0, 0, 0, 0, 0];
+        const c60 = echarts.init(document.getElementById('cpc60'));
+        c60.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c60b = echarts.init(document.getElementById('cpc60b'));
+        c60b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 40, name: '系统未推送', itemStyle: { color: '#ff3b30' } }, { value: 30, name: '经办人疏忽', itemStyle: { color: '#ff9500' } }, { value: 20, name: '审核流程长', itemStyle: { color: '#00d4ff' } }, { value: 10, name: '其他', itemStyle: { color: '#af52de' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 61: 超出裁量标准预警分析 ============
+    genCp61Data() {
+        const fields = ['市场监管', '生态环境'];
+        const types = ['处罚金额过高', '处罚种类不当'];
+        const statuses = ['纠正中', '未纠正'];
+        return Array.from({ length: 2 }, (_, i) => ({
+            id: i + 1,
+            code: `CF${String(i + 1).padStart(6, '0')}`,
+            name: `处罚案件${i + 1}`,
+            field: fields[i],
+            standard: '裁量标准A',
+            actual: '裁量决定B',
+            type: types[i],
+            status: statuses[i]
+        }));
+    }
+
+    openCpModal61() { this._cpOpen(61, this.genCp61Data()); }
+
+    _cpHtml61() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(61)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('超出裁量标准案件数', '2件', 'highlight')}
+                        ${this._cpRenderCard('涉及领域', '2个')}
+                        ${this._cpRenderCard('涉及部门', '2个')}
+                        ${this._cpRenderCard('已纠正', '0件')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域超出裁量标准分布</div><div id="cpc61" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">超出裁量类型分布</div><div id="cpc61b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>案件编号</th><th>案件名称</th><th>所属领域</th><th>裁量标准要求</th><th>实际裁量决定</th><th>超出类型</th><th>纠正状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.field}</td><td>${d.standard}</td><td>${d.actual}</td><td>${d.type}</td><td><span class="rv-status ${d.status === '已纠正' ? 'positive' : d.status === '未纠正' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart61() {
+        const fields = ['市场监管', '生态环境'];
+        const counts = [1, 1];
+        const c61 = echarts.init(document.getElementById('cpc61'));
+        c61.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '40%', itemStyle: { color: '#ff3b30', borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c61b = echarts.init(document.getElementById('cpc61b'));
+        c61b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 50, name: '处罚金额过高', itemStyle: { color: '#ff3b30' } }, { value: 50, name: '处罚种类不当', itemStyle: { color: '#ff9500' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 62: 违规处罚撤销预警分析 ============
+    genCp62Data() {
+        return [{ id: 1, code: 'CF000001', name: '处罚案件1', dept: '某区综合执法局', reason: '程序违法', revokeDate: '2026-06-10', status: '未整改' }];
+    }
+
+    openCpModal62() { this._cpOpen(62, this.genCp62Data()); }
+
+    _cpHtml62() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(62)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('撤销案件数', '1件', 'highlight')}
+                        ${this._cpRenderCard('撤销原因', '程序违法')}
+                        ${this._cpRenderCard('涉及部门', '1个')}
+                        ${this._cpRenderCard('已整改', '0件')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区违规处罚撤销分布</div><div id="cpc62" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">撤销原因分布</div><div id="cpc62b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>案件编号</th><th>案件名称</th><th>所属部门</th><th>撤销原因</th><th>撤销日期</th><th>整改状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.name}</td><td>${d.dept}</td><td>${d.reason}</td><td>${d.revokeDate}</td><td><span class="rv-status ${d.status === '已整改' ? 'positive' : d.status === '未整改' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart62() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [1, 0, 0, 0, 0, 0, 0, 0];
+        const c62 = echarts.init(document.getElementById('cpc62'));
+        c62.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '40%', itemStyle: { color: '#ff3b30', borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c62b = echarts.init(document.getElementById('cpc62b'));
+        c62b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 100, name: '程序违法', itemStyle: { color: '#ff3b30' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 63: 失信信息公示滞后预警分析 ============
+    genCp63Data() {
+        const types = ['行政处罚', '行政强制', '严重失信', '其他'];
+        const reasons = ['系统未同步', '经办人未及时操作', '审核流程长'];
+        const statuses = ['已整改', '整改中'];
+        return Array.from({ length: 4 }, (_, i) => ({
+            id: i + 1,
+            name: `失信主体${i + 1}`,
+            code: `9146010${String(i + 1).padStart(8, '0')}X`,
+            type: types[i],
+            shouldDate: `2026-0${i + 3}-01`,
+            actualDate: `2026-0${i + 3}-0${i + 4}`,
+            lagDays: [3, 7, 2, 2][i],
+            reason: reasons[i % 3],
+            status: statuses[i % 2]
+        }));
+    }
+
+    openCpModal63() { this._cpOpen(63, this.genCp63Data()); }
+
+    _cpHtml63() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(63)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('公示滞后件数', '4件', 'highlight')}
+                        ${this._cpRenderCard('平均滞后天数', '3.5天')}
+                        ${this._cpRenderCard('最长滞后', '7天')}
+                        ${this._cpRenderCard('涉及部门', '3个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区失信信息公示滞后分布</div><div id="cpc63" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">滞后原因分布</div><div id="cpc63b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>失信主体名称</th><th>统一社会信用代码</th><th>失信类型</th><th>应公示日期</th><th>实际公示日期</th><th>滞后天数</th><th>滞后原因</th><th>整改状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.code}</td><td>${d.type}</td><td>${d.shouldDate}</td><td>${d.actualDate}</td><td><span class="rv-status negative">${d.lagDays}天</span></td><td>${d.reason}</td><td><span class="rv-status ${d.status === '已整改' ? 'positive' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart63() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [2, 1, 1, 0, 0, 0, 0, 0];
+        const c63 = echarts.init(document.getElementById('cpc63'));
+        c63.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff9500'},{offset:1,color:'rgba(255,149,0,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c63b = echarts.init(document.getElementById('cpc63b'));
+        c63b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 40, name: '系统未同步', itemStyle: { color: '#ff3b30' } }, { value: 35, name: '经办人未及时操作', itemStyle: { color: '#ff9500' } }, { value: 25, name: '审核流程长', itemStyle: { color: '#00d4ff' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 64: 联合惩戒应执行未执行主体预警分析 ============
+    genCp64Data() {
+        const measures = ['限制高消费', '限制招投标', '限制享受优惠政策', '其他'];
+        const reasons = ['系统未对接', '经办人未落实', '其他'];
+        const statuses = ['整改中', '未整改'];
+        return Array.from({ length: 6 }, (_, i) => ({
+            id: i + 1,
+            name: `主体${i + 1}`,
+            code: `9146010${String(i + 1).padStart(8, '0')}X`,
+            measure: measures[i % 4],
+            reason: reasons[i % 3],
+            findTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            status: statuses[i % 2]
+        }));
+    }
+
+    openCpModal64() { this._cpOpen(64, this.genCp64Data()); }
+
+    _cpHtml64() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(64)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('应执行未执行主体数', '6个', 'highlight')}
+                        ${this._cpRenderCard('涉及惩戒措施', '8项')}
+                        ${this._cpRenderCard('涉及部门', '4个')}
+                        ${this._cpRenderCard('已执行', '0个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区应执行未执行主体分布</div><div id="cpc64" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">未执行惩戒措施类型分布</div><div id="cpc64b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>主体名称</th><th>统一社会信用代码</th><th>应执行惩戒措施</th><th>未执行原因</th><th>发现时间</th><th>整改状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.code}</td><td>${d.measure}</td><td>${d.reason}</td><td>${d.findTime}</td><td><span class="rv-status ${d.status === '已整改' ? 'positive' : d.status === '未整改' ? 'negative' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart64() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [2, 1, 1, 1, 1, 0, 0, 0];
+        const c64 = echarts.init(document.getElementById('cpc64'));
+        c64.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c64b = echarts.init(document.getElementById('cpc64b'));
+        c64b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 30, name: '限制高消费', itemStyle: { color: '#ff3b30' } }, { value: 25, name: '限制招投标', itemStyle: { color: '#ff9500' } }, { value: 20, name: '限制享受优惠政策', itemStyle: { color: '#00d4ff' } }, { value: 25, name: '其他', itemStyle: { color: '#af52de' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 65: 信用修复超期办理预警分析 ============
+    genCp65Data() {
+        const reasons = ['受理环节超期', '审核环节超期'];
+        const statuses = ['已整改', '整改中'];
+        return Array.from({ length: 2 }, (_, i) => ({
+            id: i + 1,
+            code: `XF${String(i + 1).padStart(6, '0')}`,
+            name: `修复申请${i + 1}`,
+            subject: `申请主体${i + 1}`,
+            uscc: `9146010${String(i + 1).padStart(8, '0')}X`,
+            applyDate: `2026-0${i + 4}-01`,
+            legalDate: `2026-0${i + 4}-15`,
+            actualDate: `2026-0${i + 5}-0${i + 2}`,
+            overDays: [8, 3][i],
+            reason: reasons[i],
+            status: statuses[i]
+        }));
+    }
+
+    openCpModal65() { this._cpOpen(65, this.genCp65Data()); }
+
+    _cpHtml65() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(65)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('信用修复超期办理数', '2件', 'highlight')}
+                        ${this._cpRenderCard('平均超期天数', '5.5天')}
+                        ${this._cpRenderCard('最长超期', '8天')}
+                        ${this._cpRenderCard('涉及部门', '2个')}
+                    </div>
+                    <div class="rv-chart-row">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各市/区信用修复超期办理分布</div><div id="cpc65" class="rv-chart"></div></div>
+                        <div class="rv-chart-item"><div class="rv-chart-title">超期环节分布</div><div id="cpc65b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>修复申请编号</th><th>申请主体名称</th><th>统一社会信用代码</th><th>申请日期</th><th>法定办结日期</th><th>实际办结日期</th><th>超期天数</th><th>超期原因</th><th>整改状态</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.code}</td><td>${d.subject}</td><td>${d.uscc}</td><td>${d.applyDate}</td><td>${d.legalDate}</td><td>${d.actualDate}</td><td><span class="rv-status negative">${d.overDays}天</span></td><td>${d.reason}</td><td><span class="rv-status ${d.status === '已整改' ? 'positive' : ''}">${d.status}</span></td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart65() {
+        const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市', '东方市', '澄迈县'];
+        const counts = [1, 1, 0, 0, 0, 0, 0, 0];
+        const c65 = echarts.init(document.getElementById('cpc65'));
+        c65.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: regions, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '40%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#af52de'},{offset:1,color:'rgba(175,82,222,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+        const c65b = echarts.init(document.getElementById('cpc65b'));
+        c65b.setOption({
+            tooltip: { trigger: 'item', formatter: '{b}: {c}% ({d}%)' }, legend: { orient: 'vertical', right: '5%', top: 'center', textStyle: { color: 'rgba(255,255,255,0.5)', fontSize: 10 } },
+            series: [{ type: 'pie', radius: ['40%', '70%'], center: ['40%', '50%'], data: [{ value: 50, name: '受理环节', itemStyle: { color: '#00d4ff' } }, { value: 50, name: '审核环节', itemStyle: { color: '#34c759' } }], label: { show: true, color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{b}\n{c}%' }, itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 } }]
+        });
+    }
+
+    // ============ MODAL 66: 事项覆盖率全景分析 ============
+    genCp66Data() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        return fields.map((f, i) => ({
+            id: i + 1,
+            field: f,
+            shouldCount: [256, 198, 187, 165, 143, 128, 112, 97][i],
+            coveredCount: [256, 198, 187, 165, 143, 128, 112, 97][i],
+            rate: 100,
+            uncovered: 0,
+            status: '全部达成'
+        }));
+    }
+
+    openCpModal66() { this._cpOpen(66, this.genCp66Data()); }
+
+    _cpHtml66() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(66)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('应覆盖', '1,286项')}
+                        ${this._cpRenderCard('已覆盖', '1,286项')}
+                        ${this._cpRenderCard('未覆盖', '0项')}
+                        ${this._cpRenderCard('覆盖率', '100%', 'highlight')}
+                    </div>
+                    <div class="rv-chart-row" style="grid-template-columns: 1fr;">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域事项覆盖率情况</div><div id="cpc66b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>领域名称</th><th>应覆盖事项数</th><th>已覆盖事项数</th><th>未覆盖事项数</th><th>覆盖率（%）</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.field}</td><td>${d.shouldCount}</td><td>${d.coveredCount}</td><td>${d.uncovered}</td><td>${d.rate}%</td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart66() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        const rates = [100, 100, 100, 100, 100, 100, 100, 100];
+        const c66b = echarts.init(document.getElementById('cpc66b'));
+        c66b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}%' },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', max: 100, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: rates, barWidth: '50%', itemStyle: { color: '#34c759', borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{c}%' } }]
+        });
+    }
+
+    // ============ MODAL 67: 处罚发生率深度分析 ============
+    genCp67Data() {
+        const types = ['警告', '罚款', '没收', '暂扣'];
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        return Array.from({ length: 64 }, (_, i) => ({
+            id: i + 1,
+            name: `处罚事项${i + 1}`,
+            field: fields[Math.floor(Math.random() * fields.length)],
+            basis: `《${fields[Math.floor(Math.random() * fields.length)]}法》第${Math.floor(Math.random() * 50) + 1}条`,
+            count: Math.floor(Math.random() * 5) + 1,
+            lastDate: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')}`,
+            type: types[Math.floor(Math.random() * types.length)]
+        }));
+    }
+
+    openCpModal67() { this._cpOpen(67, this.genCp67Data()); }
+
+    _cpHtml67() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(67)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('处罚事项总数', '1,286项')}
+                        ${this._cpRenderCard('发生处罚事项', '64项')}
+                        ${this._cpRenderCard('处罚发生率', '9%', 'highlight')}
+                        ${this._cpRenderCard('较上季度', '↓0.8%')}
+                    </div>
+                    <div class="rv-chart-row" style="grid-template-columns: 1fr;">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域处罚事项发生频次情况</div><div id="cpc67b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>事项名称</th><th>所属领域</th><th>处罚依据</th><th>发生次数</th><th>最近发生日期</th><th>处罚类型</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.name}</td><td>${d.field}</td><td>${d.basis}</td><td>${d.count}</td><td>${d.lastDate}</td><td>${d.type}</td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart67() {
+        const fields = ['市场监管', '生态环境', '交通运输', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        const counts = [18, 12, 10, 8, 6, 4, 4, 2];
+        const c67b = echarts.init(document.getElementById('cpc67b'));
+        c67b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10 }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: counts, barWidth: '50%', itemStyle: { color: new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#ff3b30'},{offset:1,color:'rgba(255,59,48,0.3)'}]), borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10 } }]
+        });
+    }
+
+    // ============ MODAL 68: 事项关联率全景分析 ============
+    genCp68Data() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        return fields.map((f, i) => ({
+            id: i + 1,
+            field: f,
+            shouldCount: [256, 198, 187, 165, 143, 128, 112, 97][i],
+            linkedCount: [256, 198, 187, 165, 143, 128, 112, 97][i],
+            rate: 100,
+            unlinked: 0,
+            status: '全部达成'
+        }));
+    }
+
+    openCpModal68() { this._cpOpen(68, this.genCp68Data()); }
+
+    _cpHtml68() {
+        const data = this.cpModalData;
+        const start = (this.cpCurrentPage - 1) * this.pageSize;
+        const end = start + this.pageSize;
+        const pageData = data.slice(start, end);
+        const totalPages = Math.ceil(data.length / this.pageSize);
+
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">${this._cpTitle(68)}</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="rv-stat-row">
+                        ${this._cpRenderCard('应关联', '1,286项')}
+                        ${this._cpRenderCard('已关联', '1,286项')}
+                        ${this._cpRenderCard('未关联', '0项')}
+                        ${this._cpRenderCard('关联率', '100%', 'highlight')}
+                    </div>
+                    <div class="rv-chart-row" style="grid-template-columns: 1fr;">
+                        <div class="rv-chart-item"><div class="rv-chart-title">各领域事项关联率达成情况</div><div id="cpc68b" class="rv-chart"></div></div>
+                    </div>
+                    <div class="rv-table-wrap">
+                        <table class="rv-table">
+                            <thead><tr><th>序号</th><th>领域名称</th><th>应关联事项数</th><th>已关联事项数</th><th>未关联事项数</th><th>关联率（%）</th></tr></thead>
+                            <tbody>${pageData.map((d, i) => `<tr><td>${start + i + 1}</td><td>${d.field}</td><td>${d.shouldCount}</td><td>${d.linkedCount}</td><td>${d.unlinked}</td><td>${d.rate}%</td></tr>`).join('')}</tbody>
+                        </table>
+                        <div class="rv-pagination"><span class="rv-page-prev ${this.cpCurrentPage <= 1 ? 'disabled' : ''}">‹</span><span class="rv-page-info">${this.cpCurrentPage}/${totalPages}</span><span class="rv-page-next ${this.cpCurrentPage >= totalPages ? 'disabled' : ''}">›</span></div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart68() {
+        const fields = ['市场监管', '交通运输', '生态环境', '卫生健康', '文化旅游', '应急管理', '税务', '海关'];
+        const rates = [100, 100, 100, 100, 100, 100, 100, 100];
+        const c68b = echarts.init(document.getElementById('cpc68b'));
+        c68b.setOption({
+            tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' }, formatter: '{b}: {c}%' },
+            grid: { left: '3%', right: '4%', bottom: '3%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: fields, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, interval: 0, rotate: 30 } },
+            yAxis: { type: 'value', max: 100, axisLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, formatter: '{value}%' }, splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } } },
+            series: [{ type: 'bar', data: rates, barWidth: '50%', itemStyle: { color: '#34c759', borderRadius: [4,4,0,0] }, label: { show: true, position: 'top', color: 'rgba(255,255,255,0.7)', fontSize: 10, formatter: '{c}%' } }]
+        });
+    }
+
+    // ============ MODAL 69: 风险信号处置 ============
+    genCp69Data() {
+        const areas = ['海口市', '三亚市', '儋州市', '琼海市', '文昌市', '万宁市', '东方市', '五指山市'];
+        const departments = ['市场监管局', '生态环境局', '交通运输局', '卫生健康委', '文化和旅游厅', '应急管理厅', '税务局', '住建局'];
+        const reasons = ['数据异常', '超期预警', '违规操作', '异常波动', '阈值告警'];
+        const methods = ['自动处置', '人工干预', '系统修复', '数据核对'];
+        return Array.from({ length: 20 }, (_, i) => ({
+            id: i + 1,
+            signalId: `FX${String(i + 1).padStart(6, '0')}`,
+            area: areas[Math.floor(Math.random() * areas.length)],
+            department: departments[Math.floor(Math.random() * departments.length)],
+            reason: reasons[Math.floor(Math.random() * reasons.length)],
+            level: ['红色', '橙色', '黄色', '蓝色'][Math.floor(Math.random() * 4)],
+            discoverTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`,
+            disposeTime: Math.random() > 0.3 ? `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}` : '-',
+            method: Math.random() > 0.3 ? methods[Math.floor(Math.random() * methods.length)] : '-',
+            status: Math.random() > 0.3 ? '已处置' : '待处置'
+        }));
+    }
+
+    openCpModal69() { this._cpOpen(69, this.genCp69Data()); }
+
+    _cpHtml69() {
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">风险信号处置</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="cp-operation-form">
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">风险信号编号</label>
+                            <input type="text" class="cp-form-input" value="FX000001" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">所属区域</label>
+                            <input type="text" class="cp-form-input" value="海口市" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">责任部门</label>
+                            <input type="text" class="cp-form-input" value="市场监管局" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">风险原因</label>
+                            <input type="text" class="cp-form-input" value="数据异常" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">风险等级</label>
+                            <select class="cp-form-select">
+                                <option value="红色">红色</option>
+                                <option value="橙色">橙色</option>
+                                <option value="黄色">黄色</option>
+                                <option value="蓝色">蓝色</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">处置方式</label>
+                            <select class="cp-form-select">
+                                <option value="自动处置">自动处置</option>
+                                <option value="人工干预">人工干预</option>
+                                <option value="系统修复">系统修复</option>
+                                <option value="数据核对">数据核对</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">处置备注</label>
+                            <textarea class="cp-form-textarea" rows="3" placeholder="请输入处置备注..."></textarea>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">处置状态</label>
+                            <select class="cp-form-select">
+                                <option value="待处置">待处置</option>
+                                <option value="处置中">处置中</option>
+                                <option value="已处置">已处置</option>
+                                <option value="已排除">已排除</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-actions">
+                            <button class="cp-form-btn cp-form-btn-primary">确认处置</button>
+                            <button class="cp-form-btn cp-form-btn-secondary">暂存</button>
+                            <button class="cp-form-btn cp-form-btn-cancel">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart69() {}
+
+    // ============ MODAL 70: 提醒督办 ============
+    genCp70Data() {
+        const areas = ['海口市', '三亚市', '儋州市', '琼海市', '文昌市', '万宁市', '东方市', '五指山市'];
+        const departments = ['市场监管局', '行政审批局', '住建局', '生态环境局', '交通运输局', '卫生健康委'];
+        const types = ['审批', '监管', '执法', '信用'];
+        const statuses = ['已提醒', '已督办', '待处理'];
+        return Array.from({ length: 30 }, (_, i) => ({
+            id: i + 1,
+            code: `TD${String(i + 1).padStart(6, '0')}`,
+            subject: `当事人${i + 1}`,
+            area: areas[Math.floor(Math.random() * areas.length)],
+            department: departments[Math.floor(Math.random() * departments.length)],
+            type: types[Math.floor(Math.random() * types.length)],
+            content: `事项${i + 1}办理进度提醒`,
+            createTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`,
+            deadline: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`,
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal70() { this._cpOpen(70, this.genCp70Data()); }
+
+    _cpHtml70() {
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">提醒督办</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="cp-operation-form">
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">督办编号</label>
+                            <input type="text" class="cp-form-input" value="TD000001" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">当事人名称</label>
+                            <input type="text" class="cp-form-input" value="xxx" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">所属区域</label>
+                            <input type="text" class="cp-form-input" value="海口市" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">责任部门</label>
+                            <input type="text" class="cp-form-input" value="市场监管局" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">事项类型</label>
+                            <select class="cp-form-select">
+                                <option value="审批">审批</option>
+                                <option value="监管">监管</option>
+                                <option value="执法">执法</option>
+                                <option value="信用">信用</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">督办内容</label>
+                            <textarea class="cp-form-textarea" rows="3" placeholder="请输入督办内容..."></textarea>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">限办时间</label>
+                            <input type="datetime-local" class="cp-form-input">
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">督办状态</label>
+                            <select class="cp-form-select">
+                                <option value="已提醒">已提醒</option>
+                                <option value="已督办">已督办</option>
+                                <option value="待处理">待处理</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-actions">
+                            <button class="cp-form-btn cp-form-btn-primary">确认督办</button>
+                            <button class="cp-form-btn cp-form-btn-secondary">发送提醒</button>
+                            <button class="cp-form-btn cp-form-btn-cancel">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart70() {}
+
+    // ============ MODAL 71: 推送监督一张网 ============
+    genCp71Data() {
+        const areas = ['海口市', '三亚市', '儋州市', '琼海市', '文昌市', '万宁市', '东方市', '五指山市'];
+        const departments = ['市场监管局', '行政审批局', '住建局', '生态环境局', '交通运输局', '卫生健康委'];
+        const types = ['审批', '监管', '执法', '信用'];
+        const statuses = ['已推送', '推送中', '待推送'];
+        return Array.from({ length: 30 }, (_, i) => ({
+            id: i + 1,
+            code: `TS${String(i + 1).padStart(6, '0')}`,
+            subject: `当事人${i + 1}`,
+            area: areas[Math.floor(Math.random() * areas.length)],
+            department: departments[Math.floor(Math.random() * departments.length)],
+            type: types[Math.floor(Math.random() * types.length)],
+            content: `事项${i + 1}数据推送`,
+            createTime: `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}`,
+            pushTime: Math.random() > 0.3 ? `2026-0${Math.floor(Math.random() * 6) + 1}-${String(Math.floor(Math.random() * 28) + 1).padStart(2, '0')} ${String(Math.floor(Math.random() * 24)).padStart(2, '0')}:${String(Math.floor(Math.random() * 60)).padStart(2, '0')}` : '-',
+            status: statuses[Math.floor(Math.random() * statuses.length)]
+        }));
+    }
+
+    openCpModal71() { this._cpOpen(71, this.genCp71Data()); }
+
+    _cpHtml71() {
+        return `
+            <div class="rv-modal">
+                <div class="rv-modal-header"><span class="rv-modal-title">推送监督一张网</span><span class="rv-modal-close">×</span></div>
+                <div class="rv-modal-body">
+                    <div class="cp-operation-form">
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">推送编号</label>
+                            <input type="text" class="cp-form-input" value="TS000001" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">当事人名称</label>
+                            <input type="text" class="cp-form-input" value="xxx" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">所属区域</label>
+                            <input type="text" class="cp-form-input" value="海口市" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">责任部门</label>
+                            <input type="text" class="cp-form-input" value="市场监管局" readonly>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">事项类型</label>
+                            <select class="cp-form-select">
+                                <option value="审批">审批</option>
+                                <option value="监管">监管</option>
+                                <option value="执法">执法</option>
+                                <option value="信用">信用</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">推送内容</label>
+                            <textarea class="cp-form-textarea" rows="3" placeholder="请输入推送内容..."></textarea>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">推送目标系统</label>
+                            <select class="cp-form-select">
+                                <option value="监督一张网">监督一张网</option>
+                                <option value="信用信息平台">信用信息平台</option>
+                                <option value="执法办案系统">执法办案系统</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-row">
+                            <label class="cp-form-label">推送状态</label>
+                            <select class="cp-form-select">
+                                <option value="已推送">已推送</option>
+                                <option value="推送中">推送中</option>
+                                <option value="待推送">待推送</option>
+                            </select>
+                        </div>
+                        <div class="cp-form-actions">
+                            <button class="cp-form-btn cp-form-btn-primary">确认推送</button>
+                            <button class="cp-form-btn cp-form-btn-secondary">重新推送</button>
+                            <button class="cp-form-btn cp-form-btn-cancel">关闭</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
+    _cpChart71() {}
 };
