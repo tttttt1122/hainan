@@ -173,12 +173,12 @@ window.CreditPage = class CreditPage {
                                     <div class="ce-title">信用审批成效</div>
                                     <div class="ce-kpi-row">
                                         <div class="ce-kpi">
-                                            <span class="ce-kpi-num">1,567件</span>
+                                            <span class="ce-kpi-num">1,567</span>
                                             <span class="ce-kpi-text">信用审批办件量</span>
                                         </div>
                                         <div class="ce-kpi">
                                             <span class="ce-kpi-num">98%</span>
-                                            <span class="ce-kpi-text">办结率 <span class="ce-up">↑2%</span></span>
+                                            <span class="ce-kpi-text">办结率 </span>
                                         </div>
                                         <div class="ce-kpi">
                                             <span class="ce-kpi-num">1.2天</span>
@@ -206,12 +206,12 @@ window.CreditPage = class CreditPage {
                                     <div class="ce-title">信用监管成效</div>
                                     <div class="ce-kpi-row">
                                         <div class="ce-kpi">
-                                            <span class="ce-kpi-num">2,345户</span>
+                                            <span class="ce-kpi-num">2,345</span>
                                             <span class="ce-kpi-text">覆盖对象</span>
                                         </div>
                                         <div class="ce-kpi">
                                             <span class="ce-kpi-num">95%</span>
-                                            <span class="ce-kpi-text">覆盖率 <span class="ce-up">↑3%</span></span>
+                                            <span class="ce-kpi-text">覆盖率 </span>
                                         </div>
                                         <div class="ce-kpi">
                                             <span class="ce-kpi-num">8.5%</span>
