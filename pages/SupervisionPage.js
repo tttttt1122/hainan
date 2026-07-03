@@ -218,6 +218,88 @@ window.SupervisionPage = class SupervisionPage {
         });
     }
 
+    openPlanDetail(planName, target) {
+        const overlay = document.createElement('div');
+        overlay.className = 'rv-modal-overlay sv-theme-default';
+        overlay.innerHTML = this.renderPlanDetailModal(planName, target);
+        document.body.appendChild(overlay);
+        
+        overlay.querySelector('.rv-modal-close').addEventListener('click', () => {
+            overlay.remove();
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.remove();
+            }
+        });
+    }
+
+    renderPlanDetailModal(planName, target) {
+        return `
+            <div class="rv-modal" style="width: 60%; max-width: 800px;">
+                <div class="rv-modal-header">
+                    <span class="rv-modal-title">计划详情 - ${planName}</span>
+                    <button class="rv-modal-close">×</button>
+                </div>
+                <div style="padding: 15px; overflow-y: auto; max-height: 70vh;">
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 20px;">
+                        <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2);">
+                            <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">计划名称</div>
+                            <div style="color: rgba(255,255,255,0.9); font-size: 14px;">${planName}</div>
+                        </div>
+                        <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2);">
+                            <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">检查对象</div>
+                            <div style="color: rgba(255,255,255,0.9); font-size: 14px;">${target || '未指定'}</div>
+                        </div>
+                        <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2);">
+                            <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">制定部门</div>
+                            <div style="color: rgba(255,255,255,0.9); font-size: 14px;">海南省市场监督管理局</div>
+                        </div>
+                        <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2);">
+                            <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">制定日期</div>
+                            <div style="color: rgba(255,255,255,0.9); font-size: 14px;">2026-01-15</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 20px;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">检查事项</div>
+                        <div style="color: rgba(255,255,255,0.9); font-size: 13px; line-height: 1.6;">
+                            1. 营业执照、许可证有效期及经营范围核查；<br>
+                            2. 经营场所与注册地址一致性检查；<br>
+                            3. 安全生产管理制度落实情况检查；<br>
+                            4. 从业人员资质证书核查；<br>
+                            5. 进销货台账及票据完整性检查。
+                        </div>
+                    </div>
+                    
+                    <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2); margin-bottom: 20px;">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 4px;">计划状态</div>
+                        <div style="color: rgba(255,255,255,0.9); font-size: 13px;">已完成</div>
+                    </div>
+                    
+                    <div style="background: rgba(0,212,255,0.05); padding: 10px; border-radius: 6px; border: 1px solid rgba(0,212,255,0.2);">
+                        <div style="color: rgba(255,255,255,0.5); font-size: 12px; margin-bottom: 8px;">执行记录</div>
+                        <table class="rv-table" style="font-size: 12px;">
+                            <thead>
+                                <tr>
+                                    <th>执行日期</th>
+                                    <th>执行人员</th>
+                                    <th>执行结果</th>
+                                    <th>备注</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>2026-02-10</td><td>张三、李四</td><td>合格</td><td>未发现问题</td></tr>
+                                <tr><td>2026-03-15</td><td>王五、赵六</td><td>责令整改</td><td>发现轻微违规，已整改完毕</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        `;
+    }
+
     // ============ HELPER METHODS ============
     _svColor(idx) {
         const colors = ['#00d4ff', '#34c759', '#ff9500', '#ff3b30', '#af52de', '#5856d6', '#ffd54f', '#2196f3'];
@@ -287,8 +369,18 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-stat-card"><span class="rv-stat-label">${label}</span><span class="rv-stat-value${cls ? ' ' + cls : ''}">${value}</span></div>`;
     }
 
-    _svRenderTable(cols, keys, data) {
-        return `<table class="rv-table"><thead><tr>${cols.map(c => '<th>' + c + '</th>').join('')}</tr></thead><tbody>${data.map(item => '<tr>' + keys.map(k => '<td>' + (item[k] || '') + '</td>').join('') + '</tr>').join('')}</tbody></table>`;
+    _svRenderTable(cols, keys, data, clickableColumn) {
+        return `<table class="rv-table"><thead><tr>${cols.map(c => '<th>' + c + '</th>').join('')}</tr></thead><tbody>${data.map(item => '<tr>' + keys.map(k => {
+            const value = item[k] || '';
+            if (clickableColumn === k) {
+                if (k === 'planName') {
+                    return `<td><span class="rv-clickable-cell" style="cursor: pointer; color: #00d4ff;" onclick="window.supervisionPage.openPlanDetail('${value}', '${item.target || ''}')">${value}</span></td>`;
+                } else if (k === 'name') {
+                    return `<td><span class="rv-clickable-cell" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openObjectProfileModal('${value}', '${item.uscc || ''}', '${item.industry || ''}')">${value}</span></td>`;
+                }
+            }
+            return '<td>' + value + '</td>';
+        }).join('') + '</tr>').join('')}</tbody></table>`;
     }
 
     _svPageInfo() {
@@ -373,7 +465,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(2)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('新设市场主体总数','8,956户')}${this._svRenderCard('同比增长','+1.5%','sv-stat-highlight')}${this._svRenderCard('环比上月','+0.8%')}${this._svRenderCard('本年累计新设','8,956户')}</div>
             ${this._svChartsWrap('svc2','近12个月新设市场主体趋势','svc2b','新设市场主体行业分布TOP5',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','市场主体名称','统一社会信用代码','类型','新设日期','所属行业'],['idx','name','uscc','type','establishDate','industry'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','市场主体名称','统一社会信用代码','类型','新设日期','所属行业'],['idx','name','uscc','type','establishDate','industry'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'name')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart2() {
@@ -415,7 +507,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(3)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('注(吊)销总数','1,234户')}${this._svRenderCard('注销','987户')}${this._svRenderCard('吊销','247户')}${this._svRenderCard('同比增长','+0.8%','sv-stat-highlight')}</div>
             ${this._svChartsWrap('svc3','近12个月注(吊)销趋势','svc3b','注(吊)销原因分布',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','市场主体名称','统一社会信用代码','注/吊销类型','注吊销日期','注吊销原因'],['idx','name','uscc','cancelType','cancelDate','cancelReason'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','市场主体名称','统一社会信用代码','注/吊销类型','注吊销日期','注吊销原因'],['idx','name','uscc','cancelType','cancelDate','cancelReason'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'name')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart3() {
@@ -446,7 +538,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(4)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('主体合规率','99%')}${this._svRenderCard('合规主体数','98.8万户')}${this._svRenderCard('不合规主体数','1.0万户')}${this._svRenderCard('较上季度提升','+0.5%','sv-stat-highlight')}</div>
             ${this._svChartsWrap('svc4','合规vs不合规占比','svc4b','各行业合规率情况',4,6)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','主体名称','统一社会信用代码','所属行业','违规类型','发现日期','整改状态'],['idx','name','uscc','industry','violationType','discoverDate','rectificationStatus'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','主体名称','统一社会信用代码','所属行业','违规类型','发现日期','整改状态'],['idx','name','uscc','industry','violationType','discoverDate','rectificationStatus'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'name')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart4() {
@@ -478,7 +570,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(5)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('B级及以上主体数','89.8万户')}${this._svRenderCard('占比','90%')}${this._svRenderCard('信用A级主体数','45.6万户')}${this._svRenderCard('信用B级主体数','44.2万户')}</div>
             ${this._svChartsWrap('svc5','信用等级分布','svc5b','各行业B级及以上占比排行',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','主体名称','统一社会信用代码','所属行业','信用等级','评定日期','有效期至'],['idx','name','uscc','industry','creditLevel','assessDate','validUntil'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','主体名称','统一社会信用代码','所属行业','信用等级','评定日期','有效期至'],['idx','name','uscc','industry','creditLevel','assessDate','validUntil'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'name')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart5() {
@@ -536,7 +628,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(7)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('制定计划','1,256个')}${this._svRenderCard('检查','1,156次')}${this._svRenderCard('计划执行率','92.0%')}${this._svRenderCard('违法线索移送','89条')}</div>
             ${this._svChartsWrap('svc7','各部门检查次数排行TOP8','svc7b','检查结果分布',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','检查对象','检查部门','检查日期','检查结果'],['idx','planName','target','department','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','检查对象','检查部门','检查日期','检查结果'],['idx','planName','target','department','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'planName')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart7() {
@@ -565,7 +657,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(8)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('制定计划','523个')}${this._svRenderCard('检查','489次')}${this._svRenderCard('计划执行率','93.5%')}${this._svRenderCard('违法线索移送','67条')}</div>
             ${this._svChartsWrap('svc8','重点检查领域分布TOP8','svc8b','检查结果分布',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','检查对象','重点领域','检查日期','检查结果'],['idx','planName','target','keyArea','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','检查对象','重点领域','检查日期','检查结果'],['idx','planName','target','keyArea','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'planName')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart8() {
@@ -651,7 +743,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(11)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('计划合并','234个')}${this._svRenderCard('检查','212次')}${this._svRenderCard('计划执行率','90.6%')}${this._svRenderCard('违法线索移送','34条')}</div>
             ${this._svChartsWrap('svc11','各部门联合检查次数排行TOP8','svc11b','联合检查涉及部门数分布',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','牵头部门','参与部门数','检查对象','检查日期','检查结果'],['idx','planName','leadDept','deptCount','target','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','牵头部门','参与部门数','检查对象','检查日期','检查结果'],['idx','planName','leadDept','deptCount','target','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'planName')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart11() {
@@ -680,7 +772,7 @@ window.SupervisionPage = class SupervisionPage {
         return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(12)}</span><button class="rv-modal-close">×</button></div>
             <div class="rv-stats">${this._svRenderCard('制定计划','167个')}${this._svRenderCard('检查','145次')}${this._svRenderCard('计划执行率','86.8%')}${this._svRenderCard('违法线索移送','23条')}</div>
             ${this._svChartsWrap('svc12','跨部门双随机领域分布','svc12b','检查结果分布',5,5)}
-            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','参与部门','检查对象','检查日期','检查结果'],['idx','planName','participatingDepts','target','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','计划名称','参与部门','检查对象','检查日期','检查结果'],['idx','planName','participatingDepts','target','inspectionDate','result'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})), 'planName')}</div>
             <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
     }
     _svChart12() {
@@ -732,6 +824,14 @@ window.SupervisionPage = class SupervisionPage {
         return data;
     }
     openSvModal14() { this._svOpen(14, this.genSv14Data()); }
+    _svHtml14() {
+        const p = this.svCurrentPage, ps = this.pageSize, d = this.svModalData.slice((p-1)*ps, p*ps);
+        return `<div class="rv-modal"><div class="rv-modal-header"><span class="rv-modal-title">${this._svTitle(14)}</span><button class="rv-modal-close">×</button></div>
+            <div class="rv-stats">${this._svRenderCard('核查任务数','523次')}${this._svRenderCard('完成率','98%')}${this._svRenderCard('问题检出率','5%')}${this._svRenderCard('问题检出同比','↑5%','sv-stat-highlight')}</div>
+            ${this._svChartsWrap('svc14','核查结果分布','svc14b','各部门告知承诺制核查问题检出率排行',4,6)}
+            <div class="rv-table-wrap">${this._svRenderTable(['序号','核查对象','承诺事项','核查日期','核查结果','整改状态'],['idx','target','promiseItem','verificationDate','result','rectificationStatus'],d.map((it,i)=>({...it,idx:(p-1)*ps+i+1})))}</div>
+            <div class="rv-footer"><button class="rv-page-btn sv-page-prev" ${p<=1?'disabled':''}>上一页</button>${this._svPageInfo()}<button class="rv-page-btn sv-page-next" ${p>=Math.ceil(this.svModalData.length/ps)?'disabled':''}>下一页</button></div></div>`;
+    }
 
     // ============ MODAL 15: 承诺即入制核查分析 ============
     genSv15Data() {
