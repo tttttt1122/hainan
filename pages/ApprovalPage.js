@@ -56,7 +56,7 @@ window.ApprovalPage = class ApprovalPage {
                             <h3 class="card-title">事项情况</h3>
                             <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; padding: 8px 16px; border: 1px solid rgba(0, 212, 255, 0.3); border-radius: 4px; cursor: pointer;" class="cp-clickable" data-indicator="item_overview_analysis">
                                 <span class="stat-label">事项总数</span>
-                                <span class="stat-value">100</span>
+                                <span class="stat-value">999</span>
                             </div>
                             <div id="pie-chart" class="chart-container pie-container" style="width: 80%; margin: 0 auto;"></div>
                         </div>
@@ -1220,13 +1220,13 @@ window.ApprovalPage = class ApprovalPage {
                     formatter: '{b}: {c}'
                 },
                 data: [
-                    { value: 25, name: '行政许可', itemStyle: { color: '#00d4ff' } },
-                    { value: 20, name: '行政确认', itemStyle: { color: '#00ff88' } },
-                    { value: 15, name: '行政裁决', itemStyle: { color: '#ff6b6b' } },
-                    { value: 15, name: '行政奖励', itemStyle: { color: '#ffd93d' } },
-                    { value: 10, name: '行政给付', itemStyle: { color: '#6bcbff' } },
-                    { value: 10, name: '其他行政权力', itemStyle: { color: '#c084fc' } },
-                    { value: 5, name: '公共服务', itemStyle: { color: '#22d3ee' } }
+                    { value: 356, name: '行政许可', itemStyle: { color: '#00d4ff' } },
+                    { value: 198, name: '行政确认', itemStyle: { color: '#ff9500' } },
+                    { value: 56, name: '行政裁决', itemStyle: { color: '#34c759' } },
+                    { value: 45, name: '行政奖励', itemStyle: { color: '#af52de' } },
+                    { value: 32, name: '行政给付', itemStyle: { color: '#ff3b30' } },
+                    { value: 289, name: '公共服务', itemStyle: { color: '#00ff88' } },
+                    { value: 23, name: '其他行政权力', itemStyle: { color: '#8e8e93' } }
                 ]
             }]
         };
@@ -1870,10 +1870,10 @@ window.ApprovalPage = class ApprovalPage {
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">总体零跑动占比</span><span class="indicator-stat-value" style="color:#34c759;">98.5%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">99%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">80%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">82%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">80%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">街镇级</span><span class="indicator-stat-value">82%</span></div>
                 </div>
                 <div class="indicator-modal-chart" style="display:flex;justify-content:center;">
                     <div class="indicator-chart-item" style="flex:1;"><span class="indicator-chart-title">各层级零跑动占比对比</span><div id="modal-bar-chart4" class="indicator-chart-container"></div></div>
@@ -1947,10 +1947,10 @@ window.ApprovalPage = class ApprovalPage {
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">总体跑动一次占比</span><span class="indicator-stat-value">95.2%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">99%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">9%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">10%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">9%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">街镇级</span><span class="indicator-stat-value">10%</span></div>
                 </div>
                 <div class="indicator-modal-chart" style="display:flex;justify-content:center;">
                     <div class="indicator-chart-item" style="flex:1;"><span class="indicator-chart-title">各层级跑动一次占比对比</span><div id="modal-bar-chart5" class="indicator-chart-container"></div></div>
@@ -2024,10 +2024,10 @@ window.ApprovalPage = class ApprovalPage {
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">总体跑动两次占比</span><span class="indicator-stat-value" style="color:#ff9500;">3.1%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">99%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">7%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">6%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">7%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">街镇级</span><span class="indicator-stat-value">6%</span></div>
                 </div>
                 <div class="indicator-modal-chart" style="display:flex;justify-content:center;">
                     <div class="indicator-chart-item" style="flex:1;"><span class="indicator-chart-title">各层级跑动两次占比对比</span><div id="modal-bar-chart6" class="indicator-chart-container"></div></div>
@@ -2104,10 +2104,10 @@ window.ApprovalPage = class ApprovalPage {
                     <button class="indicator-modal-close">×</button>
                 </div>
                 <div class="indicator-modal-stats">
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">总体跑动三次及以上占比</span><span class="indicator-stat-value" style="color:#ff3b30;">0.8%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">99%</span></div>
-                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">99%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">省级</span><span class="indicator-stat-value">4%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">市级</span><span class="indicator-stat-value">2%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">县级</span><span class="indicator-stat-value">4%</span></div>
+                    <div class="indicator-stat-card"><span class="indicator-stat-label">街镇级</span><span class="indicator-stat-value">2%</span></div>
                 </div>
                 <div class="indicator-modal-chart" style="display:flex;justify-content:center;">
                     <div class="indicator-chart-item" style="flex:1;"><span class="indicator-chart-title">各层级跑动三次及以上占比对比</span><div id="modal-bar-chart7" class="indicator-chart-container"></div></div>
