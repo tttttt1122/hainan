@@ -29,18 +29,18 @@ window.SupervisionPage = class SupervisionPage {
                             <div class="supervision-stats-grid">
                                 <div class="supervision-stat-item" data-sv-modal="1">
                                     <span class="supervision-stat-label">实有市场主体</span>
-                                    <span class="supervision-stat-value">99</span>
-                                    <span class="supervision-stat-compare trend-up">↑ 1%</span>
+                                    <span class="supervision-stat-value">99.8万</span>
+                                    <span class="supervision-stat-compare trend-up">↑ 1.2%</span>
                                 </div>
                                 <div class="supervision-stat-item" data-sv-modal="2">
                                     <span class="supervision-stat-label">新设市场主体</span>
-                                    <span class="supervision-stat-value">99</span>
-                                    <span class="supervision-stat-compare trend-up">↑ 1%</span>
+                                    <span class="supervision-stat-value">8956</span>
+                                    <span class="supervision-stat-compare trend-up">↑ 1.5%</span>
                                 </div>
                                 <div class="supervision-stat-item" data-sv-modal="3">
                                     <span class="supervision-stat-label">注(吊)销市场主体</span>
-                                    <span class="supervision-stat-value">99</span>
-                                    <span class="supervision-stat-compare trend-up">↑ 1%</span>
+                                    <span class="supervision-stat-value">1234</span>
+                                    <span class="supervision-stat-compare trend-up">↑ 0.8%</span>
                                 </div>
                             </div>
                         </div>
@@ -65,7 +65,7 @@ window.SupervisionPage = class SupervisionPage {
                                 <div class="compliance-item">
                                     <div class="compliance-row" data-sv-modal="5">
                                         <span class="compliance-label">信用等级B级及以上市场主体</span>
-                                        <span class="compliance-value">99万户（占比90%）</span>
+                                        <span class="compliance-value">89.8万户（占比90%）</span>
                                         <span class="compliance-compare trend-up">↑ 1%</span>
                                     </div>
                                 </div>
@@ -110,7 +110,7 @@ window.SupervisionPage = class SupervisionPage {
                         <div class="card-section">
                             <h3 class="card-title">监管行为</h3>
                             <div class="action-section">
-                                <h4 class="action-title sv-clickable" data-sv-modal="6">检查行为总数 <span class="action-title-value">999</span></h4>
+                                <h4 class="action-title sv-clickable" data-sv-modal="6">检查行为总数 <span class="action-title-value">2456</span></h4>
                                 <div class="action-group">
                                     <h5 class="action-sub-title">(1) 计划类行为</h5>
                                     <div class="action-card sv-clickable" data-sv-modal="7">
@@ -169,7 +169,7 @@ window.SupervisionPage = class SupervisionPage {
                                 </div>
                             </div>
                             <div class="action-section">
-                                <h4 class="action-title sv-clickable" data-sv-modal="13">核查行为总数 <span class="action-title-value">999</span></h4>
+                                <h4 class="action-title sv-clickable" data-sv-modal="13">核查行为总数 <span class="action-title-value">835</span></h4>
                                 <div class="action-group">
                                     <div class="action-card sv-clickable" data-sv-modal="14">
                                         <div class="action-card-title">告知承诺制</div>
