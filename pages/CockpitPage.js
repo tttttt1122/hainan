@@ -303,59 +303,184 @@ window.CockpitPage = class CockpitPage {
                         </div>
 
                         <div id="tab-matters" class="cockpit-tab-pane" style="display: none">
-                                    <div class="cockpit-row">
-                                        <div class="card-section matters-section matters-left-top">
-                                            <div class="card-title">政务服务事项</div>
-                                            <div class="matters-content">
-                                                <div class="matters-main-stat cp-clickable" data-cp-modal="17">
-                                                    <span class="matters-main-label">事项数量</span>
-                                                    <span class="matters-main-value">99<span class="matters-main-unit">个</span></span>
+                            <div class="cockpit-row">
+                                <div class="card-section matters-section matters-left">
+                                    <div class="card-title">政务服务事项</div>
+                                    <div class="matters-content">
+                                        <div class="matters-main-stat cp-clickable" data-cp-modal="17">
+                                            <span class="matters-main-label">事项数量</span>
+                                            <span class="matters-main-value">99<span class="matters-main-unit">个</span></span>
+                                        </div>
+                                        <div class="matters-group">
+                                            <div class="group-title">1.按层级：</div>
+                                            <div id="matters-pyramid" class="matters-chart-container" style="height: 120px;"></div>
+                                        </div>
+                                        <div class="matters-group">
+                                            <div class="group-title">2.按事项类型</div>
+                                            <div id="matters-pie" class="matters-chart-container" style="height: 130px;"></div>
+                                        </div>
+                                        <div class="matters-group">
+                                            <div class="group-title">3.按即办件和承诺件</div>
+                                            <div class="matters-promise-row cp-clickable" data-cp-modal="18">
+                                                <div class="matters-promise-item">
+                                                    <div class="matters-promise-label">即办件</div>
+                                                    <div class="matters-promise-value">45</div>
                                                 </div>
-                                                <div class="matters-group">
-                                                    <div class="group-title">1.按层级：</div>
-                                                    <div id="matters-pyramid" class="matters-chart-container"></div>
-                                                </div>
-                                                <div class="matters-group">
-                                                    <div class="group-title">2.按事项类型</div>
-                                                    <div id="matters-pie" class="matters-chart-container"></div>
-                                                </div>
-                                                <div class="matters-group">
-                                                    <div class="group-title">3.按即办件和承诺件</div>
-                                                    <div class="matters-promise-row cp-clickable" data-cp-modal="18">
-                                                        <div class="matters-promise-item">
-                                                            <div class="matters-promise-label">即办件</div>
-                                                            <div class="matters-promise-value">45</div>
+                                                <div class="matters-promise-item matters-promise-parent">
+                                                    <div class="matters-promise-label">承诺件</div>
+                                                    <div class="matters-promise-value">54</div>
+                                                    <div class="matters-promise-children cp-clickable" data-cp-modal="19">
+                                                        <div class="matters-promise-child">
+                                                            <span class="child-label">告知承诺制</span>
+                                                            <span class="child-value">29</span>
                                                         </div>
-                                                        <div class="matters-promise-item matters-promise-parent">
-                                                            <div class="matters-promise-label">承诺件</div>
-                                                            <div class="matters-promise-value">54</div>
-                                                            <div class="matters-promise-children cp-clickable" data-cp-modal="19">
-                                                                <div class="matters-promise-child">
-                                                                    <span class="child-label">告知承诺制</span>
-                                                                    <span class="child-value">25</span>
-                                                                </div>
-                                                                <div class="matters-promise-child">
-                                                                    <span class="child-label">承诺即入制</span>
-                                                                    <span class="child-value">25</span>
-                                                                </div>
-                                                            </div>
+                                                        <div class="matters-promise-child">
+                                                            <span class="child-label">承诺即入制</span>
+                                                            <span class="child-value">25</span>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-                                <div class="card-section matters-section matters-center-top">
-                                    <div class="card-title">事项关联情况</div>
-                                    <div class="correlation-image-wrap">
-                                        <img src="驾驶舱事项.png" class="correlation-img" alt="事项关联关系图">
-                                    </div>
-                                    <div class="correlation-map">
-                                        <div class="map-tab-overlay">
-                                            <button class="map-tab-btn active">省直</button>
-                                            <button class="map-tab-btn">市县</button>
+                                        <div class="matters-group">
+                                            <div class="group-title">4.行政审批制度改革</div>
+                                            <div class="stat-card-horizontal reform-stat-card">
+                                                <div class="stat-item cp-clickable" data-cp-modal="20">
+                                                    <span class="stat-label">高效办成一件事</span>
+                                                    <span class="stat-value">99</span>
+                                                </div>
+                                                <div class="stat-divider"></div>
+                                                <div class="stat-item cp-clickable" data-cp-modal="21">
+                                                    <span class="stat-label">极简审批</span>
+                                                    <span class="stat-value">99</span>
+                                                </div>
+                                                <div class="stat-divider"></div>
+                                                <div class="stat-item cp-clickable" data-cp-modal="22">
+                                                    <span class="stat-label">智能快办免申即享</span>
+                                                    <span class="stat-value">99</span>
+                                                </div>
+                                            </div>
+                                            <div class="stat-card-horizontal reform-stat-card">
+                                                <div class="stat-item cp-clickable" data-cp-modal="23">
+                                                    <span class="stat-label">全省通办</span>
+                                                    <span class="stat-value">99</span>
+                                                </div>
+                                                <div class="stat-divider"></div>
+                                                <div class="stat-item cp-clickable" data-cp-modal="24">
+                                                    <span class="stat-label">便民简证</span>
+                                                    <span class="stat-value">99</span>
+                                                </div>
+                                                <div class="stat-divider"></div>
+                                                <div class="stat-item cp-clickable" data-cp-modal="25">
+                                                    <span class="stat-label">信用等级审批</span>
+                                                    <span class="stat-value">99</span>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <img src="地图.png" class="map-image" alt="海南地图">
+                                    </div>
+                                </div>
+
+                                <div class="card-section matters-section matters-center">
+                                    <div class="matters-center-top">
+                                        <div class="card-title">事项关联情况</div>
+                                        <div class="correlation-image-wrap">
+                                            <img src="驾驶舱事项.png" class="correlation-img" alt="事项关联关系图">
+                                        </div>
+                                        <div class="correlation-map">
+                                            <div class="map-tab-overlay">
+                                                <button class="map-tab-btn active">省直</button>
+                                                <button class="map-tab-btn">市县</button>
+                                            </div>
+                                            <img src="地图.png" class="map-image" alt="海南地图">
+                                        </div>
+                                    </div>
+                                    <div class="matters-center-bottom">
+                                        <div class="card-title-row">
+                                            <span class="card-title">高频审批/检查/处罚事项列表</span>
+                                            <div class="matters-tabs" id="matters-tabs">
+                                                <button class="matters-tab-btn active" data-tab="approval">审批</button>
+                                                <button class="matters-tab-btn" data-tab="inspection">检查</button>
+                                                <button class="matters-tab-btn" data-tab="penalty">处罚</button>
+                                            </div>
+                                        </div>
+                                        <div class="matters-table" data-table="approval">
+                                            <div class="table-header">
+                                                <span class="table-col">事项名称</span>
+                                                <span class="table-col">次数</span>
+                                                <span class="table-col">领域</span>
+                                                <span class="table-col">部门</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">企业注册登记</span>
+                                                <span class="table-col">1234</span>
+                                                <span class="table-col">市场监管</span>
+                                                <span class="table-col">市监局</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">食品经营许可</span>
+                                                <span class="table-col">567</span>
+                                                <span class="table-col">食品药品</span>
+                                                <span class="table-col">市监局</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">个体工商户登记</span>
+                                                <span class="table-col">890</span>
+                                                <span class="table-col">市场监管</span>
+                                                <span class="table-col">市监局</span>
+                                            </div>
+                                        </div>
+                                        <div class="matters-table" data-table="inspection" style="display:none">
+                                            <div class="table-header">
+                                                <span class="table-col">事项名称</span>
+                                                <span class="table-col">次数</span>
+                                                <span class="table-col">领域</span>
+                                                <span class="table-col">部门</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">食品安全检查</span>
+                                                <span class="table-col">987</span>
+                                                <span class="table-col">食品药品</span>
+                                                <span class="table-col">市监局</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">消防安全检查</span>
+                                                <span class="table-col">734</span>
+                                                <span class="table-col">消防安全</span>
+                                                <span class="table-col">消防总队</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">特种设备检查</span>
+                                                <span class="table-col">623</span>
+                                                <span class="table-col">安全生产</span>
+                                                <span class="table-col">应急厅</span>
+                                            </div>
+                                        </div>
+                                        <div class="matters-table" data-table="penalty" style="display:none">
+                                            <div class="table-header">
+                                                <span class="table-col">事项名称</span>
+                                                <span class="table-col">次数</span>
+                                                <span class="table-col">领域</span>
+                                                <span class="table-col">部门</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">无证经营处罚</span>
+                                                <span class="table-col">456</span>
+                                                <span class="table-col">市场监管</span>
+                                                <span class="table-col">市监局</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">虚假广告处罚</span>
+                                                <span class="table-col">312</span>
+                                                <span class="table-col">广告监管</span>
+                                                <span class="table-col">市监局</span>
+                                            </div>
+                                            <div class="table-row">
+                                                <span class="table-col">环保违规处罚</span>
+                                                <span class="table-col">278</span>
+                                                <span class="table-col">环境保护</span>
+                                                <span class="table-col">生态厅</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -375,11 +500,11 @@ window.CockpitPage = class CockpitPage {
                                         <div class="matters-group matters-chart-row">
                                             <div class="matters-chart-half">
                                                 <div class="group-title">事项分类</div>
-                                                <div id="matters-enforce-pie1" class="matters-chart-container"></div>
+                                                <div id="matters-enforce-pie1" class="matters-chart-container" style="height: 100px;"></div>
                                             </div>
                                             <div class="matters-chart-half">
                                                 <div class="group-title">行政检查</div>
-                                                <div id="matters-enforce-pie2" class="matters-chart-container"></div>
+                                                <div id="matters-enforce-pie2" class="matters-chart-container" style="height: 100px;"></div>
                                             </div>
                                         </div>
                                         <div class="matters-group">
@@ -406,8 +531,6 @@ window.CockpitPage = class CockpitPage {
                                                         <span>儋州市</span>
                                                         <span>1,234</span>
                                                     </div>
-                                                    
-                                                   
                                                 </div>
                                             </div>
                                             <div class="matters-list-half">
@@ -425,143 +548,12 @@ window.CockpitPage = class CockpitPage {
                                                         <span>行政审批局</span>
                                                         <span>2,789</span>
                                                     </div>
-                                                  
-                                                   
                                                     <div class="matters-list-row">
                                                         <span>住建局</span>
                                                         <span>1,123</span>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="cockpit-row">
-                                <div class="card-section matters-section matters-left-bottom">
-                                    <div class="card-title">行政审批制度改革事项</div>
-                                    <div class="matters-content matters-reform-content">
-                                        <div class="stat-card-horizontal reform-stat-card">
-                                            <div class="stat-item cp-clickable" data-cp-modal="20">
-                                                <span class="stat-label">高效办成一件事</span>
-                                                <span class="stat-value">99</span>
-                                            </div>
-                                            <div class="stat-divider"></div>
-                                            <div class="stat-item cp-clickable" data-cp-modal="21">
-                                                <span class="stat-label">极简审批</span>
-                                                <span class="stat-value">99</span>
-                                            </div>
-                                            <div class="stat-divider"></div>
-                                            <div class="stat-item cp-clickable" data-cp-modal="22">
-                                                <span class="stat-label">智能快办免申即享</span>
-                                                <span class="stat-value">99</span>
-                                            </div>
-                                        </div>
-                                        <div class="stat-card-horizontal reform-stat-card">
-                                            <div class="stat-item cp-clickable" data-cp-modal="23">
-                                                <span class="stat-label">全省通办</span>
-                                                <span class="stat-value">99</span>
-                                            </div>
-                                            <div class="stat-divider"></div>
-                                            <div class="stat-item cp-clickable" data-cp-modal="24">
-                                                <span class="stat-label">便民简证</span>
-                                                <span class="stat-value">99</span>
-                                            </div>
-                                            <div class="stat-divider"></div>
-                                            <div class="stat-item cp-clickable" data-cp-modal="25">
-                                                <span class="stat-label">信用等级审批</span>
-                                                <span class="stat-value">99</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-section matters-section matters-center-bottom">
-                                    <div class="card-title-row">
-                                        <span class="card-title">高频审批/检查/处罚事项列表</span>
-                                        <div class="matters-tabs" id="matters-tabs">
-                                            <button class="matters-tab-btn active" data-tab="approval">审批</button>
-                                            <button class="matters-tab-btn" data-tab="inspection">检查</button>
-                                            <button class="matters-tab-btn" data-tab="penalty">处罚</button>
-                                        </div>
-                                    </div>
-                                    <div class="matters-table" data-table="approval">
-                                        <div class="table-header">
-                                            <span class="table-col">事项名称</span>
-                                            <span class="table-col">次数</span>
-                                            <span class="table-col">领域</span>
-                                            <span class="table-col">部门</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">企业注册登记</span>
-                                            <span class="table-col">1234</span>
-                                            <span class="table-col">市场监管</span>
-                                            <span class="table-col">市监局</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">食品经营许可</span>
-                                            <span class="table-col">567</span>
-                                            <span class="table-col">食品药品</span>
-                                            <span class="table-col">市监局</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">个体工商户登记</span>
-                                            <span class="table-col">890</span>
-                                            <span class="table-col">市场监管</span>
-                                            <span class="table-col">市监局</span>
-                                        </div>
-                                    </div>
-                                    <div class="matters-table" data-table="inspection" style="display:none">
-                                        <div class="table-header">
-                                            <span class="table-col">事项名称</span>
-                                            <span class="table-col">次数</span>
-                                            <span class="table-col">领域</span>
-                                            <span class="table-col">部门</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">食品安全检查</span>
-                                            <span class="table-col">987</span>
-                                            <span class="table-col">食品药品</span>
-                                            <span class="table-col">市监局</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">消防安全检查</span>
-                                            <span class="table-col">734</span>
-                                            <span class="table-col">消防安全</span>
-                                            <span class="table-col">消防总队</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">特种设备检查</span>
-                                            <span class="table-col">623</span>
-                                            <span class="table-col">安全生产</span>
-                                            <span class="table-col">应急厅</span>
-                                        </div>
-                                    </div>
-                                    <div class="matters-table" data-table="penalty" style="display:none">
-                                        <div class="table-header">
-                                            <span class="table-col">事项名称</span>
-                                            <span class="table-col">次数</span>
-                                            <span class="table-col">领域</span>
-                                            <span class="table-col">部门</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">无证经营处罚</span>
-                                            <span class="table-col">456</span>
-                                            <span class="table-col">市场监管</span>
-                                            <span class="table-col">市监局</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">虚假广告处罚</span>
-                                            <span class="table-col">312</span>
-                                            <span class="table-col">广告监管</span>
-                                            <span class="table-col">市监局</span>
-                                        </div>
-                                        <div class="table-row">
-                                            <span class="table-col">环保违规处罚</span>
-                                            <span class="table-col">278</span>
-                                            <span class="table-col">环境保护</span>
-                                            <span class="table-col">生态厅</span>
                                         </div>
                                     </div>
                                 </div>
@@ -601,21 +593,6 @@ window.CockpitPage = class CockpitPage {
                                                     <span>药品经营许可证</span>
                                                     <span>市场监督管理局</span>
                                                     <span>534</span>
-                                                </div>
-                                                <div class="matters-list-row">
-                                                    <span>特种设备作业</span>
-                                                    <span>市场监督管理局</span>
-                                                    <span>423</span>
-                                                </div>
-                                                <div class="matters-list-row">
-                                                    <span>排污许可证</span>
-                                                    <span>生态环境局</span>
-                                                    <span>367</span>
-                                                </div>
-                                                <div class="matters-list-row">
-                                                    <span>其他事项</span>
-                                                    <span>其他部门</span>
-                                                    <span>1,594</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -766,10 +743,67 @@ window.CockpitPage = class CockpitPage {
                         </div>
 
                         <div id="tab-behavior" class="cockpit-tab-pane" style="display: none">
-                            <!-- 上排：处罚办案分析（左）+ 地图（中）+ 投诉举报分析（右） -->
+                            <!-- 上排：行政许可办件分析 + 行政检查办件分析（左）+ 地图（中）+ 处罚办案分析（右） -->
                             <div class="cockpit-row">
+                                <div class="card-section behavior-section behavior-bottom-row">
+                                    <div class="card-section behavior-section behavior-license">
+                                        <div class="card-title">审批行为</div>
+                                        <div class="behavior-list-container">
+                                            <div class="behavior-list-item cp-clickable" data-cp-modal="37">
+                                                <span class="list-item-label">超期办结</span>
+                                                <span class="list-item-value">23</span>
+                                            </div>
+                                            <div class="behavior-list-item cp-clickable" data-cp-modal="38">
+                                                <span class="list-item-label">告知承诺核查超期</span>
+                                                <span class="list-item-value">15</span>
+                                            </div>
+                                            <div class="behavior-list-item cp-clickable" data-cp-modal="41">
+                                                <span class="list-item-label">承诺即入制核查超期</span>
+                                                <span class="list-item-value">8</span>
+                                            </div>
+                                        </div>
+                                        <div class="behavior-chart-item">
+                                            <div class="chart-mini-title">审批超期分类对比</div>
+                                            <div id="behavior-bar-license" class="behavior-bar-chart"></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-section behavior-section behavior-inspection">
+                                        <div class="card-title">检查行为</div>
+                                        <div class="behavior-list-container">
+                                            <div class="behavior-list-item cp-clickable" data-cp-modal="39">
+                                                <span class="list-item-label">重复检查</span>
+                                                <span class="list-item-value">35</span>
+                                            </div>
+                                            <div class="behavior-list-item cp-clickable" data-cp-modal="40">
+                                                <span class="list-item-label">未响应联合检查任务</span>
+                                                <span class="list-item-value">18</span>
+                                            </div>
+                                            <div class="behavior-list-item cp-clickable" data-cp-modal="43">
+                                                <span class="list-item-label">重点领域检查缺位</span>
+                                                <span class="list-item-value">7</span>
+                                            </div>
+                                        </div>
+                                        <div class="behavior-chart-item">
+                                            <div class="chart-mini-title">检查行为三大问题对比</div>
+                                            <div id="behavior-bar-inspection" class="behavior-bar-chart"></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-section behavior-section behavior-center">
+                                    <div class="card-title">地图</div>
+                                    <div class="map-container" style="position:relative;height:100%">
+                                        <div class="map-tab-overlay">
+                                            <button class="map-tab-btn active">省直</button>
+                                            <button class="map-tab-btn">市县</button>
+                                        </div>
+                                        <img src="地图.png" class="map-image" alt="海南地图">
+                                    </div>
+                                </div>
+
                                 <div class="card-section behavior-section behavior-penalty">
-                                    <div class="card-title">处罚办案分析</div>
+                                    <div class="card-title">处罚行为</div>
                                     <div class="behavior-charts-grid-vertical">
                                         <div class="behavior-chart-item">
                                             <div class="chart-mini-title">处罚办案超期</div>
@@ -786,82 +820,6 @@ window.CockpitPage = class CockpitPage {
                                         <div class="behavior-chart-item">
                                             <div class="chart-mini-title">超出裁量标准</div>
                                             <div id="behavior-bar4" class="behavior-bar-chart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-section behavior-section behavior-center">
-                                    <div class="card-title">地图</div>
-                                    <div class="map-container" style="position:relative;height:100%">
-                                        <div class="map-tab-overlay">
-                                            <button class="map-tab-btn active">省直</button>
-                                            <button class="map-tab-btn">市县</button>
-                                        </div>
-                                        <img src="地图.png" class="map-image" alt="海南地图">
-                                    </div>
-                                </div>
-
-                                <div class="card-section behavior-section behavior-complaint">
-                                    <div class="card-title">投诉举报问题分析</div>
-                                    <div class="behavior-charts-grid-vertical">
-                                        <div class="behavior-chart-item">
-                                            <div class="chart-mini-title">反复移交数量</div>
-                                            <div id="behavior-bar5" class="behavior-bar-chart"></div>
-                                        </div>
-                                        <div class="behavior-chart-item">
-                                            <div class="chart-mini-title">重复投诉数量</div>
-                                            <div id="behavior-bar6" class="behavior-bar-chart"></div>
-                                        </div>
-                                        <div class="behavior-chart-item">
-                                            <div class="chart-mini-title">处置超期数量</div>
-                                            <div id="behavior-bar7" class="behavior-bar-chart"></div>
-                                        </div>
-                                        <div class="behavior-chart-item">
-                                            <div class="chart-mini-title">投诉集中数量</div>
-                                            <div id="behavior-bar8" class="behavior-bar-chart"></div>
-                                        </div>
-                                        <div class="behavior-chart-item">
-                                            <div class="chart-mini-title">群众满意度</div>
-                                            <div id="behavior-bar9" class="behavior-bar-chart"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- 下排：行政许可办件分析（左）+ 行政检查案件分析（右），宽度相加=地图宽度 -->
-                            <div class="cockpit-row behavior-bottom-row">
-                                <div class="card-section behavior-section behavior-license">
-                                    <div class="card-title">行政许可办件分析</div>
-                                    <div class="behavior-list-container">
-                                        <div class="behavior-list-item cp-clickable" data-cp-modal="37">
-                                            <span class="list-item-label">超期办结</span>
-                                            <span class="list-item-value">23</span>
-                                        </div>
-                                        <div class="behavior-list-item cp-clickable" data-cp-modal="38">
-                                            <span class="list-item-label">告知承诺核查超期</span>
-                                            <span class="list-item-value">15</span>
-                                        </div>
-                                        <div class="behavior-list-item cp-clickable" data-cp-modal="41">
-                                            <span class="list-item-label">承诺即入制核查超期</span>
-                                            <span class="list-item-value">8</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="card-section behavior-section behavior-inspection">
-                                    <div class="card-title">行政检查案件分析</div>
-                                    <div class="behavior-list-container">
-                                        <div class="behavior-list-item cp-clickable" data-cp-modal="39">
-                                            <span class="list-item-label">重复检查</span>
-                                            <span class="list-item-value">35</span>
-                                        </div>
-                                        <div class="behavior-list-item cp-clickable" data-cp-modal="40">
-                                            <span class="list-item-label">未响应联合检查任务</span>
-                                            <span class="list-item-value">18</span>
-                                        </div>
-                                        <div class="behavior-list-item cp-clickable" data-cp-modal="43">
-                                            <span class="list-item-label">重点领域检查缺位</span>
-                                            <span class="list-item-value">7</span>
                                         </div>
                                     </div>
                                 </div>
@@ -1456,6 +1414,62 @@ window.CockpitPage = class CockpitPage {
             { name: '儋州', value: 88 },
             { name: '其他', value: 90 }
         ], '#6bcbff');
+
+        const initBarChart = (id, data, colors) => {
+            const chart = echarts.init(document.getElementById(id));
+            const option = {
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                grid: { left: '5%', right: '5%', top: '15%', bottom: '25%', containLabel: true },
+                xAxis: {
+                    type: 'category',
+                    data: data.map(d => d.name),
+                    axisLine: { lineStyle: { color: 'rgba(0, 212, 255, 0.3)' } },
+                    axisLabel: { color: '#fff', fontSize: 9 },
+                    axisTick: { show: false }
+                },
+                yAxis: {
+                    type: 'value',
+                    axisLine: { lineStyle: { color: 'rgba(0, 212, 255, 0.3)' } },
+                    axisLabel: { color: '#fff', fontSize: 10 },
+                    splitLine: { lineStyle: { color: 'rgba(0, 212, 255, 0.1)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    barWidth: '60%',
+                    data: data.map((d, i) => ({
+                        value: d.value,
+                        name: d.name,
+                        itemStyle: {
+                            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                                { offset: 0, color: colors[i] },
+                                { offset: 1, color: colors[i] + '66' }
+                            ]),
+                            borderRadius: [4, 4, 0, 0]
+                        }
+                    })),
+                    label: {
+                        show: true,
+                        position: 'top',
+                        color: '#fff',
+                        fontSize: 11,
+                        formatter: '{c}'
+                    }
+                }]
+            };
+            chart.setOption(option);
+        };
+
+        initBarChart('behavior-bar-license', [
+            { name: '超期办结', value: 23 },
+            { name: '告知承诺', value: 15 },
+            { name: '承诺入制', value: 8 }
+        ], ['#ff9f43', '#ee5a24', '#c0392b']);
+
+        initBarChart('behavior-bar-inspection', [
+            { name: '重复检查', value: 35 },
+            { name: '未响应联合', value: 18 },
+            { name: '重点缺位', value: 7 }
+        ], ['#ff6b6b', '#ee5253', '#c44569']);
     }
 
     switchTab(tab) {
@@ -1515,10 +1529,10 @@ window.CockpitPage = class CockpitPage {
                 },
                 series: [{
                     type: 'funnel',
-                    left: '10%',
+                    left: '5%',
                     top: 10,
                     bottom: 10,
-                    width: '80%',
+                    width: '90%',
                     min: 0,
                     max: 40,
                     gap: 2,
@@ -1560,7 +1574,7 @@ window.CockpitPage = class CockpitPage {
                 },
                 series: [{
                     type: 'pie',
-                    radius: ['35%', '65%'],
+                    radius: ['30%', '70%'],
                     center: ['50%', '50%'],
                     avoidLabelOverlap: false,
                     label: {
@@ -1600,7 +1614,7 @@ window.CockpitPage = class CockpitPage {
                 },
                 series: [{
                     type: 'pie',
-                    radius: ['35%', '65%'],
+                    radius: ['30%', '70%'],
                     center: ['50%', '50%'],
                     avoidLabelOverlap: false,
                     label: {
@@ -1637,7 +1651,7 @@ window.CockpitPage = class CockpitPage {
                 },
                 series: [{
                     type: 'pie',
-                    radius: ['35%', '65%'],
+                    radius: ['30%', '70%'],
                     center: ['50%', '50%'],
                     avoidLabelOverlap: false,
                     label: {
