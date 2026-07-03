@@ -42,12 +42,12 @@ window.ApprovalPage = class ApprovalPage {
                             <div class="stat-card-horizontal cp-clickable" data-indicator="business_volume_analysis">
                                 <div class="stat-item-row">
                                     <span class="stat-label">受理量</span>
-                                    <span class="stat-value">99</span>
+                                    <span class="stat-value">9856</span>
                                 </div>
                                 <div class="stat-divider"></div>
                                 <div class="stat-item-row">
                                     <span class="stat-label">办结量</span>
-                                    <span class="stat-value">99</span>
+                                    <span class="stat-value">9756</span>
                                 </div>
                             </div>
                         </div>
