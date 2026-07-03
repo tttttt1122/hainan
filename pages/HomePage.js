@@ -1303,11 +1303,11 @@ window.HomePage = class HomePage {
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各环节平均耗时拆解</span>
+                        <span class="indicator-chart-title">各行业开办企业平均耗时</span>
                         <div id="modal-startup-bar" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">耗时占比分布</span>
+                        <span class="indicator-chart-title">各行业开办企业耗时占比</span>
                         <div id="modal-startup-pie" class="indicator-chart-container"></div>
                     </div>
                 </div>
@@ -1493,11 +1493,11 @@ window.HomePage = class HomePage {
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 6fr 4fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各审批环节平均用时</span>
+                        <span class="indicator-chart-title">各类型项目平均审批用时</span>
                         <div id="modal-approval-bar" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各环节用时占比</span>
+                        <span class="indicator-chart-title">各类型项目审批用时占比</span>
                         <div id="modal-approval-pie" class="indicator-chart-container"></div>
                     </div>
                 </div>
@@ -1587,11 +1587,11 @@ window.HomePage = class HomePage {
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">审批与落地阶段用时占比</span>
+                        <span class="indicator-chart-title">各类型项目落地用时占比</span>
                         <div id="modal-landing-donut" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">各项目落地用时排行TOP8</span>
+                        <span class="indicator-chart-title">各类型项目审批到落地用时排行</span>
                         <div id="modal-landing-bar" class="indicator-chart-container"></div>
                     </div>
                 </div>
@@ -3572,7 +3572,7 @@ window.HomePage = class HomePage {
         return items.map((item, index) => `
             <tr>
                 <td>${start + index + 1}</td>
-                <td>${item.clueNo}</td>
+                <td><span class="highlight-num" style="cursor: pointer; color: #00d4ff;" onclick="window.homePage.openClueDetailModal('${item.clueNo}', '${item.source}', '${item.transferDept}', '${item.receiveDept}', '${item.transferTime}', '${item.receiveStatus}', '${item.handleStatus}')">${item.clueNo}</span></td>
                 <td>${item.source}</td>
                 <td>${item.transferDept}</td>
                 <td>${item.receiveDept}</td>
@@ -3581,6 +3581,160 @@ window.HomePage = class HomePage {
                 <td>${item.handleStatus}</td>
             </tr>
         `).join('');
+    }
+
+    openClueDetailModal(clueNo, source, transferDept, receiveDept, transferTime, receiveStatus, handleStatus) {
+        const overlay = document.createElement('div');
+        overlay.className = 'indicator-modal-overlay';
+        overlay.innerHTML = this.renderClueDetailModal(clueNo, source, transferDept, receiveDept, transferTime, receiveStatus, handleStatus);
+        document.body.appendChild(overlay);
+        
+        overlay.querySelector('.clue-detail-close').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
+    }
+
+    renderClueDetailModal(clueNo, source, transferDept, receiveDept, transferTime, receiveStatus, handleStatus) {
+        return `
+            <div class="clue-detail-modal">
+                <div class="clue-detail-header">
+                    <span class="clue-detail-title">线索详情 - ${clueNo}</span>
+                    <button class="clue-detail-close">×</button>
+                </div>
+                <div class="clue-detail-content">
+                    <div class="clue-detail-section">
+                        <div class="clue-detail-section-title">基本信息</div>
+                        <div class="clue-detail-grid">
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">线索编号</span>
+                                <span class="clue-detail-value">${clueNo}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">线索来源</span>
+                                <span class="clue-detail-value">${source}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">移送部门</span>
+                                <span class="clue-detail-value">${transferDept}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">接收部门</span>
+                                <span class="clue-detail-value">${receiveDept}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">移送时间</span>
+                                <span class="clue-detail-value">${transferTime}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">接收状态</span>
+                                <span class="clue-detail-value">${receiveStatus}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">办理状态</span>
+                                <span class="clue-detail-value">${handleStatus}</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">线索类型</span>
+                                <span class="clue-detail-value">一般线索</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="clue-detail-section">
+                        <div class="clue-detail-section-title">线索描述</div>
+                        <div class="clue-detail-item" style="grid-column: span 2;">
+                            <span class="clue-detail-value" style="line-height: 1.6;">经检查发现，该企业存在违规经营行为，具体表现为：未按规定公示年度报告、未落实从业人员健康管理制度、经营场所卫生条件不达标。线索已于${transferTime}由${transferDept}移送至${receiveDept}处理。</span>
+                        </div>
+                    </div>
+                    
+                    <div class="clue-detail-section">
+                        <div class="clue-detail-section-title">当事人信息</div>
+                        <div class="clue-detail-grid">
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">当事人名称</span>
+                                <span class="clue-detail-value">海南信信贸易有限公司</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">统一社会信用代码</span>
+                                <span class="clue-detail-value">91460000MA5TG635K</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">法定代表人</span>
+                                <span class="clue-detail-value">王建国</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">联系电话</span>
+                                <span class="clue-detail-value">13800000000</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">地址</span>
+                                <span class="clue-detail-value">海南省海口市龙华区XX街道XX号</span>
+                            </div>
+                            <div class="clue-detail-item">
+                                <span class="clue-detail-label">行业类别</span>
+                                <span class="clue-detail-value">批发和零售业</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="clue-detail-section">
+                        <div class="clue-detail-section-title">移送材料清单</div>
+                        <div class="clue-detail-item" style="grid-column: span 2;">
+                            <div style="display: flex; flex-direction: column; gap: 6px;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(0, 212, 255, 0.05);">
+                                    <span style="color: rgba(255,255,255,0.8); font-size: 13px;">现场检查笔录</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(0, 212, 255, 0.05);">
+                                    <span style="color: rgba(255,255,255,0.8); font-size: 13px;">证据照片</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0; border-bottom: 1px solid rgba(0, 212, 255, 0.05);">
+                                    <span style="color: rgba(255,255,255,0.8); font-size: 13px;">线索移送审批表</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                                <div style="display: flex; justify-content: space-between; align-items: center; padding: 4px 0;">
+                                    <span style="color: rgba(255,255,255,0.8); font-size: 13px;">相关法律依据</span>
+                                    <button class="license-view-btn">查看</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="clue-detail-section">
+                        <div class="clue-detail-section-title">办理进度</div>
+                        <div class="warning-detail-timeline">
+                            <div class="warning-timeline-item green">
+                                <div class="warning-timeline-title">线索登记</div>
+                                <div class="warning-timeline-time">${transferTime} 09:00</div>
+                                <div class="warning-timeline-content">线索已登记并录入系统</div>
+                            </div>
+                            <div class="warning-timeline-item blue">
+                                <div class="warning-timeline-title">移送审批</div>
+                                <div class="warning-timeline-time">${transferTime} 10:30</div>
+                                <div class="warning-timeline-content">移送申请已通过审批</div>
+                            </div>
+                            <div class="warning-timeline-item orange">
+                                <div class="warning-timeline-title">接收确认</div>
+                                <div class="warning-timeline-time">${transferTime} 14:00</div>
+                                <div class="warning-timeline-content">${receiveDept}已确认接收线索</div>
+                            </div>
+                            <div class="warning-timeline-item red">
+                                <div class="warning-timeline-title">立案调查</div>
+                                <div class="warning-timeline-time">${transferTime} 15:00</div>
+                                <div class="warning-timeline-content">已立案，正在调查中</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
     }
 
     // 弹窗六：行政处罚办件流转分析
@@ -5134,9 +5288,9 @@ window.HomePage = class HomePage {
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'axis', formatter: '{b}: {c}小时' },
             grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
-            xAxis: { type: 'category', data: ['名称核准', '材料提交', '审批审核', '刻章备案', '税务登记', '银行开户'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            xAxis: { type: 'category', data: ['批发零售', '餐饮住宿', '科技服务', '物流运输', '医疗健康', '文化旅游'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
             yAxis: { type: 'value', axisLabel: { formatter: '{value}h' } },
-            series: [{ type: 'bar', data: [0.8, 1.5, 2.5, 0.7, 0.8, 0.7], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+            series: [{ type: 'bar', data: [6.5, 8.2, 5.8, 9.5, 12.0, 7.0], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
         });
 
         const pie = echarts.init(document.getElementById('modal-startup-pie'));
@@ -5149,12 +5303,12 @@ window.HomePage = class HomePage {
                 center: ['50%', '50%'],
                 label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
                 data: [
-                    { value: 0.8, name: '名称核准', itemStyle: { color: '#34c759' } },
-                    { value: 1.5, name: '材料提交', itemStyle: { color: '#007aff' } },
-                    { value: 2.5, name: '审批审核', itemStyle: { color: '#00d4ff' } },
-                    { value: 0.7, name: '刻章备案', itemStyle: { color: '#ffcc00' } },
-                    { value: 0.8, name: '税务登记', itemStyle: { color: '#ff9500' } },
-                    { value: 0.7, name: '银行开户', itemStyle: { color: '#af52de' } }
+                    { value: 6.5, name: '批发零售', itemStyle: { color: '#34c759' } },
+                    { value: 8.2, name: '餐饮住宿', itemStyle: { color: '#007aff' } },
+                    { value: 5.8, name: '科技服务', itemStyle: { color: '#00d4ff' } },
+                    { value: 9.5, name: '物流运输', itemStyle: { color: '#ffcc00' } },
+                    { value: 12.0, name: '医疗健康', itemStyle: { color: '#ff9500' } },
+                    { value: 7.0, name: '文化旅游', itemStyle: { color: '#af52de' } }
                 ]
             }]
         });
@@ -5194,9 +5348,9 @@ window.HomePage = class HomePage {
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'axis', formatter: '{b}: {c}小时' },
             grid: { left: '8%', right: '8%', bottom: '15%', top: '10%', containLabel: true },
-            xAxis: { type: 'category', data: ['立项审批', '用地规划', '工程规划', '施工许可', '竣工验收'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
+            xAxis: { type: 'category', data: ['政府投资项目', '企业投资项目', '科技创新项目', '基础设施项目', '生态环保项目'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
             yAxis: { type: 'value', axisLabel: { formatter: '{value}h' } },
-            series: [{ type: 'bar', data: [1.5, 1.8, 1.7, 2.0, 1.5], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+            series: [{ type: 'bar', data: [8.5, 6.2, 4.8, 9.5, 7.2], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
         });
 
         const pie = echarts.init(document.getElementById('modal-approval-pie'));
@@ -5209,11 +5363,11 @@ window.HomePage = class HomePage {
                 center: ['50%', '50%'],
                 label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
                 data: [
-                    { value: 1.5, name: '立项审批', itemStyle: { color: '#34c759' } },
-                    { value: 1.8, name: '用地规划', itemStyle: { color: '#007aff' } },
-                    { value: 1.7, name: '工程规划', itemStyle: { color: '#00d4ff' } },
-                    { value: 2.0, name: '施工许可', itemStyle: { color: '#ffcc00' } },
-                    { value: 1.5, name: '竣工验收', itemStyle: { color: '#ff9500' } }
+                    { value: 8.5, name: '政府投资项目', itemStyle: { color: '#34c759' } },
+                    { value: 6.2, name: '企业投资项目', itemStyle: { color: '#007aff' } },
+                    { value: 4.8, name: '科技创新项目', itemStyle: { color: '#00d4ff' } },
+                    { value: 9.5, name: '基础设施项目', itemStyle: { color: '#ffcc00' } },
+                    { value: 7.2, name: '生态环保项目', itemStyle: { color: '#ff9500' } }
                 ]
             }]
         });
@@ -5652,33 +5806,26 @@ window.HomePage = class HomePage {
                 type: 'pie',
                 radius: ['50%', '75%'],
                 center: ['50%', '50%'],
-                label: { show: false },
-                labelLine: { show: false },
+                label: { show: true, formatter: '{b}\n{d}%', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
+                labelLine: { show: true },
                 data: [
-                    { value: 5, name: '审批阶段', itemStyle: { color: '#007aff' } },
-                    { value: 2, name: '落地阶段', itemStyle: { color: '#00d4ff' } }
+                    { value: 11.5, name: '政府投资项目', itemStyle: { color: '#34c759' } },
+                    { value: 8.2, name: '企业投资项目', itemStyle: { color: '#007aff' } },
+                    { value: 6.5, name: '科技创新项目', itemStyle: { color: '#00d4ff' } },
+                    { value: 12.8, name: '基础设施项目', itemStyle: { color: '#ffcc00' } },
+                    { value: 9.5, name: '生态环保项目', itemStyle: { color: '#ff9500' } }
                 ]
             }]
         });
-        setTimeout(() => {
-            donut.setOption({
-                graphic: [{
-                    type: 'text',
-                    left: 'center',
-                    top: 'center',
-                    style: { text: '7h', fontSize: 36, fontWeight: 'bold', fill: '#00d4ff' }
-                }]
-            });
-        }, 100);
 
         const bar = echarts.init(document.getElementById('modal-landing-bar'));
         bar.setOption({
             textStyle: { color: 'rgba(255,255,255,0.6)' },
             tooltip: { trigger: 'axis', formatter: '{b}: {c}小时' },
-            grid: { left: '8%', right: '8%', bottom: '20%', top: '10%', containLabel: true },
-            xAxis: { type: 'category', data: ['基建项目A', '产业园B', '旅游项目C', '科技项目D', '环保项目E', '城市更新F', '农业项目G', '物流项目H'], axisLabel: { fontSize: 11, interval: 0, rotate: 45 } },
+            grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
+            xAxis: { type: 'category', data: ['政府投资项目', '企业投资项目', '科技创新项目', '基础设施项目', '生态环保项目', '文化旅游项目', '产业园区项目', '城市更新项目'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
             yAxis: { type: 'value', axisLabel: { formatter: '{value}h' } },
-            series: [{ type: 'bar', data: [5.5, 6.2, 6.8, 7.0, 7.5, 8.0, 8.5, 9.2], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
+            series: [{ type: 'bar', data: [11.5, 8.2, 6.5, 12.8, 9.5, 7.8, 8.5, 10.2], itemStyle: { color: '#00d4ff', borderRadius: [4, 4, 0, 0] }, label: { show: true, position: 'top', formatter: '{c}h', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 } }]
         });
     }
 
