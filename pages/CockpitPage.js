@@ -332,11 +332,11 @@ window.CockpitPage = class CockpitPage {
                                                             <div class="matters-promise-children cp-clickable" data-cp-modal="19">
                                                                 <div class="matters-promise-child">
                                                                     <span class="child-label">告知承诺制</span>
-                                                                    <span class="child-value">9</span>
+                                                                    <span class="child-value">25</span>
                                                                 </div>
                                                                 <div class="matters-promise-child">
                                                                     <span class="child-label">承诺即入制</span>
-                                                                    <span class="child-value">9</span>
+                                                                    <span class="child-value">25</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -687,23 +687,23 @@ window.CockpitPage = class CockpitPage {
                                         <div class="stat-divider"></div>
                                         <div class="stat-item-row cp-clickable" data-cp-modal="31">
                                             <span class="stat-label">证件数</span>
-                                            <span class="stat-value">99</span>
+                                            <span class="stat-value">2198</span>
                                         </div>
                                     </div>
                                     <div class="stat-card-horizontal cp-clickable" data-cp-modal="32">
                                         <div class="stat-item-row">
                                             <span class="stat-label">新申请（人）</span>
-                                            <span class="stat-value">999</span>
+                                            <span class="stat-value">356</span>
                                         </div>
                                         <div class="stat-divider"></div>
                                         <div class="stat-item-row">
                                             <span class="stat-label">换证（人）</span>
-                                            <span class="stat-value">999</span>
+                                            <span class="stat-value">234</span>
                                         </div>
                                         <div class="stat-divider"></div>
                                         <div class="stat-item-row">
                                             <span class="stat-label">注销（人）</span>
-                                            <span class="stat-value">999</span>
+                                            <span class="stat-value">89</span>
                                         </div>
                                     </div>
                                     <div class="personnel-card-blue">
@@ -734,12 +734,12 @@ window.CockpitPage = class CockpitPage {
                                         <div class="stat-card-horizontal">
                                             <div class="stat-item-row cp-clickable" data-cp-modal="35">
                                                 <span class="stat-label">行政执法人员</span>
-                                                <span class="stat-value">99</span>
+                                                <span class="stat-value">1876</span>
                                             </div>
                                             <div class="stat-divider"></div>
                                             <div class="stat-item-row cp-clickable" data-cp-modal="36">
                                                 <span class="stat-label">辅助执法人员</span>
-                                                <span class="stat-value">99</span>
+                                                <span class="stat-value">234</span>
                                             </div>
                                         </div>
                                     </div>
