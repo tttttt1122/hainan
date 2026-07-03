@@ -1937,6 +1937,10 @@
     display: flex;
 }
 
+#tab-matters.cockpit-tab-pane.active {
+    display: grid !important;
+}
+
 .cockpit-tab-nav {
     display: flex;
     justify-content: center;
@@ -1998,9 +2002,15 @@
     display: contents;
 }
 
-#tab-behavior .behavior-penalty {
+#tab-behavior .behavior-bottom-row {
     grid-column: 1;
-    grid-row: 1 / 3;
+    grid-row: 1;
+    display: flex;
+    gap: 8px;
+}
+
+.behavior-bottom-row .behavior-section {
+    flex: 1;
 }
 
 #tab-behavior .behavior-center {
@@ -2008,21 +2018,9 @@
     grid-row: 1;
 }
 
-#tab-behavior .behavior-complaint {
+#tab-behavior .behavior-penalty {
     grid-column: 3;
-    grid-row: 1 / 3;
-}
-
-/* 下排整体放在第二行中间列 */
-#tab-behavior .behavior-bottom-row {
-    display: flex;
-    gap: 8px;
-    grid-column: 2;
-    grid-row: 2;
-}
-
-.behavior-bottom-row .behavior-section {
-    flex: 1;
+    grid-row: 1;
 }
 
 /* 主页tab特殊布局：三列布局 */
@@ -2063,6 +2061,104 @@
     height: auto;
     display: block;
     object-fit: contain;
+}
+
+#tab-matters {
+    display: none;
+}
+
+#tab-matters.active {
+    display: grid;
+    grid-template-columns: 30% 1fr 30%;
+    grid-template-rows: auto auto;
+    gap: 6px;
+    overflow: hidden;
+    min-height: 0;
+}
+
+#tab-matters.active > .cockpit-row:first-of-type {
+    display: contents;
+}
+
+#tab-matters.active .matters-left {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    height: 100%;
+}
+
+#tab-matters.active .matters-center {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    height: 100%;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px;
+}
+
+#tab-matters.active .matters-center .matters-center-top {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+#tab-matters.active .matters-center .matters-center-top .correlation-image-wrap {
+    flex: 0 0 auto;
+}
+
+#tab-matters.active .matters-center .matters-center-top .correlation-img {
+    width: 100%;
+    height: auto;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+#tab-matters.active .matters-center .matters-center-top .correlation-map {
+    flex: 1;
+    min-height: 0;
+    position: relative;
+}
+
+#tab-matters.active .matters-center .matters-center-top .correlation-map .map-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#tab-matters.active .matters-center .matters-center-bottom {
+    flex: 0 0 auto;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+#tab-matters.active .matters-right-top {
+    grid-column: 3;
+    grid-row: 1;
+    height: 100%;
+}
+
+#tab-matters.active .matters-right-bottom {
+    grid-column: 3;
+    grid-row: 2;
+    height: 100%;
+}
+
+#tab-matters.active .matters-section {
+    display: block !important;
+    overflow: hidden;
+    flex-direction: row !important;
+}
+
+#tab-matters.active .matters-section .matters-content {
+    height: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+#tab-matters.active .matters-left {
+    display: flex !important;
+    flex-direction: column !important;
+    overflow-x: hidden;
 }
 
 .behavior-situation-grid {
@@ -2179,16 +2275,16 @@
 }
 
 .behavior-warning-grid-taller .behavior-warning-item {
-    min-height: 28px;
-    padding: 6px 10px;
+    min-height: 40px;
+    padding: 12px 14px;
 }
 
 .behavior-warning-grid-taller .behavior-warning-label {
-    font-size: 13px;
+    font-size: 14px;
 }
 
 .behavior-warning-grid-taller .behavior-warning-value {
-    font-size: 14px;
+    font-size: 16px;
 }
 
 .cp-operation-form {
@@ -2311,18 +2407,19 @@
 }
 
 .matters-content {
-    padding: 10px;
+    padding: 6px;
 }
 
 .matters-content .stat-card-horizontal {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    padding: 8px 15px;
+    padding: 6px 8px;
     background: rgba(0, 212, 255, 0.05);
     border-radius: 6px;
     border: 1px solid rgba(0, 212, 255, 0.1);
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    box-sizing: border-box;
 }
 
 .matters-content .stat-card-horizontal:last-child {
@@ -2345,12 +2442,12 @@
 }
 
 .matters-content .stat-label {
-    font-size: 14px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
 }
 
 .matters-content .stat-value {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 700;
     color: #00d4ff;
 }
@@ -2362,7 +2459,7 @@
 }
 
 .matters-group {
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .matters-group:last-child {
@@ -2370,12 +2467,12 @@
 }
 
 .matters-group .group-title {
-    font-size: 14px;
+    font-size: 12px;
     font-weight: 600;
     color: #00d4ff;
-    margin-bottom: 6px;
-    padding-left: 8px;
-    border-left: 3px solid #00d4ff;
+    margin-bottom: 4px;
+    padding-left: 6px;
+    border-left: 2px solid #00d4ff;
 }
 
 .matters-summary {
@@ -2532,26 +2629,7 @@
     text-align: center;
 }
 
-.matters-left-top,
-.matters-left-bottom {
-    width: 30%;
-}
 
-.matters-center-top {
-    width: 40%;
-}
-
-.matters-right-top {
-    width: 30%;
-}
-
-.matters-center-bottom {
-    width: 45%;
-}
-
-.matters-right-bottom {
-    width: 30%;
-}
 
 .personnel-section {
     height: 100%;
@@ -2685,8 +2763,8 @@
 
 .matters-stat-row {
     display: flex;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 6px;
+    margin-bottom: 6px;
     justify-content: center;
 }
 
@@ -2696,31 +2774,31 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 12px 15px;
+    padding: 8px 10px;
     background: linear-gradient(135deg, rgba(0, 212, 255, 0.1) 0%, rgba(0, 212, 255, 0.05) 100%);
     border: 1px solid rgba(0, 212, 255, 0.3);
-    border-radius: 8px;
-    min-height: 70px;
+    border-radius: 6px;
+    min-height: 50px;
 }
 
 .matters-stat-label {
-    font-size: 14px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.7);
-    margin-bottom: 6px;
+    margin-bottom: 4px;
 }
 
 .matters-stat-value {
-    font-size: 26px;
+    font-size: 20px;
     font-weight: 700;
     color: #00d4ff;
     line-height: 1;
     display: flex;
     align-items: baseline;
-    gap: 4px;
+    gap: 3px;
 }
 
 .matters-stat-unit {
-    font-size: 13px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.5);
     font-weight: normal;
 }
@@ -2787,10 +2865,13 @@
 
 .matters-list-row {
     display: flex;
-    padding: 6px 10px;
-    font-size: 13px;
+    padding: 4px 6px;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.8);
     border-bottom: 1px solid rgba(0, 212, 255, 0.1);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .matters-list-row:last-child {
@@ -2834,26 +2915,26 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 6px 10px;
+    padding: 4px 6px;
     background: rgba(0, 212, 255, 0.08);
     border: 1px solid rgba(0, 212, 255, 0.2);
-    border-radius: 6px;
-    margin-bottom: 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
 }
 
 .matters-main-label {
-    font-size: 13px;
+    font-size: 11px;
     color: rgba(255, 255, 255, 0.8);
 }
 
 .matters-main-value {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: #00d4ff;
 }
 
 .matters-main-unit {
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 400;
     color: rgba(255, 255, 255, 0.6);
     margin-left: 4px;
@@ -2862,8 +2943,9 @@
 /* 事项页面图表容器 */
 .matters-chart-container {
     width: 100%;
-    height: 100px;
-    margin: 5px 0;
+    height: 60px;
+    margin: 3px 0;
+    min-width: 0;
 }
 
 /* 承诺件布局 */
@@ -2925,7 +3007,7 @@
 /* 左右排列的列表 */
 .matters-lists-row {
     display: flex;
-    gap: 12px;
+    gap: 6px;
 }
 
 .matters-list-half {
@@ -2935,7 +3017,7 @@
 
 .matters-chart-row {
     display: flex;
-    gap: 12px;
+    gap: 6px;
 }
 
 .matters-chart-half {
@@ -2943,9 +3025,8 @@
     min-width: 0;
 }
 
-/* 上排：处罚办案（左）+ 地图（中）+ 投诉举报（右） */
-.behavior-penalty,
-.behavior-complaint {
+/* 上排：行政许可办件分析 + 行政检查办件分析（左）+ 地图（中）+ 处罚办案分析（右） */
+.behavior-penalty {
     flex: 0 0 26%;
     min-width: 220px;
 }
@@ -2957,14 +3038,15 @@
     align-items: center;
 }
 
-/* 下排：行政许可办件分析 + 行政检查案件分析，宽度相加 = 地图宽度 */
 .behavior-bottom-row {
+    flex: 0 0 26%;
     justify-content: center;
+    min-width: 0;
 }
 
 .behavior-license,
 .behavior-inspection {
-    flex: 0 0 22%;
+    flex: 1;
     max-width: none;
     min-width: 0;
 }
@@ -3000,7 +3082,7 @@
 .behavior-list-container {
     flex: 1;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     justify-content: center;
     align-content: center;
     gap: 8px;
@@ -3044,7 +3126,7 @@
     background: rgba(0, 212, 255, 0.05);
     border-radius: 4px;
     border: 1px solid rgba(0, 212, 255, 0.15);
-    padding: 4px 6px;
+    padding: 4px;
     flex: 1;
 }
 
@@ -3052,13 +3134,13 @@
     font-size: 13px;
     color: rgba(255, 255, 255, 0.7);
     text-align: center;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
 }
 
 .behavior-bar-chart {
     flex: 1;
     width: 100%;
-    min-height: 50px;
+    min-height: 100px;
 }
 
 .cockpit-row:first-child .card-section {
