@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="components/ScreenFrame.css">
     <link rel="stylesheet" href="pages/styles.css">
-    <link rel="stylesheet" href="pages/styles.css">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/hainan.js"></script>
 </head>
@@ -25,7 +24,7 @@
     <script>
         const { HomePage, ApprovalPage, SupervisionPage, LawPage, CreditPage, CockpitPage } = window.ScreenPages;
 
-        const screen = new ScreenFrame('app', {
+        window.screenFrame = new ScreenFrame('app', {
             title: '"审管法信"一体联动机制',
             tabs: [
                 { id: 'home', label: '首页', component: HomePage },
