@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>审管法信一体联动机制</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="components/ScreenFrame.css">
+    <link rel="stylesheet" href="pages/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts/map/js/hainan.js"></script>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script src="components/ScreenFrame.js"></script>
+    <script src="pages/HomePage.js"></script>
+    <script src="pages/ApprovalPage.js"></script>
+    <script src="pages/SupervisionPage.js"></script>
+    <script src="pages/LawPage.js"></script>
+    <script src="pages/CreditPage.js"></script>
+    <script src="pages/CockpitPage.js"></script>
+    <script src="pages/index.js"></script>
+    <script>
+        const { HomePage, ApprovalPage, SupervisionPage, LawPage, CreditPage, CockpitPage } = window.ScreenPages;
+
+        window.screenFrame = new ScreenFrame('app', {
+            title: '"审管法信"一体联动机制',
+            tabs: [
+                { id: 'home', label: '首页', component: HomePage },
+                { id: 'approval', label: '审批', component: ApprovalPage },
+                { id: 'supervision', label: '监管', component: SupervisionPage },
+                { id: 'law', label: '执法', component: LawPage },
+                { id: 'credit', label: '信用', component: CreditPage },
+                { id: 'cockpit', label: '监督处置', component: CockpitPage }
+            ],
+            defaultTab: 'home'
+        });
+    </script>
+</body>
+</html>
