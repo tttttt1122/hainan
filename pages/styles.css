@@ -4075,9 +4075,15 @@
 }
 
 .today-approval-label {
-    font-size: 13px !important;
+    font-size: 15px !important;
     color: rgba(255, 255, 255, 0.6);
     text-align: center;
+}
+
+.today-approval-value-row {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
 }
 
 .today-approval-value {
@@ -4090,7 +4096,6 @@
 .today-approval-change {
     font-size: 13px !important;
     font-weight: 600;
-    margin-top: 2px;
 }
 
 .home-law-section {
