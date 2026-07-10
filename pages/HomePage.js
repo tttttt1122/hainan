@@ -16,12 +16,12 @@ window.HomePage = class HomePage {
                         <div class="card-section home-approval-section">
                             <div class="card-title-row">
                                 <div class="card-title" onclick="window.screenFrame.switchTab('approval')">审批</div>
-                                <div class="card-title-right" onclick="window.screenFrame.switchTab('approval')">事项总数 <span class="card-title-value">2,456项</span><span class="card-title-trend down">↓ 5.2%</span></div>
+                                <div class="card-title-right" onclick="window.screenFrame.switchTab('approval')">办件总数 <span class="card-title-value">9,456项</span><span class="card-title-trend down">↓ 5.2%</span></div>
                             </div>
                             <div class="home-approval-content">
                                 <div class="home-approval-tabs-col">
                                     <div class="home-approval-tab active" onclick="window.homePage.switchApprovalTab('case')">
-                                        <span class="home-approval-tab-num">1,180</span>
+                                        
                                         办件情况
                                     </div>
                                     <div class="home-approval-tab" onclick="window.homePage.switchApprovalTab('reduction')">
@@ -107,30 +107,40 @@ window.HomePage = class HomePage {
                         <div class="card-section today-approval-section">
                             <div class="today-approval-row">
                                 <div class="today-approval-item" onclick="window.homePage.openModal('avg_process_time')" style="cursor: pointer;">
-                                    <span class="today-approval-label">平均审批办件时长</span>
-                                    <span class="today-approval-value">1.5天</span>
-                                    <span class="today-approval-change" style="color:#34c759;">↓15%</span>
+                                    <span class="today-approval-label">审批办件平均提速</span>
+                                    <div class="today-approval-value-row">
+                                        <span class="today-approval-value">90%</span>
+                                        <span class="today-approval-change" style="color:#34c759;">↓15%</span>
+                                    </div>
                                 </div>
                             
                                 <div class="today-approval-item" onclick="window.homePage.openModal('project_approval_landing')" style="cursor: pointer;">
-                                    <span class="today-approval-label">项目从审批到落地平均时长</span>
-                                    <span class="today-approval-value">9.9天</span>
-                                    <span class="today-approval-change" style="color:#34c759;">↓12%</span>
+                                    <span class="today-approval-label">项目落地平均提速</span>
+                                    <div class="today-approval-value-row">
+                                        <span class="today-approval-value">90%</span>
+                                        <span class="today-approval-change" style="color:#34c759;">↓12%</span>
+                                    </div>
                                 </div>
                                 <div class="today-approval-item" onclick="window.homePage.openModal('admin_check_year_on_year')" style="cursor: pointer;">
-                                    <span class="today-approval-label">行政检查同比减少</span>
-                                    <span class="today-approval-value">8%</span>
-                                    <span class="today-approval-change" style="color:#34c759;">↓8%</span>
+                                    <span class="today-approval-label">干扰企业企次减少</span>
+                                    <div class="today-approval-value-row">
+                                        <span class="today-approval-value">90%</span>
+                                        <span class="today-approval-change" style="color:#34c759;">↓8%</span>
+                                    </div>
                                 </div>
                                 <div class="today-approval-item" onclick="window.homePage.openModal('first_offense_exemption')" style="cursor: pointer;">
-                                    <span class="today-approval-label">首违不罚/轻微免罚同比增加</span>
-                                    <span class="today-approval-value">12%</span>
-                                    <span class="today-approval-change" style="color:#ff3b30;">↑12%</span>
+                                    <span class="today-approval-label">柔性执法次数增加</span>
+                                    <div class="today-approval-value-row">
+                                        <span class="today-approval-value">12%</span>
+                                        <span class="today-approval-change" style="color:#ff3b30;">↑12%</span>
+                                    </div>
                                 </div>
                                 <div class="today-approval-item" onclick="window.homePage.openModal('transfer_supervision_net')" style="cursor: pointer;">
-                                    <span class="today-approval-label">移交监督一张网数</span>
-                                    <span class="today-approval-value">12</span>
-                                    <span class="today-approval-change" style="color:#ff3b30;">↑20%</span>
+                                    <span class="today-approval-label">移交监督一张网线索</span>
+                                    <div class="today-approval-value-row">
+                                        <span class="today-approval-value">12</span>
+                                        <span class="today-approval-change" style="color:#ff3b30;">↑20%</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -413,30 +423,35 @@ window.HomePage = class HomePage {
 
         window.supervisionMethodPie = echarts.init(document.getElementById('supervisionMethodPie'));
         window.supervisionMethodPie.setOption({
-            tooltip: { trigger: 'item' },
-            series: [{
-                type: 'pie',
-                radius: ['35%', '60%'],
-                center: ['50%', '50%'],
-                avoidLabelOverlap: true,
-                itemStyle: { borderRadius: 4, borderColor: '#0a1628', borderWidth: 2 },
-                label: { 
-                    show: true, 
-                    fontSize: 10, 
-                    color: '#fff',
-                    formatter: '{b}\n{c}'
-                },
-                emphasis: { label: { show: true, fontSize: 12, fontWeight: 'bold' } },
-                labelLine: { show: true, length: 6, length2: 3 },
-                data: [
-                    { value: 350, name: '双随机一公开', itemStyle: { color: '#ff9500' } },
-                    { value: 280, name: '综合查一次', itemStyle: { color: '#ff6b30' } },
-                    { value: 220, name: '有因检查', itemStyle: { color: '#ff8c00' } },
-                    { value: 180, name: '重点检查', itemStyle: { color: '#ffaa00' } },
-                    { value: 150, name: '专项检查', itemStyle: { color: '#ffbb50' } },
-                    { value: 80, name: '其他', itemStyle: { color: '#8b8b8b' } }
-                ]
-            }]
+            tooltip: { trigger: 'axis' },
+            legend: { 
+                data: ['双随机一公开', '综合查一次', '有因检查', '重点检查', '专项检查', '其他'],
+                textStyle: { color: 'rgba(255,255,255,0.7)', fontSize: 11 },
+                top: '2%',
+                itemWidth: 12,
+                itemHeight: 12
+            },
+            grid: { left: '8%', right: '4%', bottom: '8%', top: '20%', containLabel: true },
+            xAxis: { 
+                type: 'category', 
+                data: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
+                axisLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 10 },
+                axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } }
+            },
+            yAxis: { 
+                type: 'value', 
+                axisLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 10 },
+                axisLine: { lineStyle: { color: 'rgba(255,255,255,0.2)' } },
+                splitLine: { lineStyle: { color: 'rgba(255,255,255,0.1)' } }
+            },
+            series: [
+                { name: '双随机一公开', type: 'line', data: [28, 25, 32, 30, 35, 38, 35, 32, 30, 33, 36, 34], smooth: true, lineStyle: { color: '#ff9500', width: 2 }, itemStyle: { color: '#ff9500' }, symbolSize: 4 },
+                { name: '综合查一次', type: 'line', data: [22, 20, 25, 23, 28, 30, 27, 24, 22, 25, 28, 26], smooth: true, lineStyle: { color: '#ff6b30', width: 2 }, itemStyle: { color: '#ff6b30' }, symbolSize: 4 },
+                { name: '有因检查', type: 'line', data: [18, 16, 20, 18, 22, 24, 21, 19, 17, 20, 23, 21], smooth: true, lineStyle: { color: '#ff8c00', width: 2 }, itemStyle: { color: '#ff8c00' }, symbolSize: 4 },
+                { name: '重点检查', type: 'line', data: [14, 12, 16, 15, 18, 20, 17, 15, 13, 16, 19, 17], smooth: true, lineStyle: { color: '#ffaa00', width: 2 }, itemStyle: { color: '#ffaa00' }, symbolSize: 4 },
+                { name: '专项检查', type: 'line', data: [12, 10, 14, 13, 16, 18, 15, 13, 11, 14, 17, 15], smooth: true, lineStyle: { color: '#ffbb50', width: 2 }, itemStyle: { color: '#ffbb50' }, symbolSize: 4 },
+                { name: '其他', type: 'line', data: [6, 5, 7, 6, 8, 9, 7, 6, 5, 7, 8, 7], smooth: true, lineStyle: { color: '#8b8b8b', width: 2 }, itemStyle: { color: '#8b8b8b' }, symbolSize: 4 }
+            ]
         });
 
         window.supervisionTop10 = echarts.init(document.getElementById('supervisionTop10'));
