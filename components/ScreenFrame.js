@@ -35,7 +35,12 @@ window.ScreenFrame = class ScreenFrame {
             <div class="screen-frame">
                 <header class="screen-header">
                     <div class="screen-title-wrapper">
-                        <button class="intro-tab" onclick="window.screenFrame.showIntroModal()">简介</button>
+                        <div class="intro-tabs-container">
+                            <button class="intro-tab" onclick="window.screenFrame.showIntroModal()">简介</button>
+                            <button class="intro-tab" onclick="window.screenFrame.showBackgroundModal()">建设背景</button>
+                            <button class="intro-tab" onclick="window.screenFrame.showArchitectureModal()">架构图</button>
+                            <button class="intro-tab" onclick="window.screenFrame.showModelModal()">预警模型</button>
+                        </div>
                         <h1 class="screen-title glow-text">${this.options.title}</h1>
                         <div class="online-count">今日在线人数 <span class="online-num">99</span></div>
                     </div>
@@ -104,6 +109,99 @@ window.ScreenFrame = class ScreenFrame {
 
     showIntroModal() {
         this.openIntroModal();
+    }
+
+    showBackgroundModal() {
+        const overlay = document.createElement('div');
+        overlay.className = 'detail-modal-overlay';
+        overlay.innerHTML = `
+            <div class="detail-modal">
+                <div class="detail-modal-content">
+                    <div class="detail-modal-header">
+                        <span class="detail-modal-title">建设背景</span>
+                        <button class="detail-modal-close">×</button>
+                    </div>
+                    <div class="detail-modal-body-text">
+                        <p>"审管法信"闭环管理体系是我省在全国率先探索的审批、监管、执法、信用四位一体协同便利化改革，通过数字化技术打通审批、监管、执法以及信用各环节相关信息系统，赋能"审批-监管-执法-信用"政府各部门行政管理环节一体联动的总体概念，目标是打破部门壁垒、数据互通共享、全流程闭环管理，推动"条块式"管理向"一体化联动"转变，优化营商环境、支撑自贸港封关运作。</p>
+                        <p>海南省"互联网+监管"系统是我省"审管法信"闭环管理体系核心枢纽和规范涉企检查的信息化载体，也是我省"打好营商环境整体提升攻坚战"的主要信息化抓手。海南省"互联网+监管"系统在事前审批环节与海易办系统联通，加强审批办件的共享应用，推行审批结果驱动事中事后监管；事中监管环节，海南省"互联网+监管"系统与部门自建监管系统互联互通，数字赋能跨部门综合监管；事后执法环节，联动省综合行政执法平台，加强行业监管和综合行政执法在线协同衔接；信用环节，嵌入审批、监管、执法各工作流程，一方面实现相关数据自动推送信用平台，纳入信用评价范围；另一方面将信用评价结果加强在审批、监管、执法各环节的应用，积极探索"信用+"场景。</p>
+                        <p>海南省"互联网+监管"系统最后一期于2022年获批，未将2023年以来国办及省委省政府监管工作部署要求纳入建设内容，包括国办《关于严格规范涉企行政检查的意见》（国办发〔2024〕54号）、《关于深入推进跨部门综合监管的指导意见》（国办发〔2023〕1号）、《关于清理规范涉企行政检查的通知》（国办督函〔2024〕69号）以及2024年9月27日海南省第七届人大常委会通过的《海南自由贸易港极简审批条例》明确提出的"亮码检查"、"综合查一次"、极简审批、管法衔接等工作要求。在实际工作推进过程中，一线工作人员结合日常监管实践，普遍反映系统在部分功能方面尚存在提升空间。其中，围绕监管风险智能预警、监管任务实时提醒、检查计划协同撮合以及监管事项动态更新等方面的需求反馈较为集中和强烈。为进一步提升监管效能，优化工作流程，省"互联网+监管"系统的迭代升级工作已显得尤为迫切和必要。</p>
+                        <p>为贯彻落实《国务院办公厅关于严格规范涉企行政检查的意见》（国办发〔2024〕54号）、《海南省人民政府办公厅关于印发海南省政府数字化转型总体方案（2022—2025）的通知》（琼府办〔2022〕33号）等文件精神，明确"十四五"期间海南省政府数字化转型的目标、架构、任务和保障措施，海南省"互联网+监管"系统以原有的功能和模块为基础，融合海政通平台和海易办平台相关能力，在坚持"机制、平台、场景"三条主线基础上，进一步明确主攻方向，狠抓"四个一"，梳理整合一网监管已有公共服务支撑能力，优化提升一网监管支撑服务水平，强化事中事后监管，压实日常监管职责，积极构建"一枚印章管审批""一个系统管监管""一支队伍管执法"的橄榄型治理结构，有效解决以审代管、以罚代管、监管缺位等问题，实现避免重复检查、规范执法行为、提升执法效率、提高监管效能、减轻企业负担的目标。</p>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        this.bindModalClose(overlay);
+    }
+
+    showArchitectureModal() {
+        const overlay = document.createElement('div');
+        overlay.className = 'detail-modal-overlay';
+        overlay.innerHTML = `
+            <div class="detail-modal">
+                <div class="detail-modal-content">
+                    <div class="detail-modal-header">
+                        <span class="detail-modal-title">架构图</span>
+                        <button class="detail-modal-close">×</button>
+                    </div>
+                    <div class="detail-modal-body-image">
+                        <img src="架构图.png" alt="架构图" class="detail-modal-image">
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        this.bindModalClose(overlay);
+    }
+
+    showModelModal() {
+        const overlay = document.createElement('div');
+        overlay.className = 'detail-modal-overlay';
+        overlay.innerHTML = `
+            <div class="detail-modal">
+                <div class="detail-modal-content">
+                    <div class="detail-modal-header">
+                        <span class="detail-modal-title">预警模型</span>
+                        <button class="detail-modal-close">×</button>
+                    </div>
+                    <div class="detail-modal-body-rules">
+                        <div class="rule-box">
+                            <div class="rule-title">批后核查逾期未办预警规则：</div>
+                            <div class="rule-content">年度内，监测到某单位批后核查办件逾期累计达到3个，发出预警；预警后重新计算，再次监测到该单位批后核查办件逾期累计达到3个，发出预警。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">未亮码检查预警规则：</div>
+                            <div class="rule-content">监测到某单位无理由未亮码检查累计达到2次，发出预警；预警后重新计算，再次监测到该单位无理由未亮码检查，发出预警。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">频繁检查预警规则：</div>
+                            <div class="rule-content">监测到某市县出现辖区内同一企业在60个自然日内被检查2次的情况达到3次，发出预警；预警后重新计算，再次监测到该市县出现辖区内同一企业在60个自然日内被检查2次的情况，发出预警，有因检查不纳入监测范围。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">线下线索移送预警规则：</div>
+                            <div class="rule-content">年度内，监测到某单位线下移送涉嫌违法线索至综合行政执法部门达3次，发出预警，以综合行政执法部门将线下线索录入系统的时间为准；预警后重新计算，再次监测到该单位线下移送涉嫌违法线索，发出预警，预警后3日内，该单位线下推送给预警信息中相同综合行政执法部门的涉嫌违法线索不纳入计算范围。</div>
+                        </div>
+                        <div class="rule-box">
+                            <div class="rule-title">移送线索质量预警规则：</div>
+                            <div class="rule-content">年度内，监测到某单位线上移送的涉嫌违法线索被要求补充材料达5次，发出预警；预警后重新计算，再次监测到该单位线上移送的涉嫌违法线索被要求补充材料达5次，发出预警。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+        this.bindModalClose(overlay);
+    }
+
+    bindModalClose(overlay) {
+        overlay.querySelector('.detail-modal-close').addEventListener('click', () => {
+            document.body.removeChild(overlay);
+        });
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                document.body.removeChild(overlay);
+            }
+        });
     }
 
     openIntroModal() {
