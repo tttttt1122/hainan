@@ -96,7 +96,7 @@ window.LawPage = class LawPage {
                             <div class="stat-card-horizontal">
                                 <div class="stat-item" data-indicator="clue_all">
                                     <span class="stat-label">线索总数</span>
-                                    <span class="stat-value">30</span>
+                                    <span class="stat-value">128</span>
                                 </div>
                                 <div class="stat-divider"></div>
                                 <div class="stat-item" data-indicator="clue_pending">
@@ -106,7 +106,7 @@ window.LawPage = class LawPage {
                                 <div class="stat-divider"></div>
                                 <div class="stat-item" data-indicator="clue_done">
                                     <span class="stat-label">已办线索数</span>
-                                    <span class="stat-value">20</span>
+                                    <span class="stat-value">118</span>
                                 </div>
                             </div>
                         </div>
@@ -117,12 +117,12 @@ window.LawPage = class LawPage {
                                 <div class="stat-card-horizontal">
                                     <div class="stat-item" data-indicator="case_source">
                                         <span class="stat-label">案源数</span>
-                                        <span class="stat-value">30</span>
+                                        <span class="stat-value">100</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-indicator="case_filing">
                                         <span class="stat-label">立案数</span>
-                                        <span class="stat-value">22</span>
+                                        <span class="stat-value">90</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-indicator="case_penalty">
@@ -136,12 +136,12 @@ window.LawPage = class LawPage {
                                 <div class="stat-card-horizontal">
                                     <div class="stat-item" data-first-offense="true">
                                         <span class="stat-label">首违不罚数</span>
-                                        <span class="stat-value">123</span>
+                                        <span class="stat-value">20</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-minor-penalty="true">
                                         <span class="stat-label">轻微免罚数</span>
-                                        <span class="stat-value">89</span>
+                                        <span class="stat-value">80</span>
                                     </div>
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-case-rate="true">
@@ -151,7 +151,7 @@ window.LawPage = class LawPage {
                                     <div class="stat-divider"></div>
                                     <div class="stat-item" data-criminal-link="true">
                                         <span class="stat-label">涉刑案件数</span>
-                                        <span class="stat-value">85</span>
+                                        <span class="stat-value">18</span>
                                     </div>
                                 </div>
                             </div>
@@ -387,7 +387,7 @@ window.LawPage = class LawPage {
         const entityTypes = ['企业', '个体工商户', '其他组织'];
         const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市'];
         const depts = ['综合行政执法局', '市场监督管理局', '生态环境局', '交通运输局', '住建局'];
-        for (let i = 1; i <= 30; i++) {
+        for (let i = 1; i <= 128; i++) {
             const year = 2024 + Math.floor(Math.random() * 2);
             const month = Math.floor(Math.random() * 12) + 1;
             const day = Math.floor(Math.random() * 28) + 1;
@@ -398,7 +398,7 @@ window.LawPage = class LawPage {
                 partyCode: 'P' + String(i).padStart(4, '0'),
                 partyType: entityTypes[i % entityTypes.length],
                 registerTime: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-                status: i <= 20 ? '已办' : '待办',
+                status: i <= 118 ? '已办' : '待办',
                 clueType: types[i % types.length],
                 region: regions[i % regions.length],
                 dept: depts[i % depts.length]
@@ -413,7 +413,7 @@ window.LawPage = class LawPage {
         const entityTypes = ['企业', '个体工商户', '其他组织'];
         const regions = ['海口市', '三亚市', '儋州市', '文昌市', '琼海市', '万宁市'];
         const depts = ['综合行政执法局', '市场监督管理局', '生态环境局', '交通运输局', '住建局'];
-        for (let i = 1; i <= 30; i++) {
+        for (let i = 1; i <= 100; i++) {
             const year = 2024 + Math.floor(Math.random() * 2);
             const month = Math.floor(Math.random() * 12) + 1;
             const day = Math.floor(Math.random() * 28) + 1;
@@ -424,7 +424,7 @@ window.LawPage = class LawPage {
                 partyCode: 'P' + String(i).padStart(4, '0'),
                 partyType: entityTypes[i % entityTypes.length],
                 registerTime: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
-                status: i <= 19 ? '已办' : '待办',
+                status: i <= 90 ? '已办' : '待办',
                 sourceType: types[i % types.length],
                 region: regions[i % regions.length],
                 dept: depts[i % depts.length]
@@ -439,8 +439,8 @@ window.LawPage = class LawPage {
         const entityTypes = ['企业', '个体工商户', '其他组织'];
         const depts = ['综合行政执法局', '市场监督管理局', '生态环境局', '交通运输局', '住建局'];
         const noFileReasons = ['没有违法事实', '已过追诉时效', '没有明确当事人或当事人已死亡', '不属于综合行政执法范畴', '其他不予立案情形'];
-        for (let i = 1; i <= 30; i++) {
-            const isFiled = i <= 22;
+        for (let i = 1; i <= 100; i++) {
+            const isFiled = i <= 90;
             const year = 2024 + Math.floor(Math.random() * 2);
             const month = Math.floor(Math.random() * 12) + 1;
             const day = Math.floor(Math.random() * 28) + 1;
@@ -472,8 +472,8 @@ window.LawPage = class LawPage {
             '违法行为轻微并及时改正，没有造成危害后果',
             '初次违法且危害后果轻微并及时改正'
         ];
-        for (let i = 1; i <= 30; i++) {
-            const isPenalized = i <= 23;
+        for (let i = 1; i <= 100; i++) {
+            const isPenalized = i <= 22;
             const year = 2024 + Math.floor(Math.random() * 2);
             const month = Math.floor(Math.random() * 12) + 1;
             const day = Math.floor(Math.random() * 28) + 1;
@@ -1547,14 +1547,11 @@ window.LawPage = class LawPage {
             '《海南省市场监管领域轻微违法行为免罚清单》第8项'
         ];
         
-        for (let i = 1; i <= 123; i++) {
+        for (let i = 1; i <= 20; i++) {
             const rand = Math.random();
             let violationIdx = 0;
             let cumulative = 0;
-            for (let j = 0; j < violationWeights.length; j++) {
-                cumulative += violationWeights[j];
-                if (rand <= cumulative) { violationIdx = j; break; }
-            }
+            for (let j = 0; j < violationWeights.length; j++) { cumulative += violationWeights[j]; if (rand <= cumulative) { violationIdx = j; break; } }
             
             const monthNum = 2 + Math.floor(Math.random() * 6);
             const day = Math.floor(Math.random() * 28) + 1;
@@ -1973,9 +1970,9 @@ window.LawPage = class LawPage {
     }
 
     renderMinorPenaltyStats() {
-        const total = 89;
-        const completed = 62;
-        const pending = 27;
+        const total = 80;
+        const completed = 60;
+        const pending = 20;
         const amount = 156.2;
         return `
             <div class="mp-stats">
@@ -2063,13 +2060,13 @@ window.LawPage = class LawPage {
                 label: { show: false },
                 emphasis: { label: { show: true, fontSize: 16, fontWeight: 'bold' }, scaleSize: 8 },
                 data: [
-                    { value: 62, name: '已整改', itemStyle: { color: '#34c759' } },
-                    { value: 27, name: '整改中', itemStyle: { color: '#ff9500' } }
+                    { value: 60, name: '已整改', itemStyle: { color: '#34c759' } },
+                    { value: 20, name: '整改中', itemStyle: { color: '#ff9500' } }
                 ]
             }],
             graphic: [{
                 type: 'text', left: 'center', top: '38%',
-                style: { text: '69.7%', textAlign: 'center', fill: '#34c759', fontSize: 20, fontWeight: 'bold' }
+                style: { text: '75%', textAlign: 'center', fill: '#34c759', fontSize: 20, fontWeight: 'bold' }
             }, {
                 type: 'text', left: 'center', top: '52%',
                 style: { text: '整改完成率', textAlign: 'center', fill: 'rgba(255,255,255,0.5)', fontSize: 12 }
@@ -2163,9 +2160,9 @@ window.LawPage = class LawPage {
                 <div class="cr-top">
                     <div class="cr-gauge-wrap"><div id="cr-gauge-chart" class="cr-chart-box"></div></div>
                     <div class="cr-cards">
-                        <div class="cr-card"><span class="cr-card-label">待办案件</span><span class="cr-card-value" style="color:#ff6b6b">23件</span></div>
-                        <div class="cr-card"><span class="cr-card-label">办理中</span><span class="cr-card-value" style="color:#ff9500">56件</span></div>
-                        <div class="cr-card"><span class="cr-card-label">已办结</span><span class="cr-card-value" style="color:#34c759">897件</span></div>
+                        <div class="cr-card"><span class="cr-card-label">待办案件</span><span class="cr-card-value" style="color:#ff6b6b">12件</span></div>
+                        <div class="cr-card"><span class="cr-card-label">办理中</span><span class="cr-card-value" style="color:#ff9500">48件</span></div>
+                        <div class="cr-card"><span class="cr-card-label">已办结</span><span class="cr-card-value" style="color:#34c759">145件</span></div>
                         <div class="cr-up-trend">环比上周提升 2.3%</div>
                     </div>
                 </div>
@@ -2212,7 +2209,7 @@ window.LawPage = class LawPage {
                 pointer: { length: '60%', width: 3, itemStyle: { color: '#00d4ff' } },
                 axisTick: { show: false }, splitLine: { show: false }, axisLabel: { show: false },
                 detail: { valueAnimation: true, formatter: '{value}%', fontSize: 16, fontWeight: 'bold', color: '#34c759', offsetCenter: [0, '65%'] },
-                data: [{ value: 92 }]
+                data: [{ value: 70.7 }]
             }]
         });
         new ResizeObserver(() => chart.resize()).observe(dom);
@@ -2225,8 +2222,8 @@ window.LawPage = class LawPage {
         const existing = echarts.getInstanceByDom(dom); if (existing) existing.dispose();
         const chart = echarts.init(dom); this._crCharts.line = chart;
         const dates = ['6月23日', '6月24日', '6月25日', '6月26日', '6月27日', '6月28日', '6月29日'];
-        const vals = [88, 95, 82, 91, 105, 98, 90];
-        const rates = [85.3, 87.1, 84.5, 88.2, 90.0, 91.2, 92.0];
+        const vals = [18, 22, 19, 21, 23, 20, 22];
+        const rates = [68.5, 69.3, 68.8, 70.2, 71.5, 70.0, 70.7];
         chart.setOption({
             tooltip: { trigger: 'axis', formatter: p => `${p[0].axisValue}<br/>办结数量: ${p[0].value}件<br/>办结率: ${rates[p[0].dataIndex]}%` },
             grid: { left: '5%', right: '5%', bottom: '8%', top: '10%', containLabel: true },
@@ -2258,8 +2255,8 @@ window.LawPage = class LawPage {
         const sendUnits = ['综合行政执法局', '市场监督管理局', '生态环境局', '交通运输局', '住建局'];
         const recvUnits = ['海口市公安局XX分局', '三亚市公安局YY分局', '儋州市公安局ZZ分局', '文昌市公安局', '琼海市公安局'];
         const statuses = ['已立案', '未立案', '侦办中'];
-        const statusWeights = [0.76, 0.14, 0.10];
-        for (let i = 1; i <= 50; i++) {
+        const statusWeights = [0.89, 0.06, 0.05];
+        for (let i = 1; i <= 18; i++) {
             const month = Math.floor(Math.random() * 6) + 2;
             const day = Math.floor(Math.random() * 28) + 1;
             const rand = Math.random();
@@ -2317,10 +2314,10 @@ window.LawPage = class LawPage {
     renderCriminalLinkStats() {
         return `
             <div class="cl-stats">
-                <div class="cl-stat-card"><span class="cl-stat-label">移送公安机关总数</span><span class="cl-stat-value">50件</span></div>
-                <div class="cl-stat-card"><span class="cl-stat-label">公安机关已立案</span><span class="cl-stat-value" style="color:#34c759">38件</span></div>
-                <div class="cl-stat-card"><span class="cl-stat-label">立案率</span><span class="cl-stat-value" style="color:#00d4ff">76%</span></div>
-                <div class="cl-stat-card"><span class="cl-stat-label">退回补充侦查</span><span class="cl-stat-value" style="color:#ff9500">12件</span></div>
+                <div class="cl-stat-card"><span class="cl-stat-label">移送公安机关总数</span><span class="cl-stat-value">18件</span></div>
+                <div class="cl-stat-card"><span class="cl-stat-label">公安机关已立案</span><span class="cl-stat-value" style="color:#34c759">16件</span></div>
+                <div class="cl-stat-card"><span class="cl-stat-label">立案率</span><span class="cl-stat-value" style="color:#00d4ff">89%</span></div>
+                <div class="cl-stat-card"><span class="cl-stat-label">退回补充侦查</span><span class="cl-stat-value" style="color:#ff9500">2件</span></div>
             </div>`;
     }
 
@@ -2403,10 +2400,10 @@ window.LawPage = class LawPage {
                 labelLine: { show: false },
                 itemStyle: { borderColor: 'rgba(5,13,24,0.98)', borderWidth: 2 },
                 data: [
-                    { value: 50, name: '行政移送', itemStyle: { color: '#00d4ff' } },
-                    { value: 45, name: '公安受理', itemStyle: { color: '#34c759' } },
-                    { value: 38, name: '刑事立案', itemStyle: { color: '#af52de' } },
-                    { value: 30, name: '移送起诉', itemStyle: { color: '#ff9500' } }
+                    { value: 18, name: '行政移送', itemStyle: { color: '#00d4ff' } },
+                    { value: 17, name: '公安受理', itemStyle: { color: '#34c759' } },
+                    { value: 16, name: '刑事立案', itemStyle: { color: '#af52de' } },
+                    { value: 14, name: '移送起诉', itemStyle: { color: '#ff9500' } }
                 ]
             }]
         });
