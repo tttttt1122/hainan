@@ -37,7 +37,7 @@ window.ScreenFrame = class ScreenFrame {
                     <div class="screen-title-wrapper">
                         <div class="intro-tabs-container">
                             <button class="intro-tab" onclick="window.screenFrame.showIntroModal()">简介</button>
-                            <button class="intro-tab" onclick="window.screenFrame.showBackgroundModal()">建设背景</button>
+                            
                             <button class="intro-tab" onclick="window.screenFrame.showArchitectureModal()">架构图</button>
                             <button class="intro-tab" onclick="window.screenFrame.showModelModal()">预警模型</button>
                         </div>
