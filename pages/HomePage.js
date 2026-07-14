@@ -216,7 +216,7 @@ window.HomePage = class HomePage {
                                     </div>
                                     <div class="home-law-stat-card" onclick="window.homePage.openModal('law_major_case_ratio')" style="cursor: pointer;">
                                         <span class="home-law-stat-label">重大案件占比</span>
-                                        <span class="home-law-stat-value">9%</span>
+                                        <span class="home-law-stat-value">4.4%</span>
                                     </div>
                                 </div>
                                 
@@ -3703,7 +3703,7 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">总案件数</span>
-                        <span class="indicator-stat-value">100件</span>
+                        <span class="indicator-stat-value">205件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">重大案件数</span>
@@ -3711,11 +3711,11 @@ window.HomePage = class HomePage {
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">一般案件数</span>
-                        <span class="indicator-stat-value">91件</span>
+                        <span class="indicator-stat-value">196件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">重大案件占比</span>
-                        <span class="indicator-stat-value">9%</span>
+                        <span class="indicator-stat-value">4.4%</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
