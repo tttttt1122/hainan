@@ -202,7 +202,7 @@ window.HomePage = class HomePage {
                         <div class="card-section home-law-section">
                             <div class="card-title-row">
                                 <div class="card-title" onclick="window.screenFrame.switchTab('law')">执法</div>
-                                <div class="card-title-right" onclick="window.screenFrame.switchTab('law')">案件总数 <span class="card-title-value">90件</span><span class="card-title-trend up">↑ 5.2%</span></div>
+                                <div class="card-title-right" onclick="window.screenFrame.switchTab('law')">案件总数 <span class="card-title-value">205件</span><span class="card-title-trend up">↑ 5.2%</span></div>
                             </div>
                             <div class="home-law-content">
                                 <div class="home-law-stat-row-full">
@@ -212,7 +212,7 @@ window.HomePage = class HomePage {
                                     </div>
                                     <div class="home-law-stat-card" onclick="window.homePage.openModal('law_case_rate')" style="cursor: pointer;">
                                         <span class="home-law-stat-label">立案率</span>
-                                        <span class="home-law-stat-value">9%</span>
+                                        <span class="home-law-stat-value">90%</span>
                                     </div>
                                     <div class="home-law-stat-card" onclick="window.homePage.openModal('law_major_case_ratio')" style="cursor: pointer;">
                                         <span class="home-law-stat-label">重大案件占比</span>
@@ -234,12 +234,12 @@ window.HomePage = class HomePage {
                                 <div class="home-credit-stat-col">
                                     <div class="home-credit-stat-card-vertical" onclick="window.homePage.openModal('credit_b_above')" style="cursor: pointer;">
                                         <span class="home-credit-stat-label">信用等级B级及以上市场主体</span>
-                                        <span class="home-credit-stat-value">630.11万户</span>
+                                        <span class="home-credit-stat-value">630.11万户 <span style="font-size:12px;color:#ff3b30;">↑ 5.2%</span></span>
                                         <span class="home-credit-stat-rate" onclick="window.homePage.openModal('credit_b_ratio'); event.stopPropagation();" style="cursor: pointer;">占比90%</span>
                                     </div>
                                     <div class="home-credit-stat-card-vertical" onclick="window.homePage.openModal('credit_violation_rate')" style="cursor: pointer;">
                                         <span class="home-credit-stat-label">市场主体合规经营比例</span>
-                                        <span class="home-credit-stat-value">80%</span>
+                                        <span class="home-credit-stat-value">80% <span style="font-size:12px;color:#ff3b30;">↑ 3.5%</span></span>
                                     </div>
                                 </div>
                                 <div class="home-credit-chart-item">
@@ -3233,11 +3233,11 @@ window.HomePage = class HomePage {
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">发现问题数</span>
-                        <span class="indicator-stat-value">192个</span>
+                        <span class="indicator-stat-value">383个</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">发现问题率</span>
-                        <span class="indicator-stat-value">7.8%</span>
+                        <span class="indicator-stat-value">15.6%</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 3fr 7fr;">
@@ -3523,16 +3523,16 @@ window.HomePage = class HomePage {
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">受理数</span>
-                        <span class="indicator-stat-value">89件</span>
+                        <span class="indicator-stat-value">210件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">立案数</span>
-                        <span class="indicator-stat-value">9件</span>
+                        <span class="indicator-stat-value">205件</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
                     <div class="indicator-chart-item">
-                        <span class="indicator-chart-title">线索来源分布</span>
+                        <span class="indicator-chart-title">案源线索来源分布</span>
                         <div id="modal-case-source-pie" class="indicator-chart-container"></div>
                     </div>
                     <div class="indicator-chart-item">
@@ -3612,19 +3612,19 @@ window.HomePage = class HomePage {
                 <div class="indicator-modal-stats">
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">案源线索总数</span>
-                        <span class="indicator-stat-value">100件</span>
+                        <span class="indicator-stat-value">228件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">已立案</span>
-                        <span class="indicator-stat-value">9件</span>
+                        <span class="indicator-stat-value">205件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">未立案</span>
-                        <span class="indicator-stat-value">91件</span>
+                        <span class="indicator-stat-value">13件</span>
                     </div>
                     <div class="indicator-stat-card">
                         <span class="indicator-stat-label">立案率</span>
-                        <span class="indicator-stat-value">9%</span>
+                        <span class="indicator-stat-value">90%</span>
                     </div>
                 </div>
                 <div class="indicator-modal-chart" style="grid-template-columns: 5fr 5fr;">
@@ -8014,9 +8014,9 @@ window.HomePage = class HomePage {
             yAxis: { type: 'value', name: '万户' },
             series: [{
                 type: 'bar',
-                data: [245.67, 384.44, 49.01, 21.0],
+                data: [280.05, 350.06, 45.05, 20.05],
                 itemStyle: {
-                    color: ['#ffcc00', '#ff9500', '#ff9500', '#ff3b30'],
+                    color: '#ff9500',
                     borderRadius: [4, 4, 0, 0]
                 },
                 label: { show: true, position: 'top', formatter: '{c}', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
@@ -9362,11 +9362,11 @@ window.HomePage = class HomePage {
                 center: ['50%', '50%'],
                 label: { show: true, formatter: '{b}\n{c}个', color: 'rgba(255,255,255,0.8)', fontSize: 11 },
                 data: [
-                    { value: 45, name: '违规操作', itemStyle: { color: '#ff9500' } },
-                    { value: 38, name: '资料不全', itemStyle: { color: '#ffcc00' } },
-                    { value: 32, name: '资质过期', itemStyle: { color: '#ff6b30' } },
-                    { value: 42, name: '安全隐患', itemStyle: { color: '#ff3b30' } },
-                    { value: 35, name: '质量问题', itemStyle: { color: '#af52de' } }
+                    { value: 90, name: '违规操作', itemStyle: { color: '#ff9500' } },
+                    { value: 76, name: '资料不全', itemStyle: { color: '#ffcc00' } },
+                    { value: 64, name: '资质过期', itemStyle: { color: '#ff6b30' } },
+                    { value: 84, name: '安全隐患', itemStyle: { color: '#ff3b30' } },
+                    { value: 69, name: '质量问题', itemStyle: { color: '#af52de' } }
                 ]
             }]
         });
@@ -9490,11 +9490,11 @@ window.HomePage = class HomePage {
                 center: ['50%', '50%'],
                 label: { show: true, formatter: '{b}\n{c}件', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
                 data: [
-                    { value: 35, name: '日常监管', itemStyle: { color: '#ff9500' } },
-                    { value: 25, name: '投诉举报', itemStyle: { color: '#ffcc00' } },
-                    { value: 15, name: '信用预警', itemStyle: { color: '#ffcc00' } },
-                    { value: 10, name: '部门移送', itemStyle: { color: '#af52de' } },
-                    { value: 15, name: '其他', itemStyle: { color: '#ff9500' } }
+                    { value: 80, name: '日常监管', itemStyle: { color: '#ff9500' } },
+                    { value: 57, name: '投诉举报', itemStyle: { color: '#ffcc00' } },
+                    { value: 34, name: '信用预警', itemStyle: { color: '#ffcc00' } },
+                    { value: 23, name: '部门移送', itemStyle: { color: '#af52de' } },
+                    { value: 34, name: '其他', itemStyle: { color: '#ff9500' } }
                 ]
             }]
         });
@@ -9508,7 +9508,7 @@ window.HomePage = class HomePage {
             yAxis: { type: 'value', axisLabel: { formatter: '{value}件' } },
             series: [{
                 type: 'bar',
-                data: [35, 25, 20, 12, 8],
+                data: [65, 52, 42, 23, 18],
                 itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] },
                 label: { show: true, position: 'top', formatter: '{c}件', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
             }]
@@ -9525,10 +9525,10 @@ window.HomePage = class HomePage {
                 radius: ['50%', '70%'],
                 center: ['50%', '50%'],
                 data: [
-                    { value: 9, name: '已立案', itemStyle: { color: '#ffcc00' } },
-                    { value: 91, name: '未立案', itemStyle: { color: 'rgba(255,255,255,0.2)' } }
+                    { value: 90, name: '已立案', itemStyle: { color: '#ffcc00' } },
+                    { value: 10, name: '未立案', itemStyle: { color: 'rgba(255,255,255,0.2)' } }
                 ],
-                label: { show: true, position: 'center', formatter: '立案率\n9%', fontSize: 20, fontWeight: 'bold', color: '#ffcc00', textBorderWidth: 0 },
+                label: { show: true, position: 'center', formatter: '立案率\n90%', fontSize: 20, fontWeight: 'bold', color: '#ffcc00', textBorderWidth: 0 },
                 labelLine: { show: false }
             }]
         });
@@ -9539,10 +9539,10 @@ window.HomePage = class HomePage {
             tooltip: { trigger: 'axis', formatter: '{b}: {c}%' },
             grid: { left: '8%', right: '8%', bottom: '18%', top: '10%', containLabel: true },
             xAxis: { type: 'category', data: ['市场监管', '生态环境', '交通运输', '卫生健康', '自然资源'], axisLabel: { fontSize: 11, interval: 0, rotate: 30 } },
-            yAxis: { type: 'value', max: 20, axisLabel: { formatter: '{value}%' } },
+            yAxis: { type: 'value', max: 100, axisLabel: { formatter: '{value}%' } },
             series: [{
                 type: 'bar',
-                data: [12, 8, 6, 10, 5],
+                data: [95, 94, 96, 93, 95],
                 itemStyle: { color: '#ffcc00', borderRadius: [4, 4, 0, 0] },
                 label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
             }]
@@ -9614,7 +9614,7 @@ window.HomePage = class HomePage {
             series: [{
                 type: 'bar',
                 data: [94, 93, 95, 91, 92],
-                itemStyle: { color: '#ff7f50', borderRadius: [4, 4, 0, 0] },
+                itemStyle: { color: '#ff9500', borderRadius: [4, 4, 0, 0] },
                 label: { show: true, position: 'top', formatter: '{c}%', color: 'rgba(255,255,255,0.6)', textBorderWidth: 0 }
             }]
         });
@@ -10040,11 +10040,25 @@ window.HomePage = class HomePage {
                 center: ['50%', '50%'],
                 label: { show: true, formatter: '{b}\n{c}个', color: 'rgba(255,255,255,0.8)', fontSize: 12 },
                 data: [
-                    { value: 35, name: '海口', itemStyle: { color: '#ff9500' } },
-                    { value: 20, name: '三亚', itemStyle: { color: '#ffcc00' } },
-                    { value: 15, name: '儋州', itemStyle: { color: '#00d4ff' } },
-                    { value: 10, name: '文昌', itemStyle: { color: '#00ff88' } },
-                    { value: 9, name: '其他市县', itemStyle: { color: '#8b8b8b' } }
+                    { value: 25, name: '海口', itemStyle: { color: '#ff9500' } },
+                    { value: 18, name: '三亚', itemStyle: { color: '#ffcc00' } },
+                    { value: 12, name: '儋州', itemStyle: { color: '#00d4ff' } },
+                    { value: 8, name: '文昌', itemStyle: { color: '#00ff88' } },
+                    { value: 7, name: '琼海', itemStyle: { color: '#af52de' } },
+                    { value: 6, name: '万宁', itemStyle: { color: '#ff9500' } },
+                    { value: 5, name: '东方', itemStyle: { color: '#ffcc00' } },
+                    { value: 4, name: '澄迈', itemStyle: { color: '#00d4ff' } },
+                    { value: 3, name: '临高', itemStyle: { color: '#00ff88' } },
+                    { value: 2, name: '定安', itemStyle: { color: '#af52de' } },
+                    { value: 2, name: '屯昌', itemStyle: { color: '#ff9500' } },
+                    { value: 2, name: '昌江', itemStyle: { color: '#ffcc00' } },
+                    { value: 1, name: '白沙', itemStyle: { color: '#00d4ff' } },
+                    { value: 1, name: '乐东', itemStyle: { color: '#00ff88' } },
+                    { value: 1, name: '陵水', itemStyle: { color: '#af52de' } },
+                    { value: 1, name: '保亭', itemStyle: { color: '#ff9500' } },
+                    { value: 1, name: '琼中', itemStyle: { color: '#ffcc00' } },
+                    { value: 1, name: '五指山', itemStyle: { color: '#00d4ff' } },
+                    { value: 1, name: '三沙', itemStyle: { color: '#00ff88' } }
                 ]
             }]
         });
