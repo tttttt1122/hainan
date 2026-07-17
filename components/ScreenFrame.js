@@ -8,12 +8,12 @@ window.ScreenFrame = class ScreenFrame {
         this.options = {
             title: '审管法信一体联动机制',
             tabs: [
-                { id: 'home', label: '首页' },
-                { id: 'approval', label: '审批' },
-                { id: 'supervision', label: '监管' },
-                { id: 'law', label: '执法' },
-                { id: 'credit', label: '信用' },
-                { id: 'cockpit', label: '监督处置' }
+                { id: 'home',      label: '首页',     pageTitle: '"审管法信"一体联动机制', pageSubtitle: '' },
+                { id: 'approval',  label: '审批',     pageTitle: '"审管法信"一体联动机制', pageSubtitle: '' },
+                { id: 'supervision', label: '监管',   pageTitle: '"审管法信"一体联动机制', pageSubtitle: '' },
+                { id: 'law',       label: '执法',     pageTitle: '"审管法信"一体联动机制', pageSubtitle: '' },
+                { id: 'credit',    label: '信用',     pageTitle: '"审管法信"一体联动机制', pageSubtitle: '' },
+                { id: 'cockpit',   label: '监督处置', pageTitle: '"审管法信"一体联动机制', pageSubtitle: '' }
             ],
             defaultTab: 'home',
             ...options
@@ -30,38 +30,46 @@ window.ScreenFrame = class ScreenFrame {
         this.loadTab(this.currentTab);
     }
 
+    getTabConfig(tabId) {
+        const tab = this.options.tabs.find(t => t.id === tabId);
+        if (tab) {
+            return {
+                ...tab,
+                pageTitle: tab.pageTitle || tab.label || this.options.title,
+                pageSubtitle: tab.pageSubtitle || ''
+            };
+        }
+        return { pageTitle: this.options.title, pageSubtitle: '', label: '', id: tabId };
+    }
+
+    isHomeTab() {
+        return this.currentTab === 'home';
+    }
+
     render() {
+        const pageTab = this.getTabConfig(this.currentTab);
+        const displayTitle = this.isHomeTab() ? this.options.title : pageTab.pageTitle;
+        const subtitle = this.isHomeTab() ? (pageTab.pageSubtitle || '') : '';
+
         this.container.innerHTML = `
             <div class="screen-frame">
                 <header class="screen-header">
                     <div class="screen-title-wrapper">
                         <div class="intro-tabs-container">
                             <button class="intro-tab" onclick="window.screenFrame.showIntroModal()">简介</button>
-                            
                             <button class="intro-tab" onclick="window.screenFrame.showArchitectureModal()">架构图</button>
                             <button class="intro-tab" onclick="window.screenFrame.showModelModal()">预警模型</button>
+                            <button class="intro-tab" onclick="window.screenFrame.showLegalModal()">法律法规</button>
                         </div>
-                        <h1 class="screen-title glow-text">${this.options.title}</h1>
+                        <div class="screen-title-center">
+                            <h1 class="screen-title glow-text">${displayTitle}</h1>
+                            ${subtitle ? `<div class="screen-subtitle">${subtitle}</div>` : ''}
+                        </div>
                         <div class="online-count">今日在线人数 <span class="online-num">99</span></div>
                     </div>
                     <div class="screen-header-divider"></div>
                     <div class="screen-header-bottom">
-                        <nav class="screen-nav">
-                            ${this.options.tabs.map(tab => `
-                                <button 
-                                    class="nav-tab ${tab.id === this.currentTab ? 'active' : ''}"
-                                    data-tab="${tab.id}"
-                                >
-                                    ${tab.label}
-                                </button>
-                            `).join('')}
-                        </nav>
-                        <div class="header-date-range">
-                            <span class="date-label">时间范围</span>
-                            <input type="date" class="date-input" id="date-start" value="${this.getYearStartDate()}">
-                            <span class="date-separator">至</span>
-                            <input type="date" class="date-input" id="date-end" value="${this.getTodayDate()}">
-                        </div>
+                        ${this.renderHeaderBottom()}
                     </div>
                 </header>
                 <main class="screen-content">
@@ -71,7 +79,51 @@ window.ScreenFrame = class ScreenFrame {
         `;
     }
 
+    renderHeaderBottom() {
+        if (this.isHomeTab()) {
+            return `
+                <nav class="screen-nav">
+                    ${this.options.tabs.map(tab => `
+                        <button 
+                            class="nav-tab ${tab.id === this.currentTab ? 'active' : ''}"
+                            data-tab="${tab.id}"
+                        >
+                            ${tab.label}
+                        </button>
+                    `).join('')}
+                </nav>
+                <div class="header-date-range">
+                    <span class="date-label">时间范围</span>
+                    <input type="date" class="date-input" id="date-start" value="${this.getYearStartDate()}">
+                    <span class="date-separator">至</span>
+                    <input type="date" class="date-input" id="date-end" value="${this.getTodayDate()}">
+                </div>
+            `;
+        } else {
+            const pageTab = this.getTabConfig(this.currentTab);
+            return `
+                <div class="subpage-header-row">
+                    <button class="back-home-btn" data-action="back-home">
+                        <span class="back-icon">←</span> 返回首页
+                    </button>
+                    <div class="subpage-breadcrumb">
+                        <span class="crumb-item" data-tab="home">首页</span>
+                        <span class="crumb-sep">/</span>
+                        <span class="crumb-item crumb-current">${pageTab.label}</span>
+                    </div>
+                </div>
+                <div class="header-date-range">
+                    <span class="date-label">时间范围</span>
+                    <input type="date" class="date-input" id="date-start" value="${this.getYearStartDate()}">
+                    <span class="date-separator">至</span>
+                    <input type="date" class="date-input" id="date-end" value="${this.getTodayDate()}">
+                </div>
+            `;
+        }
+    }
+
     bindEvents() {
+        // 首页选卡事件
         const tabs = this.container.querySelectorAll('.nav-tab');
         tabs.forEach(tab => {
             tab.addEventListener('click', (e) => {
@@ -79,6 +131,18 @@ window.ScreenFrame = class ScreenFrame {
                 if (tabId) this.switchTab(tabId);
             });
         });
+
+        // 子页面：返回首页按钮
+        const backBtn = this.container.querySelector('[data-action="back-home"]');
+        if (backBtn) {
+            backBtn.addEventListener('click', () => this.switchTab('home'));
+        }
+
+        // 面包屑：首页点击返回
+        const crumbHome = this.container.querySelector('.crumb-item[data-tab="home"]');
+        if (crumbHome) {
+            crumbHome.addEventListener('click', () => this.switchTab('home'));
+        }
 
         // 地图省直/市县选卡委托
         this.container.addEventListener('click', (e) => {
@@ -89,7 +153,6 @@ window.ScreenFrame = class ScreenFrame {
             overlay.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
         });
-
     }
 
     switchTab(tabId) {
@@ -103,8 +166,37 @@ window.ScreenFrame = class ScreenFrame {
         const oldTab = this.currentTab;
         this.currentTab = tabId;
 
-        this.updateTabStyles();
+        // 先更新header（因为tab样式和header内容都依赖currentTab），再切换内容
+        this.refreshHeader();
         this.transitionContent(oldTab, tabId);
+    }
+
+    /**
+     * 切换tab时，根据首页/非首页模式重新渲染header部分，并重新绑定事件
+     * 保留tab-content内容不受影响
+     */
+    refreshHeader() {
+        const pageTab = this.getTabConfig(this.currentTab);
+        const displayTitle = this.isHomeTab() ? this.options.title : pageTab.pageTitle;
+        const subtitle = this.isHomeTab() ? (pageTab.pageSubtitle || '') : '';
+
+        // 1) 更新大标题和副标题
+        const titleCenterEl = this.container.querySelector('.screen-title-center');
+        if (titleCenterEl) {
+            titleCenterEl.innerHTML = `
+                <h1 class="screen-title glow-text">${displayTitle}</h1>
+                ${subtitle ? `<div class="screen-subtitle">${subtitle}</div>` : ''}
+            `;
+        }
+
+        // 2) 更新底部行（选卡 or 返回按钮 + 时间）
+        const headerBottom = this.container.querySelector('.screen-header-bottom');
+        if (headerBottom) {
+            headerBottom.innerHTML = this.renderHeaderBottom();
+        }
+
+        // 3) 重新绑定该区域的事件
+        this.bindEvents();
     }
 
     showIntroModal() {
@@ -204,6 +296,287 @@ window.ScreenFrame = class ScreenFrame {
         });
     }
 
+    showLegalModal() {
+        const legalData = {
+            approval: {
+                name: '审批依据',
+                chartData: [
+                    { value: 350, name: '法律', itemStyle: { color: '#00d4ff' } },
+                    { value: 890, name: '行政法规', itemStyle: { color: '#34c759' } },
+                    { value: 1560, name: '地方性法规', itemStyle: { color: '#ff9500' } },
+                    { value: 2340, name: '部门规章', itemStyle: { color: '#af52de' } },
+                    { value: 980, name: '政府规章', itemStyle: { color: '#5856d6' } },
+                    { value: 230, name: '国务院命令决定', itemStyle: { color: '#ff3b30' } }
+                ],
+                listData: [
+                    { name: '行政许可法', domain: '审批', type: '法律', issuer: '全国人大常委会', effectiveDate: '2004-07-01', status: '有效' },
+                    { name: '企业登记管理条例', domain: '审批', type: '行政法规', issuer: '国务院', effectiveDate: '2014-03-01', status: '有效' },
+                    { name: '海南自由贸易港市场主体登记管理条例', domain: '审批', type: '地方性法规', issuer: '海南省人大常委会', effectiveDate: '2021-08-01', status: '有效' },
+                    { name: '市场主体登记管理规定', domain: '审批', type: '部门规章', issuer: '市场监管总局', effectiveDate: '2022-03-01', status: '有效' },
+                    { name: '海南省企业登记管理办法', domain: '审批', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2022-05-01', status: '有效' },
+                    { name: '关于深化"放管服"改革优化营商环境的决定', domain: '审批', type: '国务院命令决定', issuer: '国务院', effectiveDate: '2020-01-01', status: '有效' },
+                    { name: '优化营商环境条例', domain: '审批', type: '行政法规', issuer: '国务院', effectiveDate: '2020-01-01', status: '有效' },
+                    { name: '海南自由贸易港优化营商环境条例', domain: '审批', type: '地方性法规', issuer: '海南省人大常委会', effectiveDate: '2021-01-01', status: '有效' },
+                    { name: '行政许可法实施细则', domain: '审批', type: '部门规章', issuer: '司法部', effectiveDate: '2004-07-01', status: '有效' },
+                    { name: '海南省行政许可设定实施管理办法', domain: '审批', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2023-01-01', status: '有效' }
+                ]
+            },
+            supervision: {
+                name: '监管依据',
+                chartData: [
+                    { value: 420, name: '法律', itemStyle: { color: '#00d4ff' } },
+                    { value: 760, name: '行政法规', itemStyle: { color: '#34c759' } },
+                    { value: 1340, name: '地方性法规', itemStyle: { color: '#ff9500' } },
+                    { value: 1890, name: '部门规章', itemStyle: { color: '#af52de' } },
+                    { value: 870, name: '政府规章', itemStyle: { color: '#5856d6' } },
+                    { value: 180, name: '国务院命令决定', itemStyle: { color: '#ff3b30' } }
+                ],
+                listData: [
+                    { name: '市场监督管理行政处罚程序规定', domain: '监管', type: '部门规章', issuer: '市场监管总局', effectiveDate: '2022-04-01', status: '有效' },
+                    { name: '海南自由贸易港社会信用条例', domain: '监管', type: '地方性法规', issuer: '海南省人大常委会', effectiveDate: '2022-01-01', status: '有效' },
+                    { name: '互联网+监管办法', domain: '监管', type: '部门规章', issuer: '国务院办公厅', effectiveDate: '2020-01-01', status: '有效' },
+                    { name: '海南省"互联网+监管"实施细则', domain: '监管', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2021-03-01', status: '有效' },
+                    { name: '关于加强事中事后监管的指导意见', domain: '监管', type: '国务院命令决定', issuer: '国务院', effectiveDate: '2019-09-01', status: '有效' },
+                    { name: '产品质量法', domain: '监管', type: '法律', issuer: '全国人大常委会', effectiveDate: '2018-01-01', status: '有效' },
+                    { name: '食品安全法', domain: '监管', type: '法律', issuer: '全国人大常委会', effectiveDate: '2021-04-29', status: '有效' },
+                    { name: '特种设备安全法', domain: '监管', type: '法律', issuer: '全国人大常委会', effectiveDate: '2014-01-01', status: '有效' },
+                    { name: '市场监督管理综合行政执法事项指导目录', domain: '监管', type: '部门规章', issuer: '市场监管总局', effectiveDate: '2022-01-01', status: '有效' },
+                    { name: '海南省市场监督管理行政执法办法', domain: '监管', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2023-01-01', status: '有效' }
+                ]
+            },
+            law: {
+                name: '执法依据',
+                chartData: [
+                    { value: 280, name: '法律', itemStyle: { color: '#00d4ff' } },
+                    { value: 650, name: '行政法规', itemStyle: { color: '#34c759' } },
+                    { value: 1120, name: '地方性法规', itemStyle: { color: '#ff9500' } },
+                    { value: 1560, name: '部门规章', itemStyle: { color: '#af52de' } },
+                    { value: 760, name: '政府规章', itemStyle: { color: '#5856d6' } },
+                    { value: 150, name: '国务院命令决定', itemStyle: { color: '#ff3b30' } }
+                ],
+                listData: [
+                    { name: '行政处罚法', domain: '执法', type: '法律', issuer: '全国人大常委会', effectiveDate: '2021-07-15', status: '有效' },
+                    { name: '行政强制法', domain: '执法', type: '法律', issuer: '全国人大常委会', effectiveDate: '2012-01-01', status: '有效' },
+                    { name: '综合行政执法改革方案', domain: '执法', type: '国务院命令决定', issuer: '国务院', effectiveDate: '2018-01-01', status: '有效' },
+                    { name: '海南省综合行政执法条例', domain: '执法', type: '地方性法规', issuer: '海南省人大常委会', effectiveDate: '2021-07-01', status: '有效' },
+                    { name: '行政执法三项制度指导意见', domain: '执法', type: '部门规章', issuer: '司法部', effectiveDate: '2019-01-01', status: '有效' },
+                    { name: '海南省行政执法公示办法', domain: '执法', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2022-01-01', status: '有效' },
+                    { name: '行政复议法', domain: '执法', type: '法律', issuer: '全国人大常委会', effectiveDate: '2024-01-01', status: '有效' },
+                    { name: '行政诉讼法', domain: '执法', type: '法律', issuer: '全国人大常委会', effectiveDate: '2017-07-01', status: '有效' },
+                    { name: '行政执法监督条例', domain: '执法', type: '行政法规', issuer: '国务院', effectiveDate: '2023-01-01', status: '有效' },
+                    { name: '海南省行政执法监督办法', domain: '执法', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2023-03-01', status: '有效' }
+                ]
+            },
+            credit: {
+                name: '信用依据',
+                chartData: [
+                    { value: 120, name: '法律', itemStyle: { color: '#00d4ff' } },
+                    { value: 340, name: '行政法规', itemStyle: { color: '#34c759' } },
+                    { value: 560, name: '地方性法规', itemStyle: { color: '#ff9500' } },
+                    { value: 780, name: '部门规章', itemStyle: { color: '#af52de' } },
+                    { value: 450, name: '政府规章', itemStyle: { color: '#5856d6' } },
+                    { value: 80, name: '国务院命令决定', itemStyle: { color: '#ff3b30' } }
+                ],
+                listData: [
+                    { name: '海南自由贸易港社会信用条例', domain: '信用', type: '地方性法规', issuer: '海南省人大常委会', effectiveDate: '2022-01-01', status: '有效' },
+                    { name: '社会信用体系建设规划纲要', domain: '信用', type: '国务院命令决定', issuer: '国务院', effectiveDate: '2014-06-27', status: '有效' },
+                    { name: '公共信用信息管理办法', domain: '信用', type: '部门规章', issuer: '国家发展改革委', effectiveDate: '2020-01-01', status: '有效' },
+                    { name: '失信惩戒措施清单管理办法', domain: '信用', type: '部门规章', issuer: '国家发展改革委', effectiveDate: '2022-01-01', status: '有效' },
+                    { name: '海南省公共信用信息管理办法', domain: '信用', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2021-01-01', status: '有效' },
+                    { name: '企业信息公示暂行条例', domain: '信用', type: '行政法规', issuer: '国务院', effectiveDate: '2014-10-01', status: '有效' },
+                    { name: '政府信息公开条例', domain: '信用', type: '行政法规', issuer: '国务院', effectiveDate: '2019-05-15', status: '有效' },
+                    { name: '市场主体信用信息公示管理办法', domain: '信用', type: '部门规章', issuer: '市场监管总局', effectiveDate: '2022-03-01', status: '有效' },
+                    { name: '海南省市场主体信用修复管理办法', domain: '信用', type: '政府规章', issuer: '海南省人民政府', effectiveDate: '2023-01-01', status: '有效' },
+                    { name: '关于建立完善守信联合激励和失信联合惩戒制度的指导意见', domain: '信用', type: '国务院命令决定', issuer: '国务院', effectiveDate: '2016-05-30', status: '有效' }
+                ]
+            }
+        };
+
+        const overlay = document.createElement('div');
+        overlay.className = 'detail-modal-overlay';
+        overlay.innerHTML = `
+            <div class="legal-modal-wide">
+                <div class="legal-modal-content">
+                    <div class="legal-modal-header">
+                        <span class="legal-modal-title">法律法规全景分析</span>
+                        <button class="legal-modal-close">×</button>
+                    </div>
+                    <div class="legal-modal-kpi">
+                        <div class="legal-kpi-card">
+                            <span class="legal-kpi-label">法律法规总数</span>
+                            <span class="legal-kpi-value">3.6万部</span>
+                        </div>
+                        <div class="legal-kpi-card">
+                            <span class="legal-kpi-label">审批依据</span>
+                            <span class="legal-kpi-value">9,000部</span>
+                        </div>
+                        <div class="legal-kpi-card">
+                            <span class="legal-kpi-label">监管依据</span>
+                            <span class="legal-kpi-value">9,000部</span>
+                        </div>
+                        <div class="legal-kpi-card">
+                            <span class="legal-kpi-label">执法依据</span>
+                            <span class="legal-kpi-value">9,000部</span>
+                        </div>
+                        <div class="legal-kpi-card">
+                            <span class="legal-kpi-label">信用依据</span>
+                            <span class="legal-kpi-value">9,000部</span>
+                        </div>
+                    </div>
+                    <div class="legal-modal-body">
+                        <div class="legal-modal-tabs">
+                            <div class="legal-tab-item active" data-tab="approval">审批依据</div>
+                            <div class="legal-tab-item" data-tab="supervision">监管依据</div>
+                            <div class="legal-tab-item" data-tab="law">执法依据</div>
+                            <div class="legal-tab-item" data-tab="credit">信用依据</div>
+                        </div>
+                        <div class="legal-modal-chart">
+                            <div id="legal-bar-chart" class="legal-chart-container"></div>
+                        </div>
+                        <div class="legal-modal-table-wrap">
+                            <table class="legal-modal-table">
+                                <thead>
+                                    <tr>
+                                        <th>法规名称</th>
+                                        <th>法规类型</th>
+                                        <th>发布机关</th>
+                                        <th>施行日期</th>
+                                        <th>效力状态</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="legal-table-body">
+                                </tbody>
+                            </table>
+                            <div class="legal-modal-pagination">
+                                <button class="legal-pagination-btn" id="legal-prev-btn" disabled>上一页</button>
+                                <span class="legal-pagination-info" id="legal-page-info">第 1 / 2 页</span>
+                                <button class="legal-pagination-btn" id="legal-next-btn">下一页</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        const tabs = overlay.querySelectorAll('.legal-tab-item');
+        const chartContainer = overlay.querySelector('#legal-bar-chart');
+        const tableBody = overlay.querySelector('#legal-table-body');
+        const prevBtn = overlay.querySelector('#legal-prev-btn');
+        const nextBtn = overlay.querySelector('#legal-next-btn');
+        const pageInfo = overlay.querySelector('#legal-page-info');
+
+        let currentTab = 'approval';
+        let currentPage = 1;
+        const pageSize = 5;
+
+        const renderChart = (tabId) => {
+            const data = legalData[tabId];
+            if (!data) return;
+            
+            if (window.legalBarChart) {
+                window.legalBarChart.dispose();
+            }
+            
+            window.legalBarChart = echarts.init(chartContainer);
+            window.legalBarChart.setOption({
+                tooltip: { trigger: 'axis', axisPointer: { type: 'shadow' } },
+                grid: { left: '8%', right: '4%', bottom: '8%', top: '10%', containLabel: true },
+                xAxis: { 
+                    type: 'category', 
+                    data: data.chartData.map(d => d.name),
+                    axisLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 12, rotate: 20 },
+                    axisLine: { lineStyle: { color: 'rgba(0,212,255,0.3)' } }
+                },
+                yAxis: { 
+                    type: 'value', 
+                    axisLabel: { color: 'rgba(255,255,255,0.7)', fontSize: 12 },
+                    splitLine: { lineStyle: { color: 'rgba(0,212,255,0.1)' } }
+                },
+                series: [{
+                    type: 'bar',
+                    data: data.chartData.map(d => ({ value: d.value, itemStyle: d.itemStyle })),
+                    barWidth: '50%',
+                    itemStyle: { borderRadius: [4, 4, 0, 0] }
+                }]
+            });
+        };
+
+        const renderTable = (tabId, page) => {
+            const data = legalData[tabId];
+            if (!data) return;
+            
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+            const pageData = data.listData.slice(start, end);
+            
+            tableBody.innerHTML = pageData.map(item => `
+                <tr>
+                    <td>${item.name}</td>
+                    <td>${item.type}</td>
+                    <td>${item.issuer}</td>
+                    <td>${item.effectiveDate}</td>
+                    <td>${item.status}</td>
+                </tr>
+            `).join('');
+            
+            const totalPages = Math.ceil(data.listData.length / pageSize);
+            pageInfo.textContent = `第 ${page} / ${totalPages} 页`;
+            prevBtn.disabled = page <= 1;
+            nextBtn.disabled = page >= totalPages;
+        };
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                currentTab = tab.dataset.tab;
+                currentPage = 1;
+                renderChart(currentTab);
+                renderTable(currentTab, currentPage);
+            });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            if (currentPage > 1) {
+                currentPage--;
+                renderTable(currentTab, currentPage);
+            }
+        });
+
+        nextBtn.addEventListener('click', () => {
+            const totalPages = Math.ceil(legalData[currentTab].listData.length / pageSize);
+            if (currentPage < totalPages) {
+                currentPage++;
+                renderTable(currentTab, currentPage);
+            }
+        });
+
+        setTimeout(() => {
+            renderChart(currentTab);
+            renderTable(currentTab, currentPage);
+        }, 100);
+
+        this.bindLegalModalClose(overlay);
+    }
+
+    bindLegalModalClose(overlay) {
+        overlay.querySelector('.legal-modal-close').addEventListener('click', () => {
+            if (window.legalBarChart) {
+                window.legalBarChart.dispose();
+            }
+            document.body.removeChild(overlay);
+        });
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                if (window.legalBarChart) {
+                    window.legalBarChart.dispose();
+                }
+                document.body.removeChild(overlay);
+            }
+        });
+    }
+
     openIntroModal() {
         const overlay = document.createElement('div');
         overlay.className = 'intro-modal-overlay';
@@ -293,6 +666,18 @@ window.ScreenFrame = class ScreenFrame {
             
             if (tabId === 'supervision') {
                 window.supervisionPage = component;
+            }
+            if (tabId === 'home') {
+                window.homePage = component;
+            }
+            if (tabId === 'approval') {
+                window.approvalPage = component;
+            }
+            if (tabId === 'law') {
+                window.lawPage = component;
+            }
+            if (tabId === 'credit') {
+                window.creditPage = component;
             }
             
             document.querySelectorAll('.page-wrapper').forEach(wrapper => {
