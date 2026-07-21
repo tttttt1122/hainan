@@ -528,6 +528,140 @@
     font-weight: 500;
 }
 
+.cockpit-sub-tabs {
+    display: flex;
+    gap: 8px;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cockpit-sub-tab {
+    padding: 6px 20px;
+    background: rgba(0, 100, 200, 0.15);
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+    letter-spacing: 1px;
+}
+
+.cockpit-sub-tab:hover {
+    background: rgba(0, 150, 255, 0.25);
+    color: #00d4ff;
+    border-color: rgba(0, 212, 255, 0.5);
+}
+
+.cockpit-sub-tab.active {
+    background: linear-gradient(180deg, rgba(0, 212, 255, 0.25) 0%, rgba(0, 150, 180, 0.3) 100%);
+    border-color: #00d4ff;
+    color: #fff;
+    box-shadow: 0 0 15px rgba(0, 212, 255, 0.3);
+}
+
+.legal-name-link {
+    color: #00d4ff;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: all 0.2s;
+}
+
+.legal-name-link:hover {
+    color: #fff;
+    text-shadow: 0 0 8px rgba(0, 212, 255, 0.6);
+}
+
+.legal-detail-modal {
+    width: 60vw;
+    max-height: 80vh;
+    background: #0a1929;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.legal-detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: rgba(0, 212, 255, 0.1);
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.legal-detail-title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #00d4ff;
+}
+
+.legal-detail-close {
+    width: 32px;
+    height: 32px;
+    border: none;
+    background: rgba(0, 212, 255, 0.2);
+    color: #00d4ff;
+    font-size: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.legal-detail-close:hover {
+    background: rgba(255, 59, 48, 0.3);
+    color: #ff3b30;
+}
+
+.legal-detail-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 15px 20px;
+    background: rgba(0, 50, 100, 0.3);
+}
+
+.detail-info-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.info-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.info-value {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.legal-detail-content {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+.detail-content-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: #00d4ff;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+.detail-content-text {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.8;
+    white-space: pre-wrap;
+}
+
 
 .detail-modal-body-text p {
     margin-bottom: 15px;
