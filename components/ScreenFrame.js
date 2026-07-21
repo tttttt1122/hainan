@@ -21,6 +21,7 @@ window.ScreenFrame = class ScreenFrame {
 
         this.currentTab = this.options.defaultTab;
         this.tabComponents = {};
+        this._cockpitSubTab = 'home';
         this.init();
     }
 
@@ -101,6 +102,14 @@ window.ScreenFrame = class ScreenFrame {
             `;
         } else {
             const pageTab = this.getTabConfig(this.currentTab);
+            const cockpitTabs = this.currentTab === 'cockpit' ? `
+                <div class="cockpit-sub-tabs">
+                    <div class="cockpit-sub-tab ${this._cockpitSubTab === 'home' ? 'active' : ''}" data-cockpit-tab="home">主页</div>
+                    <div class="cockpit-sub-tab ${this._cockpitSubTab === 'matters' ? 'active' : ''}" data-cockpit-tab="matters">事项</div>
+                    <div class="cockpit-sub-tab ${this._cockpitSubTab === 'personnel' ? 'active' : ''}" data-cockpit-tab="personnel">人员</div>
+                    <div class="cockpit-sub-tab ${this._cockpitSubTab === 'behavior' ? 'active' : ''}" data-cockpit-tab="behavior">行为</div>
+                </div>
+            ` : '';
             return `
                 <div class="subpage-header-row">
                     <button class="back-home-btn" data-action="back-home">
@@ -111,6 +120,7 @@ window.ScreenFrame = class ScreenFrame {
                         <span class="crumb-sep">/</span>
                         <span class="crumb-item crumb-current">${pageTab.label}</span>
                     </div>
+                    ${cockpitTabs}
                 </div>
                 <div class="header-date-range">
                     <span class="date-label">时间范围</span>
@@ -152,6 +162,20 @@ window.ScreenFrame = class ScreenFrame {
             if (!overlay) return;
             overlay.querySelectorAll('.map-tab-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
+        });
+
+        // 监督处置子选卡事件
+        this.container.addEventListener('click', (e) => {
+            const subTab = e.target.closest('.cockpit-sub-tab');
+            if (!subTab) return;
+            const tabId = subTab.dataset.cockpitTab;
+            if (!tabId) return;
+            this._cockpitSubTab = tabId;
+            this.container.querySelectorAll('.cockpit-sub-tab').forEach(t => t.classList.remove('active'));
+            subTab.classList.add('active');
+            if (window.cockpitPage) {
+                window.cockpitPage.switchTab(tabId);
+            }
         });
     }
 
@@ -502,6 +526,145 @@ window.ScreenFrame = class ScreenFrame {
             });
         };
 
+        const legalDetails = {
+            '行政许可法': {
+                fullName: '中华人民共和国行政许可法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2003年8月27日',
+                effectiveDate: '2004年7月1日',
+                status: '有效',
+                content: '第一条 为了规范行政许可的设定和实施，保护公民、法人和其他组织的合法权益，维护公共利益和社会秩序，保障和监督行政机关有效实施行政管理，根据宪法，制定本法。\n\n第二条 本法所称行政许可，是指行政机关根据公民、法人或者其他组织的申请，经依法审查，准予其从事特定活动的行为。\n\n第三条 行政许可的设定和实施，适用本法。有关行政机关对其他机关或者对其直接管理的事业单位的人事、财务、外事等事项的审批，不适用本法。\n\n第四条 设定和实施行政许可，应当依照法定的权限、范围、条件和程序。\n\n第五条 设定和实施行政许可，应当遵循公开、公平、公正、非歧视的原则。有关行政许可的规定应当公布；未经公布的，不得作为实施行政许可的依据。行政许可的实施和结果，除涉及国家秘密、商业秘密或者个人隐私的外，应当公开。\n\n第六条 实施行政许可，应当遵循便民的原则，提高办事效率，提供优质服务。\n\n第七条 公民、法人或者其他组织对行政机关实施行政许可，享有陈述权、申辩权；有权依法申请行政复议或者提起行政诉讼；其合法权益因行政机关违法实施行政许可受到损害的，有权依法要求赔偿。\n\n第八条 公民、法人或者其他组织依法取得的行政许可受法律保护，行政机关不得擅自改变已经生效的行政许可。'
+            },
+            '企业登记管理条例': {
+                fullName: '中华人民共和国企业法人登记管理条例',
+                type: '行政法规',
+                issuer: '国务院',
+                issueDate: '1988年6月3日',
+                effectiveDate: '2014年3月1日',
+                status: '有效',
+                content: '第一条 为建立企业法人登记管理制度，确认企业法人资格，保障企业合法权益，取缔非法经营，维护社会经济秩序，根据《中华人民共和国民法通则》的有关规定，制定本条例。\n\n第二条 具备法人条件的下列企业，应当依照本条例的规定办理企业法人登记：（一）全民所有制企业；（二）集体所有制企业；（三）联营企业；（四）在中华人民共和国境内设立的中外合资经营企业、中外合作经营企业和外资企业；（五）私营企业；（六）依法需要办理企业法人登记的其他企业。\n\n第三条 申请企业法人登记，经企业法人登记主管机关审核，准予登记注册的，领取《企业法人营业执照》，取得法人资格，其合法权益受国家法律保护。\n\n第四条 企业法人登记主管机关是国家市场监督管理总局和地方各级市场监督管理部门。各级登记主管机关在上级登记主管机关的领导下，依法履行职责，不受非法干预。\n\n第五条 经国务院或者国务院授权部门批准的全国性公司、企业集团、经营进出口业务的公司，由国家市场监督管理总局核准登记注册。中外合资经营企业、中外合作经营企业、外资企业由国家市场监督管理总局或者国家市场监督管理总局授权的地方市场监督管理部门核准登记注册。'
+            },
+            '海南自由贸易港市场主体登记管理条例': {
+                fullName: '海南自由贸易港市场主体登记管理条例',
+                type: '地方性法规',
+                issuer: '海南省人民代表大会常务委员会',
+                issueDate: '2021年7月27日',
+                effectiveDate: '2021年8月1日',
+                status: '有效',
+                content: '第一条 为了规范海南自由贸易港市场主体登记管理，优化营商环境，保护市场主体合法权益，根据《中华人民共和国市场主体登记管理条例》等有关法律法规，结合海南自由贸易港实际，制定本条例。\n\n第二条 本条例适用于海南自由贸易港内市场主体的登记及其监督管理活动。\n\n第三条 市场主体登记管理应当遵循依法合规、规范统一、公开透明、便捷高效的原则，充分利用互联网、大数据、人工智能等现代信息技术，提升登记管理服务效能。\n\n第四条 省人民政府市场监督管理部门负责全省市场主体登记管理工作，统一登记标准和登记程序，建立统一的市场主体登记管理信息平台。市、县、自治县人民政府市场监督管理部门负责本行政区域内市场主体登记管理工作。\n\n第五条 海南自由贸易港实行市场主体登记确认制，申请人对提交材料的真实性、合法性、有效性负责。登记机关对申请材料进行形式审查，对申请材料齐全、符合法定形式的，予以确认并登记。'
+            },
+            '市场主体登记管理规定': {
+                fullName: '市场主体登记管理规定',
+                type: '部门规章',
+                issuer: '国家市场监督管理总局',
+                issueDate: '2021年12月24日',
+                effectiveDate: '2022年3月1日',
+                status: '有效',
+                content: '第一条 为了规范市场主体登记管理行为，推进法治化市场建设，维护良好市场秩序和市场主体合法权益，优化营商环境，根据《中华人民共和国市场主体登记管理条例》等有关法律法规，制定本规定。\n\n第二条 市场主体登记管理应当遵循依法合规、规范统一、公开透明、便捷高效的原则。\n\n第三条 市场主体应当依照本规定办理登记。未经登记，不得以市场主体名义从事经营活动。法律、行政法规规定无需办理登记的除外。\n\n第四条 市场主体登记包括设立登记、变更登记、注销登记。\n\n第五条 市场主体应当使用规范汉字名称。市场主体名称由行政区划名称、字号、行业或者经营特点、组织形式组成。\n\n第六条 市场主体的经营范围包括一般经营项目和许可经营项目。经营范围中属于法律、行政法规或者国务院决定规定必须经批准的项目，应当依法经过批准。'
+            },
+            '行政处罚法': {
+                fullName: '中华人民共和国行政处罚法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2021年1月22日',
+                effectiveDate: '2021年7月15日',
+                status: '有效',
+                content: '第一条 为了规范行政处罚的设定和实施，保障和监督行政机关有效实施行政管理，维护公共利益和社会秩序，保护公民、法人或者其他组织的合法权益，根据宪法，制定本法。\n\n第二条 行政处罚是指行政机关依法对违反行政管理秩序的公民、法人或者其他组织，以减损权益或者增加义务的方式予以惩戒的行为。\n\n第三条 行政处罚的设定和实施，适用本法。\n\n第四条 公民、法人或者其他组织违反行政管理秩序的行为，应当给予行政处罚的，依照本法由法律、法规、规章规定，并由行政机关依照本法规定的程序实施。\n\n第五条 行政处罚遵循公正、公开的原则。设定和实施行政处罚必须以事实为依据，与违法行为的事实、性质、情节以及社会危害程度相当。\n\n第六条 实施行政处罚，纠正违法行为，应当坚持处罚与教育相结合，教育公民、法人或者其他组织自觉守法。\n\n第七条 公民、法人或者其他组织对行政机关所给予的行政处罚，享有陈述权、申辩权；对行政处罚不服的，有权依法申请行政复议或者提起行政诉讼。'
+            },
+            '行政强制法': {
+                fullName: '中华人民共和国行政强制法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2011年6月30日',
+                effectiveDate: '2012年1月1日',
+                status: '有效',
+                content: '第一条 为了规范行政强制的设定和实施，保障和监督行政机关依法履行职责，维护公共利益和社会秩序，保护公民、法人和其他组织的合法权益，根据宪法，制定本法。\n\n第二条 本法所称行政强制，包括行政强制措施和行政强制执行。行政强制措施，是指行政机关在行政管理过程中，为制止违法行为、防止证据损毁、避免危害发生、控制危险扩大等情形，依法对公民的人身自由实施暂时性限制，或者对公民、法人或者其他组织的财物实施暂时性控制的行为。\n\n第三条 行政强制的设定和实施，适用本法。发生或者即将发生自然灾害、事故灾难、公共卫生事件或者社会安全事件等突发事件，行政机关采取应急措施或者临时措施，依照有关法律、行政法规的规定执行。\n\n第四条 行政强制的设定和实施，应当依照法定的权限、范围、条件和程序。\n\n第五条 行政强制的设定和实施，应当适当。采用非强制手段可以达到行政管理目的的，不得设定和实施行政强制。\n\n第六条 实施行政强制，应当坚持教育与强制相结合。'
+            },
+            '产品质量法': {
+                fullName: '中华人民共和国产品质量法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2018年12月29日',
+                effectiveDate: '2019年1月1日',
+                status: '有效',
+                content: '第一条 为了加强对产品质量的监督管理，提高产品质量水平，明确产品质量责任，保护消费者的合法权益，维护社会经济秩序，制定本法。\n\n第二条 在中华人民共和国境内从事产品生产、销售活动，必须遵守本法。\n\n第三条 生产者、销售者应当建立健全内部产品质量管理制度，严格实施岗位质量规范、质量责任以及相应的考核办法。\n\n第四条 生产者、销售者依照本法规定承担产品质量责任。\n\n第五条 禁止伪造或者冒用认证标志等质量标志；禁止伪造产品的产地，伪造或者冒用他人的厂名、厂址；禁止在生产、销售的产品中掺杂、掺假，以假充真，以次充好。\n\n第六条 国家鼓励推行科学的质量管理方法，采用先进的科学技术，鼓励企业产品质量达到并且超过行业标准、国家标准和国际标准。'
+            },
+            '食品安全法': {
+                fullName: '中华人民共和国食品安全法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2021年4月29日',
+                effectiveDate: '2021年4月29日',
+                status: '有效',
+                content: '第一条 为了保证食品安全，保障公众身体健康和生命安全，制定本法。\n\n第二条 在中华人民共和国境内从事下列活动，应当遵守本法：（一）食品生产和加工，食品销售和餐饮服务；（二）食品添加剂的生产经营；（三）用于食品的包装材料、容器、洗涤剂、消毒剂和用于食品生产经营的工具、设备的生产经营；（四）食品生产经营者使用食品添加剂、食品相关产品；（五）食品的贮存和运输；（六）对食品、食品添加剂、食品相关产品的安全管理。\n\n第三条 食品安全工作实行预防为主、风险管理、全程控制、社会共治，建立科学、严格的监督管理制度。\n\n第四条 食品生产经营者对其生产经营食品的安全负责。食品生产经营者应当依照法律、法规和食品安全标准从事生产经营活动，保证食品安全，诚信自律，对社会和公众负责，接受社会监督，承担社会责任。\n\n第五条 国务院设立食品安全委员会，其职责由国务院规定。国务院食品安全监督管理部门依照本法和国务院规定的职责，对食品生产经营活动实施监督管理。'
+            },
+            '行政复议法': {
+                fullName: '中华人民共和国行政复议法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2023年9月1日',
+                effectiveDate: '2024年1月1日',
+                status: '有效',
+                content: '第一条 为了防止和纠正违法的或者不当的行政行为，保护公民、法人和其他组织的合法权益，保障和监督行政机关依法行使职权，根据宪法，制定本法。\n\n第二条 公民、法人或者其他组织认为具体行政行为侵犯其合法权益，向行政机关提出行政复议申请，行政机关受理行政复议申请、作出行政复议决定，适用本法。\n\n第三条 行政复议机关履行行政复议职责，应当遵循合法、公正、公开、及时、便民的原则，坚持有错必纠，保障法律、法规的正确实施。\n\n第四条 县级以上地方各级人民政府应当建立健全行政复议工作责任制，将行政复议工作纳入本级政府法治政府建设考核体系。\n\n第五条 公民、法人或者其他组织对行政复议决定不服的，可以依照行政诉讼法的规定向人民法院提起行政诉讼，但是法律规定行政复议决定为最终裁决的除外。'
+            },
+            '行政诉讼法': {
+                fullName: '中华人民共和国行政诉讼法',
+                type: '法律',
+                issuer: '全国人民代表大会常务委员会',
+                issueDate: '2017年6月27日',
+                effectiveDate: '2017年7月1日',
+                status: '有效',
+                content: '第一条 为保证人民法院公正、及时审理行政案件，解决行政争议，保护公民、法人和其他组织的合法权益，监督行政机关依法行使职权，根据宪法，制定本法。\n\n第二条 公民、法人或者其他组织认为行政机关和行政机关工作人员的行政行为侵犯其合法权益，有权依照本法向人民法院提起诉讼。\n\n第三条 人民法院应当保障公民、法人和其他组织的起诉权利，对应当受理的行政案件依法受理。行政机关及其工作人员不得干预、阻碍人民法院受理行政案件。\n\n第四条 人民法院依法对行政案件独立行使审判权，不受行政机关、社会团体和个人的干涉。\n\n第五条 人民法院审理行政案件，以事实为根据，以法律为准绳。\n\n第六条 人民法院审理行政案件，对行政行为是否合法进行审查。\n\n第七条 人民法院审理行政案件，依法实行合议、回避、公开审判和两审终审制度。'
+            }
+        };
+
+        const showLegalDetail = (name) => {
+            const detail = legalDetails[name] || {
+                fullName: name,
+                type: '法规',
+                issuer: '未知',
+                issueDate: '未知',
+                effectiveDate: '未知',
+                status: '有效',
+                content: '第一条 为了规范行政管理行为，保护公民、法人和其他组织的合法权益，根据相关法律法规制定本规定。\n\n第二条 本规定适用于行政机关及其工作人员依法履行职责的活动。\n\n第三条 行政机关应当遵循合法、合理、公正、公开的原则，依法行使职权。\n\n第四条 公民、法人和其他组织有权依法申请行政许可、行政复议等权利。\n\n第五条 行政机关应当建立健全监督管理制度，加强对行政行为的监督检查。\n\n第六条 违反本规定的，依法追究法律责任。\n\n第七条 本规定自发布之日起施行。'
+            };
+            
+            const detailOverlay = document.createElement('div');
+            detailOverlay.className = 'detail-modal-overlay';
+            detailOverlay.innerHTML = `
+                <div class="legal-detail-modal">
+                    <div class="legal-detail-header">
+                        <span class="legal-detail-title">${detail.fullName}</span>
+                        <button class="legal-detail-close">×</button>
+                    </div>
+                    <div class="legal-detail-info">
+                        <div class="detail-info-item"><span class="info-label">法规类型：</span><span class="info-value">${detail.type}</span></div>
+                        <div class="detail-info-item"><span class="info-label">发布机关：</span><span class="info-value">${detail.issuer}</span></div>
+                        <div class="detail-info-item"><span class="info-label">发布日期：</span><span class="info-value">${detail.issueDate}</span></div>
+                        <div class="detail-info-item"><span class="info-label">施行日期：</span><span class="info-value">${detail.effectiveDate}</span></div>
+                        <div class="detail-info-item"><span class="info-label">效力状态：</span><span class="info-value">${detail.status}</span></div>
+                    </div>
+                    <div class="legal-detail-content">
+                        <div class="detail-content-title">法规内容</div>
+                        <div class="detail-content-text">${detail.content.replace(/\n/g, '<br>')}</div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(detailOverlay);
+            
+            detailOverlay.querySelector('.legal-detail-close').addEventListener('click', () => {
+                document.body.removeChild(detailOverlay);
+            });
+            
+            detailOverlay.addEventListener('click', (e) => {
+                if (e.target === detailOverlay) {
+                    document.body.removeChild(detailOverlay);
+                }
+            });
+        };
+
         const renderTable = (tabId, page) => {
             const data = legalData[tabId];
             if (!data) return;
@@ -512,7 +675,7 @@ window.ScreenFrame = class ScreenFrame {
             
             tableBody.innerHTML = pageData.map(item => `
                 <tr>
-                    <td>${item.name}</td>
+                    <td><span class="legal-name-link" data-legal-name="${item.name.replace(/'/g, "\\'")}">${item.name}</span></td>
                     <td>${item.type}</td>
                     <td>${item.issuer}</td>
                     <td>${item.effectiveDate}</td>
@@ -525,6 +688,16 @@ window.ScreenFrame = class ScreenFrame {
             prevBtn.disabled = page <= 1;
             nextBtn.disabled = page >= totalPages;
         };
+
+        tableBody.addEventListener('click', (e) => {
+            const link = e.target.closest('.legal-name-link');
+            if (link) {
+                const name = link.dataset.legalName;
+                if (name) {
+                    showLegalDetail(name);
+                }
+            }
+        });
 
         tabs.forEach(tab => {
             tab.addEventListener('click', () => {
@@ -678,6 +851,9 @@ window.ScreenFrame = class ScreenFrame {
             }
             if (tabId === 'credit') {
                 window.creditPage = component;
+            }
+            if (tabId === 'cockpit') {
+                window.cockpitPage = component;
             }
             
             document.querySelectorAll('.page-wrapper').forEach(wrapper => {
